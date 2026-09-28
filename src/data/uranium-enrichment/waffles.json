@@ -1,0 +1,32 @@
+{
+  "sample_size": 1000,
+  "cases": [
+    {
+      "id": "natural",
+      "title": "Natural uranium",
+      "kicker": "As mined",
+      "u235_mass_pct": 0.711,
+      "u235_atom_pct": 0.72,
+      "u235_atoms_exact": 7.2,
+      "u235_atoms_shown": 7
+    },
+    {
+      "id": "leu",
+      "title": "Enriched to 5%",
+      "kicker": "Low-enriched \u00b7 reactor fuel",
+      "u235_mass_pct": 5.0,
+      "u235_atom_pct": 5.061,
+      "u235_atoms_exact": 50.61,
+      "u235_atoms_shown": 50
+    },
+    {
+      "id": "heu",
+      "title": "Enriched to 90%",
+      "kicker": "Highly enriched \u00b7 weapons-grade",
+      "u235_mass_pct": 90.0,
+      "u235_atom_pct": 90.114,
+      "u235_atoms_exact": 901.14,
+      "u235_atoms_shown": 900
+    }
+  ]
+}

@@ -1,0 +1,165 @@
+---
+// Three waffle charts (1,000 atoms each): natural, 5% and 90% enriched uranium.
+// Data: src/data/uranium-enrichment/waffles.json (built by analysis/uranium-enrichment/build_data.py)
+import data from "../../../data/uranium-enrichment/waffles.json";
+
+const uses: Record<string, string> = {
+  natural: "Straight from the ground after refining. A few reactor designs, such as Canada's CANDU, run on it directly by using heavy water to slow neutrons down.",
+  leu: "The fuel of most power reactors in the world today. It has about seven times the U-235 of natural uranium, enough to keep a chain reaction going in ordinary water.",
+  heu: "Nine out of ten atoms are U-235. This is weapons-grade material. Some naval propulsion reactors also use very highly enriched fuel.",
+};
+const N = data.sample_size;
+const ratio = (a: number) => (a < N - a ? `1 : ${Math.round((N - a) / a)}` : `${Math.round(a / (N - a))} : 1`);
+const natural = data.cases[0].u235_atoms_shown;
+---
+<div class="uw" data-viz="uranium-enrichment">
+  <div class="bar">
+    <div class="legend" role="group" aria-label="Highlight an isotope">
+      <button class="chip" data-iso="u235" type="button"><span class="sw sw-235"></span>U-235 <small>splits easily (fissile)</small></button>
+      <button class="chip" data-iso="u238" type="button"><span class="sw sw-238"></span>U-238 <small>the bulk of uranium</small></button>
+    </div>
+    <div class="arrange"><span class="seg-label">Arrange atoms</span>
+      <span class="seg" role="group" aria-label="Arrange atoms">
+        <button type="button" data-mode="sorted" aria-pressed="true">Sorted</button>
+        <button type="button" data-mode="mixed" aria-pressed="false">Mixed</button>
+      </span>
+    </div>
+  </div>
+
+  <div class="panels">
+    {data.cases.map((c) => (
+      <article class="panel">
+        <span class="kicker">{c.kicker}</span>
+        <h3>{c.title}</h3>
+        <div class="count"><span class="n">{c.u235_atoms_shown}</span><span class="of">of 1,000 atoms are U-235</span></div>
+        <svg class="waffle" data-case={c.id} data-u235={c.u235_atoms_shown} data-title={c.title}
+             role="img" aria-label={`${c.title}: ${c.u235_atoms_shown} of 1,000 atoms are U-235`}></svg>
+        <dl class="stats">
+          <dt>U-235 by mass</dt><dd>{c.u235_mass_pct}%</dd>
+          <dt>U-235 : U-238</dt><dd>{ratio(c.u235_atoms_shown)}</dd>
+          <dt>vs natural</dt><dd>{c.id === "natural" ? "—" : `${Math.round(c.u235_atoms_shown / natural)}× as much U-235`}</dd>
+        </dl>
+        <p class="use">{uses[c.id]}</p>
+      </article>
+    ))}
+  </div>
+
+  <details>
+    <summary>Show the numbers as a table</summary>
+    <div class="tbl"><table>
+      <thead><tr><th>Uranium type</th><th class="num">U-235 by mass</th><th class="num">U-235 by atoms</th><th class="num">Shown per 1,000</th></tr></thead>
+      <tbody>{data.cases.map((c) => (
+        <tr><td>{c.title}</td><td class="num">{c.u235_mass_pct}%</td><td class="num">{c.u235_atom_pct}%</td><td class="num">{c.u235_atoms_shown}</td></tr>
+      ))}</tbody>
+    </table></div>
+  </details>
+  <div class="tip" hidden></div>
+</div>
+
+<script>
+  import * as d3 from "d3";
+
+  const N = 1000, COLS = 40, ROWS = 25, CELL = 10, GAP = 2;
+  const W = COLS * CELL - GAP, H = ROWS * CELL - GAP;
+  const pos = (i: number) => ({ x: (i % COLS) * CELL, y: Math.floor(i / COLS) * CELL });
+  type Atom = { iso: "u235" | "u238"; sorted: number; mixed: number };
+
+  function rng(seed: number) {
+    return () => { seed |= 0; seed = (seed + 0x6d2b79f5) | 0; let t = Math.imul(seed ^ (seed >>> 15), 1 | seed); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-viz="uranium-enrichment"]').forEach((root) => {
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const tip = root.querySelector<HTMLElement>(".tip")!;
+    const svgs: d3.Selection<SVGSVGElement, unknown, null, undefined>[] = [];
+    let mode: "sorted" | "mixed" = "sorted";
+
+    root.querySelectorAll<SVGSVGElement>("svg.waffle").forEach((el, k) => {
+      const u235 = Number(el.dataset.u235), title = el.dataset.title!;
+      const r = rng(235 + k * 17);
+      const perm = d3.range(N);
+      for (let i = N - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [perm[i], perm[j]] = [perm[j], perm[i]]; }
+      const atoms: Atom[] = d3.range(N).map((i) => ({ iso: i < u235 ? "u235" : "u238", sorted: i, mixed: perm[i] }));
+
+      const svg = d3.select(el).attr("viewBox", `0 0 ${W} ${H}`);
+      svg.selectAll("rect").data(atoms).join("rect")
+        .attr("class", (a) => a.iso)
+        .attr("width", CELL - GAP).attr("height", CELL - GAP).attr("rx", 1.5)
+        .attr("x", (a) => pos(a.sorted).x).attr("y", (a) => pos(a.sorted).y)
+        .on("pointerenter pointermove", (ev: PointerEvent, a) => {
+          const is235 = a.iso === "u235";
+          tip.innerHTML = `<b>${is235 ? "U-235" : "U-238"}</b> · 92 protons, ${is235 ? 143 : 146} neutrons<br>${is235 ? u235 : N - u235} of 1,000 atoms in ${title.toLowerCase()}`;
+          tip.hidden = false;
+          const w = tip.offsetWidth, h = tip.offsetHeight;
+          let x = ev.clientX + 14, y = ev.clientY + 14;
+          if (x + w > innerWidth - 8) x = ev.clientX - w - 14;
+          if (y + h > innerHeight - 8) y = ev.clientY - h - 14;
+          tip.style.left = x + "px"; tip.style.top = y + "px";
+        })
+        .on("pointerleave", () => { tip.hidden = true; });
+      svgs.push(svg as any);
+    });
+
+    root.querySelectorAll<HTMLButtonElement>(".seg button").forEach((btn) => btn.addEventListener("click", () => {
+      const m = btn.dataset.mode as "sorted" | "mixed";
+      if (m === mode) return;
+      mode = m;
+      root.querySelectorAll(".seg button").forEach((b) => b.setAttribute("aria-pressed", String((b as HTMLElement).dataset.mode === m)));
+      svgs.forEach((svg) => svg.selectAll<SVGRectElement, Atom>("rect").transition().duration(reduce ? 0 : 900)
+        .delay((_, i) => (reduce ? 0 : (i % 97) * 4)).ease(d3.easeCubicInOut)
+        .attr("x", (a) => pos(a[m]).x).attr("y", (a) => pos(a[m]).y));
+    }));
+
+    let pinned: string | null = null;
+    const highlight = (iso: string | null) => {
+      const other = iso === "u235" ? "u238" : iso === "u238" ? "u235" : null;
+      svgs.forEach((svg) => svg.classed("dim-u235", other === "u235").classed("dim-u238", other === "u238"));
+    };
+    root.querySelectorAll<HTMLButtonElement>(".chip").forEach((chip) => {
+      chip.addEventListener("pointerenter", () => highlight(chip.dataset.iso!));
+      chip.addEventListener("pointerleave", () => highlight(pinned));
+      chip.addEventListener("click", () => {
+        pinned = pinned === chip.dataset.iso ? null : chip.dataset.iso!;
+        highlight(pinned);
+        root.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", String((c as HTMLElement).dataset.iso === pinned)));
+      });
+    });
+  });
+</script>
+
+<style is:global>
+  [data-viz="uranium-enrichment"] { margin-block: 32px; }
+  .uw .bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .uw .legend { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+  .uw .chip { display: inline-flex; align-items: center; gap: 8px; font: 600 14px/1.2 var(--f-body); color: var(--ink); background: none; border: 0; padding: 4px 2px; cursor: pointer; }
+  .uw .chip small { font: 400 13px/1.2 var(--f-body); color: var(--ink-3); }
+  .uw .sw { width: 14px; height: 14px; border-radius: 3px; }
+  .uw .sw-235 { background: var(--cat-2); } .uw .sw-238 { background: var(--cat-1); }
+  .uw .seg-label { font-size: 13px; color: var(--ink-3); margin-right: 8px; }
+  .uw .seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; background: var(--panel); }
+  .uw .seg button { font: 600 13px/1 var(--f-body); color: var(--ink-2); background: none; border: 0; padding: 9px 14px; cursor: pointer; }
+  .uw .seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+  .uw .panels { margin-top: 28px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+  @media (max-width: 900px) { .uw .panels { grid-template-columns: minmax(0, 1fr); max-width: 560px; } }
+  .uw .panel { background: var(--panel); border: 1px solid var(--rule); border-radius: var(--radius); padding: 20px; display: grid; gap: 12px; align-content: start; min-width: 0; }
+  .uw .kicker { font: 600 11px/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+  .uw h3 { font: 700 26px/1.05 var(--f-display); font-stretch: 85%; margin: 0; }
+  .uw .count { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .uw .n { font: 600 44px/1 var(--f-mono); color: var(--cat-2); font-variant-numeric: tabular-nums; }
+  .uw .of { font-size: 15px; color: var(--ink-2); }
+  .uw .waffle { width: 100%; height: auto; display: block; }
+  .uw .waffle rect { transition: opacity .15s; }
+  .uw .waffle rect.u235 { fill: var(--cat-2); } .uw .waffle rect.u238 { fill: var(--cat-1); }
+  .uw .waffle.dim-u235 rect.u235, .uw .waffle.dim-u238 rect.u238 { opacity: .18; }
+  .uw .stats { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; font-size: 14px; margin: 0; padding-top: 10px; border-top: 1px solid var(--rule); }
+  .uw .stats dt { color: var(--ink-3); }
+  .uw .stats dd { margin: 0; font: 400 13.5px var(--f-mono); text-align: right; font-variant-numeric: tabular-nums; }
+  .uw .use { margin: 0; font-size: 15px; color: var(--ink-2); }
+  .uw details { margin-top: 24px; font-size: 14px; }
+  .uw summary { cursor: pointer; font-weight: 600; }
+  .uw .tbl { overflow-x: auto; margin-top: 10px; }
+  .uw table { border-collapse: collapse; min-width: 460px; }
+  .uw th, .uw td { text-align: left; padding: 6px 14px 6px 0; border-bottom: 1px solid var(--rule); }
+  .uw .num { text-align: right; font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+  .uw .tip { position: fixed; pointer-events: none; z-index: 5; background: var(--ink); color: var(--bg); font: 400 13px/1.35 var(--f-body); padding: 8px 10px; border-radius: 6px; max-width: 220px; }
+</style>

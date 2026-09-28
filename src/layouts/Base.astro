@@ -1,0 +1,29 @@
+---
+import "../styles/tokens.css";
+interface Props { title: string; description?: string; }
+const { title, description = "Data analysis and science, one chart at a time." } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=JetBrains+Mono:wght@400;600&family=Source+Sans+3:wght@400;600&display=swap" />
+  </head>
+  <body>
+    <header class="site wrap">
+      <a href="/" class="brand">Marco's Website</a>
+    </header>
+    <main class="wrap">
+      <slot />
+    </main>
+  </body>
+</html>
+<style>
+  .site { padding-block: 20px 0; display: flex; justify-content: space-between; }
+  .brand { font: 700 15px/1 var(--f-mono); letter-spacing: .04em; text-decoration: none; color: var(--ink); }
+</style>

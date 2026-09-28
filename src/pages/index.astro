@@ -1,0 +1,38 @@
+---
+import Base from "../layouts/Base.astro";
+
+// Every MDX file in src/pages/projects/ with status "published" is listed here.
+const modules = import.meta.glob("./projects/*.mdx", { eager: true }) as Record<string, any>;
+const projects = Object.entries(modules)
+  .map(([path, mod]) => ({ ...mod.frontmatter, href: "/projects/" + path.split("/").pop()!.replace(".mdx", "/") }))
+  .filter((p) => p.status === "published" || import.meta.env.DEV)
+  .sort((a, b) => String(b.date).localeCompare(String(a.date)));
+---
+<Base title="Marco's Website">
+  <section class="prose">
+    <span class="eyebrow">Data analysis and science</span>
+    <h1>Small projects, one chart at a time</h1>
+    <p>I'm Marco, an electrical and nuclear engineer. Here I pick a question, find the data, and build an interactive chart that answers it.</p>
+  </section>
+
+  <ul class="grid">
+    {projects.map((p) => (
+      <li>
+        <a href={p.href} class="card">
+          <span class="eyebrow">{p.tags?.join(" · ")}{p.status !== "published" && " · draft"}</span>
+          <strong>{p.title}</strong>
+          <span>{p.description}</span>
+          <time>{p.date}</time>
+        </a>
+      </li>
+    ))}
+  </ul>
+</Base>
+<style>
+  .grid { list-style: none; padding: 0; margin: 40px 0 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 20px; }
+  .card { display: grid; gap: 8px; padding: 20px; background: var(--panel); border: 1px solid var(--rule); border-radius: var(--radius); text-decoration: none; height: 100%; }
+  .card:hover { border-color: var(--cat-2); }
+  .card strong { font: 700 24px/1.1 var(--f-display); font-stretch: 85%; }
+  .card span:not(.eyebrow) { color: var(--ink-2); font-size: 15px; }
+  .card time { font: 400 13px/1 var(--f-mono); color: var(--ink-3); }
+</style>

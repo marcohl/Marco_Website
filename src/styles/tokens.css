@@ -1,0 +1,47 @@
+/* Site-wide design tokens. Components use these; never literal colors.
+   Categorical colors are validated with scripts/check_palette.py (light + dark). */
+:root {
+  --bg: #F4F6F7;
+  --panel: #FFFFFF;
+  --ink: #12181C;
+  --ink-2: #4A555D;
+  --ink-3: #6B767D;
+  --rule: #DCE2E6;
+
+  /* categorical: slot 1 = context, slot 2 = accent (the story) */
+  --cat-1: #4A7FB5;
+  --cat-2: #D9661A;
+
+  --f-display: "Archivo", "Arial Narrow", system-ui, sans-serif;
+  --f-body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --measure: 64ch;
+  --radius: 8px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #11171B; --panel: #182026; --ink: #EDF1F3; --ink-2: #AEB9C0; --ink-3: #8C979E; --rule: #2A343B;
+    --cat-1: #5690D6; --cat-2: #D4661C;
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 17px/1.55 var(--f-body); }
+a { color: inherit; text-decoration-color: var(--cat-2); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+img, svg { max-width: 100%; }
+
+.wrap { max-width: 1180px; margin: 0 auto; padding-inline: 20px; padding-block: 40px 64px; }
+.prose { max-width: var(--measure); }
+.prose p, .prose li { color: var(--ink-2); }
+.prose strong { color: var(--ink); font-weight: 600; white-space: nowrap; }
+.prose h2 { font: 700 26px/1.15 var(--f-display); font-stretch: 85%; margin: 48px 0 8px; color: var(--ink); }
+.eyebrow { font: 600 12px/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+h1 { font: 800 clamp(38px, 6.5vw, 72px)/0.98 var(--f-display); font-stretch: 75%; margin: 12px 0 20px; text-wrap: balance; }
+h1 em { font-style: normal; color: var(--cat-2); }
+.notes { font-size: 15px; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }

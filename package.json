@@ -1,0 +1,18 @@
+{
+  "name": "marcos-website",
+  "version": "0.1.0",
+  "description": "Marco's Website: data-analysis and science-outreach infographics built with d3.js",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check:palette": "python3 scripts/check_palette.py"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^8.0.2",
+    "astro": "^7.3.5",
+    "d3": "^7.9.0"
+  },
+  "private": true,
+  "type": "module"
+}

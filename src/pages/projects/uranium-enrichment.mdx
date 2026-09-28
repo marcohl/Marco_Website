@@ -1,0 +1,34 @@
+---
+layout: ../../layouts/Project.astro
+title: Seven in a Thousand
+description: How natural, reactor-grade and weapons-grade uranium differ, shown atom by atom.
+date: 2026-09-28
+tags: [Nuclear, Energy]
+eyebrow: Nuclear fuel, atom by atom
+status: draft
+---
+import UraniumWaffles from "../../components/viz/uranium-enrichment/UraniumWaffles.astro";
+
+<div class="prose">
+
+# Only <em>7</em> in every 1,000 uranium atoms can easily split
+
+Uranium dug out of the ground is a mix of two isotopes. They behave the same chemically and differ by just three neutrons, but only one of them matters for most reactors. **U-235** splits when hit by a slow neutron and releases energy. **U-238**, almost all of the rest, mostly does not.
+
+**Enrichment** is the process of raising the share of U-235. Each grid below is a sample of 1,000 atoms. Compare how many are orange.
+
+</div>
+
+<UraniumWaffles />
+
+<div class="prose notes">
+
+## Notes and method
+
+Natural uranium is 99.27% U-238, 0.72% U-235 and 0.005% U-234 by atom count. U-234 is too rare to show (about 1 atom in 20,000).
+
+Enrichment levels are quoted by mass, as the industry does. U-235 is slightly lighter, so 5% and 90% by mass correspond to about 51 and 901 atoms per 1,000; the grids round to 50 and 900. "Low-enriched" means below 20% U-235 by mass; above that it is "highly enriched".
+
+Sources: [IUPAC CIAAW, uranium isotopic abundances](https://www.ciaaw.org/uranium.htm); atomic masses from AME2020; IAEA Safeguards Glossary. The numbers are computed in `analysis/uranium-enrichment/build_data.py`.
+
+</div>
