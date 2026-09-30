@@ -1,12 +1,10 @@
 ---
 import "../styles/tokens.css";
 import Nucleus from "../components/Nucleus.astro";
-interface Props { title: string; description?: string; sheet?: string; rev?: string; }
+interface Props { title: string; description?: string; }
 const {
   title,
   description = "Data analysis and science, one chart at a time.",
-  sheet = "Index · 1/1",
-  rev = "2026-09",
 } = Astro.props;
 const linkedin = "https://www.linkedin.com/in/marco-herbas-l%C3%B3pez-315530bb";
 ---
@@ -26,17 +24,17 @@ const linkedin = "https://www.linkedin.com/in/marco-herbas-l%C3%B3pez-315530bb";
   </head>
   <body>
     <header class="wrap site">
-      <div class="cartouche">
-        <a class="c-brand" href="/"><Nucleus size={56} /><span>Marco Herbas Lopez</span></a>
-        <div class="c-cell c-disc"><span class="lbl">Discipline</span><span class="val">Energy · Data · Everything</span></div>
-        <div class="c-cell c-sheet"><span class="lbl">Sheet</span><span class="val">{sheet}</span></div>
-        <div class="c-cell c-rev"><span class="lbl">Rev.</span><span class="val">{rev}</span></div>
-        <nav class="c-nav" aria-label="Main">
+      <div class="bar">
+        <a class="brand" href="/">
+          <Nucleus size={44} />
+          <span class="who"><span class="name">Marco Herbas Lopez</span><span class="disc">Energy · Data · Everything</span></span>
+        </a>
+        <nav class="links" aria-label="Main">
           <a href="/#work">Projects</a>
           <a href="/#about">About</a>
           <a href="#contact">Contact</a>
-          <button id="theme-toggle" type="button" aria-pressed="false">Dark</button>
         </nav>
+        <button id="theme-toggle" type="button" aria-pressed="false">Dark</button>
       </div>
     </header>
 
@@ -70,18 +68,19 @@ const linkedin = "https://www.linkedin.com/in/marco-herbas-l%C3%B3pez-315530bb";
 </html>
 <style>
   /* Mobile first: stacked cartouche; the five-column title block starts at 900px. */
-  .site { padding-block: 16px 0; }
+  .site { padding-block: 10px 0; }
   .lbl { font: 600 10px/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
-  .val { font-weight: 600; font-size: 15px; line-height: 1.2; }
-  .cartouche { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border: 1px solid var(--ink); background: var(--panel); }
-  .c-brand { grid-column: 1 / -1; display: flex; align-items: center; gap: 12px; padding: 12px 14px; text-decoration: none; color: var(--ink); font: 700 20px/1.1 var(--f-display); font-stretch: 85%; }
-  .c-cell { padding: 10px 14px; border-top: 1px solid var(--ink); display: flex; flex-direction: column; gap: 4px; justify-content: center; min-width: 0; }
-  .c-disc { grid-column: 1 / -1; }
-  .c-rev { border-left: 1px solid var(--ink); }
-  .c-nav { grid-column: 1 / -1; border-top: 1px solid var(--ink); display: flex; align-items: center; justify-content: space-between; gap: 4px 16px; padding: 0 14px; min-height: 48px; font-size: 15px; font-weight: 600; flex-wrap: wrap; }
-  .c-nav a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; }
-  .c-nav a:hover { text-decoration: underline; text-underline-offset: 4px; }
-  #theme-toggle { font: 600 13px/1 var(--f-body); color: var(--ink-2); background: none; border: 1px solid var(--ink); border-radius: 0; padding: 0 12px; min-height: 40px; cursor: pointer; }
+  /* Mobile first: brand and toggle on row 1, links on row 2. One row from 700px. */
+  .bar { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 0 12px; border-bottom: 2px solid var(--ink); padding-block: 8px 0; }
+  .brand { display: flex; align-items: center; gap: 12px; min-width: 0; text-decoration: none; color: var(--ink); }
+  .who { display: grid; gap: 6px; min-width: 0; }
+  .name { font: 700 18px/1 var(--f-display); font-stretch: 85%; letter-spacing: -.01em; }
+  .disc { font: 600 10px/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+  .links { grid-column: 1 / -1; grid-row: 2; display: flex; gap: 22px; font-size: 15px; font-weight: 600; }
+  .links a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; }
+  .links a:hover { text-decoration: underline; text-underline-offset: 5px; }
+  #theme-toggle { font: 600 12px/1 var(--f-mono); color: var(--ink-2); background: none; border: 1px solid var(--rule); border-radius: 99px; padding: 0 14px; min-height: 40px; cursor: pointer; }
+  #theme-toggle:hover { border-color: var(--ink-3); }
 
   .foot-outer { margin-top: 64px; border-top: 1px solid var(--rule); }
   .foot { padding-block: 28px 40px; display: grid; gap: 24px; }
@@ -90,12 +89,11 @@ const linkedin = "https://www.linkedin.com/in/marco-herbas-l%C3%B3pez-315530bb";
   .contact a { display: inline-flex; align-items: center; min-height: 44px; overflow-wrap: anywhere; }
   .legal { display: grid; gap: 4px; font-size: 14px; color: var(--ink-3); }
 
-  @media (min-width: 900px) {
-    .cartouche { grid-template-columns: 2.1fr 1.6fr 1fr .9fr 1.9fr; }
-    .c-brand, .c-disc, .c-nav { grid-column: auto; }
-    .c-cell { border-top: 0; border-left: 1px solid var(--ink); }
-    .c-nav { border-top: 0; border-left: 1px solid var(--ink); padding: 10px 16px; min-height: 0; flex-wrap: nowrap; }
-    .c-brand { padding: 12px 18px; font-size: 19px; }
+  @media (min-width: 700px) {
+    .site { padding-block: 14px 0; }
+    .bar { grid-template-columns: minmax(0, 1fr) auto auto; gap: 0 28px; padding-block: 10px; }
+    .links { grid-column: auto; grid-row: auto; gap: 28px; font-size: 16px; }
+    .name { font-size: 20px; }
     .foot { grid-template-columns: 1fr auto; align-items: end; }
     .contact ul { display: flex; gap: 28px; }
     .legal { text-align: right; }
