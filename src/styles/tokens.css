@@ -17,15 +17,15 @@
   --f-body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
   --f-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 
+  color-scheme: light;
   --measure: 64ch;
   --radius: 8px;
 }
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #11171B; --panel: #182026; --ink: #EDF1F3; --ink-2: #AEB9C0; --ink-3: #8C979E; --rule: #2A343B;
-    --cat-1: #5690D6; --cat-2: #D4661C;
-    color-scheme: dark;
-  }
+/* Dark theme is opt-in via the toggle (data-theme="dark" on <html>). Light cream is the default. */
+:root[data-theme="dark"] {
+  --bg: #11171B; --panel: #182026; --ink: #EDF1F3; --ink-2: #AEB9C0; --ink-3: #8C979E; --rule: #2A343B;
+  --cat-1: #5690D6; --cat-2: #D4661C;
+  color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
