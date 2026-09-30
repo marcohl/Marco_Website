@@ -21,18 +21,43 @@ Uranium dug out of the ground is a mix of two isotopes. They behave the same che
 
 <UraniumWaffles />
 
-<div class="prose notes">
+<section class="method">
 
 ## Notes and method
 
+<div class="method-grid">
+<div>
+
+### Atoms and mass
+
 Natural uranium is 99.27% U-238, 0.72% U-235 and 0.005% U-234 by atom count. U-234 is too rare to show (about 1 atom in 20,000).
 
-Enrichment levels are quoted by mass, as the industry does. U-235 is slightly lighter, so 5% and 90% by mass correspond to about 51 and 901 atoms per 1,000; the grid rounds to 50 and 900.
-
-The IAEA defines low-enriched uranium as containing less than 20% U-235; at 20% or more it is highly enriched. Weapons typically use about 90% or more.
-
-Natural uranium needed per kilogram of product comes from the mass balance F/P = (x_p − x_t) / (x_f − x_t), with natural feed x_f = 0.711% and an assumed tails assay x_t = 0.25% U-235 by mass. For 5% fuel that gives 10.3 kg.
-
-Sources: [IUPAC CIAAW, uranium isotopic abundances](https://www.ciaaw.org/uranium.htm); atomic masses from AME2020; [Glaser, "About the Enrichment Limit for Research Reactor Conversion"](https://www.princeton.edu/~aglaser/2005aglaser_why20percent.pdf) for the IAEA definition; [World Nuclear Association, HALEU](https://world-nuclear.org/information-library/nuclear-fuel-cycle/conversion-enrichment-and-fabrication/high-assay-low-enriched-uranium-haleu). The numbers are computed in `analysis/uranium-enrichment/build_data.py`.
+Enrichment levels are quoted by mass, as the industry does. U-235 is slightly lighter, so 5% and 90% by mass correspond to about 51 and 901 atoms per 1,000. The grid rounds to 50 and 900.
 
 </div>
+<div>
+
+### Definitions
+
+The IAEA defines low-enriched uranium as containing less than 20% U-235. At 20% or more it is highly enriched. Weapons typically use about 90% or more.
+
+</div>
+<div>
+
+### Natural uranium per kg of fuel
+
+The mass balance is F/P = (x_p − x_t) / (x_f − x_t), with natural feed x_f = 0.711% and an assumed tails assay x_t = 0.25% U-235 by mass. For 5% fuel that gives 10.3 kg of natural uranium per kg.
+
+</div>
+<div>
+
+### Sources
+
+[IUPAC CIAAW, uranium isotopic abundances](https://www.ciaaw.org/uranium.htm). Atomic masses from AME2020. [Glaser, "About the Enrichment Limit for Research Reactor Conversion"](https://www.princeton.edu/~aglaser/2005aglaser_why20percent.pdf) for the IAEA definition. [World Nuclear Association, HALEU](https://world-nuclear.org/information-library/nuclear-fuel-cycle/conversion-enrichment-and-fabrication/high-assay-low-enriched-uranium-haleu).
+
+Numbers computed in `analysis/uranium-enrichment/build_data.py`.
+
+</div>
+</div>
+
+</section>

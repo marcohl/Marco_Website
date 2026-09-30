@@ -155,7 +155,7 @@ const first = data.cases[0];
     steps[0].el.classList.add("active");
 
     // The step crossing a thin band of the viewport is the active one.
-    const narrow = matchMedia("(max-width: 900px)").matches;
+    const narrow = !matchMedia("(min-width: 901px)").matches;
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => { if (e.isIntersecting) setStep(steps.findIndex((s) => s.el === e.target)); });
     }, { rootMargin: narrow ? "-55% 0px -35% 0px" : "-45% 0px -45% 0px" });
@@ -187,55 +187,58 @@ const first = data.cases[0];
 </script>
 
 <style is:global>
-  [data-viz="uranium-enrichment"] { margin-block: 32px; }
-  .uw .scrolly { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 48px; align-items: start; }
-  .uw .stage { position: sticky; top: 24px; align-self: start; }
-  .uw .stage-in { background: var(--panel); border: 1px solid var(--rule); border-radius: var(--radius); padding: 20px; display: grid; gap: 12px; min-width: 0; }
+  /* Mobile first: base rules are the phone layout; @media (min-width) adds the desktop layout. */
+  [data-viz="uranium-enrichment"] { margin-block: 24px; }
+  .uw .scrolly { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .uw .stage { position: sticky; top: 0; z-index: 2; margin-inline: -20px; padding: 10px 20px 8px; background: var(--bg); border-bottom: 1px solid var(--rule); }
+  .uw .stage-in { display: grid; gap: 6px; min-width: 0; }
   .uw .kicker { font: 600 11px/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
   .uw .count { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
-  .uw .n { font: 600 44px/1 var(--f-mono); color: var(--cat-2); font-variant-numeric: tabular-nums; }
+  .uw .n { font: 600 32px/1 var(--f-mono); color: var(--cat-2); font-variant-numeric: tabular-nums; }
   .uw .of { font-size: 15px; color: var(--ink-2); }
-  .uw .waffle { width: 100%; height: auto; display: block; }
+  .uw .waffle { width: 100%; height: auto; max-height: 32vh; display: block; }
   .uw .waffle rect { fill: var(--cat-1); transition: fill .35s ease, opacity .15s; }
   .uw .waffle rect.u235 { fill: var(--cat-2); }
   .uw .waffle.dim-u235 rect.u235, .uw .waffle.dim-u238 rect:not(.u235) { opacity: .18; }
   .uw .controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; }
   .uw .legend { display: flex; flex-wrap: wrap; gap: 4px 18px; }
-  .uw .chip { display: inline-flex; align-items: center; gap: 8px; font: 600 14px/1.2 var(--f-body); color: var(--ink); background: none; border: 0; padding: 4px 2px; cursor: pointer; }
-  .uw .chip small { font: 400 13px/1.2 var(--f-body); color: var(--ink-3); }
+  .uw .chip { display: inline-flex; align-items: center; gap: 8px; font: 600 14px/1.2 var(--f-body); color: var(--ink); background: none; border: 0; padding: 6px 2px; cursor: pointer; }
+  .uw .chip small { display: none; font: 400 13px/1.2 var(--f-body); color: var(--ink-3); }
   .uw .sw { width: 14px; height: 14px; border-radius: 3px; }
   .uw .sw-235 { background: var(--cat-2); } .uw .sw-238 { background: var(--cat-1); }
   .uw .seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; background: var(--bg); }
-  .uw .seg button { font: 600 13px/1 var(--f-body); color: var(--ink-2); background: none; border: 0; padding: 8px 12px; cursor: pointer; }
+  .uw .seg button { font: 600 13px/1 var(--f-body); color: var(--ink-2); background: none; border: 0; padding: 9px 12px; cursor: pointer; }
   .uw .seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
-  .uw .stats { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; font-size: 14px; margin: 0; padding-top: 10px; border-top: 1px solid var(--rule); }
+  .uw .stats { display: none; grid-template-columns: auto 1fr; gap: 4px 14px; font-size: 14px; margin: 0; padding-top: 10px; border-top: 1px solid var(--rule); }
   .uw .stats dt { color: var(--ink-3); }
   .uw .stats dd { margin: 0; font: 400 13.5px var(--f-mono); text-align: right; font-variant-numeric: tabular-nums; }
 
   .uw .steps { min-width: 0; }
-  .uw .step { min-height: 90vh; display: flex; flex-direction: column; justify-content: center; gap: 12px; max-width: 46ch; }
+  .uw .step { min-height: 70vh; display: flex; flex-direction: column; justify-content: flex-start; padding-top: 28px; gap: 12px; max-width: 46ch; }
   .uw .step:last-child { margin-bottom: 12vh; }
-  .uw .step h3 { font: 700 34px/1.05 var(--f-display); font-stretch: 85%; margin: 0; }
+  .uw .step h3 { font: 700 28px/1.05 var(--f-display); font-stretch: 85%; margin: 0; }
   .uw .step p { margin: 0; color: var(--ink-2); }
   .uw.js .step { opacity: .3; transition: opacity .3s; }
   .uw.js .step.active { opacity: 1; }
 
   .uw details { margin-top: 24px; font-size: 14px; }
-  .uw summary { cursor: pointer; font-weight: 600; }
+  .uw summary { cursor: pointer; font-weight: 600; padding-block: 6px; }
   .uw .tbl { overflow-x: auto; margin-top: 10px; }
   .uw table { border-collapse: collapse; min-width: 560px; }
   .uw th, .uw td { text-align: left; padding: 6px 14px 6px 0; border-bottom: 1px solid var(--rule); }
   .uw .num { text-align: right; font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
   .uw .tip { position: fixed; pointer-events: none; z-index: 5; background: var(--ink); color: var(--bg); font: 400 13px/1.35 var(--f-body); padding: 8px 10px; border-radius: 6px; max-width: 220px; }
 
-  @media (max-width: 900px) {
-    .uw .scrolly { grid-template-columns: minmax(0, 1fr); gap: 0; }
-    .uw .stage { top: 0; z-index: 2; margin-inline: -20px; padding: 10px 20px 8px; background: var(--bg); border-bottom: 1px solid var(--rule); }
-    .uw .stage-in { border: 0; background: none; padding: 0; gap: 6px; }
-    .uw .n { font-size: 32px; }
-    .uw .waffle { max-height: 32vh; }
-    .uw .stats, .uw .chip small { display: none; }
-    .uw .step { min-height: 70vh; justify-content: flex-start; padding-top: 28px; }
-    .uw .step h3 { font-size: 28px; }
+  @media (min-width: 901px) {
+    [data-viz="uranium-enrichment"] { margin-block: 32px; }
+    .uw .scrolly { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 48px; align-items: start; }
+    .uw .stage { top: 24px; align-self: start; margin-inline: 0; padding: 0; background: none; border-bottom: 0; }
+    .uw .stage-in { background: var(--panel); border: 1px solid var(--rule); border-radius: var(--radius); padding: 20px; gap: 12px; }
+    .uw .n { font-size: 44px; }
+    .uw .waffle { max-height: none; }
+    .uw .chip small { display: inline; }
+    .uw .stats { display: grid; }
+    .uw .step { min-height: 90vh; justify-content: center; padding-top: 0; }
+    .uw .step h3 { font-size: 34px; }
   }
 </style>

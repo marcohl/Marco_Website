@@ -43,6 +43,13 @@ img, svg { max-width: 100%; }
 .eyebrow { font: 600 12px/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
 h1 { font: 800 clamp(38px, 6.5vw, 72px)/0.98 var(--f-display); font-stretch: 75%; margin: 12px 0 20px; text-wrap: balance; }
 h1 em { font-style: normal; color: var(--cat-2); }
-.notes { font-size: 15px; }
+.method { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--rule); }
+.method h2 { font: 700 26px/1.15 var(--f-display); font-stretch: 85%; margin: 0 0 24px; }
+.method-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; }
+.method h3 { font: 600 11px/1.2 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 8px; }
+.method p { font-size: 15px; color: var(--ink-2); margin: 0 0 10px; }
+.method code { font: 400 .9em var(--f-mono); overflow-wrap: anywhere; }
+@media (min-width: 640px) { .method-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 40px; } }
+@media (min-width: 1000px) { .method-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
