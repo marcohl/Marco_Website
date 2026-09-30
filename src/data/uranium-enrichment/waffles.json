@@ -7,6 +7,7 @@
       "kicker": "As mined",
       "u235_mass_pct": 0.711,
       "u235_atom_pct": 0.72,
+      "feed_kg_per_kg": 1.0,
       "u235_atoms_exact": 7.2,
       "u235_atoms_shown": 7
     },
@@ -16,6 +17,7 @@
       "kicker": "Low-enriched \u00b7 reactor fuel",
       "u235_mass_pct": 5.0,
       "u235_atom_pct": 5.061,
+      "feed_kg_per_kg": 10.3,
       "u235_atoms_exact": 50.61,
       "u235_atoms_shown": 50
     },
@@ -25,6 +27,7 @@
       "kicker": "Highly enriched \u00b7 weapons-grade",
       "u235_mass_pct": 90.0,
       "u235_atom_pct": 90.114,
+      "feed_kg_per_kg": 194.5,
       "u235_atoms_exact": 901.14,
       "u235_atoms_shown": 900
     }

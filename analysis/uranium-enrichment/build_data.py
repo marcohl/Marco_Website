@@ -42,7 +42,17 @@ cases = [
      "u235_mass_pct": 90.0, "u235_atom_pct": atom_fraction(0.90) * 100},
 ]
 
+TAILS = 0.0025  # assumed U-235 mass fraction of depleted tails (typical 0.2-0.3 %)
+XF = mass_fraction(NATURAL_U235_ATOM)  # natural feed, mass fraction
+
+
+def feed_per_kg(xp: float) -> float:
+    """kg of natural uranium per kg of product: F/P = (xp - xt) / (xf - xt)."""
+    return (xp - TAILS) / (XF - TAILS)
+
+
 for c in cases:
+    c["feed_kg_per_kg"] = 1.0 if c["id"] == "natural" else round(feed_per_kg(c["u235_mass_pct"] / 100), 1)
     c["u235_atoms_exact"] = round(c["u235_atom_pct"] / 100 * SAMPLE, 2)
     # The grid shows the headline percentage the public knows (mass % for
     # enriched fuel, atom % for natural). The notes explain the <1 atom gap.
@@ -56,6 +66,8 @@ checks = {
     "5 wt% ~ 5.06 at%": abs(cases[1]["u235_atom_pct"] - 5.06) < 0.01,
     "90 wt% ~ 90.1 at%": abs(cases[2]["u235_atom_pct"] - 90.11) < 0.02,
     "natural shows 7 atoms": cases[0]["u235_atoms_shown"] == 7,
+    "5% fuel needs ~10.3 kg natural per kg": abs(cases[1]["feed_kg_per_kg"] - 10.3) < 0.05,
+    "4.5% check vs textbook 9.2 kg": abs(feed_per_kg(0.045) - 9.22) < 0.02,
 }
 for name, ok in checks.items():
     print(f"[{'PASS' if ok else 'FAIL'}] {name}")

@@ -1,55 +1,74 @@
 ---
-// Three waffle charts (1,000 atoms each): natural, 5% and 90% enriched uranium.
+// Scrollytelling: one sticky waffle (1,000 atoms) that changes state as the text scrolls by.
 // Data: src/data/uranium-enrichment/waffles.json (built by analysis/uranium-enrichment/build_data.py)
 import data from "../../../data/uranium-enrichment/waffles.json";
 
-const uses: Record<string, string> = {
-  natural: "Straight from the ground after refining. A few reactor designs, such as Canada's CANDU, run on it directly by using heavy water to slow neutrons down.",
-  leu: "The fuel of most power reactors in the world today. It has about seven times the U-235 of natural uranium, enough to keep a chain reaction going in ordinary water.",
-  heu: "Nine out of ten atoms are U-235. This is weapons-grade material. Some naval propulsion reactors also use very highly enriched fuel.",
-};
 const N = data.sample_size;
+const [nat, leu] = data.cases;
 const ratio = (a: number) => (a < N - a ? `1 : ${Math.round((N - a) / a)}` : `${Math.round(a / (N - a))} : 1`);
-const natural = data.cases[0].u235_atoms_shown;
+const vs = (c: (typeof data.cases)[number]) =>
+  c.id === "natural" ? "—" : `${Math.round(c.u235_atoms_shown / nat.u235_atoms_shown)}× as much U-235`;
+const feed = Math.round(leu.feed_kg_per_kg);
+
+const copy: Record<string, string[]> = {
+  natural: [
+    "Natural uranium is what comes out of the mine. Of every 1,000 atoms, 993 are U-238 and 7 are U-235, a mix that is almost identical in every deposit.",
+    "With so little U-235, most reactors cannot sustain a chain reaction on it. A few designs, like Canada's CANDU, can, because heavy water slows neutrons down while absorbing very few.",
+  ],
+  leu: [
+    "Most of today's reactor fleet is made of light-water reactors. They run on uranium enriched to roughly 3 to 5%.",
+    `Enrichment separates the two isotopes by their tiny mass difference, today mostly in gas centrifuges. Making 1 kg of 5% fuel takes about ${feed} kg of natural uranium. The U-235 share goes from 7 atoms in 1,000 to about 50.`,
+  ],
+  heu: [
+    "Keep enriching and the share keeps rising. The IAEA calls uranium below 20% U-235 low-enriched, and uranium at 20% or above highly enriched.",
+    "Nuclear weapons typically use about 90% or more, which is what this grid shows. Power-reactor fuel stays far below the 20% line.",
+  ],
+};
+const first = data.cases[0];
 ---
 <div class="uw" data-viz="uranium-enrichment">
-  <div class="bar">
-    <div class="legend" role="group" aria-label="Highlight an isotope">
-      <button class="chip" data-iso="u235" type="button"><span class="sw sw-235"></span>U-235 <small>splits easily (fissile)</small></button>
-      <button class="chip" data-iso="u238" type="button"><span class="sw sw-238"></span>U-238 <small>the bulk of uranium</small></button>
-    </div>
-    <div class="arrange"><span class="seg-label">Arrange atoms</span>
-      <span class="seg" role="group" aria-label="Arrange atoms">
-        <button type="button" data-mode="sorted" aria-pressed="true">Sorted</button>
-        <button type="button" data-mode="mixed" aria-pressed="false">Mixed</button>
-      </span>
-    </div>
-  </div>
-
-  <div class="panels">
-    {data.cases.map((c) => (
-      <article class="panel">
-        <span class="kicker">{c.kicker}</span>
-        <h3>{c.title}</h3>
-        <div class="count"><span class="n">{c.u235_atoms_shown}</span><span class="of">of 1,000 atoms are U-235</span></div>
-        <svg class="waffle" data-case={c.id} data-u235={c.u235_atoms_shown} data-title={c.title}
-             role="img" aria-label={`${c.title}: ${c.u235_atoms_shown} of 1,000 atoms are U-235`}></svg>
+  <div class="scrolly">
+    <div class="stage">
+      <div class="stage-in">
+        <span class="kicker" data-title>{first.title}</span>
+        <div class="count"><span class="n" data-count>{first.u235_atoms_shown}</span><span class="of">of 1,000 atoms are U-235</span></div>
+        <svg class="waffle" role="img" aria-label={`${first.title}: ${first.u235_atoms_shown} of 1,000 atoms are U-235`}></svg>
+        <div class="controls">
+          <div class="legend" role="group" aria-label="Highlight an isotope">
+            <button class="chip" data-iso="u235" type="button"><span class="sw sw-235"></span>U-235 <small>splits easily</small></button>
+            <button class="chip" data-iso="u238" type="button"><span class="sw sw-238"></span>U-238 <small>the bulk</small></button>
+          </div>
+          <span class="seg" role="group" aria-label="Arrange atoms">
+            <button type="button" data-mode="sorted" aria-pressed="true">Sorted</button>
+            <button type="button" data-mode="mixed" aria-pressed="false">Mixed</button>
+          </span>
+        </div>
         <dl class="stats">
-          <dt>U-235 by mass</dt><dd>{c.u235_mass_pct}%</dd>
-          <dt>U-235 : U-238</dt><dd>{ratio(c.u235_atoms_shown)}</dd>
-          <dt>vs natural</dt><dd>{c.id === "natural" ? "—" : `${Math.round(c.u235_atoms_shown / natural)}× as much U-235`}</dd>
+          <dt>U-235 by mass</dt><dd data-mass>{first.u235_mass_pct}%</dd>
+          <dt>U-235 : U-238</dt><dd data-ratio>{ratio(first.u235_atoms_shown)}</dd>
+          <dt>vs natural</dt><dd data-vs>{vs(first)}</dd>
         </dl>
-        <p class="use">{uses[c.id]}</p>
-      </article>
-    ))}
+      </div>
+    </div>
+
+    <div class="steps">
+      {data.cases.map((c) => (
+        <article class="step" data-n={c.u235_atoms_shown} data-title={c.title} data-mass={`${c.u235_mass_pct}%`}
+                 data-ratio={ratio(c.u235_atoms_shown)} data-vs={vs(c)}>
+          <span class="kicker">{c.kicker}</span>
+          <h3>{c.title}</h3>
+          {copy[c.id].map((p) => <p>{p}</p>)}
+        </article>
+      ))}
+    </div>
   </div>
 
   <details>
     <summary>Show the numbers as a table</summary>
     <div class="tbl"><table>
-      <thead><tr><th>Uranium type</th><th class="num">U-235 by mass</th><th class="num">U-235 by atoms</th><th class="num">Shown per 1,000</th></tr></thead>
+      <thead><tr><th>Uranium type</th><th class="num">U-235 by mass</th><th class="num">U-235 by atoms</th><th class="num">Shown per 1,000</th><th class="num">Natural U per kg</th></tr></thead>
       <tbody>{data.cases.map((c) => (
-        <tr><td>{c.title}</td><td class="num">{c.u235_mass_pct}%</td><td class="num">{c.u235_atom_pct}%</td><td class="num">{c.u235_atoms_shown}</td></tr>
+        <tr><td>{c.title}</td><td class="num">{c.u235_mass_pct}%</td><td class="num">{c.u235_atom_pct}%</td><td class="num">{c.u235_atoms_shown}</td><td class="num">{c.feed_kg_per_kg} kg</td></tr>
       ))}</tbody>
     </table></div>
   </details>
@@ -62,58 +81,98 @@ const natural = data.cases[0].u235_atoms_shown;
   const N = 1000, COLS = 40, ROWS = 25, CELL = 10, GAP = 2;
   const W = COLS * CELL - GAP, H = ROWS * CELL - GAP;
   const pos = (i: number) => ({ x: (i % COLS) * CELL, y: Math.floor(i / COLS) * CELL });
-  type Atom = { iso: "u235" | "u238"; sorted: number; mixed: number };
+  type Atom = { sorted: number; mixed: number };
+  type Mode = "sorted" | "mixed";
 
   function rng(seed: number) {
     return () => { seed |= 0; seed = (seed + 0x6d2b79f5) | 0; let t = Math.imul(seed ^ (seed >>> 15), 1 | seed); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
   }
+  const fmt = d3.format(",");
 
   document.querySelectorAll<HTMLElement>('[data-viz="uranium-enrichment"]').forEach((root) => {
+    root.classList.add("js");
     const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const tip = root.querySelector<HTMLElement>(".tip")!;
-    const svgs: d3.Selection<SVGSVGElement, unknown, null, undefined>[] = [];
-    let mode: "sorted" | "mixed" = "sorted";
+    const q = <T extends Element>(s: string) => root.querySelector<T>(s)!;
+    const tip = q<HTMLElement>(".tip"), svgEl = q<SVGSVGElement>("svg.waffle");
+    const countEl = q<HTMLElement>("[data-count]"), titleEl = q<HTMLElement>("[data-title]");
+    const massEl = q<HTMLElement>("[data-mass]"), ratioEl = q<HTMLElement>("[data-ratio]"), vsEl = q<HTMLElement>("[data-vs]");
+    const steps = [...root.querySelectorAll<HTMLElement>(".step")].map((el) => ({
+      el, n: Number(el.dataset.n), title: el.dataset.title!, mass: el.dataset.mass!, ratio: el.dataset.ratio!, vs: el.dataset.vs!,
+    }));
 
-    root.querySelectorAll<SVGSVGElement>("svg.waffle").forEach((el, k) => {
-      const u235 = Number(el.dataset.u235), title = el.dataset.title!;
-      const r = rng(235 + k * 17);
-      const perm = d3.range(N);
-      for (let i = N - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [perm[i], perm[j]] = [perm[j], perm[i]]; }
-      const atoms: Atom[] = d3.range(N).map((i) => ({ iso: i < u235 ? "u235" : "u238", sorted: i, mixed: perm[i] }));
+    // One fixed set of 1,000 cells. "Sorted": the first n cells are U-235. "Mixed": a fixed random subset.
+    // The subsets are nested, so the 7 natural atoms stay U-235 when the fuel is enriched.
+    const r = rng(235);
+    const perm = d3.range(N);
+    for (let i = N - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [perm[i], perm[j]] = [perm[j], perm[i]]; }
+    const atoms: Atom[] = d3.range(N).map((i) => ({ sorted: i, mixed: perm[i] }));
 
-      const svg = d3.select(el).attr("viewBox", `0 0 ${W} ${H}`);
-      svg.selectAll("rect").data(atoms).join("rect")
-        .attr("class", (a) => a.iso)
-        .attr("width", CELL - GAP).attr("height", CELL - GAP).attr("rx", 1.5)
-        .attr("x", (a) => pos(a.sorted).x).attr("y", (a) => pos(a.sorted).y)
-        .on("pointerenter pointermove", (ev: PointerEvent, a) => {
-          const is235 = a.iso === "u235";
-          tip.innerHTML = `<b>${is235 ? "U-235" : "U-238"}</b> · 92 protons, ${is235 ? 143 : 146} neutrons<br>${is235 ? u235 : N - u235} of 1,000 atoms in ${title.toLowerCase()}`;
-          tip.hidden = false;
-          const w = tip.offsetWidth, h = tip.offsetHeight;
-          let x = ev.clientX + 14, y = ev.clientY + 14;
-          if (x + w > innerWidth - 8) x = ev.clientX - w - 14;
-          if (y + h > innerHeight - 8) y = ev.clientY - h - 14;
-          tip.style.left = x + "px"; tip.style.top = y + "px";
+    let mode: Mode = "sorted", cur = 0, nNow = steps[0].n;
+    const svg = d3.select(svgEl).attr("viewBox", `0 0 ${W} ${H}`);
+    const rects = svg.selectAll<SVGRectElement, Atom>("rect").data(atoms).join("rect")
+      .attr("width", CELL - GAP).attr("height", CELL - GAP).attr("rx", 1.5)
+      .attr("x", (_, i) => pos(i).x).attr("y", (_, i) => pos(i).y)
+      .classed("u235", (a) => a.sorted < nNow)
+      .on("pointerenter pointermove", (ev: PointerEvent, a) => {
+        const is235 = a[mode] < nNow;
+        tip.innerHTML = `<b>${is235 ? "U-235" : "U-238"}</b> · 92 protons, ${is235 ? 143 : 146} neutrons<br>${fmt(is235 ? nNow : N - nNow)} of 1,000 atoms in ${steps[cur].title.toLowerCase()}`;
+        tip.hidden = false;
+        const w = tip.offsetWidth, h = tip.offsetHeight;
+        let x = ev.clientX + 14, y = ev.clientY + 14;
+        if (x + w > innerWidth - 8) x = ev.clientX - w - 14;
+        if (y + h > innerHeight - 8) y = ev.clientY - h - 14;
+        tip.style.left = x + "px"; tip.style.top = y + "px";
+      })
+      .on("pointerleave", () => { tip.hidden = true; });
+
+    // Recolor cells; the ones that change flip in sequence so the U-235 visibly "fills in".
+    function paint(prevN: number, n: number) {
+      const lo = Math.min(prevN, n), hi = Math.max(prevN, n), span = Math.max(1, hi - lo), up = n >= prevN;
+      rects
+        .style("transition-delay", (a) => {
+          const k = a[mode];
+          if (reduce || k < lo || k >= hi) return "0ms";
+          return Math.round(((up ? k - lo : hi - 1 - k) / span) * 700) + "ms";
         })
-        .on("pointerleave", () => { tip.hidden = true; });
-      svgs.push(svg as any);
-    });
+        .classed("u235", (a) => a[mode] < n);
+    }
+
+    function setStep(k: number) {
+      if (k === cur) return;
+      const prev = steps[cur].n;
+      cur = k; nNow = steps[k].n;
+      const s = steps[k];
+      paint(prev, nNow);
+      const from = Number(countEl.textContent!.replace(/,/g, ""));
+      d3.select(countEl).transition().duration(reduce ? 0 : 800).tween("text", () => {
+        const i = d3.interpolateRound(from, nNow);
+        return (t: number) => { countEl.textContent = fmt(i(t)); };
+      });
+      titleEl.textContent = s.title; massEl.textContent = s.mass; ratioEl.textContent = s.ratio; vsEl.textContent = s.vs;
+      svgEl.setAttribute("aria-label", `${s.title}: ${nNow} of 1,000 atoms are U-235`);
+      steps.forEach((x, i) => x.el.classList.toggle("active", i === k));
+    }
+    steps[0].el.classList.add("active");
+
+    // The step crossing a thin band of the viewport is the active one.
+    const narrow = matchMedia("(max-width: 900px)").matches;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) setStep(steps.findIndex((s) => s.el === e.target)); });
+    }, { rootMargin: narrow ? "-55% 0px -35% 0px" : "-45% 0px -45% 0px" });
+    steps.forEach((s) => io.observe(s.el));
 
     root.querySelectorAll<HTMLButtonElement>(".seg button").forEach((btn) => btn.addEventListener("click", () => {
-      const m = btn.dataset.mode as "sorted" | "mixed";
+      const m = btn.dataset.mode as Mode;
       if (m === mode) return;
       mode = m;
       root.querySelectorAll(".seg button").forEach((b) => b.setAttribute("aria-pressed", String((b as HTMLElement).dataset.mode === m)));
-      svgs.forEach((svg) => svg.selectAll<SVGRectElement, Atom>("rect").transition().duration(reduce ? 0 : 900)
-        .delay((_, i) => (reduce ? 0 : (i % 97) * 4)).ease(d3.easeCubicInOut)
-        .attr("x", (a) => pos(a[m]).x).attr("y", (a) => pos(a[m]).y));
+      paint(nNow, nNow);
     }));
 
     let pinned: string | null = null;
     const highlight = (iso: string | null) => {
       const other = iso === "u235" ? "u238" : iso === "u238" ? "u235" : null;
-      svgs.forEach((svg) => svg.classed("dim-u235", other === "u235").classed("dim-u238", other === "u238"));
+      svg.classed("dim-u235", other === "u235").classed("dim-u238", other === "u238");
     };
     root.querySelectorAll<HTMLButtonElement>(".chip").forEach((chip) => {
       chip.addEventListener("pointerenter", () => highlight(chip.dataset.iso!));
@@ -129,37 +188,54 @@ const natural = data.cases[0].u235_atoms_shown;
 
 <style is:global>
   [data-viz="uranium-enrichment"] { margin-block: 32px; }
-  .uw .bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
-  .uw .legend { display: flex; flex-wrap: wrap; gap: 8px 20px; }
-  .uw .chip { display: inline-flex; align-items: center; gap: 8px; font: 600 14px/1.2 var(--f-body); color: var(--ink); background: none; border: 0; padding: 4px 2px; cursor: pointer; }
-  .uw .chip small { font: 400 13px/1.2 var(--f-body); color: var(--ink-3); }
-  .uw .sw { width: 14px; height: 14px; border-radius: 3px; }
-  .uw .sw-235 { background: var(--cat-2); } .uw .sw-238 { background: var(--cat-1); }
-  .uw .seg-label { font-size: 13px; color: var(--ink-3); margin-right: 8px; }
-  .uw .seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; background: var(--panel); }
-  .uw .seg button { font: 600 13px/1 var(--f-body); color: var(--ink-2); background: none; border: 0; padding: 9px 14px; cursor: pointer; }
-  .uw .seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
-  .uw .panels { margin-top: 28px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
-  @media (max-width: 900px) { .uw .panels { grid-template-columns: minmax(0, 1fr); max-width: 560px; } }
-  .uw .panel { background: var(--panel); border: 1px solid var(--rule); border-radius: var(--radius); padding: 20px; display: grid; gap: 12px; align-content: start; min-width: 0; }
+  .uw .scrolly { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 48px; align-items: start; }
+  .uw .stage { position: sticky; top: 24px; align-self: start; }
+  .uw .stage-in { background: var(--panel); border: 1px solid var(--rule); border-radius: var(--radius); padding: 20px; display: grid; gap: 12px; min-width: 0; }
   .uw .kicker { font: 600 11px/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
-  .uw h3 { font: 700 26px/1.05 var(--f-display); font-stretch: 85%; margin: 0; }
   .uw .count { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
   .uw .n { font: 600 44px/1 var(--f-mono); color: var(--cat-2); font-variant-numeric: tabular-nums; }
   .uw .of { font-size: 15px; color: var(--ink-2); }
   .uw .waffle { width: 100%; height: auto; display: block; }
-  .uw .waffle rect { transition: opacity .15s; }
-  .uw .waffle rect.u235 { fill: var(--cat-2); } .uw .waffle rect.u238 { fill: var(--cat-1); }
-  .uw .waffle.dim-u235 rect.u235, .uw .waffle.dim-u238 rect.u238 { opacity: .18; }
+  .uw .waffle rect { fill: var(--cat-1); transition: fill .35s ease, opacity .15s; }
+  .uw .waffle rect.u235 { fill: var(--cat-2); }
+  .uw .waffle.dim-u235 rect.u235, .uw .waffle.dim-u238 rect:not(.u235) { opacity: .18; }
+  .uw .controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; }
+  .uw .legend { display: flex; flex-wrap: wrap; gap: 4px 18px; }
+  .uw .chip { display: inline-flex; align-items: center; gap: 8px; font: 600 14px/1.2 var(--f-body); color: var(--ink); background: none; border: 0; padding: 4px 2px; cursor: pointer; }
+  .uw .chip small { font: 400 13px/1.2 var(--f-body); color: var(--ink-3); }
+  .uw .sw { width: 14px; height: 14px; border-radius: 3px; }
+  .uw .sw-235 { background: var(--cat-2); } .uw .sw-238 { background: var(--cat-1); }
+  .uw .seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; background: var(--bg); }
+  .uw .seg button { font: 600 13px/1 var(--f-body); color: var(--ink-2); background: none; border: 0; padding: 8px 12px; cursor: pointer; }
+  .uw .seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
   .uw .stats { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; font-size: 14px; margin: 0; padding-top: 10px; border-top: 1px solid var(--rule); }
   .uw .stats dt { color: var(--ink-3); }
   .uw .stats dd { margin: 0; font: 400 13.5px var(--f-mono); text-align: right; font-variant-numeric: tabular-nums; }
-  .uw .use { margin: 0; font-size: 15px; color: var(--ink-2); }
+
+  .uw .steps { min-width: 0; }
+  .uw .step { min-height: 90vh; display: flex; flex-direction: column; justify-content: center; gap: 12px; max-width: 46ch; }
+  .uw .step:last-child { margin-bottom: 12vh; }
+  .uw .step h3 { font: 700 34px/1.05 var(--f-display); font-stretch: 85%; margin: 0; }
+  .uw .step p { margin: 0; color: var(--ink-2); }
+  .uw.js .step { opacity: .3; transition: opacity .3s; }
+  .uw.js .step.active { opacity: 1; }
+
   .uw details { margin-top: 24px; font-size: 14px; }
   .uw summary { cursor: pointer; font-weight: 600; }
   .uw .tbl { overflow-x: auto; margin-top: 10px; }
-  .uw table { border-collapse: collapse; min-width: 460px; }
+  .uw table { border-collapse: collapse; min-width: 560px; }
   .uw th, .uw td { text-align: left; padding: 6px 14px 6px 0; border-bottom: 1px solid var(--rule); }
   .uw .num { text-align: right; font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
   .uw .tip { position: fixed; pointer-events: none; z-index: 5; background: var(--ink); color: var(--bg); font: 400 13px/1.35 var(--f-body); padding: 8px 10px; border-radius: 6px; max-width: 220px; }
+
+  @media (max-width: 900px) {
+    .uw .scrolly { grid-template-columns: minmax(0, 1fr); gap: 0; }
+    .uw .stage { top: 0; z-index: 2; margin-inline: -20px; padding: 10px 20px 8px; background: var(--bg); border-bottom: 1px solid var(--rule); }
+    .uw .stage-in { border: 0; background: none; padding: 0; gap: 6px; }
+    .uw .n { font-size: 32px; }
+    .uw .waffle { max-height: 32vh; }
+    .uw .stats, .uw .chip small { display: none; }
+    .uw .step { min-height: 70vh; justify-content: flex-start; padding-top: 28px; }
+    .uw .step h3 { font-size: 28px; }
+  }
 </style>

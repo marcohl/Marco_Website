@@ -1,16 +1,17 @@
 /* Site-wide design tokens. Components use these; never literal colors.
    Categorical colors are validated with scripts/check_palette.py (light + dark). */
 :root {
-  --bg: #F4F6F7;
-  --panel: #FFFFFF;
-  --ink: #12181C;
-  --ink-2: #4A555D;
-  --ink-3: #6B767D;
-  --rule: #DCE2E6;
+  /* light theme: warm cream */
+  --bg: #F7F2E7;
+  --panel: #FBF8F0;
+  --ink: #1C1A16;
+  --ink-2: #51493F;
+  --ink-3: #75695B;
+  --rule: #E0D8C6;
 
   /* categorical: slot 1 = context, slot 2 = accent (the story) */
-  --cat-1: #4A7FB5;
-  --cat-2: #D9661A;
+  --cat-1: #3F74AC;
+  --cat-2: #CF5F14;
 
   --f-display: "Archivo", "Arial Narrow", system-ui, sans-serif;
   --f-body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
