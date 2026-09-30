@@ -1,38 +1,98 @@
 ---
 import Base from "../layouts/Base.astro";
 
-// Every MDX file in src/pages/projects/ with status "published" is listed here.
+// Every MDX file in src/pages/projects/ with status "published" is listed (all of them in dev).
 const modules = import.meta.glob("./projects/*.mdx", { eager: true }) as Record<string, any>;
 const projects = Object.entries(modules)
   .map(([path, mod]) => ({ ...mod.frontmatter, href: "/projects/" + path.split("/").pop()!.replace(".mdx", "/") }))
   .filter((p) => p.status === "published" || import.meta.env.DEV)
   .sort((a, b) => String(b.date).localeCompare(String(a.date)));
+const ym = (d: unknown) => new Date(d as string).toISOString().slice(0, 7);
+const nextCode = "MHL-" + String(Object.keys(modules).length + 1).padStart(3, "0");
 ---
-<Base title="Marco's Website">
-  <section class="prose">
-    <span class="eyebrow">Data analysis and science</span>
-    <h1>Small projects, one chart at a time</h1>
-    <p>I'm Marco, an electrical and nuclear engineer. Here I pick a question, find the data, and build an interactive chart that answers it.</p>
+<Base title="Marco Herbas Lopez" description="Energy, data and everything else: interactive charts and small data-analysis projects by Marco Herbas Lopez.">
+  <section class="hero">
+    <div class="wrap hero-in">
+      <span class="eyebrow">Drawing no. MHL-000 · Index of work</span>
+      <h1>I turn data into charts you can explore.</h1>
+      <p class="lead">I'm Marco Herbas Lopez, an electrical and nuclear engineer in Milan. Energy is where I come from. Here I practice data analysis in the open, on whatever catches my curiosity, one project at a time.</p>
+      <a class="btn" href="#work">See the projects</a>
+    </div>
   </section>
 
-  <ul class="grid">
-    {projects.map((p) => (
-      <li>
-        <a href={p.href} class="card">
-          <span class="eyebrow">{p.tags?.join(" · ")}{p.status !== "published" && " · draft"}</span>
-          <strong>{p.title}</strong>
-          <span>{p.description}</span>
-          <time>{p.date}</time>
+  <section id="work" class="wrap work">
+    <div class="sheets">
+      {projects.map((p) => (
+        <a class="sheet" href={p.href}>
+          <div class="fig">{p.thumb === "waffle" && <div class="thumb" aria-hidden="true"></div>}</div>
+          <div class="body">
+            <h3>{p.title}</h3>
+            <p>{p.description}</p>
+          </div>
+          <div class="tb">
+            <span>{p.code}</span><span>Rev. {p.rev ?? "A"}</span><span>{ym(p.date)}</span><span>{p.tags?.[0]}</span>
+          </div>
         </a>
-      </li>
-    ))}
-  </ul>
+      ))}
+      <div class="sheet next">
+        <div class="fig"><span class="lbl">In preparation</span></div>
+        <div class="body"><h3>Next sheet</h3><p>The next project will appear here.</p></div>
+        <div class="tb"><span>{nextCode}</span><span>Rev. –</span><span>–</span><span>–</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="wrap">
+    <div class="about">
+    <span class="lbl">About</span>
+    <p>I'm an electrical and nuclear engineer based in Milan, with over ten years of experience in high-voltage electrical systems, nuclear engineering and renewable energy. I hold an MSc in Nuclear Engineering from Politecnico di Milano and work professionally in Spanish, Italian, English and French.</p>
+    </div>
+  </section>
 </Base>
+
 <style>
-  .grid { list-style: none; padding: 0; margin: 40px 0 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 20px; }
-  .card { display: grid; gap: 8px; padding: 20px; background: var(--panel); border: 1px solid var(--rule); border-radius: var(--radius); text-decoration: none; height: 100%; }
-  .card:hover { border-color: var(--cat-2); }
-  .card strong { font: 700 24px/1.1 var(--f-display); font-stretch: 85%; }
-  .card span:not(.eyebrow) { color: var(--ink-2); font-size: 15px; }
-  .card time { font: 400 13px/1 var(--f-mono); color: var(--ink-3); }
+  /* Mobile first. Columns and larger type start at 700px / 1000px. */
+  .lbl { font: 600 10px/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
+  .hero { margin-top: 20px; border-block: 1px solid var(--rule); background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 24px 24px; }
+  .hero-in { padding-block: 40px 44px; display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+  .hero h1 { margin: 0; font-size: clamp(44px, 11vw, 88px); max-width: 14ch; }
+  .lead { margin: 0; max-width: 600px; font-size: 17px; color: var(--ink-2); background: var(--bg); }
+  .btn { display: inline-flex; align-items: center; min-height: 48px; padding: 0 22px; background: var(--ink); color: var(--bg); font-weight: 600; font-size: 16px; text-decoration: none; }
+
+  .work { padding-block: 32px 0; }
+  .sheets { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; align-items: start; }
+  .sheet { display: flex; flex-direction: column; border: 1px solid var(--ink); background: var(--panel); text-decoration: none; color: inherit; min-width: 0; }
+  a.sheet:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink); }
+  .fig { padding: 16px; border-bottom: 1px solid var(--ink); min-height: 120px; display: flex; align-items: center; justify-content: center; }
+  .body { padding: 16px; display: grid; gap: 8px; }
+  .body h3 { margin: 0; font: 700 28px/1.1 var(--f-display); font-stretch: 85%; }
+  .body p { margin: 0; font-size: 15px; color: var(--ink-2); }
+  .tb { display: grid; grid-template-columns: 1.2fr .8fr 1fr 1fr; border-top: 1px solid var(--ink); font: 400 12px/1.2 var(--f-mono); }
+  .tb span { padding: 9px 10px; border-left: 1px solid var(--ink); min-width: 0; overflow-wrap: anywhere; }
+  .tb span:first-child { border-left: 0; }
+  .next { border-style: dashed; border-color: var(--ink-3); color: var(--ink-3); background: none; }
+  .next .fig, .next .tb { border-color: var(--ink-3); border-style: dashed; border-width: 0; }
+  .next .fig { border-bottom-width: 1px; }
+  .next .tb { border-top-width: 1px; }
+  .next .tb span { border-left-color: var(--ink-3); }
+  .next .body p, .next .body h3 { color: var(--ink-3); }
+
+  /* The 7-in-1000 waffle, as a thumbnail: one orange row-start of 7 cells over blue. */
+  .thumb { position: relative; width: 100%; max-width: 320px; height: 160px; overflow: hidden; background-color: var(--cat-1); background-image: linear-gradient(to right, transparent 6px, var(--panel) 6px), linear-gradient(to bottom, transparent 6px, var(--panel) 6px); background-size: 8px 8px; }
+  .thumb::before { content: ""; position: absolute; left: 0; top: 0; width: 56px; height: 8px; background-color: var(--cat-2); background-image: linear-gradient(to right, transparent 6px, var(--panel) 6px), linear-gradient(to bottom, transparent 6px, var(--panel) 6px); background-size: 8px 8px; }
+
+  .about { padding-top: 48px; display: grid; gap: 12px; max-width: 760px; }
+  .about p { margin: 0; color: var(--ink-2); }
+
+  @media (min-width: 700px) {
+    .sheets { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+    .hero { background-size: 32px 32px; margin-top: 32px; }
+    .hero-in { padding-block: 72px 80px; gap: 28px; }
+    .lead { font-size: 20px; }
+    .fig { min-height: 200px; }
+    .thumb { height: 200px; }
+  }
+  @media (min-width: 1000px) {
+    .sheets { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
 </style>

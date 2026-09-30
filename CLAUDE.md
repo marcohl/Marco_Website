@@ -145,7 +145,7 @@ Gate: Marco approves the text.
 - [ ] Identity is never color-only: legend or direct labels are present.
 - [ ] Keyboard focus visible; `prefers-reduced-motion` respected.
 - [ ] A table view or text alternative (`aria-label`, `<details>` table).
-- [ ] Frontmatter complete (title, description, date, tags, status).
+- [ ] Frontmatter complete (title, description, date, tags, status, code `MHL-00N`, rev, thumb).
 - [ ] Text audited against the banned list.
 
 ### 7. Publish

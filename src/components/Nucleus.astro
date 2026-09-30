@@ -1,0 +1,49 @@
+---
+// Stylized uranium nucleus: protons (orange) and neutrons (blue). An icon, not to scale:
+// real U-235 has 92 protons and 143 neutrons.
+interface Props { size?: number }
+const { size = 56 } = Astro.props;
+---
+<svg width={size} height={size} viewBox="-50 -50 100 100" role="img" aria-label="Stylized uranium nucleus: protons in orange, neutrons in blue" style="flex:none;display:block">
+  <defs>
+    <radialGradient id="nuc-p" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#F59A5A" /><stop offset="0.55" stop-color="#CF5F14" /><stop offset="1" stop-color="#8F3F0B" /></radialGradient>
+    <radialGradient id="nuc-n" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#8DB3DB" /><stop offset="0.55" stop-color="#3F74AC" /><stop offset="1" stop-color="#234B75" /></radialGradient>
+  </defs>
+  <circle cx="7.2" cy="9.3" r="7.6" fill="url(#nuc-p)" />
+  <circle cx="16.6" cy="28.9" r="7.6" fill="url(#nuc-p)" />
+  <circle cx="30.9" cy="4.2" r="7.6" fill="url(#nuc-n)" />
+  <circle cx="9.1" cy="-19.5" r="7.6" fill="url(#nuc-p)" />
+  <circle cx="-8.3" cy="-16.0" r="7.6" fill="url(#nuc-p)" />
+  <circle cx="20.5" cy="-31.8" r="7.6" fill="url(#nuc-p)" />
+  <circle cx="-1.4" cy="29.6" r="7.6" fill="url(#nuc-n)" />
+  <circle cx="-36.0" cy="9.5" r="7.6" fill="url(#nuc-p)" />
+  <circle cx="-30.9" cy="-23.9" r="7.6" fill="url(#nuc-p)" />
+  <circle cx="-19.5" cy="-23.4" r="7.6" fill="url(#nuc-n)" />
+  <circle cx="39.5" cy="-3.3" r="7.6" fill="url(#nuc-n)" />
+  <circle cx="-13.6" cy="32.6" r="7.6" fill="url(#nuc-n)" />
+  <circle cx="0.8" cy="-9.6" r="7.6" fill="url(#nuc-p)" />
+  <circle cx="-3.4" cy="-26.1" r="7.6" fill="url(#nuc-n)" />
+  <circle cx="23.9" cy="-5.3" r="7.6" fill="url(#nuc-n)" />
+  <circle cx="7.2" cy="-31.8" r="7.6" fill="url(#nuc-n)" />
+  <circle cx="-14.6" cy="20.8" r="7.6" fill="url(#nuc-n)" />
+  <circle cx="6.5" cy="37.9" r="7.6" fill="url(#nuc-p)" />
+  <circle cx="-5.0" cy="4.6" r="7.6" fill="url(#nuc-n)" />
+  <circle cx="-28.0" cy="1.2" r="7.6" fill="url(#nuc-p)" />
+  <circle cx="12.8" cy="-8.2" r="7.6" fill="url(#nuc-n)" />
+  <circle cx="0.2" cy="-40.8" r="7.6" fill="url(#nuc-n)" />
+  <circle cx="0.0" cy="0.0" r="7.6" fill="url(#nuc-p)" />
+  <circle cx="18.1" cy="6.6" r="7.6" fill="url(#nuc-n)" />
+  <circle cx="6.7" cy="21.5" r="7.6" fill="url(#nuc-n)" />
+  <circle cx="-12.2" cy="-33.9" r="7.6" fill="url(#nuc-p)" />
+  <circle cx="-18.9" cy="7.8" r="7.6" fill="url(#nuc-p)" />
+  <circle cx="-4.3" cy="16.1" r="7.6" fill="url(#nuc-p)" />
+  <circle cx="31.5" cy="-14.5" r="7.6" fill="url(#nuc-n)" />
+  <circle cx="-20.4" cy="-11.8" r="7.6" fill="url(#nuc-p)" />
+  <circle cx="-26.2" cy="18.2" r="7.6" fill="url(#nuc-n)" />
+  <circle cx="-27.3" cy="29.5" r="7.6" fill="url(#nuc-n)" />
+  <circle cx="20.5" cy="-20.3" r="7.6" fill="url(#nuc-n)" />
+  <circle cx="20.8" cy="17.5" r="7.6" fill="url(#nuc-n)" />
+  <circle cx="-13.4" cy="-2.4" r="7.6" fill="url(#nuc-p)" />
+  <circle cx="-32.4" cy="-10.3" r="7.6" fill="url(#nuc-p)" />
+  <circle cx="32.4" cy="17.0" r="7.6" fill="url(#nuc-p)" />
+</svg>

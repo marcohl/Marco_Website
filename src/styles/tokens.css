@@ -8,6 +8,7 @@
   --ink-2: #51493F;
   --ink-3: #75695B;
   --rule: #E0D8C6;
+  --grid: #E9E1CF;
 
   /* categorical: slot 1 = context, slot 2 = accent (the story) */
   --cat-1: #3F74AC;
@@ -23,7 +24,7 @@
 }
 /* Dark theme is opt-in via the toggle (data-theme="dark" on <html>). Light cream is the default. */
 :root[data-theme="dark"] {
-  --bg: #11171B; --panel: #182026; --ink: #EDF1F3; --ink-2: #AEB9C0; --ink-3: #8C979E; --rule: #2A343B;
+  --bg: #11171B; --panel: #182026; --ink: #EDF1F3; --ink-2: #AEB9C0; --ink-3: #8C979E; --rule: #2A343B; --grid: #1E292F;
   --cat-1: #5690D6; --cat-2: #D4661C;
   color-scheme: dark;
 }

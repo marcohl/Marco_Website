@@ -2,9 +2,11 @@
 import Base from "./Base.astro";
 const { frontmatter } = Astro.props;
 ---
-<Base title={frontmatter.title} description={frontmatter.description}>
-  <article>
-    <span class="eyebrow">{frontmatter.eyebrow ?? frontmatter.tags?.join(" · ")}</span>
-    <slot />
-  </article>
+<Base title={frontmatter.title} description={frontmatter.description} sheet={frontmatter.code ?? "—"}>
+  <div class="wrap">
+    <article>
+      <span class="eyebrow">{frontmatter.eyebrow ?? frontmatter.tags?.join(" · ")}</span>
+      <slot />
+    </article>
+  </div>
 </Base>

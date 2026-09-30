@@ -1,7 +1,14 @@
 ---
 import "../styles/tokens.css";
-interface Props { title: string; description?: string; }
-const { title, description = "Data analysis and science, one chart at a time." } = Astro.props;
+import Nucleus from "../components/Nucleus.astro";
+interface Props { title: string; description?: string; sheet?: string; rev?: string; }
+const {
+  title,
+  description = "Data analysis and science, one chart at a time.",
+  sheet = "Index · 1/1",
+  rev = "2026-09",
+} = Astro.props;
+const linkedin = "https://www.linkedin.com/in/marco-herbas-l%C3%B3pez-315530bb";
 ---
 <!doctype html>
 <html lang="en">
@@ -18,17 +25,38 @@ const { title, description = "Data analysis and science, one chart at a time." }
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=JetBrains+Mono:wght@400;600&family=Source+Sans+3:wght@400;600&display=swap" />
   </head>
   <body>
-    <header class="site wrap">
-      <a href="/" class="brand">Marco's Website</a>
-      <button id="theme-toggle" type="button" aria-pressed="false">Dark mode</button>
+    <header class="wrap site">
+      <div class="cartouche">
+        <a class="c-brand" href="/"><Nucleus size={56} /><span>Marco Herbas Lopez</span></a>
+        <div class="c-cell c-disc"><span class="lbl">Discipline</span><span class="val">Energy · Data · Everything</span></div>
+        <div class="c-cell c-sheet"><span class="lbl">Sheet</span><span class="val">{sheet}</span></div>
+        <div class="c-cell c-rev"><span class="lbl">Rev.</span><span class="val">{rev}</span></div>
+        <nav class="c-nav" aria-label="Main">
+          <a href="/#work">Projects</a>
+          <a href="/#about">About</a>
+          <a href="#contact">Contact</a>
+          <button id="theme-toggle" type="button" aria-pressed="false">Dark</button>
+        </nav>
+      </div>
     </header>
-    <main class="wrap">
-      <slot />
-    </main>
+
+    <main><slot /></main>
+
+    <footer id="contact" class="foot-outer"><div class="wrap foot">
+      <div class="contact">
+        <span class="lbl">Contact</span>
+        <ul>
+          <li><a href="mailto:marcoherbas8@gmail.com">marcoherbas8@gmail.com</a></li>
+          <li><a href={linkedin} target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+      </div>
+      <div class="legal"><span>© 2026 Marco Herbas Lopez</span><span>Built with Astro and d3.js</span></div>
+    </div></footer>
+
     <script is:inline>
       (function () {
         var b = document.getElementById("theme-toggle"), root = document.documentElement;
-        function sync() { var d = root.dataset.theme === "dark"; b.textContent = d ? "Light mode" : "Dark mode"; b.setAttribute("aria-pressed", String(d)); }
+        function sync() { var d = root.dataset.theme === "dark"; b.textContent = d ? "Light" : "Dark"; b.setAttribute("aria-pressed", String(d)); }
         b.addEventListener("click", function () {
           var d = root.dataset.theme === "dark";
           if (d) delete root.dataset.theme; else root.dataset.theme = "dark";
@@ -41,7 +69,35 @@ const { title, description = "Data analysis and science, one chart at a time." }
   </body>
 </html>
 <style>
-  .site { padding-block: 20px 0; display: flex; justify-content: space-between; }
-  #theme-toggle { font: 600 13px/1 var(--f-body); color: var(--ink-2); background: none; border: 1px solid var(--rule); border-radius: 6px; padding: 8px 12px; cursor: pointer; }
-  .brand { font: 700 15px/1 var(--f-mono); letter-spacing: .04em; text-decoration: none; color: var(--ink); }
+  /* Mobile first: stacked cartouche; the five-column title block starts at 900px. */
+  .site { padding-block: 16px 0; }
+  .lbl { font: 600 10px/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
+  .val { font-weight: 600; font-size: 15px; line-height: 1.2; }
+  .cartouche { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border: 1px solid var(--ink); background: var(--panel); }
+  .c-brand { grid-column: 1 / -1; display: flex; align-items: center; gap: 12px; padding: 12px 14px; text-decoration: none; color: var(--ink); font: 700 20px/1.1 var(--f-display); font-stretch: 85%; }
+  .c-cell { padding: 10px 14px; border-top: 1px solid var(--ink); display: flex; flex-direction: column; gap: 4px; justify-content: center; min-width: 0; }
+  .c-disc { grid-column: 1 / -1; }
+  .c-rev { border-left: 1px solid var(--ink); }
+  .c-nav { grid-column: 1 / -1; border-top: 1px solid var(--ink); display: flex; align-items: center; justify-content: space-between; gap: 4px 16px; padding: 0 14px; min-height: 48px; font-size: 15px; font-weight: 600; flex-wrap: wrap; }
+  .c-nav a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; }
+  .c-nav a:hover { text-decoration: underline; text-underline-offset: 4px; }
+  #theme-toggle { font: 600 13px/1 var(--f-body); color: var(--ink-2); background: none; border: 1px solid var(--ink); border-radius: 0; padding: 0 12px; min-height: 40px; cursor: pointer; }
+
+  .foot-outer { margin-top: 64px; border-top: 1px solid var(--rule); }
+  .foot { padding-block: 28px 40px; display: grid; gap: 24px; }
+  .contact { display: grid; gap: 10px; }
+  .contact ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; font-size: 16px; }
+  .contact a { display: inline-flex; align-items: center; min-height: 44px; overflow-wrap: anywhere; }
+  .legal { display: grid; gap: 4px; font-size: 14px; color: var(--ink-3); }
+
+  @media (min-width: 900px) {
+    .cartouche { grid-template-columns: 2.1fr 1.6fr 1fr .9fr 1.9fr; }
+    .c-brand, .c-disc, .c-nav { grid-column: auto; }
+    .c-cell { border-top: 0; border-left: 1px solid var(--ink); }
+    .c-nav { border-top: 0; border-left: 1px solid var(--ink); padding: 10px 16px; min-height: 0; flex-wrap: nowrap; }
+    .c-brand { padding: 12px 18px; font-size: 19px; }
+    .foot { grid-template-columns: 1fr auto; align-items: end; }
+    .contact ul { display: flex; gap: 28px; }
+    .legal { text-align: right; }
+  }
 </style>
