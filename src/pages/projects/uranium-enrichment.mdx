@@ -11,7 +11,9 @@ rev: A
 thumb: waffle
 ---
 import UraniumWaffles from "../../components/viz/uranium-enrichment/UraniumWaffles.astro";
+import UraniumAtom from "../../components/viz/uranium-enrichment/UraniumAtom.astro";
 
+<div class="intro">
 <div class="prose">
 
 # Only <em>7</em> in every 1,000 uranium atoms can easily split
@@ -20,6 +22,8 @@ Uranium dug out of the ground is a mix of two isotopes. They behave the same che
 
 **Enrichment** is the process of raising the share of U-235. Each grid below is a sample of 1,000 atoms. Scroll to watch the orange ones multiply.
 
+</div>
+<UraniumAtom />
 </div>
 
 <UraniumWaffles />

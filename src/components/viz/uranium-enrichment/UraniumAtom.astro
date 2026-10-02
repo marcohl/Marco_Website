@@ -1,0 +1,77 @@
+---
+// Schematic uranium-235 atom, not to scale: 235 nucleons (92 protons, 143 neutrons) and 92 electrons
+// in seven shells. Shell occupancy follows uranium's ground-state configuration, [Rn] 5f3 6d1 7s2.
+const Z = 92, N_NEUTRONS = 143, A = Z + N_NEUTRONS;
+const SHELLS = [2, 8, 18, 32, 21, 9, 2];
+if (SHELLS.reduce((a, b) => a + b, 0) !== Z) throw new Error("Electron count must equal Z");
+
+const C = 200;                 // viewBox centre
+const NUC_R = 41, NUCLEON_R = 6.4;
+const ORBIT_0 = 64, ORBIT_STEP = 20.5, ELECTRON_R = 3.1;
+
+function rng(seed: number) {
+  return () => { seed |= 0; seed = (seed + 0x6d2b79f5) | 0; let t = Math.imul(seed ^ (seed >>> 15), 1 | seed); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+}
+const rand = rng(92);
+
+// Nucleons: points spread through a ball (Fibonacci directions, low-discrepancy radii), seen from the side.
+const golden = Math.PI * (3 - Math.sqrt(5));
+const ids = Array.from({ length: A }, (_, i) => i);
+for (let i = A - 1; i > 0; i--) { const j = Math.floor(rand() * (i + 1)); [ids[i], ids[j]] = [ids[j], ids[i]]; }
+const isProton = new Set(ids.slice(0, Z));
+const nucleons = Array.from({ length: A }, (_, i) => {
+  const z = 1 - (2 * (i + 0.5)) / A, ring = Math.sqrt(1 - z * z), phi = i * golden;
+  const rad = NUC_R * Math.cbrt((i * 0.754877666) % 1 || 0.5);
+  return { x: C + rad * ring * Math.cos(phi), y: C + rad * ring * Math.sin(phi), z: rad * z, p: isProton.has(i) };
+}).sort((a, b) => a.z - b.z);
+
+const shells = SHELLS.map((n, k) => {
+  const r = ORBIT_0 + k * ORBIT_STEP, off = k * 0.9;
+  return { r, dur: 50 + k * 14, dir: k % 2 ? -1 : 1,
+    electrons: Array.from({ length: n }, (_, i) => ({ x: C + r * Math.cos(off + (2 * Math.PI * i) / n), y: C + r * Math.sin(off + (2 * Math.PI * i) / n) })) };
+});
+---
+<figure class="ua">
+  <svg viewBox="0 0 400 400" role="img" aria-label={`Schematic uranium-235 atom: a nucleus of ${Z} protons and ${N_NEUTRONS} neutrons surrounded by ${Z} electrons in ${SHELLS.length} shells`}>
+    {shells.map((s) => (
+      <g class="shell" style={`--t:${s.dur}s;--dir:${s.dir}`}>
+        <circle cx={C} cy={C} r={s.r} class="orbit" />
+        {s.electrons.map((e) => <circle cx={e.x.toFixed(1)} cy={e.y.toFixed(1)} r={ELECTRON_R} class="electron" />)}
+      </g>
+    ))}
+    <g class="nucleus">
+      {nucleons.map((n) => <circle cx={n.x.toFixed(1)} cy={n.y.toFixed(1)} r={NUCLEON_R} class={n.p ? "proton" : "neutron"} />)}
+    </g>
+  </svg>
+  <figcaption>
+    <span class="key"><i class="sw p"></i>Proton {Z}</span>
+    <span class="key"><i class="sw n"></i>Neutron {N_NEUTRONS}</span>
+    <span class="key"><i class="sw e"></i>Electron {Z}</span>
+    <span class="note">Uranium-235, schematic, not to scale</span>
+  </figcaption>
+</figure>
+
+<style>
+  .ua { margin: 0; display: grid; gap: 10px; justify-items: center; }
+  .ua svg { width: min(100%, 340px); height: auto; display: block; }
+  .orbit { fill: none; stroke: var(--ink-3); stroke-opacity: .35; stroke-width: .8; }
+  .electron { fill: var(--ink-2); }
+  .proton { fill: var(--cat-2); stroke: var(--bg); stroke-width: .7; }
+  .neutron { fill: var(--cat-1); stroke: var(--bg); stroke-width: .7; }
+  .shell { transform-box: view-box; transform-origin: 200px 200px; animation: ua-spin var(--t) linear infinite; animation-direction: normal; }
+  .shell[style*="--dir:-1"] { animation-direction: reverse; }
+  @keyframes ua-spin { to { transform: rotate(360deg); } }
+  figcaption { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 16px; font: 600 11px/1.3 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); }
+  .key { display: inline-flex; align-items: center; gap: 6px; }
+  .sw { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .sw.p { background: var(--cat-2); } .sw.n { background: var(--cat-1); } .sw.e { background: var(--ink-2); }
+  .note { flex-basis: 100%; text-align: center; letter-spacing: .1em; }
+</style>
+
+<style is:global>
+  /* Headline text on the left, atom on the right from 900px; stacked below it on phones. */
+  .intro { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; align-items: center; }
+  @media (min-width: 900px) {
+    .intro { grid-template-columns: minmax(0, 1fr) minmax(280px, 380px); gap: 48px; }
+  }
+</style>
