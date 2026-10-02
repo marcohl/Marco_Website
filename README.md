@@ -28,4 +28,4 @@ and check it before publishing with `/qa <slug>`.
 
 | Slug | Title | Status |
 |---|---|---|
-| `uranium-enrichment` | Seven in a Thousand | draft |
+| `uranium-enrichment` | Seven in a Thousand | published |
