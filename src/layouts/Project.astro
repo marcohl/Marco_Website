@@ -17,13 +17,11 @@ const slug = Astro.url.pathname.split("/").filter(Boolean).pop();
 </Base>
 
 <style>
-  /* Same drafting grid as the home hero, behind the top of every post, fading out. */
+  /* Same drafting grid as the home hero, behind the whole post. */
   .post { position: relative; margin-top: 20px; }
-  .grid-top { position: absolute; inset: 0 0 auto 0; height: min(640px, 100%); z-index: 0; pointer-events: none; border-top: 1px solid var(--rule);
+  .grid-top { position: absolute; inset: 0; z-index: 0; pointer-events: none; border-top: 1px solid var(--rule);
     background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-    background-size: 24px 24px;
-    -webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent);
-            mask-image: linear-gradient(to bottom, #000 45%, transparent); }
+    background-size: 24px 24px; }
   .post > .wrap { position: relative; z-index: 1; }
-  @media (min-width: 700px) { .post { margin-top: 32px; } .grid-top { background-size: 32px 32px; height: min(720px, 100%); } }
+  @media (min-width: 700px) { .post { margin-top: 32px; } .grid-top { background-size: 32px 32px; } }
 </style>
