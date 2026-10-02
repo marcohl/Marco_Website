@@ -1,8 +1,10 @@
 ---
 import Base from "./Base.astro";
 const { frontmatter } = Astro.props;
+// Social image: public/og/<slug>.png (1200x630), slug taken from the page URL.
+const slug = Astro.url.pathname.split("/").filter(Boolean).pop();
 ---
-<Base title={frontmatter.title} description={frontmatter.description}>
+<Base title={frontmatter.title} description={frontmatter.description} image={`/og/${slug}.png`} type="article">
   <div class="post">
     <div class="grid-top" aria-hidden="true"></div>
     <div class="wrap">

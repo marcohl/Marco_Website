@@ -1,11 +1,22 @@
 ---
+import "@fontsource-variable/archivo/wdth.css";
+import "@fontsource/source-sans-3/latin-400.css";
+import "@fontsource/source-sans-3/latin-600.css";
+import "@fontsource/jetbrains-mono/latin-400.css";
+import "@fontsource/jetbrains-mono/latin-600.css";
 import "../styles/tokens.css";
 import Nucleus from "../components/Nucleus.astro";
-interface Props { title: string; description?: string; }
+interface Props { title: string; description?: string; image?: string; type?: "website" | "article"; noindex?: boolean; }
 const {
   title,
   description = "Data analysis and science, one chart at a time.",
+  image = "/og/default.png",
+  type = "website",
+  noindex = false,
 } = Astro.props;
+// Canonical and og:image must be absolute URLs; they are emitted only once `site` is set in astro.config.mjs.
+const canonical = Astro.site && !noindex ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+const ogImage = Astro.site ? new URL(image, Astro.site).href : undefined;
 const linkedin = "https://www.linkedin.com/in/marco-herbas-l%C3%B3pez-315530bb";
 ---
 <!doctype html>
@@ -15,12 +26,24 @@ const linkedin = "https://www.linkedin.com/in/marco-herbas-l%C3%B3pez-315530bb";
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <meta property="og:site_name" content="Marco Herbas Lopez" />
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {canonical && <meta property="og:url" content={canonical} />}
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    {ogImage && <meta property="og:image:width" content="1200" />}
+    {ogImage && <meta property="og:image:height" content="630" />}
+    <meta name="twitter:card" content={ogImage ? "summary_large_image" : "summary"} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
     <script is:inline>
       try { if (localStorage.getItem("theme") === "dark") document.documentElement.dataset.theme = "dark"; } catch (e) {}
     </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=JetBrains+Mono:wght@400;600&family=Source+Sans+3:wght@400;600&display=swap" />
   </head>
   <body>
     <header class="wrap site">

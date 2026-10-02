@@ -14,7 +14,7 @@
   --cat-1: #3F74AC;
   --cat-2: #CF5F14;
 
-  --f-display: "Archivo", "Arial Narrow", system-ui, sans-serif;
+  --f-display: "Archivo Variable", "Archivo", "Arial Narrow", system-ui, sans-serif;
   --f-body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
   --f-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 
