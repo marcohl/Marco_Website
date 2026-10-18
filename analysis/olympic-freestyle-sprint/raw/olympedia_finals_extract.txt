@@ -1,0 +1,103 @@
+# Olympedia final results, positions 1-8, extracted from the page DOM (table "Pos ... Final") in Chrome.
+# Accessed: 2026-10-18. Source pages: https://www.olympedia.org/results/<id> (id is field 3).
+# Why not the original HTML: the workspace shell is blocked by the proxy (HTTP 403 for olympedia.org),
+# so the HTML could not be saved to disk. These are cell texts copied from each page, not summaries.
+# Format per line: EV~YEAR~RESULT_ID~DATE~ROW|ROW|...   EV in {M100,W100,M50,W50}
+# ROW = POS~NAME~NOC~TIME~MEDAL~NOTE. Positions 4-8 keep only POS and TIME (names are on the page).
+# Empty TIME = Olympedia shows no time for that position. "=" in POS = tie.
+# Integrity: each block is preceded by "#C<n> crc:<crc32 hex>" computed over the block's lines joined by \n
+# (computed in the browser before writing; verified by build_data.py).
+#C0 crc:54392d1f
+M100~1908~4479~20 July 1908~1~Charlie Daniels~USA~1:05.6~Gold~|2~Zoltán Halmay~HUN~1:06.2~Silver~|3~Harald Julin~SWE~1:08.0~Bronze~|4~~~~~
+M100~1912~4554~10 July 1912~1~Duke Kahanamoku~USA~1:03.4~Gold~|2~Cecil Healy~ANZ~1:04.6~Silver~|3~Ken Huszagh~USA~1:05.6~Bronze~|4~~~1:05.8~~|5~~~1:06.4~~
+M100~1920~4649~29 August 1920~1~Duke Kahanamoku~USA~1:01.4~Gold~|2~Pua Kele Kealoha~USA~1:02.6~Silver~|3~Bill Harris~USA~1:03.0~Bronze~|4~~~1:03.8~~
+M100~1924~4729~20 July 1924~1~Johnny Weissmuller~USA~59.0~Gold~|2~Duke Kahanamoku~USA~1:01.4~Silver~|3~Sam Kahanamoku~USA~1:01.8~Bronze~|4~~~1:02.0~~|5~~~1:03.0~~|6~~~~~|7~~~~~|8~~~~~
+#C1 crc:c00408be
+M100~1928~4829~11 August 1928~1~Johnny Weissmuller~USA~58.6~Gold~|2~István Bárány~HUN~59.8~Silver~|3~Katsuo Takaishi~JPN~1:00.0~Bronze~|4~~~1:00.8~~|5~~~1:01.0~~|6~~~1:01.4~~|7~~~1:01.6~~
+M100~1932~4936~7 August 1932~1~Yasuji Miyazaki~JPN~58.2~Gold~|2~Tatsugo Kawaishi~JPN~58.6~Silver~|3~Albert Schwartz~USA~58.8~Bronze~|4~~~59.2~~|5~~~59.2~~|6~~~59.5~~|7~~~~~|8~~~~~
+M100~1936~5024~9 August 1936~1~Ferenc Csík~HUN~57.6~Gold~|2~Masanori Yusa~JPN~57.9~Silver~|3~Shigeo Arai~JPN~58.0~Bronze~|4~~~58.1~~|5~~~59.3~~|6~~~59.7~~|7~~~59.9~~|8~~~~~
+M100~1948~5133~31 July 1948~1~Wally Ris~USA~57.3~Gold~|2~Alan Ford~USA~57.8~Silver~|3~Géza Kádas~HUN~58.1~Bronze~|4~~~58.3~~|5~~~58.3~~|6~~~59.3~~|7~~~59.6~~|8~~~1:00.5~~
+#C2 crc:ee5b8496
+M100~1952~5241~27 July 1952~1~Clarke Scholes~USA~57.4~Gold~|2~Hiroshi Suzuki~JPN~57.4~Silver~|3~Göran Larsson~SWE~58.2~Bronze~|4~~~58.5~~|5~~~58.6~~|6~~~58.7~~|7~~~58.7~~|8~~~58.8~~
+M100~1956~5379~30 November 1956~1~Jon Henricks~AUS~55.4~Gold~|2~John Devitt~AUS~55.8~Silver~|3~Gary Chapman~AUS~56.7~Bronze~|4~~~57.2~~|5~~~57.6~~|6~~~57.6~~|7~~~58.0~~|8~~~58.1~~
+M100~1960~5489~27 August 1960~1~John Devitt~AUS~55.2~Gold~|2~Lance Larson~USA~55.1~Silver~|3~Manuel dos Santos~BRA~55.4~Bronze~|4~~~55.6~~|5~~~56.3~~|6~~~56.3~~|7~~~56.3~~|8~~~57.1~~
+M100~1964~5654~12 October 1964~1~Don Schollander~USA~53.4~Gold~|2~Bobby McGregor~GBR~53.5~Silver~|3~Hans-Joachim Klein~GER~54.0~Bronze~|4~~~54.0~~|5~~~54.2~~|6~~~54.5~~|7~~~54.9~~|8~~~56.1~~
+#C3 crc:2abb49a2
+M100~1968~5850~19 October 1968~1~Mike Wenden~AUS~52.2~Gold~|2~Ken Walsh~USA~52.8~Silver~|3~Mark Spitz~USA~53.0~Bronze~|4~~~53.5~~|5~~~53.8~~|6~~~53.8~~|7~~~53.9~~|8~~~53.9~~
+M100~1972~6172~3 September 1972~1~Mark Spitz~USA~51.22~Gold~|2~Jerry Heidenreich~USA~51.65~Silver~|3~Vladimir Bure~URS~51.77~Bronze~|4~~~52.08~~|5~~~52.41~~|6~~~52.44~~|7~~~52.90~~|8~~~52.92~~
+M100~1976~6471~25 July 1976~1~Jim Montgomery~USA~49.99~Gold~|2~Jack Babashoff~USA~50.81~Silver~|3~Peter Nocke~FRG~51.31~Bronze~|4~~~51.68~~|5~~~51.70~~|6~~~51.79~~|7~~~52.03~~|8~~~52.15~~
+M100~1980~6745~27 July 1980~1~Jörg Woithe~GDR~50.40~Gold~|2~Per Holmertz~SWE~50.91~Silver~|3~Per Johansson~SWE~51.29~Bronze~|4~~~51.34~~|5~~~51.69~~|6~~~51.80~~|7~~~52.01~~|8~~~52.22~~
+#C4 crc:aad7e5ef
+M100~1984~6962~31 July 1984~1~Rowdy Gaines~USA~49.80~Gold~|2~Mark Stockwell~AUS~50.24~Silver~|3~Per Johansson~SWE~50.31~Bronze~|4~~~50.41~~|5~~~50.50~~|=6~~~50.70~~|=6~~~50.70~~|8~~~50.93~~
+M100~1988~7270~22 September 1988~1~Matt Biondi~USA~48.63~Gold~|2~Chris Jacobs~USA~49.08~Silver~|3~Stéphan Caron~FRA~49.62~Bronze~|4~~~49.75~~|5~~~50.08~~|6~~~50.23~~|7~~~50.35~~|8~~~50.54~~
+M100~1992~7628~28 July 1992~1~Aleksandr Popov~EUN~49.02~Gold~|2~Gustavo Borges~BRA~49.43~Silver~|3~Stéphan Caron~FRA~49.50~Bronze~|4~~~49.51~~|5~~~49.53~~|6~~~49.63~~|7~~~49.84~~|8~~~50.25~~
+M100~1996~7983~22 July 1996~1~Aleksandr Popov~RUS~48.74~Gold~|2~Gary Hall, Jr.~USA~48.81~Silver~|3~Gustavo Borges~BRA~49.02~Bronze~|4~~~49.13~~|5~~~49.57~~|6~~~49.65~~|7~~~49.68~~|8~~~49.84~~
+#C5 crc:912b61e1
+M100~2000~8352~20 September 2000~1~Pieter van den Hoogenband~NED~48.30~Gold~|2~Aleksandr Popov~RUS~48.69~Silver~|3~Gary Hall, Jr.~USA~48.73~Bronze~|4~~~48.74~~|5~~~49.09~~|6~~~49.22~~|7~~~49.36~~|8~~~49.44~~
+M100~2004~8757~18 August 2004~1~Pieter van den Hoogenband~NED~48.17~Gold~|2~Roland Schoeman~RSA~48.23~Silver~|3~Ian Thorpe~AUS~48.56~Bronze~|4~~~48.63~~|5~~~48.99~~|6~~~49.23~~|=7~~~49.30~~|=7~~~49.30~~
+M100~2008~261487~14 August 2008~1~Alain Bernard~FRA~47.21~Gold~|2~Eamon Sullivan~AUS~47.32~Silver~|=3~Jason Lezak~USA~47.67~Bronze~|=3~César Cielo Filho~BRA~47.67~Bronze~|5~~~47.75~~|6~~~48.04~~|7~~~48.20~~|8~~~48.33~~
+#C6 crc:baeedac8
+M100~2012~322179~1 August 2012~1~Nathan Adrian~USA~47.52~Gold~|2~James Magnussen~AUS~47.53~Silver~|3~Brent Hayden~CAN~47.80~Bronze~|4~~~47.84~~|5~~~47.88~~|6~~~47.92~~|7~~~48.04~~|8~~~48.44~~
+M100~2016~356997~10 August 2016~1~Kyle Chalmers~AUS~47.58~Gold~|2~Pieter Timmers~BEL~47.80~Silver~|3~Nathan Adrian~USA~47.85~Bronze~|4~~~47.88~~|5~~~48.01~~|6~~~48.02~~|7~~~48.12~~|8~~~48.41~~
+M100~2020~19000014~29 July 2021~1~Caeleb Dressel~USA~47.02~Gold~|2~Kyle Chalmers~AUS~47.08~Silver~|3~Kliment Kolesnikov~ROC~47.44~Bronze~|4~~~47.72~~|5~~~47.82~~|6~~~47.86~~|7~~~48.04~~|8~~~48.10~~
+M100~2024~2001516~31 July 2024~1~Pan Zhanle~CHN~46.40~Gold~|2~Kyle Chalmers~AUS~47.48~Silver~|3~David Popovici~ROU~47.49~Bronze~|4~~~47.50~~|5~~~47.71~~|6~~~47.80~~|7~~~47.96~~|8~~~47.98~~
+#C7 crc:694b4ab9
+W100~1912~4636~12 July 1912~1~Fanny Durack~ANZ~1:22.2~Gold~|2~Mina Wylie~ANZ~1:25.4~Silver~|3~Jennie Fletcher~GBR~1:27.0~Bronze~|4~~~1:27.2~~|5~~~1:27.4~~
+W100~1920~4715~25 August 1920~1~Ethelda Bleibtrey~USA~1:13.6~Gold~|2~Irene Guest~USA~1:17.0~Silver~|3~Frances Schroth~USA~1:17.2~Bronze~|4~~~1:22.8~~|5~~~~~|6~~~~~
+W100~1924~4795~20 July 1924~1~Ethel Lackie~USA~1:12.4~Gold~|2~Mariechen Wehselau~USA~1:12.8~Silver~|3~Trudy Ederle~USA~1:14.2~Bronze~|4~~~1:15.4~~|5~~~1:20.8~~|6~~~~~|7~~~~~|8~~~~~
+W100~1928~4893~11 August 1928~1~Albina Osipowich~USA~1:11.0~Gold~|2~Eleanor Garatti~USA~1:11.4~Silver~|3~Joyce Cooper~GBR~1:13.6~Bronze~|4~~~1:13.8~~|5~~~1:14.6~~|6~~~1:15.2~~
+#C8 crc:ee63d961
+W100~1932~4989~8 August 1932~1~Helene Madison~USA~1:06.8~Gold~|2~Willy den Ouden~NED~1:07.8~Silver~|3~Eleanor Garatti-Saville~USA~1:08.2~Bronze~|4~~~1:09.3~~|5~~~1:09.9~~|6~~~1:10.8~~|7~~~~~|8~~~~~
+W100~1936~5087~10 August 1936~1~Rie Mastenbroek~NED~1:05.9~Gold~|2~Jeanette Campbell~ARG~1:06.4~Silver~|3~Gisela Arendt~GER~1:06.6~Bronze~|4~~~1:07.6~~|5~~~1:08.1~~|6~~~1:08.4~~|7~~~1:08.7~~|=8~~~~~|=8~~~~~|=8~~~~~
+W100~1948~5197~2 August 1948~1~Greta Andersen~DEN~1:06.3~Gold~|2~Ann Curtis~USA~1:06.5~Silver~|3~Marie-Louise Vaessen~NED~1:07.6~Bronze~|4~~~1:08.1~~|5~~~1:08.4~~|6~~~1:08.4~~|7~~~1:08.8~~|8~~~1:09.1~~
+#C9 crc:b5d7287e
+W100~1952~5325~28 July 1952~1~Kató Szőke~HUN~1:06.8~Gold~|2~Hannie Termeulen~NED~1:07.0~Silver~|3~Judit Temes~HUN~1:07.1~Bronze~|4~~~1:07.1~~|5~~~1:07.1~~|6~~~1:07.3~~|7~~~1:08.0~~|8~~~1:08.6~~
+W100~1956~5441~1 December 1956~1~Dawn Fraser~AUS~1:02.0~Gold~|2~Lorraine Crapp~AUS~1:02.3~Silver~|3~Faith Leech~AUS~1:05.1~Bronze~|4~~~1:05.2~~|5~~~1:05.4~~|6~~~1:05.6~~|7~~~1:05.6~~|8~~~1:05.8~~
+W100~1960~5588~29 August 1960~1~Dawn Fraser~AUS~1:01.2~Gold~|2~Chris von Saltza~USA~1:02.8~Silver~|3~Natalie Steward~GBR~1:03.1~Bronze~|4~~~1:03.4~~|5~~~1:03.6~~|6~~~1:04.3~~|7~~~1:04.7~~|8~~~1:05.5~~
+#C10 crc:51e8cb4d
+W100~1964~5770~13 October 1964~1~Dawn Fraser~AUS~59.5~Gold~|2~Sharon Stouder~USA~59.9~Silver~|3~Kathy Ellis~USA~1:00.8~Bronze~|4~~~1:01.8~~|5~~~1:02.2~~|6~~~1:02.4~~|7~~~1:02.5~~|8~~~1:02.7~~
+W100~1968~6025~19 October 1968~1~Jan Henne~USA~1:00.0~Gold~|2~Sue Pedersen~USA~1:00.3~Silver~|3~Linda Gustavson~USA~1:00.3~Bronze~|4~~~1:00.5~~|5~~~1:01.0~~|6~~~1:01.0~~|7~~~1:01.5~~|8~~~1:01.6~~
+W100~1972~6335~29 August 1972~1~Sandy Neilson~USA~58.59~Gold~|2~Shirley Babashoff~USA~59.02~Silver~|3~Shane Gould~AUS~59.06~Bronze~|4~~~59.21~~|5~~~59.73~~|6~~~59.91~~|7~~~1:00.02~~|8~~~1:00.09~~
+W100~1976~6612~19 July 1976~1~Kornelia Ender~GDR~55.65~Gold~|2~Petra Priemer~GDR~56.49~Silver~|3~Enith Brigitha~NED~56.65~Bronze~|4~~~56.81~~|5~~~56.95~~|6~~~56.99~~|7~~~57.06~~|8~~~57.26~~
+#C11 crc:7c4f08b7
+W100~1980~6863~21 July 1980~1~Barbara Krause~GDR~54.79~Gold~|2~Caren Metschuck~GDR~55.16~Silver~|3~Ines Diers~GDR~55.65~Bronze~|4~~~57.40~~|5~~~57.63~~|6~~~57.83~~|7~~~57.88~~|8~~~57.90~~
+W100~1984~7131~29 July 1984~=1~Nancy Hogshead~USA~55.92~Gold~|=1~Carrie Steinseifer~USA~55.92~Gold~|3~Annemarie Verstappen~NED~56.08~Bronze~|4~~~56.43~~|5~~~56.83~~|6~~~56.90~~|7~~~57.11~~|8~~~58.09~~
+W100~1988~7468~19 September 1988~1~Kristin Otto~GDR~54.93~Gold~|2~Zhuang Yong~CHN~55.47~Silver~|3~Catherine Plewinski~FRA~55.49~Bronze~|4~~~55.52~~|5~~~55.90~~|6~~~56.15~~|7~~~56.25~~|8~~~56.54~~
+W100~1992~7825~26 July 1992~1~Zhuang Yong~CHN~54.64~Gold~|2~Jenny Thompson~USA~54.84~Silver~|3~Franziska van Almsick~GER~54.94~Bronze~|4~~~55.19~~|5~~~55.72~~|6~~~55.89~~|7~~~55.93~~|8~~~56.59~~
+#C12 crc:6cfa7fc0
+W100~1996~8171~20 July 1996~1~Le Jingyi~CHN~54.50~Gold~|2~Sandra Völker~GER~54.88~Silver~|3~Angel Martino~USA~54.93~Bronze~|4~~~55.11~~|5~~~55.59~~|6~~~55.85~~|7~~~56.01~~|8~~~56.12~~
+W100~2000~8567~21 September 2000~1~Inge de Bruijn~NED~53.83~Gold~|2~Therèse Alshammar~SWE~54.33~Silver~|=3~Jenny Thompson~USA~54.43~Bronze~|=3~Dara Torres~USA~54.43~Bronze~|5~~~54.72~~|6~~~55.19~~|7~~~55.53~~|8~~~55.58~~
+W100~2004~8956~19 August 2004~1~Jodie Henry~AUS~53.84~Gold~|2~Inge de Bruijn~NED~54.16~Silver~|3~Natalie Coughlin~USA~54.40~Bronze~|4~~~54.50~~|5~~~54.54~~|6~~~54.81~~|7~~~55.12~~|8~~~55.24~~
+#C13 crc:92ff1778
+W100~2008~261692~15 August 2008~1~Britta Steffen~GER~53.12~Gold~|2~Libby Trickett~AUS~53.16~Silver~|3~Natalie Coughlin~USA~53.39~Bronze~|4~~~53.97~~|5~~~54.06~~|=6~~~54.21~~|=6~~~54.21~~|8~~~54.29~~
+W100~2012~322262~2 August 2012~1~Ranomi Kromowidjojo~NED~53.00~Gold~|2~Aliaksandra Herasimenia~BLR~53.38~Silver~|3~Tang Yi~CHN~53.44~Bronze~|4~~~53.47~~|5~~~53.64~~|6~~~53.66~~|7~~~53.75~~|8~~~54.02~~
+W100~2016~357188~11 August 2016~=1~Simone Manuel~USA~52.70~Gold~OR|=1~Penny Oleksiak~CAN~52.70~Gold~OR|3~Sarah Sjöström~SWE~52.99~Bronze~|4~~~53.04~~|5~~~53.08~~|6~~~53.24~~|7~~~53.30~~|8~~~53.36~~
+#C14 crc:383824fd
+W100~2020~19000181~30 July 2021~1~Emma McKeon~AUS~51.96~Gold~|2~Siobhán Haughey~HKG~52.27~Silver~|3~Cate Campbell~AUS~52.52~Bronze~|4~~~52.59~~|5~~~52.68~~|6~~~52.79~~|7~~~52.83~~|8~~~53.23~~
+W100~2024~2001688~31 July 2024~1~Sarah Sjöström~SWE~52.16~Gold~|2~Torri Huske~USA~52.29~Silver~|3~Siobhán Haughey~HKG~52.33~Bronze~|4~~~52.34~~|5~~~52.72~~|6~~~52.82~~|7~~~52.83~~|8~~~53.04~~
+M50~1988~7257~24 September 1988~1~Matt Biondi~USA~22.14~Gold~|2~Tom Jager~USA~22.36~Silver~|3~Gennady Prigoda~URS~22.71~Bronze~|4~~~22.83~~|5~~~22.84~~|6~~~22.88~~|7~~~23.03~~|8~~~23.15~~
+M50~1992~7614~30 July 1992~1~Aleksandr Popov~EUN~21.91~Gold~|2~Matt Biondi~USA~22.09~Silver~|3~Tom Jager~USA~22.30~Bronze~|=4~~~22.50~~|=4~~~22.50~~|6~~~22.52~~|7~~~22.54~~|8~~~22.73~~
+#C15 crc:71373df0
+M50~1996~7969~25 July 1996~1~Aleksandr Popov~RUS~22.13~Gold~|2~Gary Hall, Jr.~USA~22.26~Silver~|3~Xuxa Scherer~BRA~22.29~Bronze~|4~~~22.33~~|5~~~22.59~~|6~~~22.68~~|7~~~22.72~~|8~~~22.73~~
+M50~2000~8336~22 September 2000~=1~Gary Hall, Jr.~USA~21.98~Gold~|=1~Anthony Ervin~USA~21.98~Gold~|3~Pieter van den Hoogenband~NED~22.03~Bronze~|4~~~22.11~~|5~~~22.22~~|6~~~22.24~~|7~~~22.41~~|8~~~22.51~~
+M50~2004~8740~20 August 2004~1~Gary Hall, Jr.~USA~21.93~Gold~|2~Duje Draganja~CRO~21.94~Silver~|3~Roland Schoeman~RSA~22.02~Bronze~|4~~~22.08~~|5~~~22.11~~|6~~~22.18~~|7~~~22.26~~|8~~~22.37~~
+#C16 crc:ac1f7d1f
+M50~2008~261468~16 August 2008~1~César Cielo Filho~BRA~21.30~Gold~|2~Amaury Leveaux~FRA~21.45~Silver~|3~Alain Bernard~FRA~21.49~Bronze~|4~~~21.62~~|5~~~21.64~~|6~~~21.65~~|7~~~21.67~~|8~~~21.72~~
+M50~2012~322275~3 August 2012~1~Florent Manaudou~FRA~21.34~Gold~|2~Cullen Jones~USA~21.54~Silver~|3~César Cielo Filho~BRA~21.59~Bronze~|4~~~21.61~~|5~~~21.78~~|6~~~21.80~~|7~~~21.82~~|8~~~21.98~~
+M50~2016~356980~12 August 2016~1~Anthony Ervin~USA~21.40~Gold~|2~Florent Manaudou~FRA~21.41~Silver~|3~Nathan Adrian~USA~21.49~Bronze~|4~~~21.68~~|5~~~21.74~~|=6~~~21.79~~|=6~~~21.79~~|8~~~22.08~~
+#C17 crc:42af1fd7
+M50~2020~19000000~1 August 2021~1~Caeleb Dressel~USA~21.07~Gold~|2~Florent Manaudou~FRA~21.55~Silver~|3~Bruno Fratus~BRA~21.57~Bronze~|4~~~21.60~~|5~~~21.72~~|6~~~21.72~~|7~~~21.78~~|8~~~21.79~~
+M50~2024~2001500~2 August 2024~1~Cameron McEvoy~AUS~21.25~Gold~|2~Ben Proud~GBR~21.30~Silver~|3~Florent Manaudou~FRA~21.56~Bronze~|4~~~21.58~~|5~~~21.59~~|6~~~21.61~~|7~~~21.62~~|8~~~21.64~~
+W50~1988~7457~25 September 1988~1~Kristin Otto~GDR~25.49~Gold~|2~Yang Wenyi~CHN~25.64~Silver~|=3~Katrin Meißner~GDR~25.71~Bronze~|=3~Jill Sterkel~USA~25.71~Bronze~|5~~~25.78~~|6~~~25.80~~|7~~~25.90~~|8~~~26.01~~
+#C18 crc:ac638796
+W50~1992~7814~31 July 1992~1~Yang Wenyi~CHN~24.79~Gold~|2~Zhuang Yong~CHN~25.08~Silver~|3~Angel Martino~USA~25.23~Bronze~|4~~~25.36~~|5~~~25.37~~|6~~~25.47~~|7~~~25.74~~|8~~~25.84~~
+W50~1996~8160~26 July 1996~1~Amy Van Dyken~USA~24.87~Gold~|2~Le Jingyi~CHN~24.90~Silver~|3~Sandra Völker~GER~25.14~Bronze~|4~~~25.31~~|5~~~25.49~~|6~~~25.63~~|7~~~25.70~~|8~~~25.88~~
+W50~2000~8550~23 September 2000~1~Inge de Bruijn~NED~24.32~Gold~|2~Therèse Alshammar~SWE~24.51~Silver~|3~Dara Torres~USA~24.63~Bronze~|4~~~25.04~~|5~~~25.24~~|6~~~25.27~~|7~~~25.45~~|8~~~25.65~~
+W50~2004~8940~21 August 2004~1~Inge de Bruijn~NED~24.58~Gold~|2~Malia Metella~FRA~24.89~Silver~|3~Libby Lenton~AUS~24.91~Bronze~|4~~~24.93~~|5~~~25.00~~|6~~~25.06~~|7~~~25.11~~|8~~~25.20~~
+#C19 crc:aa33d364
+W50~2008~261674~17 August 2008~1~Britta Steffen~GER~24.06~Gold~|2~Dara Torres~USA~24.07~Silver~|3~Cate Campbell~AUS~24.17~Bronze~|4~~~24.25~~|5~~~24.26~~|6~~~24.63~~|7~~~24.65~~|8~~~24.77~~
+W50~2012~322320~4 August 2012~1~Ranomi Kromowidjojo~NED~24.05~Gold~|2~Aliaksandra Herasimenia~BLR~24.28~Silver~|3~Marleen Veldhuis~NED~24.39~Bronze~|4~~~24.46~~|5~~~24.47~~|6~~~24.61~~|7~~~24.62~~|8~~~24.69~~
+W50~2016~357170~13 August 2016~1~Pernille Blume~DEN~24.07~Gold~|2~Simone Manuel~USA~24.09~Silver~|3~Aliaksandra Herasimenia~BLR~24.11~Bronze~|4~~~24.13~~|5~~~24.15~~|6~~~24.19~~|7~~~24.42~~|8~~~24.69~~
+#C20 crc:d92e1e59
+W50~2020~19000164~30 July 2021~1~Emma McKeon~AUS~23.81~Gold~|2~Sarah Sjöström~SWE~24.07~Silver~|3~Pernille Blume~DEN~24.21~Bronze~|4~~~24.30~~|5~~~24.32~~|6~~~24.32~~|7~~~24.36~~|8~~~24.41~~
+W50~2024~2001671~4 August 2024~1~Sarah Sjöström~SWE~23.71~Gold~|2~Meg Harris~AUS~23.97~Silver~|3~Zhang Yufei~CHN~24.20~Bronze~|4~~~24.21~~|5~~~24.33~~|6~~~24.35~~|7~~~24.37~~|8~~~24.39~~

@@ -1,0 +1,89 @@
+---
+layout: ../../layouts/Project.astro
+title: Where the Olympic Sprint Got Faster
+description: Winning times in the Olympic 50 m and 100 m freestyle, men and women, 1908 to 2024, and when the improvement happened.
+date: 2026-10-18
+tags: [Swimming, Data]
+eyebrow: Olympic swimming, 1908–2024
+status: published
+code: MHL-002
+rev: A
+thumb: sprint
+---
+import SprintChart from "../../components/viz/olympic-freestyle-sprint/SprintChart.astro";
+import PoolTop from "../../components/viz/olympic-freestyle-sprint/PoolTop.astro";
+
+<div class="sp-intro">
+<div class="prose">
+
+# More than <em>80%</em> of the Olympic 100 m speed-up came before 1976
+
+The men's 100 m freestyle has been swum at every Olympics since 1908 and the women's since 1912, apart from the three Games lost to war. Put the winning times on a line and it falls from 65.6 s in 1908 to 46.40 s in 2024 for men, and from 82.2 s in 1912 to 52.16 s in 2024 for women. That is 29% and 37% faster. Each dot below is the winning time of one Games.
+
+Most of the drop came early. By 1976 the best champion time had covered 81% of the men's total gain and 88% of the women's. Later Games kept shaving time, in much smaller steps.
+
+Read the first points with care. The 1908 race was one length of a straight 100 m pool with no turns, and in 1912 the swimmers raced in open water in Stockholm harbour. Some of the early drop may come from changes in the course itself.
+
+</div>
+<PoolTop />
+</div>
+
+<SprintChart callouts={[
+  { n: 1, series: "W100", year: 1948, dx: 18, dy: -30 },
+  { n: 2, series: "M100", year: 1992, dx: 8, dy: 30 },
+  { n: 3, series: "M100", year: 2024, dx: -16, dy: 32 },
+  { n: 4, series: "M50", year: 2024, dx: -16, dy: 32 },
+]}>
+<div slot="insights">
+
+<p class="eyebrow">What to look at</p>
+
+1. Up to 1976 the line falls fast. Men's champions took 15.61 s off between 1908 and 1976, from 65.6 to 49.99 s. Women's took 26.55 s off between 1912 and 1976, from 82.2 to 55.65 s.
+
+2. After 1976 the fall is slow. In the next 48 years men's champions improved by 3.59 s (7.2%) and women's by 3.49 s (6.3%).
+
+3. The back of the final has caught up with the old champions. The man who finished eighth in 2024 swam 47.98 s, faster than every men's champion up to 2004. The woman who finished eighth swam 53.04 s, faster than every women's champion up to 2008.
+
+4. The 50 m joined the Games in 1988 and is still getting faster. Since then the men's winning time has fallen 4.0% and the women's 7.0%. The 100 m fell 4.6% and 5.0% over the same years. Switch to "Since 1988" to compare them.
+
+</div>
+</SprintChart>
+
+<section class="method">
+
+## Notes and method
+
+<div class="method-grid">
+<div>
+
+### Data
+
+Results come from the Olympedia final results of each Games, positions 1 to 8, for the men's and women's 50 m and 100 m freestyle, read on 2026-10-18. Every champion time was checked against a second source, the Wikipedia pages of each event, and all 73 match. Silver, bronze and places 4 to 8 come from Olympedia only.
+
+</div>
+<div>
+
+### Times and shares
+
+Times are in seconds, as printed in the official results: tenths up to 1968 and hundredths from 1972. Percent changes use the champion's time. The share by 1976 is the first champion time minus the best time up to 1976, divided by the first time minus the 2024 time. Where two swimmers tied for gold (women's 100 m in 1984 and 2016, men's 50 m in 2000), the chart shows one point with a ring.
+
+</div>
+<div>
+
+### Editions and courses
+
+The 1908 men's race was a single length of a 100 m pool without turns. The 1912 races were held on a 100 m course in Stockholm harbour. I could not confirm the type and length of the pool in 1920 and 1924. In 1920 the men's final was re-swum after a disqualification, and the chart uses the official re-swim time, 1:01.4. Tokyo 2020 was held in 2021 and is drawn there. No Games took place in 1916, 1940 and 1944. The markers for 1980 and 1984 show boycotts. The card for each of those Games names the countries that medalled in this event at the previous or next Games but were absent. The band shows places 1 to 8 only where all eight times exist, which is from 1948 in the 100 m and 1988 in the 50 m. For the 1960 men's 100 m, Olympedia lists the silver time 0.1 s faster than the gold.
+
+</div>
+<div>
+
+### Sources
+
+[Olympedia, men's 100 m freestyle](https://www.olympedia.org/event_names/553), [women's 100 m](https://www.olympedia.org/event_names/588), [men's 50 m](https://www.olympedia.org/event_names/551), [women's 50 m](https://www.olympedia.org/event_names/587) and [list of editions](https://www.olympedia.org/editions). [Wikipedia, list of Olympic Games boycotts](https://en.wikipedia.org/wiki/List_of_Olympic_Games_boycotts), [swimming at the 1908 Games](https://en.wikipedia.org/wiki/Swimming_at_the_1908_Summer_Olympics_%E2%80%93_Men%27s_100_metre_freestyle) and [at the 1912 Games](https://en.wikipedia.org/wiki/Swimming_at_the_1912_Summer_Olympics).
+
+Data built in `analysis/olympic-freestyle-sprint/build_data.py`.
+
+</div>
+</div>
+
+</section>

@@ -29,3 +29,4 @@ and check it before publishing with `/qa <slug>`.
 | Slug | Title | Status |
 |---|---|---|
 | `uranium-enrichment` | Seven in a Thousand | published |
+| `olympic-freestyle-sprint` | Where the Olympic Sprint Got Faster | published |

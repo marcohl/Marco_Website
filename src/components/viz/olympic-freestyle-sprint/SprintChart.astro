@@ -1,0 +1,504 @@
+---
+// Olympic champions' times in the 50 m and 100 m freestyle, 1908-2024: line chart with a finalists band.
+// Data: src/data/olympic-freestyle-sprint/series.json (built by analysis/olympic-freestyle-sprint/build_data.py)
+import data from "../../../data/olympic-freestyle-sprint/series.json";
+import SprintTable from "./SprintTable.astro";
+
+interface Callout { n: number; series: "M100" | "W100" | "M50" | "W50"; year: number; dx?: number; dy?: number }
+const { callouts = [] } = Astro.props as { callouts?: Callout[] };
+
+const list = (a: (string | number)[]) => (a.length < 2 ? a.join("") : `${a.slice(0, -1).join(", ")} and ${a[a.length - 1]}`);
+if (!data.not_held.every((n) => n.reason === "war")) throw new Error("Legend text assumes every cancelled Games was a war year.");
+const notHeldText = list(data.not_held.map((n) => n.year));
+const boycottYears = data.absence_flags.filter((f) => f.chart_marker && f.reason === "boycott").map((f) => f.year);
+if (boycottYears.length !== data.absence_flags.filter((f) => f.chart_marker).length) throw new Error("Legend text assumes every marked absence was a boycott.");
+const boycottText = list(boycottYears);
+
+// Compact payload for the client script.
+const payload = {
+  noc: data.noc_names,
+  notHeld: data.not_held.map((n) => n.year),
+  absence: Object.fromEntries(
+    data.absence_flags.filter((f) => f.chart_marker).map((f) => [
+      f.year,
+      { reason: f.reason, series: Object.fromEntries(Object.entries(f.series).map(([k, v]) => [k, v.absent_medal_nations])) },
+    ]),
+  ),
+  notes: data.annotations.map((a) => ({ series: a.series, year: a.year, type: a.type, text: a.text, unsourced: !!(a as any).needs_source })),
+  series: data.series.map((s) => ({
+    id: s.id, dist: s.distance_m, sex: s.sex,
+    eds: s.editions.map((e) => ({
+      g: e.games_year, h: e.held_year, x: e.plot_year,
+      ch: e.champions.map((c) => ({ n: c.name, c: c.noc, t: c.time_text, s: c.time_s })),
+      pod: e.podium.filter((p) => p.medal !== "Gold").map((p) => ({ m: p.medal, n: p.name, c: p.noc, t: p.time_text })),
+      b: e.band ? { f: e.band.fastest, s: e.band.slowest } : null,
+      e8: (e.others.find((o) => o.pos === "8" || o.pos === "=8") ?? { time_text: null }).time_text,
+    })),
+  })),
+  callouts,
+};
+---
+<div class="sp" data-viz="olympic-freestyle-sprint">
+  <div class="sp-grid">
+    <figure class="sp-fig">
+      <div class="sp-controls">
+        <div class="sp-seg" role="group" aria-label="Distance">
+          <button type="button" data-ctl="dist" data-val="50" aria-pressed="false">50 m</button>
+          <button type="button" data-ctl="dist" data-val="100" aria-pressed="true">100 m</button>
+        </div>
+        <div class="sp-seg" role="group" aria-label="Swimmers">
+          <button type="button" data-ctl="sex" data-val="women" aria-pressed="false">Women</button>
+          <button type="button" data-ctl="sex" data-val="men" aria-pressed="false">Men</button>
+          <button type="button" data-ctl="sex" data-val="both" aria-pressed="true">Both</button>
+        </div>
+        <div class="sp-seg" role="group" aria-label="Time window">
+          <button type="button" data-ctl="win" data-val="full" aria-pressed="true">1908–2024</button>
+          <button type="button" data-ctl="win" data-val="since" aria-pressed="false">Since 1988</button>
+        </div>
+      </div>
+
+      <div class="sp-stage">
+        <svg class="sp-svg" tabindex="0" role="group" aria-describedby="sp-card"
+             aria-label="Line chart of Olympic champions' winning times. Use the left and right arrow keys to move between Games."></svg>
+        <div class="sp-card" id="sp-card" aria-live="polite"></div>
+      </div>
+
+      <ul class="sp-legend" aria-label="Legend">
+        <li data-k="champion"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="4" class="lg-fill"/></svg><span>Winning time of the Olympic champion</span></li>
+        <li data-k="tie"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3" class="lg-fill"/><circle cx="8" cy="8" r="7" class="lg-ring"/></svg><span>Two champions in a tie</span></li>
+        <li data-k="course"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2 14 8 8 14 2 8Z" class="lg-hollow"/></svg><span>Not a standard pool: 1908 was a straight 100 m pool with no turns, 1912 an open-water course in Stockholm harbour</span></li>
+        <li data-k="boycott"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5" class="lg-hollow"/></svg><span>Boycotted Games ({boycottText}): some leading swimming nations stayed away</span></li>
+        <li data-k="nothold"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3 13 13M13 3 3 13" class="lg-x"/></svg><span>Games not held because of war ({notHeldText})</span></li>
+        <li data-k="band"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1" y="3" width="14" height="10" class="lg-band"/></svg><span>Range from 1st to 8th place, shown where all eight times exist</span></li>
+      </ul>
+      <noscript><p class="sp-nojs">The interactive chart needs JavaScript. The tables below list every result it shows.</p></noscript>
+    </figure>
+
+    <div class="sp-insights"><slot name="insights" /></div>
+  </div>
+
+  <SprintTable />
+  <script type="application/json" class="sp-data" is:inline set:html={JSON.stringify(payload)} />
+</div>
+
+<script>
+  import * as d3 from "d3";
+
+  type Ch = { n: string; c: string; t: string | null; s: number };
+  type Pod = { m: string; n: string; c: string; t: string | null };
+  type Ed = { g: number; h: number; x: number; ch: Ch[]; pod: Pod[]; b: { f: number; s: number } | null; e8: string | null };
+  type Ser = { id: string; dist: number; sex: "men" | "women"; eds: Ed[] };
+  type Note = { series: string; year: number; type: string; text: string; unsourced: boolean };
+  type Callout = { n: number; series: string; year: number; dx?: number; dy?: number };
+  type Payload = {
+    noc: Record<string, string>; notHeld: number[];
+    absence: Record<string, { reason: string; series: Record<string, string[]> }>;
+    notes: Note[]; series: Ser[]; callouts: Callout[];
+  };
+  type Sex = "men" | "women" | "both";
+
+  const GAP = 5; // years; a longer gap between editions breaks the line
+  const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
+  const label = (s: Ser) => `${s.sex === "men" ? "Men's" : "Women's"} ${s.dist} m`;
+
+  document.querySelectorAll<HTMLElement>('[data-viz="olympic-freestyle-sprint"]').forEach((root) => {
+    const P: Payload = JSON.parse(root.querySelector(".sp-data")!.textContent!);
+    root.classList.add("js");
+    const q = <T extends Element>(s: string) => root.querySelector<T>(s)!;
+    const svgEl = q<SVGSVGElement>("svg.sp-svg"), stage = q<HTMLElement>(".sp-stage"), card = q<HTMLElement>(".sp-card");
+    const svg = d3.select(svgEl);
+    const reduce = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const st = { dist: 100, sex: "both" as Sex, win: "full" as "full" | "since", sel: null as number | null };
+    const courseKeys = new Set(P.notes.filter((n) => n.type === "course" || n.type === "open-water").map((n) => `${n.series}|${n.year}`));
+    const isCourse = (s: Ser, e: Ed) => courseKeys.has(`${s.id}|${e.g}`) || courseKeys.has(`ALL|${e.g}`);
+    const isBoycott = (e: Ed) => !!P.absence[e.g];
+    const active = (s: Ser) => st.sex === "both" || s.sex === st.sex;
+    const inDist = () => P.series.filter((s) => s.dist === st.dist);
+
+    // ---- static layers, bottom to top ----
+    const gGridY = svg.append("g").attr("class", "sp-ygrid");
+    const gBase = svg.append("line").attr("class", "sp-base");
+    const gEmpty = svg.append("text").attr("class", "sp-empty");
+    const gNH = svg.append("g").attr("class", "sp-nothold");
+    const gMarks = svg.append("g").attr("class", "sp-marks");
+    const gX = svg.append("g").attr("class", "sp-xaxis");
+    const gCall = svg.append("g").attr("class", "sp-callouts");
+    const gGuide = svg.append("g").attr("class", "sp-guide").attr("display", "none");
+    const guideLine = gGuide.append("line");
+    const gHit = svg.append("rect").attr("class", "sp-hit");
+    const yTitle = svg.append("text").attr("class", "sp-ytitle").text("seconds · lower is faster");
+
+    // ---- geometry and scales (recomputed on resize / state change) ----
+    let W = 0, H = 0, m = { t: 26, r: 56, b: 0, l: 40 }, lane = 0, ph = 0;
+    let x: d3.ScaleLinear<number, number>, y: d3.ScaleLinear<number, number>, xd: [number, number];
+
+    function geometry() {
+      W = Math.max(280, Math.round(stage.clientWidth));
+      H = W < 520 ? 330 : Math.round(Math.min(470, Math.max(360, W * 0.58)));
+      xd = st.win === "full" ? [1906, 2026] : [1986, 2026];
+      lane = st.win === "full" ? 20 : 0;
+      m = { t: 26, r: W < 520 ? 52 : 62, b: lane + 26, l: W < 520 ? 34 : 40 };
+      ph = H - m.t - m.b;
+      x = d3.scaleLinear().domain(xd).range([m.l, W - m.r]);
+      const vals: number[] = [];
+      inDist().forEach((s) => s.eds.forEach((e) => {
+        if (e.x < xd[0] || e.x > xd[1]) return;
+        vals.push(e.ch[0].s);
+        if (e.b) vals.push(e.b.f, e.b.s);
+      }));
+      const [lo, hi] = d3.extent(vals) as [number, number];
+      const pad = (hi - lo) * 0.05;
+      y = d3.scaleLinear().domain([lo - pad, hi + pad]).nice(5).range([m.t + ph, m.t]);
+    }
+
+    function visible(s: Ser) { return s.eds.filter((e) => e.x >= xd[0] && e.x <= xd[1]); }
+    function segments(eds: Ed[]) {
+      const out: Ed[][] = []; let cur: Ed[] = [];
+      for (const e of eds) {
+        if (cur.length && e.x - cur[cur.length - 1].x > GAP) { out.push(cur); cur = []; }
+        cur.push(e);
+      }
+      if (cur.length) out.push(cur);
+      return out;
+    }
+    const years = () => {
+      const set = new Set<number>();
+      inDist().filter(active).forEach((s) => visible(s).forEach((e) => set.add(e.x)));
+      return [...set].sort((a, b) => a - b);
+    };
+
+    // ---- drawing ----
+    function render(animate: boolean) {
+      geometry();
+      const animOn = animate && !reduce();
+      const t = animOn ? d3.transition().duration(500).ease(d3.easeCubicOut) : null;
+      svg.attr("viewBox", `0 0 ${W} ${H}`).attr("width", W).attr("height", H);
+
+      // axes
+      const yAxis = d3.axisLeft(y).ticks(6).tickSize(-(W - m.l - m.r)).tickPadding(8).tickFormat(d3.format("d") as any);
+      (t ? (gGridY.transition(t) as any) : gGridY).attr("transform", `translate(${m.l},0)`).call(yAxis as any);
+      const tv = st.win === "full"
+        ? (W < 520 ? [1908, 1940, 1980, 2020] : [1908, 1920, 1940, 1960, 1980, 2000, 2020])
+        : (W < 520 ? [1988, 2004, 2021] : [1988, 1996, 2004, 2012, 2021]);
+      const xAxis = d3.axisBottom(x).tickValues(tv).tickFormat(d3.format("d") as any).tickSize(4).tickPadding(6);
+      gX.attr("transform", `translate(0,${m.t + ph + lane})`).call(xAxis as any);
+      gBase.attr("x1", m.l).attr("x2", W - m.r).attr("y1", m.t + ph).attr("y2", m.t + ph);
+      yTitle.attr("x", m.l).attr("y", 12);
+
+      // marks are rebuilt on each render and faded in on state changes
+      gMarks.selectAll("*").remove(); gNH.selectAll("*").remove(); gCall.selectAll("*").remove();
+      const eds = inDist();
+      const first50 = Math.min(...P.series.filter((s) => s.dist === 50).flatMap((s) => s.eds.map((e) => e.g)));
+      gEmpty.text(st.dist === 50 && st.win === "full" ? `Event not contested until ${first50}` : "")
+        .attr("x", x((1906 + first50) / 2)).attr("y", m.t + ph / 2).attr("text-anchor", "middle");
+
+      // years with no Games: a dashed guide in the plot and an x in the lane under it
+      const nh = P.notHeld.filter((yr) => yr >= xd[0] && yr <= xd[1]);
+      nh.forEach((yr) => {
+        gNH.append("line").attr("class", "sp-nh-line").attr("x1", x(yr)).attr("x2", x(yr)).attr("y1", m.t).attr("y2", m.t + ph);
+        const cy = m.t + ph + lane / 2 + 1;
+        gNH.append("path").attr("class", "sp-nh-x").attr("d", `M${x(yr) - 4},${cy - 4}L${x(yr) + 4},${cy + 4}M${x(yr) + 4},${cy - 4}L${x(yr) - 4},${cy + 4}`);
+      });
+
+      // inactive series first (grey context), then active ones on top
+      const ordered = [...eds.filter((s) => !active(s)), ...eds.filter(active)];
+      ordered.forEach((s) => {
+        const on = active(s);
+        const g = gMarks.append("g").attr("class", `sp-s s-${s.sex}${on ? "" : " ctx"}`);
+        const vis = visible(s);
+        const segs = segments(vis);
+        if (on) {
+          segs.forEach((seg) => {
+            let run: Ed[] = [];
+            const flush = () => {
+              if (run.length > 1) {
+                g.append("path").attr("class", "sp-band").attr("d", d3.area<Ed>().x((e) => x(e.x)).y0((e) => y(e.b!.s)).y1((e) => y(e.b!.f))(run)!);
+              } else if (run.length === 1) {
+                const e = run[0];
+                g.append("rect").attr("class", "sp-band").attr("x", x(e.x) - 3).attr("width", 6).attr("y", y(e.b!.s)).attr("height", Math.max(1, y(e.b!.f) - y(e.b!.s)));
+              }
+              run = [];
+            };
+            seg.forEach((e) => { if (e.b) run.push(e); else flush(); });
+            flush();
+          });
+        }
+        segs.forEach((seg) => {
+          if (seg.length > 1) g.append("path").attr("class", "sp-line").attr("d", d3.line<Ed>().x((e) => x(e.x)).y((e) => y(e.ch[0].s))(seg)!);
+        });
+        if (on) {
+          vis.forEach((e) => {
+            const cx = x(e.x), cy = y(e.ch[0].s);
+            if (e.ch.length > 1) g.append("circle").attr("class", "sp-ring").attr("cx", cx).attr("cy", cy).attr("r", 8);
+            if (isCourse(s, e)) g.append("path").attr("class", "sp-dot hollow").attr("transform", `translate(${cx},${cy})`).attr("d", d3.symbol().type(d3.symbolDiamond).size(80)()!);
+            else if (isBoycott(e)) g.append("circle").attr("class", "sp-dot hollow").attr("cx", cx).attr("cy", cy).attr("r", 5);
+            else g.append("circle").attr("class", "sp-dot").attr("cx", cx).attr("cy", cy).attr("r", 4);
+          });
+        }
+        // direct label at the end of the line
+        const last = vis[vis.length - 1];
+        if (last) {
+          const ly = y(last.ch[0].s);
+          g.append("text").attr("class", "sp-endlabel").attr("x", x(last.x) + 9).attr("y", ly).attr("dy", "0.32em").text(s.sex === "men" ? "Men" : "Women");
+        }
+      });
+
+      // numbered callouts that link to the insights text
+      const maxCall = W < 520 ? 3 : 4;
+      P.callouts.filter((c) => c.n <= maxCall).forEach((c) => {
+        const s = eds.find((v) => v.id === c.series);
+        if (!s || !active(s)) return;
+        const e = s.eds.find((v) => v.g === c.year);
+        if (!e || e.x < xd[0] || e.x > xd[1]) return;
+        const px = x(e.x), py = y(e.ch[0].s), dx = c.dx ?? 16, dy = c.dy ?? -22;
+        const g = gCall.append("g").attr("class", "sp-callout");
+        g.append("line").attr("x1", px).attr("y1", py).attr("x2", px + dx).attr("y2", py + dy);
+        g.append("circle").attr("cx", px + dx).attr("cy", py + dy).attr("r", 9);
+        g.append("text").attr("x", px + dx).attr("y", py + dy).attr("dy", "0.35em").attr("text-anchor", "middle").text(c.n);
+      });
+
+      if (animOn) {
+        gMarks.attr("opacity", 0).transition().duration(400).attr("opacity", 1);
+        gNH.attr("opacity", 0).transition().duration(400).attr("opacity", 1);
+        gCall.attr("opacity", 0).transition().delay(250).duration(300).attr("opacity", 1);
+      } else {
+        gMarks.attr("opacity", 1); gNH.attr("opacity", 1); gCall.attr("opacity", 1);
+      }
+
+      gHit.attr("x", m.l).attr("y", m.t).attr("width", W - m.l - m.r).attr("height", ph + lane);
+      updateLegend();
+      if (st.sel != null && !years().includes(st.sel)) st.sel = null;
+      select(st.sel);
+    }
+
+    function updateLegend() {
+      const act = inDist().filter(active), vis = act.flatMap((s) => visible(s).map((e) => ({ s, e })));
+      const show: Record<string, boolean> = {
+        champion: true,
+        tie: vis.some((v) => v.e.ch.length > 1),
+        course: vis.some((v) => isCourse(v.s, v.e)),
+        boycott: vis.some((v) => isBoycott(v.e)),
+        nothold: lane > 0,
+        band: vis.some((v) => v.e.b),
+      };
+      root.querySelectorAll<HTMLElement>(".sp-legend li").forEach((li) => { li.hidden = !show[li.dataset.k!]; });
+    }
+
+    // ---- reading a value ----
+    const timeText = (t: string | null) => {
+      if (!t) return "no time";
+      if (!t.includes(":")) return `${t} s`;
+      const [mm, ss] = t.split(":");
+      return `${t} (${(Number(mm) * 60 + Number(ss)).toFixed(t.split(".")[1].length)} s)`;
+    };
+    const gamesLabel = (e: Ed) => (e.g === e.h ? String(e.g) : e.g === 2020 ? `Tokyo 2020, held ${e.h}` : `${e.g}, held ${e.h}`);
+    const nameList = (e: Ed) => e.ch.map((c) => `${esc(c.n)}<span class="c">${esc(P.noc[c.c] ?? c.c)}</span>`).join("");
+
+    function cardHTML(year: number) {
+      const rows = inDist().filter(active).map((s) => ({ s, e: s.eds.find((v) => v.x === year) })).filter((r): r is { s: Ser; e: Ed } => !!r.e);
+      if (!rows.length) return "";
+      const head = gamesLabel(rows[0].e);
+      const multi = rows.length > 1;
+      const notes: string[] = [];
+      const addNote = (text: string, s: Ser) => {
+        const t = multi && !text.startsWith("__all__") ? `${label(s)}: ${text}` : text.replace("__all__", "");
+        if (!notes.includes(t)) notes.push(t);
+      };
+      const blocks = rows.map(({ s, e }) => {
+        const rowsHtml = [
+          `<li><span class="m">Gold</span><span class="w">${nameList(e)}</span><span class="t">${esc(timeText(e.ch[0].t))}</span></li>`,
+          ...e.pod.map((p) => `<li><span class="m">${esc(p.m)}</span><span class="w">${esc(p.n)}</span><span class="t">${esc(timeText(p.t))}</span></li>`),
+          e.e8 ? `<li class="eighth"><span class="m">8th</span><span class="w"></span><span class="t">${esc(timeText(e.e8))}</span></li>` : "",
+        ].join("");
+        P.notes.filter((n) => n.year === e.g && (n.series === s.id || n.series === "ALL")).forEach((n) =>
+          addNote((n.series === "ALL" ? "__all__" : "") + (n.unsourced ? n.text.split(". ")[0] + "." : n.text), s));
+        const ab = P.absence[e.g];
+        if (ab && ab.series[s.id]?.length) {
+          addNote(`Boycott. Absent, though they medalled at a neighbouring Games: ${ab.series[s.id].map((k) => P.noc[k] ?? k).join(", ")}.`, s);
+        }
+        return `<section class="sp-blk s-${s.sex}"><h4><span class="sw"></span>${label(s)} freestyle</h4><ul>${rowsHtml}</ul></section>`;
+      }).join("");
+      return `<div class="sp-card-h"><strong>${esc(head)}</strong>
+        <span class="sp-nav"><button type="button" data-step="-1" aria-label="Previous Games">‹</button><button type="button" data-step="1" aria-label="Next Games">›</button></span></div>
+        <div class="sp-blks">${blocks}</div>${notes.length ? `<p class="sp-notes">${notes.map(esc).join("<br>")}</p>` : ""}`;
+    }
+
+    function select(year: number | null) {
+      st.sel = year;
+      gMarks.selectAll(".sp-selring").remove();
+      if (year == null) {
+        gGuide.attr("display", "none");
+        card.innerHTML = `<p class="sp-hint">Touch or hover over the chart to read the result of each Games. The left and right arrow keys also work.</p>`;
+        return;
+      }
+      const gx = x(year);
+      gGuide.attr("display", null);
+      guideLine.attr("x1", gx).attr("x2", gx).attr("y1", m.t).attr("y2", m.t + ph + lane);
+      inDist().filter(active).forEach((s) => {
+        const e = s.eds.find((v) => v.x === year);
+        if (e) gMarks.append("circle").attr("class", "sp-selring").attr("cx", gx).attr("cy", y(e.ch[0].s)).attr("r", 9);
+      });
+      card.innerHTML = cardHTML(year);
+    }
+
+    function nearest(px: number) {
+      const ys = years(); if (!ys.length) return null;
+      const v = x.invert(px);
+      const i = d3.bisectCenter(ys, v);
+      return ys[i];
+    }
+    function step(dir: number) {
+      const ys = years(); if (!ys.length) return;
+      if (st.sel == null) { select(dir > 0 ? ys[0] : ys[ys.length - 1]); return; }
+      const i = ys.indexOf(st.sel);
+      select(ys[Math.min(ys.length - 1, Math.max(0, i + dir))]);
+    }
+
+    const hit = gHit.node() as SVGRectElement;
+    const onMove = (ev: PointerEvent) => {
+      const [px] = d3.pointer(ev, svgEl);
+      const yr = nearest(px);
+      if (yr != null && yr !== st.sel) select(yr);
+    };
+    hit.addEventListener("pointerdown", onMove);
+    hit.addEventListener("pointermove", onMove);
+    svgEl.addEventListener("keydown", (ev) => {
+      if (ev.key === "ArrowRight") { ev.preventDefault(); step(1); }
+      else if (ev.key === "ArrowLeft") { ev.preventDefault(); step(-1); }
+      else if (ev.key === "Home") { ev.preventDefault(); const ys = years(); select(ys[0]); }
+      else if (ev.key === "End") { ev.preventDefault(); const ys = years(); select(ys[ys.length - 1]); }
+      else if (ev.key === "Escape") select(null);
+    });
+    card.addEventListener("click", (ev) => {
+      const b = (ev.target as HTMLElement).closest<HTMLElement>("[data-step]");
+      if (b) step(Number(b.dataset.step));
+    });
+
+    // ---- controls ----
+    root.querySelectorAll<HTMLButtonElement>(".sp-seg button").forEach((btn) => btn.addEventListener("click", () => {
+      const k = btn.dataset.ctl as "dist" | "sex" | "win", v = btn.dataset.val!;
+      if (k === "dist") st.dist = Number(v); else if (k === "sex") st.sex = v as Sex; else st.win = v as "full" | "since";
+      btn.parentElement!.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
+      render(true);
+    }));
+
+    let lastW = 0;
+    new ResizeObserver(() => {
+      const w = Math.round(stage.clientWidth);
+      if (w && w !== lastW) { lastW = w; render(false); }
+    }).observe(stage);
+    render(false);
+  });
+</script>
+
+<style is:global>
+  [data-viz="olympic-freestyle-sprint"] { margin-block: 24px; }
+  .sp-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .sp-fig { margin: 0; min-width: 0; background: var(--panel); border: 1px solid var(--rule); border-radius: var(--radius); padding: 12px; }
+  .sp-controls { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+  .sp-seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; background: var(--bg); }
+  .sp-seg button { font: 600 13.5px/1 var(--f-body); color: var(--ink-2); background: none; border: 0; padding: 14px 10px; min-height: 44px; cursor: pointer; }
+  .sp-controls .sp-seg:nth-child(2) { order: 3; }
+  .sp-seg button + button { border-left: 1px solid var(--rule); }
+  .sp-seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+
+  .sp-stage { position: relative; }
+  .sp-svg { display: block; width: 100%; height: auto; overflow: visible; }
+  .sp-svg:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; border-radius: 2px; }
+  .sp-svg text { font-family: var(--f-mono); font-size: 11px; fill: var(--ink-3); }
+  .sp-ygrid .domain, .sp-xaxis .domain { display: none; }
+  .sp-ygrid .tick line { stroke: var(--grid); }
+  .sp-ygrid .tick text { fill: var(--ink-3); }
+  .sp-xaxis .tick line { stroke: var(--ink-3); }
+  .sp-xaxis .tick text { fill: var(--ink-2); }
+  .sp-base { stroke: var(--ink-3); stroke-width: 1; }
+  .sp-ytitle { font-size: 11px; letter-spacing: .04em; }
+  .sp-empty { font-family: var(--f-body); font-size: 14px; font-style: italic; fill: var(--ink-3); }
+  .sp-nh-line { stroke: var(--rule); stroke-dasharray: 2 4; }
+  .sp-nh-x { stroke: var(--ink-2); stroke-width: 1.6; fill: none; stroke-linecap: round; }
+
+  .sp-s.s-men { --c: var(--cat-1); }
+  .sp-s.s-women { --c: var(--cat-2); }
+  .sp-s.ctx { --c: var(--ink-3); }
+  .sp-line { fill: none; stroke: var(--c); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+  .sp-s.ctx .sp-line { stroke-width: 1.5; opacity: .55; }
+  .sp-band { fill: var(--c); fill-opacity: .17; stroke: none; }
+  .sp-dot { fill: var(--c); stroke: var(--c); stroke-width: 1.8; }
+  .sp-dot.hollow { fill: var(--panel); }
+  .sp-ring { fill: none; stroke: var(--c); stroke-width: 1.2; }
+  .sp-selring { fill: none; stroke: var(--ink); stroke-width: 1.5; pointer-events: none; }
+  .sp-svg .sp-endlabel { font-family: var(--f-body); font-size: 13px; font-weight: 600; fill: var(--ink); }
+  .sp-s.ctx .sp-endlabel { fill: var(--ink-3); font-weight: 400; }
+  .sp-guide line { stroke: var(--ink-2); stroke-width: 1; pointer-events: none; }
+  .sp-hit { fill: transparent; touch-action: pan-y; cursor: crosshair; }
+  .sp-callout line { stroke: var(--ink-2); stroke-width: 1; }
+  .sp-callout circle { fill: var(--panel); stroke: var(--ink); stroke-width: 1.3; }
+  .sp-svg .sp-callout text { font: 600 11px var(--f-mono); fill: var(--ink); }
+
+  /* reading card: always under the chart, so it never covers the data */
+  .sp-card { margin-top: 10px; padding: 10px 12px; border: 1px solid var(--rule); border-radius: 6px; background: var(--bg); color: var(--ink); font-size: 14px; line-height: 1.35; min-height: 5.6em; }
+  .sp-hint { margin: 0; color: var(--ink-3); }
+  .sp-card-h { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .sp-card-h strong { font: 700 16px/1.2 var(--f-display); }
+  .sp-nav { display: inline-flex; gap: 6px; }
+  .sp-nav button { font: 600 18px/1 var(--f-body); color: var(--ink); background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; width: 44px; height: 44px; cursor: pointer; }
+  .sp-blks { display: grid; gap: 12px; }
+  .sp-blk h4 { margin: 0 0 3px; font: 600 11px/1.2 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); display: flex; align-items: center; gap: 6px; }
+  .sp-blk .sw { width: 10px; height: 3px; border-radius: 1px; background: var(--c); }
+  .sp-blk.s-men { --c: var(--cat-1); }
+  .sp-blk.s-women { --c: var(--cat-2); }
+  .sp-blk ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+  .sp-blk li { display: grid; grid-template-columns: 3.4em minmax(0, 1fr) auto; gap: 8px; align-items: baseline; }
+  .sp-blk .m { font: 400 11px var(--f-mono); color: var(--ink-3); }
+  .sp-blk .c { display: block; font-size: 13px; color: var(--ink-3); }
+  .sp-blk .t { font: 500 13px var(--f-mono); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+  .sp-blk li:first-child .t { font-weight: 700; }
+  .sp-blk li:first-child .w { font-weight: 600; }
+  .sp-blk .eighth { color: var(--ink-3); }
+  .sp-notes { margin: 8px 0 0; padding-top: 6px; border-top: 1px solid var(--rule); font-size: 13px; color: var(--ink-2); }
+
+  .sp-legend { list-style: none; margin: 12px 0 0; padding: 10px 0 0; border-top: 1px solid var(--rule); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 14px; font-size: 13px; line-height: 1.3; color: var(--ink-2); }
+  .sp-legend li { display: flex; gap: 8px; align-items: flex-start; }
+  .sp-legend li[hidden] { display: none; }
+  .sp-legend svg { flex: none; width: 16px; height: 16px; margin-top: 1px; }
+  .lg-fill { fill: var(--ink-2); }
+  .lg-ring { fill: none; stroke: var(--ink-2); stroke-width: 1.2; }
+  .lg-hollow { fill: var(--panel); stroke: var(--ink-2); stroke-width: 1.8; }
+  .lg-x { stroke: var(--ink-2); stroke-width: 1.8; fill: none; stroke-linecap: round; }
+  .lg-band { fill: var(--ink-3); fill-opacity: .25; }
+  .sp-nojs { font-size: 14px; color: var(--ink-2); }
+  .sp:not(.js) .sp-controls, .sp:not(.js) .sp-stage, .sp:not(.js) .sp-legend { display: none; }
+
+  .sp-insights { min-width: 0; }
+  .sp-insights ol { list-style: none; counter-reset: sp; margin: 14px 0 0; padding: 0; display: grid; gap: 18px; }
+  .sp-insights li { counter-increment: sp; position: relative; padding-left: 38px; color: var(--ink-2); }
+  .sp-insights li::before { content: counter(sp); position: absolute; left: 0; top: 1px; width: 24px; height: 24px; border: 1.3px solid var(--ink); border-radius: 50%; background: var(--panel); color: var(--ink); font: 600 11px/22px var(--f-mono); text-align: center; }
+  .sp-insights p { margin: 0; }
+
+  .sp-details { margin-top: 24px; font-size: 14px; }
+  .sp-details summary { cursor: pointer; font-weight: 600; padding-block: 6px; }
+  .sp-tnote { color: var(--ink-2); max-width: var(--measure); }
+  .sp-tbl { overflow-x: auto; margin-top: 14px; }
+  .sp-tbl table { border-collapse: collapse; min-width: 720px; width: 100%; }
+  .sp-tbl caption { text-align: left; font: 600 11px/1.2 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); padding-bottom: 6px; }
+  .sp-tbl th, .sp-tbl td { text-align: left; padding: 6px 14px 6px 0; border-bottom: 1px solid var(--rule); vertical-align: top; font-weight: 400; }
+  .sp-tbl thead th { font-weight: 600; }
+  .sp-tbl tbody th { font-family: var(--f-mono); white-space: nowrap; }
+  .sp-tbl .num { text-align: right; font-family: var(--f-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  @media (min-width: 700px) {
+    .sp-fig { padding: 18px; }
+    .sp-controls { gap: 8px 12px; }
+    .sp-seg button { font-size: 14px; padding: 11px 14px; min-height: 40px; }
+    .sp-controls .sp-seg:nth-child(2) { order: 0; }
+    .sp-legend { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 560px) {
+    .sp-blks { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+  }
+  @media (min-width: 1000px) {
+    [data-viz="olympic-freestyle-sprint"] { margin-block: 32px; }
+    .sp-grid { grid-template-columns: minmax(0, 64fr) minmax(0, 36fr); gap: 40px; align-items: start; }
+  }
+</style>

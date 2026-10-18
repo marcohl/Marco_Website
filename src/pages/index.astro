@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import sprint from "../data/olympic-freestyle-sprint/series.json";
 
 // Every MDX file in src/pages/projects/ with status "published" is listed (all of them in dev).
 const modules = import.meta.glob("./projects/*.mdx", { eager: true }) as Record<string, any>;
@@ -8,6 +9,17 @@ const projects = Object.entries(modules)
   .filter((p) => p.status === "published" || import.meta.env.DEV)
   .sort((a, b) => String(b.date).localeCompare(String(a.date)));
 const ym = (d: unknown) => new Date(d as string).toISOString().slice(0, 7);
+
+// Thumbnail of the Olympic sprint sheet: the two 100 m champion lines, drawn from the project data.
+const sp100 = sprint.series.filter((s) => s.distance_m === 100);
+const tAll = sp100.flatMap((s) => s.editions.map((e) => e.champions[0].time_s));
+const [tMin, tMax] = [Math.min(...tAll), Math.max(...tAll)];
+const tx = (yr: number) => 12 + ((yr - 1906) / 120) * 296;
+const ty = (v: number) => 146 - ((v - tMin) / (tMax - tMin)) * 130;
+const thumbPath = (id: string) => {
+  const eds = sp100.find((s) => s.id === id)!.editions;
+  return eds.map((e, i) => `${i === 0 || e.plot_year - eds[i - 1].plot_year > 5 ? "M" : "L"}${tx(e.plot_year).toFixed(1)},${ty(e.champions[0].time_s).toFixed(1)}`).join("");
+};
 const nextCode = "MHL-" + String(Object.keys(modules).length + 1).padStart(3, "0");
 ---
 <Base title="Marco Herbas Lopez" description="Energy, data and everything else: interactive charts and small data-analysis projects by Marco Herbas Lopez.">
@@ -24,7 +36,16 @@ const nextCode = "MHL-" + String(Object.keys(modules).length + 1).padStart(3, "0
     <div class="sheets">
       {projects.map((p) => (
         <a class="sheet" href={p.href}>
-          <div class="fig">{p.thumb === "waffle" && <div class="thumb" aria-hidden="true"></div>}</div>
+          <div class="fig">
+            {p.thumb === "waffle" && <div class="thumb" aria-hidden="true"></div>}
+            {p.thumb === "sprint" && (
+              <svg class="thumb-chart" viewBox="0 0 320 160" aria-hidden="true">
+                <line class="base" x1="12" y1="150" x2="308" y2="150" />
+                <path class="w" d={thumbPath("W100")} />
+                <path class="m" d={thumbPath("M100")} />
+              </svg>
+            )}
+          </div>
           <div class="body">
             <h3>{p.title}</h3>
             <p>{p.description}</p>
@@ -81,6 +102,12 @@ const nextCode = "MHL-" + String(Object.keys(modules).length + 1).padStart(3, "0
   .thumb { position: relative; width: 100%; max-width: 320px; height: 160px; overflow: hidden; background-color: var(--cat-1); background-image: linear-gradient(to right, transparent 6px, var(--panel) 6px), linear-gradient(to bottom, transparent 6px, var(--panel) 6px); background-size: 8px 8px; }
   .thumb::before { content: ""; position: absolute; left: 0; top: 0; width: 56px; height: 8px; background-color: var(--cat-2); background-image: linear-gradient(to right, transparent 6px, var(--panel) 6px), linear-gradient(to bottom, transparent 6px, var(--panel) 6px); background-size: 8px 8px; }
 
+  .thumb-chart { width: 100%; max-width: 320px; height: 160px; }
+  .thumb-chart path { fill: none; stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; }
+  .thumb-chart .m { stroke: var(--cat-1); }
+  .thumb-chart .w { stroke: var(--cat-2); }
+  .thumb-chart .base { stroke: var(--ink-3); stroke-width: 1; }
+
   .about { padding-top: 48px; display: grid; gap: 12px; max-width: 760px; }
   .about p { margin: 0; color: var(--ink-2); }
 
@@ -91,6 +118,7 @@ const nextCode = "MHL-" + String(Object.keys(modules).length + 1).padStart(3, "0
     .lead { font-size: 20px; }
     .fig { min-height: 200px; }
     .thumb { height: 200px; }
+    .thumb-chart { height: 200px; }
   }
   @media (min-width: 1000px) {
     .sheets { grid-template-columns: repeat(3, minmax(0, 1fr)); }
