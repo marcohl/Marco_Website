@@ -3,7 +3,7 @@
 - **Slug:** `olympic-freestyle-sprint` (kept: same page and URL, as agreed with Marco on 2026-10-28)
 - **Code:** MHL-002
 - **Revision:** B (scope widened from 50/100 m freestyle to the 28 individual pool events)
-- **Status:** phase 1 approved 2026-10-28 (thesis A, B as closing note; 10 km out); phase 2 (data) done, checks pass; phase 3 (form) waiting for Marco
+- **Status:** rev B built; thesis, form and text approved by Marco 2026-10-28; QA done 2026-10-28, OG images regenerated
 - **Started:** 2026-10-18; rev B started 2026-10-28
 
 ## The one sentence

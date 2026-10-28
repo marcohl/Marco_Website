@@ -461,7 +461,7 @@ const payload = {
       const mid = d3.median(sh)!;
       const block = me
         ? `<section class="sp-blk s-${sel.sex}"><h4><span class="sw"></span>${label(sel)}</h4><ul>
-            <li><span class="m">Gain</span><span class="w">of the total improvement reached</span><span class="t">${me.e.sh!.toFixed(1)}%</span></li>
+            <li><span class="m">Share</span><span class="w">of the total improvement reached</span><span class="t">${me.e.sh!.toFixed(1)}%</span></li>
             <li><span class="m">Gold</span><span class="w">${nameList(me.e)}</span><span class="t">${esc(timeText(me.e.ch[0].t))}</span></li>
           </ul></section>`
         : `<p class="sp-hint">${esc(label(sel))} ${year < sel.eds[0].x ? "had not started yet" : "was not on the programme"} at these Games.</p>`;
