@@ -1,20 +1,29 @@
 """Build the data for the olympic-freestyle-sprint project (MHL-002).
 
+Scope: the 28 individual pool events of the Paris 2024 programme (14 per sex:
+freestyle 50/100/200/400/800/1500 m, backstroke 100/200, breaststroke 100/200,
+butterfly 100/200, medley 200/400), every Olympic edition from 1908 to 2024.
+
 Reads the Olympedia final-results extract in raw/, verifies its integrity,
-checks it against a second source and known reference values, and writes
-src/data/olympic-freestyle-sprint/series.json.
+checks every champion time against a second source and known reference values,
+and writes src/data/olympic-freestyle-sprint/events.json.
 
-Units: all times are seconds (float). Olympedia gives tenths until 1968 and
-hundredths from 1972; `decimals` keeps the printed resolution of each time.
+Units: all times are seconds (float). Olympedia gives tenths of a second until
+1968 and hundredths from 1972; `decimals` keeps the printed resolution of each time.
 
-Sources (accessed 2026-10-18):
+Sources (accessed 2026-10-28; the freestyle 50/100 m part first on 2026-10-18):
   - Final results: Olympedia result pages, https://www.olympedia.org/results/<id>
-  - Event index:   https://www.olympedia.org/event_names/{551,553,587,588}
+  - Event index:   https://www.olympedia.org/event_names/<id> (see EVENTS)
   - Games not held / held 2021: https://www.olympedia.org/editions
-  - Second source for champion times: Wikipedia event pages and the
-    "100 metre freestyle" page (see SECOND_SOURCE).
+  - Second source for champion times: Wikipedia per-Games event pages, stored in
+    second_source_wikipedia.txt.
   - Absences: Wikipedia "List of Olympic Games boycotts", "1920 Summer
     Olympics", "1948 Summer Olympics".
+
+One-time check done in the browser on 2026-10-28: the years listed on the 28 Olympedia
+event index pages (status "Olympic", 1908 onwards, metres) equal the years in the raw
+extract, with one exception: the index lists a 1920 women's "400 m freestyle" that was
+a 300 m race. It is left out of the extract and of EXPECTED_YEARS.
 """
 import json
 import re
@@ -25,16 +34,59 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 RAW = HERE / "raw" / "olympedia_finals_extract.txt"
-OUT = ROOT / "src" / "data" / "olympic-freestyle-sprint" / "series.json"
+SECOND = HERE / "second_source_wikipedia.txt"
+OUT = ROOT / "src" / "data" / "olympic-freestyle-sprint" / "events.json"
 RESULT_URL = "https://www.olympedia.org/results/{}"
-ACCESSED = "2026-10-18"
+INDEX_URL = "https://www.olympedia.org/event_names/{}"
+ACCESSED = "2026-10-28"
 
-SERIES = {
-    "M100": {"distance_m": 100, "sex": "men", "index": "https://www.olympedia.org/event_names/553"},
-    "W100": {"distance_m": 100, "sex": "women", "index": "https://www.olympedia.org/event_names/588"},
-    "M50": {"distance_m": 50, "sex": "men", "index": "https://www.olympedia.org/event_names/551"},
-    "W50": {"distance_m": 50, "sex": "women", "index": "https://www.olympedia.org/event_names/587"},
+STROKES = {"FR": "freestyle", "BK": "backstroke", "BR": "breaststroke", "FL": "butterfly", "IM": "medley"}
+
+# Olympedia event_names ids (the page title of each was read on 2026-10-28).
+INDEX_ID = {
+    "M50FR": 551, "M100FR": 553, "M200FR": 555, "M400FR": 557, "M800FR": 560, "M1500FR": 563,
+    "M100BK": 570, "M200BK": 572, "M100BR": 573, "M200BR": 574, "M100FL": 577, "M200FL": 578,
+    "M200IM": 579, "M400IM": 580,
+    "W50FR": 587, "W100FR": 588, "W200FR": 589, "W400FR": 591, "W800FR": 592, "W1500FR": 2570,
+    "W100BK": 595, "W200BK": 596, "W100BR": 597, "W200BR": 598, "W100FL": 599, "W200FL": 600,
+    "W200IM": 601, "W400IM": 602,
 }
+
+# Games with a swimming programme, 1908-2024 (1916, 1940 and 1944 were not held).
+GAMES = [1908, 1912] + list(range(1920, 1937, 4)) + list(range(1948, 2025, 4))
+
+
+def _from(start, skip=()):
+    return [y for y in GAMES if y >= start and y not in skip]
+
+
+# Years each event was contested, 1908 onwards. Checked against the Olympedia event index
+# pages (see the module docstring); the counts are 10, 27, 15, 27, 2, 27, 26, 16, 15, 27, 15,
+# 18, 13, 16 for the men's events in the order of INDEX_ID, and the women's counts follow.
+EXPECTED_YEARS = {
+    "M50FR": _from(1988), "M100FR": _from(1908), "M200FR": _from(1968), "M400FR": _from(1908),
+    "M800FR": [2020, 2024], "M1500FR": _from(1908),
+    "M100BK": _from(1908, skip=(1964,)), "M200BK": _from(1964),
+    "M100BR": _from(1968), "M200BR": _from(1908),
+    "M100FL": _from(1968), "M200FL": _from(1956),
+    "M200IM": _from(1968, skip=(1976, 1980)), "M400IM": _from(1964),
+    "W50FR": _from(1988), "W100FR": _from(1912), "W200FR": _from(1968), "W400FR": _from(1924),
+    "W800FR": _from(1968), "W1500FR": [2020, 2024],
+    "W100BK": _from(1924), "W200BK": _from(1968),
+    "W100BR": _from(1968), "W200BR": _from(1924),
+    "W100FL": _from(1956), "W200FL": _from(1968),
+    "W200IM": _from(1968, skip=(1976, 1980)), "W400IM": _from(1964),
+}
+EVENTS = {}
+for _id, _years in EXPECTED_YEARS.items():
+    _m = re.fullmatch(r"([MW])(\d+)([A-Z]{2})", _id)
+    EVENTS[_id] = {"sex": "men" if _m[1] == "M" else "women", "distance_m": int(_m[2]),
+                   "stroke": STROKES[_m[3]], "index": INDEX_URL.format(INDEX_ID[_id])}
+
+# Order used in the output: stroke, then distance, then men before women.
+_STROKE_ORDER = list(STROKES.values())
+EVENT_ORDER = sorted(EVENTS, key=lambda e: (_STROKE_ORDER.index(EVENTS[e]["stroke"]),
+                                            EVENTS[e]["distance_m"], EVENTS[e]["sex"] != "men"))
 
 # Games not held. Source: https://www.olympedia.org/editions ("Not held due to war").
 NOT_HELD = [
@@ -43,45 +95,24 @@ NOT_HELD = [
     {"year": 1944, "host": "London", "reason": "war"},
 ]
 
-# Champion times from a second source. Wikipedia "100 metre freestyle" page for
-# M100/W100 (except W100 1992, see note); Wikipedia per-Games event pages for
-# M50/W50. 2024 50 m: Wikipedia event pages plus SuperSport and Swimming World.
-# W100 1992: the aggregate Wikipedia page says 54.65; the 1992 event page (which
-# cites the official report) and Olympedia say 54.64. 54.64 is used.
-SECOND_SOURCE = {
-    "M100": {1908: "1:05.6", 1912: "1:03.4", 1920: "1:01.4", 1924: "59.0", 1928: "58.6",
-             1932: "58.2", 1936: "57.6", 1948: "57.3", 1952: "57.4", 1956: "55.4",
-             1960: "55.2", 1964: "53.4", 1968: "52.2", 1972: "51.22", 1976: "49.99",
-             1980: "50.40", 1984: "49.80", 1988: "48.63", 1992: "49.02", 1996: "48.74",
-             2000: "48.30", 2004: "48.17", 2008: "47.21", 2012: "47.52", 2016: "47.58",
-             2020: "47.02", 2024: "46.40"},
-    "W100": {1912: "1:22.2", 1920: "1:13.6", 1924: "1:12.4", 1928: "1:11.0", 1932: "1:06.8",
-             1936: "1:05.9", 1948: "1:06.3", 1952: "1:06.8", 1956: "1:02.0", 1960: "1:01.2",
-             1964: "59.5", 1968: "1:00.0", 1972: "58.59", 1976: "55.65", 1980: "54.79",
-             1984: "55.92", 1988: "54.93", 1992: "54.64", 1996: "54.50", 2000: "53.83",
-             2004: "53.84", 2008: "53.12", 2012: "53.00", 2016: "52.70", 2020: "51.96",
-             2024: "52.16"},
-    "M50": {1988: "22.14", 1992: "21.91", 1996: "22.13", 2000: "21.98", 2004: "21.93",
-            2008: "21.30", 2012: "21.34", 2016: "21.40", 2020: "21.07", 2024: "21.25"},
-    "W50": {1988: "25.49", 1992: "24.79", 1996: "24.87", 2000: "24.32", 2004: "24.58",
-            2008: "24.06", 2012: "24.05", 2016: "24.07", 2020: "23.81", 2024: "23.71"},
-}
-
-# Known reference values read independently of the DOM extract.
+# Known reference values read independently of the DOM extract (2026-10-18).
 REFERENCE = {
-    ("M100", 1908): "1:05.6", ("M100", 1988): "48.63", ("M100", 2024): "46.40",
-    ("W100", 1988): "54.93", ("M50", 1988): "22.14", ("W50", 1988): "25.49",
+    ("M100FR", 1908): "1:05.6", ("M100FR", 1988): "48.63", ("M100FR", 2024): "46.40",
+    ("W100FR", 1988): "54.93", ("M50FR", 1988): "22.14", ("W50FR", 1988): "25.49",
 }
 
-EXPECTED_YEARS = {
-    "M100": [1908, 1912] + list(range(1920, 1937, 4)) + list(range(1948, 2025, 4)),
-    "W100": [1912] + list(range(1920, 1937, 4)) + list(range(1948, 2025, 4)),
-    "M50": list(range(1988, 2025, 4)),
-    "W50": list(range(1988, 2025, 4)),
+# Editions where the second source prints another champion time than Olympedia, and why.
+# W100FR 1992: the aggregate Wikipedia page "100 metre freestyle" says 54.65; the 1992 event
+# page (which cites the official report) and Olympedia say 54.64. 54.64 is used.
+SECOND_SOURCE_DIFFS = {
+    ("M100FR", 1920): "The Wikipedia page prints the first final (1:00.4). The final was re-swum "
+                      "and Olympedia gives the re-swim (1:01.4).",
+    ("W800FR", 1984): "Wikipedia's Final table prints 8:24.96, its summary box and Olympedia 8:24.95.",
 }
-EXPECTED_TIES = {("W100", 1984), ("W100", 2016), ("M50", 2000)}
 # Editions where Olympedia lists a lower-placed finalist with a faster time.
-KNOWN_ORDER_ANOMALIES = {("M100", 1960)}
+KNOWN_ORDER_ANOMALIES = {("M100FR", 1960), ("M200BR", 1948), ("W200BR", 1948)}
+# Editions with more than one gold medal.
+EXPECTED_TIES = {("W100FR", 1984), ("W100FR", 2016), ("M50FR", 2000)}
 
 # Absences, source https://en.wikipedia.org/wiki/List_of_Olympic_Games_boycotts
 # (1956, 1976, 1980, 1984, 1988) and the 1920 / 1948 Games pages.
@@ -121,28 +152,57 @@ ABSENT = {
     1988: {"reason": "boycott", "source": "https://en.wikipedia.org/wiki/List_of_Olympic_Games_boycotts",
            "countries": ["Albania", "Cuba", "Ethiopia", "Madagascar", "Nicaragua", "North Korea", "Seychelles"]},
 }
+# Country names for the NOC codes Olympedia uses. Names must match the spelling in ABSENT.
 NOC_NAME = {
     "USA": "United States", "HUN": "Hungary", "SWE": "Sweden", "ANZ": "Australasia", "GBR": "Great Britain",
     "JPN": "Japan", "AUS": "Australia", "BRA": "Brazil", "GER": "Germany", "URS": "Soviet Union",
     "FRG": "West Germany", "GDR": "East Germany", "FRA": "France", "EUN": "Unified Team", "RUS": "Russia",
     "NED": "Netherlands", "RSA": "South Africa", "CAN": "Canada", "BEL": "Belgium", "CHN": "China",
     "ROU": "Romania", "ROC": "ROC", "DEN": "Denmark", "ARG": "Argentina", "CRO": "Croatia",
-    "HKG": "Hong Kong", "BLR": "Belarus",
+    "HKG": "Hong Kong", "BLR": "Belarus", "AUT": "Austria", "BUL": "Bulgaria", "CRC": "Costa Rica",
+    "CUB": "Cuba", "ESP": "Spain", "FIN": "Finland", "GRE": "Greece", "IRL": "Ireland", "ITA": "Italy",
+    "KAZ": "Kazakhstan", "KOR": "South Korea", "LTU": "Lithuania", "MEX": "Mexico", "NOR": "Norway",
+    "NZL": "New Zealand", "PHI": "Philippines", "POL": "Poland", "SGP": "Singapore", "SLO": "Slovenia",
+    "SRB": "Serbia", "SUI": "Switzerland", "SUR": "Suriname", "SVK": "Slovakia", "TTO": "Trinidad and Tobago",
+    "TUN": "Tunisia", "UKR": "Ukraine", "VEN": "Venezuela", "YUG": "Yugoslavia", "ZIM": "Zimbabwe",
 }
 
+# One entry per statement. `series` is an event id or "ALL". Every text needs a source.
 ANNOTATIONS = [
-    {"series": "M100", "year": 1920, "type": "re-swim",
+    {"series": "M100FR", "year": 1920, "type": "re-swim",
      "text": "The final was re-swum after Norman Ross was disqualified on a protest. The time shown is the "
              "re-swim (1:01.4). The first final, with a faster 1:00.4 for the winner, is not the official result.",
      "source": "https://www.olympedia.org/results/4649"},
-    {"series": "M100", "year": 1960, "type": "order",
+    {"series": "M100FR", "year": 1960, "type": "order",
      "text": "Olympedia lists the silver medallist 0.1 s faster than the gold medallist. The reason is not in "
              "this data; source it before any text mentions it.",
      "source": "https://www.olympedia.org/results/5489", "needs_source": True},
-    {"series": "M100", "year": 1908, "type": "course",
+    {"series": "M100FR", "year": 1908, "type": "course",
      "text": "First Games with a purpose-built 100 m pool. The race was a single length of the pool, "
              "with no turns. Earlier Olympic swimming was in open water.",
      "source": "https://en.wikipedia.org/wiki/Swimming_at_the_1908_Summer_Olympics_%E2%80%93_Men%27s_100_metre_freestyle"},
+    {"series": "M200BR", "year": 1948, "type": "order",
+     "text": "Olympedia lists the 3rd-place time (2:43.9) slower than the 4th-place time (2:43.7). Wikipedia says "
+             "the timekeepers had the 4th-place swimmer 0.2 s faster, while the judges ruled that the bronze "
+             "medallist touched first (marked 'citation needed' on Wikipedia, so not confirmed).",
+     "source": "https://en.wikipedia.org/wiki/Swimming_at_the_1948_Summer_Olympics_%E2%80%93_Men%27s_200_metre_breaststroke",
+     "needs_source": True},
+    {"series": "W200BR", "year": 1948, "type": "order",
+     "text": "Olympedia lists the 5th-place time (3:06.2) slower than the 6th-place time (3:06.1). "
+             "The reason is not in this data; source it before any text mentions it.",
+     "source": "https://www.olympedia.org/results/5227", "needs_source": True},
+    {"series": "M200BR", "year": 1956, "type": "rules",
+     "text": "Until 1956 the butterfly arm action was allowed in breaststroke races. Butterfly became its own "
+             "event in 1956 and was banned from breaststroke, so the early 200 m breaststroke times (men 1908-1952, "
+             "women 1924-1952) are not like-for-like with the later ones. The 1948 women's page says this; "
+             "check its cited reference in the Words phase.",
+     "source": "https://en.wikipedia.org/wiki/Swimming_at_the_1948_Summer_Olympics_%E2%80%93_Women%27s_200_metre_breaststroke",
+     "needs_source": True},
+    {"series": "W200BR", "year": 1956, "type": "rules",
+     "text": "Same rule change as the men's 200 m breaststroke: butterfly became its own event in 1956 and was "
+             "banned from breaststroke.",
+     "source": "https://en.wikipedia.org/wiki/Swimming_at_the_1948_Summer_Olympics_%E2%80%93_Women%27s_200_metre_breaststroke",
+     "needs_source": True},
     {"series": "ALL", "year": 1912, "type": "open-water",
      "text": "Swum on a 100 m course built in Stockholm harbour (open water), not in a pool.",
      "source": "https://en.wikipedia.org/wiki/Swimming_at_the_1912_Summer_Olympics"},
@@ -164,7 +224,8 @@ def check(name, ok, detail=""):
     print(f"[{'PASS' if ok else 'FAIL'}] {name}" + (f"  ({detail})" if detail and not ok else ""))
 
 
-def read_extract(path):
+def read_blocks(path, label):
+    """Read a text file made of '#C<n> crc:<hex>' blocks and verify each block's CRC32."""
     blocks, cur = [], None
     for line in path.read_text(encoding="utf-8").split("\n"):
         m = re.fullmatch(r"#C(\d+) crc:([0-9a-f]{8})", line)
@@ -175,7 +236,7 @@ def read_extract(path):
             cur["lines"].append(line)
     bad = [b["n"] for b in blocks
            if format(zlib.crc32("\n".join(b["lines"]).encode("utf-8")), "08x") != b["crc"]]
-    check(f"raw extract checksums ({len(blocks)} blocks)", not bad, f"bad blocks {bad}")
+    check(f"{label} checksums ({len(blocks)} blocks)", not bad, f"bad blocks {bad}")
     return [ln for b in blocks for ln in b["lines"]]
 
 
@@ -217,59 +278,79 @@ def build_edition(ev, games_year, rid, date, finalists):
 
 
 def main():
-    lines = read_extract(RAW)
-    data = {k: {} for k in SERIES}
+    lines = read_blocks(RAW, "raw extract")
+    data = {k: {} for k in EVENTS}
     for line in lines:
         ev, yr, rid, date, fin = parse_line(line)
+        if ev not in data or yr in data[ev]:
+            check(f"unknown or duplicate edition {ev} {yr}", False)
+            continue
         data[ev][yr] = build_edition(ev, yr, rid, date, fin)
+    check(f"{len(lines)} finals read; one per expected edition ({sum(len(v) for v in EXPECTED_YEARS.values())})",
+          len(lines) == sum(len(v) for v in EXPECTED_YEARS.values()))
 
-    for ev in SERIES:
+    for ev in EVENT_ORDER:
         years = sorted(data[ev])
-        check(f"{ev}: editions match expected list ({len(EXPECTED_YEARS[ev])})", years == EXPECTED_YEARS[ev])
-        check(f"{ev}: held year equals Games year, except Tokyo 2020 held 2021",
-              all(e["held_year"] == (2021 if y == 2020 else y) for y, e in data[ev].items()))
-        check(f"{ev}: every edition has a champion", all(e["champions"] for e in data[ev].values()))
+        check(f"{ev}: editions match expected list ({len(EXPECTED_YEARS[ev])})", years == EXPECTED_YEARS[ev],
+              f"extra {sorted(set(years) - set(EXPECTED_YEARS[ev]))}, missing {sorted(set(EXPECTED_YEARS[ev]) - set(years))}")
+    check("held year equals Games year, except Tokyo 2020 held 2021",
+          all(e["held_year"] == (2021 if y == 2020 else y) for ev in EVENTS for y, e in data[ev].items()))
+    # A tie for a place leaves a medal unawarded (two golds: no silver), so count podium rows, not medal names.
+    check("every edition has a champion and at least three podium rows",
+          all(e["champions"] and len(e["podium"]) >= 3 for ev in EVENTS for e in data[ev].values()))
+    check("at most 8 finalists with a time per edition", all(e["n_finalists"] <= 8 for ev in EVENTS for e in data[ev].values()))
 
-    ties = {(ev, y) for ev in SERIES for y, e in data[ev].items() if len(e["champions"]) > 1}
-    check("co-champions only where expected (W100 1984, W100 2016, M50 2000)", ties == EXPECTED_TIES, str(sorted(ties)))
+    ties = {(ev, y) for ev in EVENTS for y, e in data[ev].items() if len(e["champions"]) > 1}
+    check("co-champions only where expected", ties == EXPECTED_TIES, str(sorted(ties)))
     check("co-champions have identical times",
           all(len({c["time_s"] for c in data[ev][y]["champions"]}) == 1 for ev, y in ties))
 
-    bad2 = []
-    for ev, ref in SECOND_SOURCE.items():
-        check(f"{ev}: second-source list covers every edition", sorted(ref) == sorted(data[ev]))
-        for y, t in ref.items():
-            if any(c["time_text"] != t for c in data[ev][y]["champions"]):
-                bad2.append((ev, y))
-    check("champion times equal second source in all 73 editions", not bad2, str(bad2))
+    # Second source: one Wikipedia champion time per edition.
+    second = {}
+    for line in read_blocks(SECOND, "second-source file"):
+        ev, yr, t = line.split("~")
+        second[(ev, int(yr))] = t.split("/")
+    check("second source covers every edition exactly", set(second) == {(ev, y) for ev in EVENTS for y in data[ev]})
+    diffs = {}
+    for (ev, y), times in second.items():
+        if y not in data.get(ev, {}):
+            continue  # reported by the coverage check above
+        mine = {c["time_text"] for c in data[ev][y]["champions"]}
+        if not set(times) <= mine:
+            diffs[(ev, y)] = (sorted(mine), times)
+    check(f"champion times equal second source in all editions except the {len(SECOND_SOURCE_DIFFS)} explained ones",
+          set(diffs) == set(SECOND_SOURCE_DIFFS), str(diffs))
+    for (ev, y), (mine, theirs) in sorted(diffs.items()):
+        print(f"       explained: {ev} {y}: Olympedia {mine}, Wikipedia {theirs}. {SECOND_SOURCE_DIFFS.get((ev, y), 'UNEXPLAINED')}")
     for (ev, y), t in REFERENCE.items():
         check(f"reference value {ev} {y} = {t}", data[ev][y]["champions"][0]["time_text"] == t)
 
     anomalies = set()
-    for ev in SERIES:
+    for ev in EVENTS:
         for y, e in data[ev].items():
             seq = [p["time_s"] for p in e["podium"] if p["time_s"] is not None]
             seq += [o["time_s"] for o in e["others"] if o["time_s"] is not None]
             if any(b < a for a, b in zip(seq, seq[1:])):
                 anomalies.add((ev, y))
-    check("times non-decreasing by position (except documented anomalies)", anomalies == KNOWN_ORDER_ANOMALIES, str(sorted(anomalies)))
+    check("times non-decreasing by position (except documented anomalies)",
+          anomalies == KNOWN_ORDER_ANOMALIES, f"found {sorted(anomalies)}")
 
-    medal_nocs = {p["noc"] for ev in SERIES for e in data[ev].values() for p in e["podium"]}
+    medal_nocs = {p["noc"] for ev in EVENTS for e in data[ev].values() for p in e["podium"]}
     check("every medal-winning NOC has a name mapping", medal_nocs <= set(NOC_NAME), str(sorted(medal_nocs - set(NOC_NAME))))
 
-    # Absence flags: an edition is flagged for a series when a nation that medalled in the
+    # Absence flags: an edition is flagged for an event when a nation that medalled in the
     # same event at the previous or next Games was absent for political reasons.
     flags = []
     for year, info in sorted(ABSENT.items()):
         per = {}
-        for ev in SERIES:
+        for ev in EVENT_ORDER:
             years = sorted(data[ev])
             if year not in years:
                 continue
             i = years.index(year)
             neigh = [years[j] for j in (i - 1, i + 1) if 0 <= j < len(years)]
             hit = sorted({p["noc"] for ny in neigh for p in data[ev][ny]["podium"]
-                          if NOC_NAME[p["noc"]] in info["countries"]})
+                          if NOC_NAME.get(p["noc"]) in info["countries"]})
             per[ev] = {"neighbour_editions": neigh, "absent_medal_nations": hit}
         flags.append({"year": year, "chart_marker": year in CHART_MARKER_YEARS,
                       "reason": info["reason"], "source": info["source"],
@@ -277,57 +358,56 @@ def main():
 
     check("chart markers only on 1980 and 1984",
           {f["year"] for f in flags if f["chart_marker"]} == CHART_MARKER_YEARS)
-    check("Tokyo 2020 is plotted at 2021",
-          all(data[ev][2020]["plot_year"] == 2021 for ev in SERIES))
-
-    series_out = []
-    for ev, meta in SERIES.items():
-        series_out.append({"id": ev, "distance_m": meta["distance_m"], "sex": meta["sex"],
-                           "event_index": meta["index"],
-                           "editions": [data[ev][y] for y in sorted(data[ev])]})
+    check("Tokyo 2020 is plotted at 2021", all(data[ev][2020]["plot_year"] == 2021 for ev in EVENTS))
 
     if not all(CHECKS):
         sys.exit("Checks failed; data not written.")
 
+    events_out = []
+    for ev in EVENT_ORDER:
+        meta = EVENTS[ev]
+        events_out.append({"id": ev, "distance_m": meta["distance_m"], "sex": meta["sex"],
+                           "stroke": meta["stroke"], "event_index": meta["index"],
+                           "editions": [data[ev][y] for y in sorted(data[ev])]})
+
     out = {
         "units": "seconds", "accessed": ACCESSED,
         "notes": {
-            "source": "Olympedia final results (positions 1-8); champion times cross-checked with Wikipedia.",
+            "source": "Olympedia final results; champion times cross-checked with Wikipedia event pages.",
             "resolution": "Tenths of a second up to 1968, hundredths from 1972 (see `decimals`).",
+            "finalists": "Only finalists with a printed time are kept (DNS, DQ and untimed rows are dropped), "
+                         "so `n_finalists` counts finalists with a time.",
             "band": "`band` is set only when all 8 finalists have a time; otherwise null.",
             "plot": "Use `plot_year` for the x position (Tokyo 2020 is 2021). `chart_marker` in `absence_flags` says which absences the chart shows.",
-            "scope": "Olympic Games 1908-2024. 50 m freestyle on the programme from 1988; women's 100 m from 1912.",
+            "scope": "28 individual pool events of the Paris 2024 programme, Olympic Games 1908-2024. "
+                     "Relays, 10 km marathon swimming, yard races and discontinued events are out.",
             "single_source": "Silver, bronze and positions 4-8 come from Olympedia only.",
         },
         "noc_names": NOC_NAME,
         "not_held": [dict(n, source="https://www.olympedia.org/editions") for n in NOT_HELD],
         "absence_flags": flags,
         "annotations": ANNOTATIONS,
-        "series": series_out,
+        "events": events_out,
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(out, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"Wrote {OUT.relative_to(ROOT)}")
 
-    print("\nBand coverage (first edition with all 8 finalists timed, and later gaps):")
-    for ev in SERIES:
+    print("\nBand coverage (first edition with all 8 finalists timed; editions with a band):")
+    for ev in EVENT_ORDER:
         ys = sorted(data[ev])
         comp = [y for y in ys if data[ev][y]["band"]]
-        missing_after = [y for y in ys if y >= comp[0] and not data[ev][y]["band"]]
-        print(f"  {ev:5s} complete from {comp[0]}; complete in {len(comp)}/{len(ys)} editions; gaps after: {missing_after}")
+        gaps = [y for y in ys if comp and y >= comp[0] and not data[ev][y]["band"]]
+        print(f"  {ev:7s} from {comp[0] if comp else '-'}; {len(comp)}/{len(ys)} editions; gaps after: {gaps}")
     print("\nAbsence flags (absent nations that medalled at the neighbouring Games):")
     for f in flags:
         hits = {ev: s["absent_medal_nations"] for ev, s in f["series"].items() if s["absent_medal_nations"]}
-        print(f"  {f['year']}: {hits if hits else 'none'}")
+        print(f"  {f['year']}: {len(hits)} events flagged" if hits else f"  {f['year']}: none")
     print("\nFirst-to-last look (champion time, seconds; not a thesis):")
-    for ev in SERIES:
+    for ev in EVENT_ORDER:
         ys = sorted(data[ev])
         a, b = data[ev][ys[0]]["champions"][0]["time_s"], data[ev][ys[-1]]["champions"][0]["time_s"]
-        print(f"  {ev:5s} {ys[0]}: {a:6.2f} -> {ys[-1]}: {b:6.2f}  change {100*(b-a)/a:+.1f} %")
-    print("  Since 1988 for the 100 m, to compare with the 50 m on the same years:")
-    for ev in ("M100", "W100"):
-        a, b = data[ev][1988]["champions"][0]["time_s"], data[ev][2024]["champions"][0]["time_s"]
-        print(f"  {ev:5s} 1988: {a:6.2f} -> 2024: {b:6.2f}  change {100*(b-a)/a:+.1f} %")
+        print(f"  {ev:7s} {ys[0]}: {a:8.2f} -> {ys[-1]}: {b:8.2f}  change {100*(b-a)/a:+.1f} %")
 
 
 if __name__ == "__main__":

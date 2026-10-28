@@ -1,103 +1,551 @@
-# Olympedia final results, positions 1-8, extracted from the page DOM (table "Pos ... Final") in Chrome.
-# Accessed: 2026-10-18. Source pages: https://www.olympedia.org/results/<id> (id is field 3).
-# Why not the original HTML: the workspace shell is blocked by the proxy (HTTP 403 for olympedia.org),
-# so the HTML could not be saved to disk. These are cell texts copied from each page, not summaries.
-# Format per line: EV~YEAR~RESULT_ID~DATE~ROW|ROW|...   EV in {M100,W100,M50,W50}
-# ROW = POS~NAME~NOC~TIME~MEDAL~NOTE. Positions 4-8 keep only POS and TIME (names are on the page).
-# Empty TIME = Olympedia shows no time for that position. "=" in POS = tie.
-# Integrity: each block is preceded by "#C<n> crc:<crc32 hex>" computed over the block's lines joined by \n
-# (computed in the browser before writing; verified by build_data.py).
-#C0 crc:54392d1f
-M100~1908~4479~20 July 1908~1~Charlie Daniels~USA~1:05.6~Gold~|2~Zoltán Halmay~HUN~1:06.2~Silver~|3~Harald Julin~SWE~1:08.0~Bronze~|4~~~~~
-M100~1912~4554~10 July 1912~1~Duke Kahanamoku~USA~1:03.4~Gold~|2~Cecil Healy~ANZ~1:04.6~Silver~|3~Ken Huszagh~USA~1:05.6~Bronze~|4~~~1:05.8~~|5~~~1:06.4~~
-M100~1920~4649~29 August 1920~1~Duke Kahanamoku~USA~1:01.4~Gold~|2~Pua Kele Kealoha~USA~1:02.6~Silver~|3~Bill Harris~USA~1:03.0~Bronze~|4~~~1:03.8~~
-M100~1924~4729~20 July 1924~1~Johnny Weissmuller~USA~59.0~Gold~|2~Duke Kahanamoku~USA~1:01.4~Silver~|3~Sam Kahanamoku~USA~1:01.8~Bronze~|4~~~1:02.0~~|5~~~1:03.0~~|6~~~~~|7~~~~~|8~~~~~
-#C1 crc:c00408be
-M100~1928~4829~11 August 1928~1~Johnny Weissmuller~USA~58.6~Gold~|2~István Bárány~HUN~59.8~Silver~|3~Katsuo Takaishi~JPN~1:00.0~Bronze~|4~~~1:00.8~~|5~~~1:01.0~~|6~~~1:01.4~~|7~~~1:01.6~~
-M100~1932~4936~7 August 1932~1~Yasuji Miyazaki~JPN~58.2~Gold~|2~Tatsugo Kawaishi~JPN~58.6~Silver~|3~Albert Schwartz~USA~58.8~Bronze~|4~~~59.2~~|5~~~59.2~~|6~~~59.5~~|7~~~~~|8~~~~~
-M100~1936~5024~9 August 1936~1~Ferenc Csík~HUN~57.6~Gold~|2~Masanori Yusa~JPN~57.9~Silver~|3~Shigeo Arai~JPN~58.0~Bronze~|4~~~58.1~~|5~~~59.3~~|6~~~59.7~~|7~~~59.9~~|8~~~~~
-M100~1948~5133~31 July 1948~1~Wally Ris~USA~57.3~Gold~|2~Alan Ford~USA~57.8~Silver~|3~Géza Kádas~HUN~58.1~Bronze~|4~~~58.3~~|5~~~58.3~~|6~~~59.3~~|7~~~59.6~~|8~~~1:00.5~~
-#C2 crc:ee5b8496
-M100~1952~5241~27 July 1952~1~Clarke Scholes~USA~57.4~Gold~|2~Hiroshi Suzuki~JPN~57.4~Silver~|3~Göran Larsson~SWE~58.2~Bronze~|4~~~58.5~~|5~~~58.6~~|6~~~58.7~~|7~~~58.7~~|8~~~58.8~~
-M100~1956~5379~30 November 1956~1~Jon Henricks~AUS~55.4~Gold~|2~John Devitt~AUS~55.8~Silver~|3~Gary Chapman~AUS~56.7~Bronze~|4~~~57.2~~|5~~~57.6~~|6~~~57.6~~|7~~~58.0~~|8~~~58.1~~
-M100~1960~5489~27 August 1960~1~John Devitt~AUS~55.2~Gold~|2~Lance Larson~USA~55.1~Silver~|3~Manuel dos Santos~BRA~55.4~Bronze~|4~~~55.6~~|5~~~56.3~~|6~~~56.3~~|7~~~56.3~~|8~~~57.1~~
-M100~1964~5654~12 October 1964~1~Don Schollander~USA~53.4~Gold~|2~Bobby McGregor~GBR~53.5~Silver~|3~Hans-Joachim Klein~GER~54.0~Bronze~|4~~~54.0~~|5~~~54.2~~|6~~~54.5~~|7~~~54.9~~|8~~~56.1~~
-#C3 crc:2abb49a2
-M100~1968~5850~19 October 1968~1~Mike Wenden~AUS~52.2~Gold~|2~Ken Walsh~USA~52.8~Silver~|3~Mark Spitz~USA~53.0~Bronze~|4~~~53.5~~|5~~~53.8~~|6~~~53.8~~|7~~~53.9~~|8~~~53.9~~
-M100~1972~6172~3 September 1972~1~Mark Spitz~USA~51.22~Gold~|2~Jerry Heidenreich~USA~51.65~Silver~|3~Vladimir Bure~URS~51.77~Bronze~|4~~~52.08~~|5~~~52.41~~|6~~~52.44~~|7~~~52.90~~|8~~~52.92~~
-M100~1976~6471~25 July 1976~1~Jim Montgomery~USA~49.99~Gold~|2~Jack Babashoff~USA~50.81~Silver~|3~Peter Nocke~FRG~51.31~Bronze~|4~~~51.68~~|5~~~51.70~~|6~~~51.79~~|7~~~52.03~~|8~~~52.15~~
-M100~1980~6745~27 July 1980~1~Jörg Woithe~GDR~50.40~Gold~|2~Per Holmertz~SWE~50.91~Silver~|3~Per Johansson~SWE~51.29~Bronze~|4~~~51.34~~|5~~~51.69~~|6~~~51.80~~|7~~~52.01~~|8~~~52.22~~
-#C4 crc:aad7e5ef
-M100~1984~6962~31 July 1984~1~Rowdy Gaines~USA~49.80~Gold~|2~Mark Stockwell~AUS~50.24~Silver~|3~Per Johansson~SWE~50.31~Bronze~|4~~~50.41~~|5~~~50.50~~|=6~~~50.70~~|=6~~~50.70~~|8~~~50.93~~
-M100~1988~7270~22 September 1988~1~Matt Biondi~USA~48.63~Gold~|2~Chris Jacobs~USA~49.08~Silver~|3~Stéphan Caron~FRA~49.62~Bronze~|4~~~49.75~~|5~~~50.08~~|6~~~50.23~~|7~~~50.35~~|8~~~50.54~~
-M100~1992~7628~28 July 1992~1~Aleksandr Popov~EUN~49.02~Gold~|2~Gustavo Borges~BRA~49.43~Silver~|3~Stéphan Caron~FRA~49.50~Bronze~|4~~~49.51~~|5~~~49.53~~|6~~~49.63~~|7~~~49.84~~|8~~~50.25~~
-M100~1996~7983~22 July 1996~1~Aleksandr Popov~RUS~48.74~Gold~|2~Gary Hall, Jr.~USA~48.81~Silver~|3~Gustavo Borges~BRA~49.02~Bronze~|4~~~49.13~~|5~~~49.57~~|6~~~49.65~~|7~~~49.68~~|8~~~49.84~~
-#C5 crc:912b61e1
-M100~2000~8352~20 September 2000~1~Pieter van den Hoogenband~NED~48.30~Gold~|2~Aleksandr Popov~RUS~48.69~Silver~|3~Gary Hall, Jr.~USA~48.73~Bronze~|4~~~48.74~~|5~~~49.09~~|6~~~49.22~~|7~~~49.36~~|8~~~49.44~~
-M100~2004~8757~18 August 2004~1~Pieter van den Hoogenband~NED~48.17~Gold~|2~Roland Schoeman~RSA~48.23~Silver~|3~Ian Thorpe~AUS~48.56~Bronze~|4~~~48.63~~|5~~~48.99~~|6~~~49.23~~|=7~~~49.30~~|=7~~~49.30~~
-M100~2008~261487~14 August 2008~1~Alain Bernard~FRA~47.21~Gold~|2~Eamon Sullivan~AUS~47.32~Silver~|=3~Jason Lezak~USA~47.67~Bronze~|=3~César Cielo Filho~BRA~47.67~Bronze~|5~~~47.75~~|6~~~48.04~~|7~~~48.20~~|8~~~48.33~~
-#C6 crc:baeedac8
-M100~2012~322179~1 August 2012~1~Nathan Adrian~USA~47.52~Gold~|2~James Magnussen~AUS~47.53~Silver~|3~Brent Hayden~CAN~47.80~Bronze~|4~~~47.84~~|5~~~47.88~~|6~~~47.92~~|7~~~48.04~~|8~~~48.44~~
-M100~2016~356997~10 August 2016~1~Kyle Chalmers~AUS~47.58~Gold~|2~Pieter Timmers~BEL~47.80~Silver~|3~Nathan Adrian~USA~47.85~Bronze~|4~~~47.88~~|5~~~48.01~~|6~~~48.02~~|7~~~48.12~~|8~~~48.41~~
-M100~2020~19000014~29 July 2021~1~Caeleb Dressel~USA~47.02~Gold~|2~Kyle Chalmers~AUS~47.08~Silver~|3~Kliment Kolesnikov~ROC~47.44~Bronze~|4~~~47.72~~|5~~~47.82~~|6~~~47.86~~|7~~~48.04~~|8~~~48.10~~
-M100~2024~2001516~31 July 2024~1~Pan Zhanle~CHN~46.40~Gold~|2~Kyle Chalmers~AUS~47.48~Silver~|3~David Popovici~ROU~47.49~Bronze~|4~~~47.50~~|5~~~47.71~~|6~~~47.80~~|7~~~47.96~~|8~~~47.98~~
-#C7 crc:694b4ab9
-W100~1912~4636~12 July 1912~1~Fanny Durack~ANZ~1:22.2~Gold~|2~Mina Wylie~ANZ~1:25.4~Silver~|3~Jennie Fletcher~GBR~1:27.0~Bronze~|4~~~1:27.2~~|5~~~1:27.4~~
-W100~1920~4715~25 August 1920~1~Ethelda Bleibtrey~USA~1:13.6~Gold~|2~Irene Guest~USA~1:17.0~Silver~|3~Frances Schroth~USA~1:17.2~Bronze~|4~~~1:22.8~~|5~~~~~|6~~~~~
-W100~1924~4795~20 July 1924~1~Ethel Lackie~USA~1:12.4~Gold~|2~Mariechen Wehselau~USA~1:12.8~Silver~|3~Trudy Ederle~USA~1:14.2~Bronze~|4~~~1:15.4~~|5~~~1:20.8~~|6~~~~~|7~~~~~|8~~~~~
-W100~1928~4893~11 August 1928~1~Albina Osipowich~USA~1:11.0~Gold~|2~Eleanor Garatti~USA~1:11.4~Silver~|3~Joyce Cooper~GBR~1:13.6~Bronze~|4~~~1:13.8~~|5~~~1:14.6~~|6~~~1:15.2~~
-#C8 crc:ee63d961
-W100~1932~4989~8 August 1932~1~Helene Madison~USA~1:06.8~Gold~|2~Willy den Ouden~NED~1:07.8~Silver~|3~Eleanor Garatti-Saville~USA~1:08.2~Bronze~|4~~~1:09.3~~|5~~~1:09.9~~|6~~~1:10.8~~|7~~~~~|8~~~~~
-W100~1936~5087~10 August 1936~1~Rie Mastenbroek~NED~1:05.9~Gold~|2~Jeanette Campbell~ARG~1:06.4~Silver~|3~Gisela Arendt~GER~1:06.6~Bronze~|4~~~1:07.6~~|5~~~1:08.1~~|6~~~1:08.4~~|7~~~1:08.7~~|=8~~~~~|=8~~~~~|=8~~~~~
-W100~1948~5197~2 August 1948~1~Greta Andersen~DEN~1:06.3~Gold~|2~Ann Curtis~USA~1:06.5~Silver~|3~Marie-Louise Vaessen~NED~1:07.6~Bronze~|4~~~1:08.1~~|5~~~1:08.4~~|6~~~1:08.4~~|7~~~1:08.8~~|8~~~1:09.1~~
-#C9 crc:b5d7287e
-W100~1952~5325~28 July 1952~1~Kató Szőke~HUN~1:06.8~Gold~|2~Hannie Termeulen~NED~1:07.0~Silver~|3~Judit Temes~HUN~1:07.1~Bronze~|4~~~1:07.1~~|5~~~1:07.1~~|6~~~1:07.3~~|7~~~1:08.0~~|8~~~1:08.6~~
-W100~1956~5441~1 December 1956~1~Dawn Fraser~AUS~1:02.0~Gold~|2~Lorraine Crapp~AUS~1:02.3~Silver~|3~Faith Leech~AUS~1:05.1~Bronze~|4~~~1:05.2~~|5~~~1:05.4~~|6~~~1:05.6~~|7~~~1:05.6~~|8~~~1:05.8~~
-W100~1960~5588~29 August 1960~1~Dawn Fraser~AUS~1:01.2~Gold~|2~Chris von Saltza~USA~1:02.8~Silver~|3~Natalie Steward~GBR~1:03.1~Bronze~|4~~~1:03.4~~|5~~~1:03.6~~|6~~~1:04.3~~|7~~~1:04.7~~|8~~~1:05.5~~
-#C10 crc:51e8cb4d
-W100~1964~5770~13 October 1964~1~Dawn Fraser~AUS~59.5~Gold~|2~Sharon Stouder~USA~59.9~Silver~|3~Kathy Ellis~USA~1:00.8~Bronze~|4~~~1:01.8~~|5~~~1:02.2~~|6~~~1:02.4~~|7~~~1:02.5~~|8~~~1:02.7~~
-W100~1968~6025~19 October 1968~1~Jan Henne~USA~1:00.0~Gold~|2~Sue Pedersen~USA~1:00.3~Silver~|3~Linda Gustavson~USA~1:00.3~Bronze~|4~~~1:00.5~~|5~~~1:01.0~~|6~~~1:01.0~~|7~~~1:01.5~~|8~~~1:01.6~~
-W100~1972~6335~29 August 1972~1~Sandy Neilson~USA~58.59~Gold~|2~Shirley Babashoff~USA~59.02~Silver~|3~Shane Gould~AUS~59.06~Bronze~|4~~~59.21~~|5~~~59.73~~|6~~~59.91~~|7~~~1:00.02~~|8~~~1:00.09~~
-W100~1976~6612~19 July 1976~1~Kornelia Ender~GDR~55.65~Gold~|2~Petra Priemer~GDR~56.49~Silver~|3~Enith Brigitha~NED~56.65~Bronze~|4~~~56.81~~|5~~~56.95~~|6~~~56.99~~|7~~~57.06~~|8~~~57.26~~
-#C11 crc:7c4f08b7
-W100~1980~6863~21 July 1980~1~Barbara Krause~GDR~54.79~Gold~|2~Caren Metschuck~GDR~55.16~Silver~|3~Ines Diers~GDR~55.65~Bronze~|4~~~57.40~~|5~~~57.63~~|6~~~57.83~~|7~~~57.88~~|8~~~57.90~~
-W100~1984~7131~29 July 1984~=1~Nancy Hogshead~USA~55.92~Gold~|=1~Carrie Steinseifer~USA~55.92~Gold~|3~Annemarie Verstappen~NED~56.08~Bronze~|4~~~56.43~~|5~~~56.83~~|6~~~56.90~~|7~~~57.11~~|8~~~58.09~~
-W100~1988~7468~19 September 1988~1~Kristin Otto~GDR~54.93~Gold~|2~Zhuang Yong~CHN~55.47~Silver~|3~Catherine Plewinski~FRA~55.49~Bronze~|4~~~55.52~~|5~~~55.90~~|6~~~56.15~~|7~~~56.25~~|8~~~56.54~~
-W100~1992~7825~26 July 1992~1~Zhuang Yong~CHN~54.64~Gold~|2~Jenny Thompson~USA~54.84~Silver~|3~Franziska van Almsick~GER~54.94~Bronze~|4~~~55.19~~|5~~~55.72~~|6~~~55.89~~|7~~~55.93~~|8~~~56.59~~
-#C12 crc:6cfa7fc0
-W100~1996~8171~20 July 1996~1~Le Jingyi~CHN~54.50~Gold~|2~Sandra Völker~GER~54.88~Silver~|3~Angel Martino~USA~54.93~Bronze~|4~~~55.11~~|5~~~55.59~~|6~~~55.85~~|7~~~56.01~~|8~~~56.12~~
-W100~2000~8567~21 September 2000~1~Inge de Bruijn~NED~53.83~Gold~|2~Therèse Alshammar~SWE~54.33~Silver~|=3~Jenny Thompson~USA~54.43~Bronze~|=3~Dara Torres~USA~54.43~Bronze~|5~~~54.72~~|6~~~55.19~~|7~~~55.53~~|8~~~55.58~~
-W100~2004~8956~19 August 2004~1~Jodie Henry~AUS~53.84~Gold~|2~Inge de Bruijn~NED~54.16~Silver~|3~Natalie Coughlin~USA~54.40~Bronze~|4~~~54.50~~|5~~~54.54~~|6~~~54.81~~|7~~~55.12~~|8~~~55.24~~
-#C13 crc:92ff1778
-W100~2008~261692~15 August 2008~1~Britta Steffen~GER~53.12~Gold~|2~Libby Trickett~AUS~53.16~Silver~|3~Natalie Coughlin~USA~53.39~Bronze~|4~~~53.97~~|5~~~54.06~~|=6~~~54.21~~|=6~~~54.21~~|8~~~54.29~~
-W100~2012~322262~2 August 2012~1~Ranomi Kromowidjojo~NED~53.00~Gold~|2~Aliaksandra Herasimenia~BLR~53.38~Silver~|3~Tang Yi~CHN~53.44~Bronze~|4~~~53.47~~|5~~~53.64~~|6~~~53.66~~|7~~~53.75~~|8~~~54.02~~
-W100~2016~357188~11 August 2016~=1~Simone Manuel~USA~52.70~Gold~OR|=1~Penny Oleksiak~CAN~52.70~Gold~OR|3~Sarah Sjöström~SWE~52.99~Bronze~|4~~~53.04~~|5~~~53.08~~|6~~~53.24~~|7~~~53.30~~|8~~~53.36~~
-#C14 crc:383824fd
-W100~2020~19000181~30 July 2021~1~Emma McKeon~AUS~51.96~Gold~|2~Siobhán Haughey~HKG~52.27~Silver~|3~Cate Campbell~AUS~52.52~Bronze~|4~~~52.59~~|5~~~52.68~~|6~~~52.79~~|7~~~52.83~~|8~~~53.23~~
-W100~2024~2001688~31 July 2024~1~Sarah Sjöström~SWE~52.16~Gold~|2~Torri Huske~USA~52.29~Silver~|3~Siobhán Haughey~HKG~52.33~Bronze~|4~~~52.34~~|5~~~52.72~~|6~~~52.82~~|7~~~52.83~~|8~~~53.04~~
-M50~1988~7257~24 September 1988~1~Matt Biondi~USA~22.14~Gold~|2~Tom Jager~USA~22.36~Silver~|3~Gennady Prigoda~URS~22.71~Bronze~|4~~~22.83~~|5~~~22.84~~|6~~~22.88~~|7~~~23.03~~|8~~~23.15~~
-M50~1992~7614~30 July 1992~1~Aleksandr Popov~EUN~21.91~Gold~|2~Matt Biondi~USA~22.09~Silver~|3~Tom Jager~USA~22.30~Bronze~|=4~~~22.50~~|=4~~~22.50~~|6~~~22.52~~|7~~~22.54~~|8~~~22.73~~
-#C15 crc:71373df0
-M50~1996~7969~25 July 1996~1~Aleksandr Popov~RUS~22.13~Gold~|2~Gary Hall, Jr.~USA~22.26~Silver~|3~Xuxa Scherer~BRA~22.29~Bronze~|4~~~22.33~~|5~~~22.59~~|6~~~22.68~~|7~~~22.72~~|8~~~22.73~~
-M50~2000~8336~22 September 2000~=1~Gary Hall, Jr.~USA~21.98~Gold~|=1~Anthony Ervin~USA~21.98~Gold~|3~Pieter van den Hoogenband~NED~22.03~Bronze~|4~~~22.11~~|5~~~22.22~~|6~~~22.24~~|7~~~22.41~~|8~~~22.51~~
-M50~2004~8740~20 August 2004~1~Gary Hall, Jr.~USA~21.93~Gold~|2~Duje Draganja~CRO~21.94~Silver~|3~Roland Schoeman~RSA~22.02~Bronze~|4~~~22.08~~|5~~~22.11~~|6~~~22.18~~|7~~~22.26~~|8~~~22.37~~
-#C16 crc:ac1f7d1f
-M50~2008~261468~16 August 2008~1~César Cielo Filho~BRA~21.30~Gold~|2~Amaury Leveaux~FRA~21.45~Silver~|3~Alain Bernard~FRA~21.49~Bronze~|4~~~21.62~~|5~~~21.64~~|6~~~21.65~~|7~~~21.67~~|8~~~21.72~~
-M50~2012~322275~3 August 2012~1~Florent Manaudou~FRA~21.34~Gold~|2~Cullen Jones~USA~21.54~Silver~|3~César Cielo Filho~BRA~21.59~Bronze~|4~~~21.61~~|5~~~21.78~~|6~~~21.80~~|7~~~21.82~~|8~~~21.98~~
-M50~2016~356980~12 August 2016~1~Anthony Ervin~USA~21.40~Gold~|2~Florent Manaudou~FRA~21.41~Silver~|3~Nathan Adrian~USA~21.49~Bronze~|4~~~21.68~~|5~~~21.74~~|=6~~~21.79~~|=6~~~21.79~~|8~~~22.08~~
-#C17 crc:42af1fd7
-M50~2020~19000000~1 August 2021~1~Caeleb Dressel~USA~21.07~Gold~|2~Florent Manaudou~FRA~21.55~Silver~|3~Bruno Fratus~BRA~21.57~Bronze~|4~~~21.60~~|5~~~21.72~~|6~~~21.72~~|7~~~21.78~~|8~~~21.79~~
-M50~2024~2001500~2 August 2024~1~Cameron McEvoy~AUS~21.25~Gold~|2~Ben Proud~GBR~21.30~Silver~|3~Florent Manaudou~FRA~21.56~Bronze~|4~~~21.58~~|5~~~21.59~~|6~~~21.61~~|7~~~21.62~~|8~~~21.64~~
-W50~1988~7457~25 September 1988~1~Kristin Otto~GDR~25.49~Gold~|2~Yang Wenyi~CHN~25.64~Silver~|=3~Katrin Meißner~GDR~25.71~Bronze~|=3~Jill Sterkel~USA~25.71~Bronze~|5~~~25.78~~|6~~~25.80~~|7~~~25.90~~|8~~~26.01~~
-#C18 crc:ac638796
-W50~1992~7814~31 July 1992~1~Yang Wenyi~CHN~24.79~Gold~|2~Zhuang Yong~CHN~25.08~Silver~|3~Angel Martino~USA~25.23~Bronze~|4~~~25.36~~|5~~~25.37~~|6~~~25.47~~|7~~~25.74~~|8~~~25.84~~
-W50~1996~8160~26 July 1996~1~Amy Van Dyken~USA~24.87~Gold~|2~Le Jingyi~CHN~24.90~Silver~|3~Sandra Völker~GER~25.14~Bronze~|4~~~25.31~~|5~~~25.49~~|6~~~25.63~~|7~~~25.70~~|8~~~25.88~~
-W50~2000~8550~23 September 2000~1~Inge de Bruijn~NED~24.32~Gold~|2~Therèse Alshammar~SWE~24.51~Silver~|3~Dara Torres~USA~24.63~Bronze~|4~~~25.04~~|5~~~25.24~~|6~~~25.27~~|7~~~25.45~~|8~~~25.65~~
-W50~2004~8940~21 August 2004~1~Inge de Bruijn~NED~24.58~Gold~|2~Malia Metella~FRA~24.89~Silver~|3~Libby Lenton~AUS~24.91~Bronze~|4~~~24.93~~|5~~~25.00~~|6~~~25.06~~|7~~~25.11~~|8~~~25.20~~
-#C19 crc:aa33d364
-W50~2008~261674~17 August 2008~1~Britta Steffen~GER~24.06~Gold~|2~Dara Torres~USA~24.07~Silver~|3~Cate Campbell~AUS~24.17~Bronze~|4~~~24.25~~|5~~~24.26~~|6~~~24.63~~|7~~~24.65~~|8~~~24.77~~
-W50~2012~322320~4 August 2012~1~Ranomi Kromowidjojo~NED~24.05~Gold~|2~Aliaksandra Herasimenia~BLR~24.28~Silver~|3~Marleen Veldhuis~NED~24.39~Bronze~|4~~~24.46~~|5~~~24.47~~|6~~~24.61~~|7~~~24.62~~|8~~~24.69~~
-W50~2016~357170~13 August 2016~1~Pernille Blume~DEN~24.07~Gold~|2~Simone Manuel~USA~24.09~Silver~|3~Aliaksandra Herasimenia~BLR~24.11~Bronze~|4~~~24.13~~|5~~~24.15~~|6~~~24.19~~|7~~~24.42~~|8~~~24.69~~
-#C20 crc:d92e1e59
-W50~2020~19000164~30 July 2021~1~Emma McKeon~AUS~23.81~Gold~|2~Sarah Sjöström~SWE~24.07~Silver~|3~Pernille Blume~DEN~24.21~Bronze~|4~~~24.30~~|5~~~24.32~~|6~~~24.32~~|7~~~24.36~~|8~~~24.41~~
-W50~2024~2001671~4 August 2024~1~Sarah Sjöström~SWE~23.71~Gold~|2~Meg Harris~AUS~23.97~Silver~|3~Zhang Yufei~CHN~24.20~Bronze~|4~~~24.21~~|5~~~24.33~~|6~~~24.35~~|7~~~24.37~~|8~~~24.39~~
+# Olympedia final results of the 28 individual pool events of the Paris 2024 programme, 1908-2024.
+# Accessed: 2026-10-28 (the 73 freestyle 50/100 m lines were first extracted on 2026-10-18; re-extracted
+# on 2026-10-28 and equal in names, countries, times and dates, ties aside).
+# Source pages: https://www.olympedia.org/results/<id> (id is field 3). Event index pages: see build_data.py.
+# Why not the original HTML: the workspace shell is blocked by the proxy (HTTP 403 for olympedia.org).
+# Each page was fetched in Chrome and the table under the H2 "Final" / "Final Round" was read from the DOM.
+# These are cell texts, not summaries. Transfer to this file was checked block by block with CRC32.
+# Format per line: EV~YEAR~RESULT_ID~DATE~ROW|ROW|...
+#   EV = sex (M/W) + distance in m + stroke (FR freestyle, BK backstroke, BR breaststroke, FL butterfly, IM medley)
+#   ROW = POS~NAME~NOC~TIME~MEDAL~NOTE. Positions 4-8 keep only POS and TIME (names are on the page).
+#   NOTE is always empty (the record-flag column was not reliable). "=" in POS marks a tie.
+#   Only finalists with a printed time are kept: rows marked DNS, DQ or without a time are dropped.
+# Left out on purpose: relays, 10 km marathon, 1904 (yards), discontinued events (men's 400 m breaststroke,
+#   500/1000/4000 m, women's 300 m freestyle) and 1906. Olympedia files the 1920 women's 300 m freestyle
+#   under the 400 m page; that final is not included.
+# Integrity: each block is preceded by "#C<n> crc:<crc32 hex>" computed over the block's lines joined by \n.
+#C0 crc:0f1b0e49
+M50FR~1988~7257~24 September 1988~1~Matt Biondi~USA~22.14~Gold~|2~Tom Jager~USA~22.36~Silver~|3~Gennady Prigoda~URS~22.71~Bronze~|4~~~22.83~~|5~~~22.84~~|6~~~22.88~~|7~~~23.03~~|8~~~23.15~~
+M50FR~1992~7614~30 July 1992~1~Aleksandr Popov~EUN~21.91~Gold~|2~Matt Biondi~USA~22.09~Silver~|3~Tom Jager~USA~22.30~Bronze~|=4~~~22.50~~|=4~~~22.50~~|6~~~22.52~~|7~~~22.54~~|8~~~22.73~~
+M50FR~1996~7969~25 July 1996~1~Aleksandr Popov~RUS~22.13~Gold~|2~Gary Hall, Jr.~USA~22.26~Silver~|3~Xuxa Scherer~BRA~22.29~Bronze~|4~~~22.33~~|5~~~22.59~~|6~~~22.68~~|7~~~22.72~~|8~~~22.73~~
+M50FR~2000~8336~22 September 2000~=1~Anthony Ervin~USA~21.98~Gold~|=1~Gary Hall, Jr.~USA~21.98~Gold~|3~Pieter van den Hoogenband~NED~22.03~Bronze~|4~~~22.11~~|5~~~22.22~~|6~~~22.24~~|7~~~22.41~~|8~~~22.51~~
+M50FR~2004~8740~20 August 2004~1~Gary Hall, Jr.~USA~21.93~Gold~|2~Duje Draganja~CRO~21.94~Silver~|3~Roland Schoeman~RSA~22.02~Bronze~|4~~~22.08~~|5~~~22.11~~|6~~~22.18~~|7~~~22.26~~|8~~~22.37~~
+M50FR~2008~261468~16 August 2008~1~César Cielo Filho~BRA~21.30~Gold~|2~Amaury Leveaux~FRA~21.45~Silver~|3~Alain Bernard~FRA~21.49~Bronze~|4~~~21.62~~|5~~~21.64~~|6~~~21.65~~|7~~~21.67~~|8~~~21.72~~
+M50FR~2012~322275~3 August 2012~1~Florent Manaudou~FRA~21.34~Gold~|2~Cullen Jones~USA~21.54~Silver~|3~César Cielo Filho~BRA~21.59~Bronze~|4~~~21.61~~|5~~~21.78~~|6~~~21.80~~|7~~~21.82~~|8~~~21.98~~
+M50FR~2016~356980~12 August 2016~1~Anthony Ervin~USA~21.40~Gold~|2~Florent Manaudou~FRA~21.41~Silver~|3~Nathan Adrian~USA~21.49~Bronze~|4~~~21.68~~|5~~~21.74~~|=6~~~21.79~~|=6~~~21.79~~|8~~~22.08~~
+M50FR~2020~19000000~1 August 2021~1~Caeleb Dressel~USA~21.07~Gold~|2~Florent Manaudou~FRA~21.55~Silver~|3~Bruno Fratus~BRA~21.57~Bronze~|4~~~21.60~~|=5~~~21.72~~|=5~~~21.72~~|7~~~21.78~~|8~~~21.79~~
+M50FR~2024~2001500~2 August 2024~1~Cameron McEvoy~AUS~21.25~Gold~|2~Ben Proud~GBR~21.30~Silver~|3~Florent Manaudou~FRA~21.56~Bronze~|4~~~21.58~~|5~~~21.59~~|6~~~21.61~~|7~~~21.62~~|8~~~21.64~~
+#C1 crc:7dabc9a2
+M100FR~1908~4479~20 July 1908~1~Charlie Daniels~USA~1:05.6~Gold~|2~Zoltán Halmay~HUN~1:06.2~Silver~|3~Harald Julin~SWE~1:08.0~Bronze~|4~~~~~
+M100FR~1912~4554~10 July 1912~1~Duke Kahanamoku~USA~1:03.4~Gold~|2~Cecil Healy~ANZ~1:04.6~Silver~|3~Ken Huszagh~USA~1:05.6~Bronze~|4~~~1:05.8~~|5~~~1:06.4~~
+M100FR~1920~4649~29 August 1920~1~Duke Kahanamoku~USA~1:01.4~Gold~|2~Pua Kele Kealoha~USA~1:02.6~Silver~|3~Bill Harris~USA~1:03.0~Bronze~|4~~~1:03.8~~
+M100FR~1924~4729~20 July 1924~1~Johnny Weissmuller~USA~59.0~Gold~|2~Duke Kahanamoku~USA~1:01.4~Silver~|3~Sam Kahanamoku~USA~1:01.8~Bronze~|4~~~1:02.0~~|5~~~1:03.0~~
+M100FR~1928~4829~11 August 1928~1~Johnny Weissmuller~USA~58.6~Gold~|2~István Bárány~HUN~59.8~Silver~|3~Katsuo Takaishi~JPN~1:00.0~Bronze~|4~~~1:00.8~~|5~~~1:01.0~~|6~~~1:01.4~~|7~~~1:01.6~~
+M100FR~1932~4936~7 August 1932~1~Yasuji Miyazaki~JPN~58.2~Gold~|2~Tatsugo Kawaishi~JPN~58.6~Silver~|3~Albert Schwartz~USA~58.8~Bronze~|4~~~59.2~~|5~~~59.2~~|6~~~59.5~~
+M100FR~1936~5024~9 August 1936~1~Ferenc Csík~HUN~57.6~Gold~|2~Masanori Yusa~JPN~57.9~Silver~|3~Shigeo Arai~JPN~58.0~Bronze~|4~~~58.1~~|5~~~59.3~~|6~~~59.7~~|7~~~59.9~~
+M100FR~1948~5133~31 July 1948~1~Wally Ris~USA~57.3~Gold~|2~Alan Ford~USA~57.8~Silver~|3~Géza Kádas~HUN~58.1~Bronze~|4~~~58.3~~|5~~~58.3~~|6~~~59.3~~|7~~~59.6~~|8~~~1:00.5~~
+M100FR~1952~5241~27 July 1952~1~Clarke Scholes~USA~57.4~Gold~|2~Hiroshi Suzuki~JPN~57.4~Silver~|3~Göran Larsson~SWE~58.2~Bronze~|4~~~58.5~~|5~~~58.6~~|6~~~58.7~~|7~~~58.7~~|8~~~58.8~~
+M100FR~1956~5379~30 November 1956~1~Jon Henricks~AUS~55.4~Gold~|2~John Devitt~AUS~55.8~Silver~|3~Gary Chapman~AUS~56.7~Bronze~|4~~~57.2~~|5~~~57.6~~|6~~~57.6~~|7~~~58.0~~|8~~~58.1~~
+#C2 crc:de11176b
+M100FR~1960~5489~27 August 1960~1~John Devitt~AUS~55.2~Gold~|2~Lance Larson~USA~55.1~Silver~|3~Manuel dos Santos~BRA~55.4~Bronze~|4~~~55.6~~|5~~~56.3~~|6~~~56.3~~|7~~~56.3~~|8~~~57.1~~
+M100FR~1964~5654~12 October 1964~1~Don Schollander~USA~53.4~Gold~|2~Bobby McGregor~GBR~53.5~Silver~|3~Hans-Joachim Klein~GER~54.0~Bronze~|4~~~54.0~~|5~~~54.2~~|6~~~54.5~~|7~~~54.9~~|8~~~56.1~~
+M100FR~1968~5850~19 October 1968~1~Mike Wenden~AUS~52.2~Gold~|2~Ken Walsh~USA~52.8~Silver~|3~Mark Spitz~USA~53.0~Bronze~|4~~~53.5~~|5~~~53.8~~|6~~~53.8~~|7~~~53.9~~|8~~~53.9~~
+M100FR~1972~6172~3 September 1972~1~Mark Spitz~USA~51.22~Gold~|2~Jerry Heidenreich~USA~51.65~Silver~|3~Vladimir Bure~URS~51.77~Bronze~|4~~~52.08~~|5~~~52.41~~|6~~~52.44~~|7~~~52.90~~|8~~~52.92~~
+M100FR~1976~6471~25 July 1976~1~Jim Montgomery~USA~49.99~Gold~|2~Jack Babashoff~USA~50.81~Silver~|3~Peter Nocke~FRG~51.31~Bronze~|4~~~51.68~~|5~~~51.70~~|6~~~51.79~~|7~~~52.03~~|8~~~52.15~~
+M100FR~1980~6745~27 July 1980~1~Jörg Woithe~GDR~50.40~Gold~|2~Per Holmertz~SWE~50.91~Silver~|3~Per Johansson~SWE~51.29~Bronze~|4~~~51.34~~|5~~~51.69~~|6~~~51.80~~|7~~~52.01~~|8~~~52.22~~
+M100FR~1984~6962~31 July 1984~1~Rowdy Gaines~USA~49.80~Gold~|2~Mark Stockwell~AUS~50.24~Silver~|3~Per Johansson~SWE~50.31~Bronze~|4~~~50.41~~|5~~~50.50~~|=6~~~50.70~~|=6~~~50.70~~|8~~~50.93~~
+M100FR~1988~7270~22 September 1988~1~Matt Biondi~USA~48.63~Gold~|2~Chris Jacobs~USA~49.08~Silver~|3~Stéphan Caron~FRA~49.62~Bronze~|4~~~49.75~~|5~~~50.08~~|6~~~50.23~~|7~~~50.35~~|8~~~50.54~~
+M100FR~1992~7628~28 July 1992~1~Aleksandr Popov~EUN~49.02~Gold~|2~Gustavo Borges~BRA~49.43~Silver~|3~Stéphan Caron~FRA~49.50~Bronze~|4~~~49.51~~|5~~~49.53~~|6~~~49.63~~|7~~~49.84~~|8~~~50.25~~
+M100FR~1996~7983~22 July 1996~1~Aleksandr Popov~RUS~48.74~Gold~|2~Gary Hall, Jr.~USA~48.81~Silver~|3~Gustavo Borges~BRA~49.02~Bronze~|4~~~49.13~~|5~~~49.57~~|6~~~49.65~~|7~~~49.68~~|8~~~49.84~~
+#C3 crc:90827146
+M100FR~2000~8352~20 September 2000~1~Pieter van den Hoogenband~NED~48.30~Gold~|2~Aleksandr Popov~RUS~48.69~Silver~|3~Gary Hall, Jr.~USA~48.73~Bronze~|4~~~48.74~~|5~~~49.09~~|6~~~49.22~~|7~~~49.36~~|8~~~49.44~~
+M100FR~2004~8757~18 August 2004~1~Pieter van den Hoogenband~NED~48.17~Gold~|2~Roland Schoeman~RSA~48.23~Silver~|3~Ian Thorpe~AUS~48.56~Bronze~|4~~~48.63~~|5~~~48.99~~|6~~~49.23~~|=7~~~49.30~~|=7~~~49.30~~
+M100FR~2008~261487~14 August 2008~1~Alain Bernard~FRA~47.21~Gold~|2~Eamon Sullivan~AUS~47.32~Silver~|=3~Jason Lezak~USA~47.67~Bronze~|=3~César Cielo Filho~BRA~47.67~Bronze~|5~~~47.75~~|6~~~48.04~~|7~~~48.20~~|8~~~48.33~~
+M100FR~2012~322179~1 August 2012~1~Nathan Adrian~USA~47.52~Gold~|2~James Magnussen~AUS~47.53~Silver~|3~Brent Hayden~CAN~47.80~Bronze~|4~~~47.84~~|5~~~47.88~~|6~~~47.92~~|7~~~48.04~~|8~~~48.44~~
+M100FR~2016~356997~10 August 2016~1~Kyle Chalmers~AUS~47.58~Gold~|2~Pieter Timmers~BEL~47.80~Silver~|3~Nathan Adrian~USA~47.85~Bronze~|4~~~47.88~~|5~~~48.01~~|6~~~48.02~~|7~~~48.12~~|8~~~48.41~~
+M100FR~2020~19000014~29 July 2021~1~Caeleb Dressel~USA~47.02~Gold~|2~Kyle Chalmers~AUS~47.08~Silver~|3~Kliment Kolesnikov~ROC~47.44~Bronze~|4~~~47.72~~|5~~~47.82~~|6~~~47.86~~|7~~~48.04~~|8~~~48.10~~
+M100FR~2024~2001516~31 July 2024~1~Pan Zhanle~CHN~46.40~Gold~|2~Kyle Chalmers~AUS~47.48~Silver~|3~David Popovici~ROU~47.49~Bronze~|4~~~47.50~~|5~~~47.71~~|6~~~47.80~~|7~~~47.96~~|8~~~47.98~~
+M200FR~1968~5866~24 October 1968~1~Mike Wenden~AUS~1:55.2~Gold~|2~Don Schollander~USA~1:55.8~Silver~|3~John Nelson~USA~1:58.1~Bronze~|4~~~1:58.6~~|5~~~1:59.1~~|6~~~2:00.9~~|7~~~2:01.5~~
+M200FR~1972~6185~29 August 1972~1~Mark Spitz~USA~1:52.78~Gold~|2~Steve Genter~USA~1:53.73~Silver~|3~Werner Lampe~FRG~1:53.99~Bronze~|4~~~1:54.40~~|5~~~1:54.96~~|6~~~1:55.65~~|7~~~1:57.24~~|8~~~1:57.56~~
+M200FR~1976~6484~19 July 1976~1~Bruce Furniss~USA~1:50.29~Gold~|2~John Naber~USA~1:50.50~Silver~|3~Jim Montgomery~USA~1:50.58~Bronze~|4~~~1:50.73~~|5~~~1:51.09~~|6~~~1:51.71~~|7~~~1:52.78~~|8~~~1:53.33~~
+#C4 crc:a385b0c8
+M200FR~1980~6756~21 July 1980~1~Sergey Koplyakov~URS~1:49.81~Gold~|2~Andrey Krylov~URS~1:50.76~Silver~|3~Graeme Brewer~AUS~1:51.60~Bronze~|4~~~1:51.86~~|5~~~1:52.60~~|6~~~1:52.76~~|7~~~1:52.94~~|8~~~1:53.25~~
+M200FR~1984~6975~29 July 1984~1~Michael Groß~FRG~1:47.44~Gold~|2~Mike Heath~USA~1:49.10~Silver~|3~Thomas Fahrner~FRG~1:49.69~Bronze~|4~~~1:50.18~~|5~~~1:50.23~~|6~~~1:51.62~~|7~~~1:52.20~~|8~~~1:53.84~~
+M200FR~1988~7284~19 September 1988~1~Duncan Armstrong~AUS~1:47.25~Gold~|2~Anders Holmertz~SWE~1:47.89~Silver~|3~Matt Biondi~USA~1:47.99~Bronze~|4~~~1:48.40~~|5~~~1:48.59~~|6~~~1:48.77~~|7~~~1:48.86~~|8~~~1:49.19~~
+M200FR~1992~7642~26 July 1992~1~Yevgeny Sadovy~EUN~1:46.70~Gold~|2~Anders Holmertz~SWE~1:46.86~Silver~|3~Antti Kasvio~FIN~1:47.63~Bronze~|4~~~1:48.24~~|5~~~1:48.32~~|6~~~1:48.36~~|7~~~1:48.84~~|8~~~1:50.57~~
+M200FR~1996~7995~20 July 1996~1~Danyon Loader~NZL~1:47.63~Gold~|2~Gustavo Borges~BRA~1:48.08~Silver~|3~Daniel Kowalski~AUS~1:48.25~Bronze~|4~~~1:48.36~~|5~~~1:48.42~~|6~~~1:48.50~~|7~~~1:48.54~~|8~~~1:49.39~~
+M200FR~2000~8368~18 September 2000~1~Pieter van den Hoogenband~NED~1:45.35~Gold~|2~Ian Thorpe~AUS~1:45.83~Silver~|3~Massi Rosolino~ITA~1:46.65~Bronze~|4~~~1:46.73~~|5~~~1:47.95~~|6~~~1:48.74~~|7~~~1:48.76~~|8~~~1:49.46~~
+M200FR~2004~8772~16 August 2004~1~Ian Thorpe~AUS~1:44.71~Gold~|2~Pieter van den Hoogenband~NED~1:45.23~Silver~|3~Michael Phelps~USA~1:45.32~Bronze~|4~~~1:46.13~~|5~~~1:46.56~~|6~~~1:47.55~~|7~~~1:48.02~~|8~~~1:48.40~~
+M200FR~2008~261502~12 August 2008~1~Michael Phelps~USA~1:42.96~Gold~|2~Park Tae-Hwan~KOR~1:44.85~Silver~|3~Peter Vanderkaay~USA~1:45.14~Bronze~|4~~~1:45.97~~|5~~~1:46.00~~|6~~~1:46.95~~|7~~~1:47.14~~|8~~~1:47.47~~
+M200FR~2012~322083~30 July 2012~1~Yannick Agnel~FRA~1:43.14~Gold~|=2~Park Tae-Hwan~KOR~1:44.93~Silver~|=2~Sun Yang~CHN~1:44.93~Silver~|4~~~1:45.04~~|5~~~1:45.53~~|6~~~1:46.53~~|7~~~1:46.93~~|8~~~1:47.75~~
+M200FR~2016~357013~8 August 2016~1~Sun Yang~CHN~1:44.65~Gold~|2~Chad le Clos~RSA~1:45.20~Silver~|3~Conor Dwyer~USA~1:45.23~Bronze~|4~~~1:45.49~~|5~~~1:45.58~~|6~~~1:45.84~~|7~~~1:45.90~~|8~~~1:45.91~~
+#C5 crc:2ab6f7a2
+M200FR~2020~19000028~27 July 2021~1~Tom Dean~GBR~1:44.22~Gold~|2~Duncan Scott~GBR~1:44.26~Silver~|3~Fernando Scheffer~BRA~1:44.66~Bronze~|4~~~1:44.68~~|5~~~1:45.01~~|6~~~1:45.12~~|7~~~1:45.26~~|8~~~1:45.78~~
+M200FR~2024~2001531~29 July 2024~1~David Popovici~ROU~1:44.72~Gold~|2~Matt Richards~GBR~1:44.74~Silver~|3~Luke Hobson~USA~1:44.79~Bronze~|4~~~1:44.87~~|=5~~~1:45.46~~|=5~~~1:45.46~~|7~~~1:45.57~~|8~~~1:46.26~~
+M400FR~1908~4494~16 July 1908~1~Henry Taylor~GBR~5:36.8~Gold~|2~Frank Beaurepaire~ANZ~5:44.2~Silver~|3~Otto Scheff~AUT~5:46.0~Bronze~|4~~~~~
+M400FR~1912~4573~14 July 1912~1~George Hodgson~CAN~5:24.4~Gold~|2~Jack Hatfield~GBR~5:25.8~Silver~|3~Harold Hardwick~ANZ~5:31.2~Bronze~|4~~~5:37.8~~|5~~~5:42.0~~
+M400FR~1920~4662~28 August 1920~1~Norman Ross~USA~5:26.8~Gold~|2~Ludy Langer~USA~5:29.0~Silver~|3~George Vernot~CAN~5:29.6~Bronze~|4~~~~~
+M400FR~1924~4741~18 July 1924~1~Johnny Weissmuller~USA~5:04.2~Gold~|2~Arne Borg~SWE~5:05.6~Silver~|3~Boy Charlton~AUS~5:06.6~Bronze~|4~~~5:26.0~~|5~~~5:32.0~~
+M400FR~1928~4843~9 August 1928~1~Alberto Zorrilla~ARG~5:01.6~Gold~|2~Boy Charlton~AUS~5:03.6~Silver~|3~Arne Borg~SWE~5:04.6~Bronze~|4~~~5:05.4~~|5~~~5:16.0~~|6~~~5:25.0~~
+M400FR~1932~4946~10 August 1932~1~Buster Crabbe~USA~4:48.4~Gold~|2~Jean Taris~FRA~4:48.5~Silver~|3~Tsutomu Oyokota~JPN~4:52.3~Bronze~|4~~~4:52.5~~|5~~~4:56.1~~|6~~~4:58.6~~
+M400FR~1936~5037~12 August 1936~1~Jack Medica~USA~4:44.5~Gold~|2~Shunpei Uto~JPN~4:45.6~Silver~|3~Shozo Makino~JPN~4:48.1~Bronze~|4~~~4:52.7~~|5~~~4:53.6~~|6~~~4:53.8~~|7~~~5:00.9~~
+M400FR~1948~5145~4 August 1948~1~Bill Smith~USA~4:41.0~Gold~|2~Jimmy McLane~USA~4:43.4~Silver~|3~John Marshall~AUS~4:47.4~Bronze~|4~~~4:49.4~~|5~~~4:49.9~~|6~~~4:51.4~~|7~~~4:55.9~~|8~~~4:58.7~~
+#C6 crc:14f37997
+M400FR~1952~5258~30 July 1952~1~Jean Boiteux~FRA~4:30.7~Gold~|2~Ford Konno~USA~4:31.3~Silver~|3~Per-Olof Östrand~SWE~4:35.2~Bronze~|4~~~4:37.9~~|5~~~4:39.9~~|6~~~4:40.1~~|7~~~4:40.3~~|8~~~4:42.1~~
+M400FR~1956~5390~4 December 1956~1~Murray Rose~AUS~4:27.3~Gold~|2~Tsuyoshi Yamanaka~JPN~4:30.4~Silver~|3~George Breen~USA~4:32.5~Bronze~|4~~~4:32.9~~|5~~~4:34.6~~|6~~~4:34.9~~|7~~~4:38.2~~|8~~~4:41.7~~
+M400FR~1960~5503~31 August 1960~1~Murray Rose~AUS~4:18.3~Gold~|2~Tsuyoshi Yamanaka~JPN~4:21.4~Silver~|3~John Konrads~AUS~4:21.8~Bronze~|4~~~4:21.8~~|5~~~4:22.0~~|6~~~4:26.3~~|7~~~4:26.8~~|8~~~4:29.6~~
+M400FR~1964~5670~15 October 1964~1~Don Schollander~USA~4:12.2~Gold~|2~Frank Wiegand~GER~4:14.9~Silver~|3~Allan Wood~AUS~4:15.1~Bronze~|4~~~4:16.7~~|5~~~4:16.9~~|6~~~4:19.1~~|7~~~4:20.2~~|8~~~4:21.4~~
+M400FR~1968~5878~23 October 1968~1~Mike Burton~USA~4:09.0~Gold~|2~Ralph Hutton~CAN~4:11.7~Silver~|3~Alain Mosconi~FRA~4:13.3~Bronze~|4~~~4:15.9~~|5~~~4:16.7~~|6~~~4:17.2~~|7~~~4:18.1~~|8~~~4:26.0~~
+M400FR~1972~6195~1 September 1972~1~Brad Cooper~AUS~4:00.27~Gold~|2~Steve Genter~USA~4:01.94~Silver~|3~Tom McBreen~USA~4:02.64~Bronze~|4~~~4:02.93~~|5~~~4:06.69~~|6~~~4:06.75~~|7~~~4:06.97~~
+M400FR~1976~6495~22 July 1976~1~Brian Goodell~USA~3:51.93~Gold~|2~Tim Shaw~USA~3:52.54~Silver~|3~Vladimir Raskatov~URS~3:55.76~Bronze~|4~~~3:57.18~~|5~~~3:57.59~~|6~~~3:57.81~~|7~~~4:00.79~~|8~~~4:20.83~~
+M400FR~1980~6765~24 July 1980~1~Vladimir Salnikov~URS~3:51.31~Gold~|2~Andrey Krylov~URS~3:53.24~Silver~|3~Ivar Stukolkin~URS~3:53.95~Bronze~|4~~~3:54.15~~|5~~~3:55.66~~|6~~~3:56.83~~|7~~~3:56.87~~|8~~~3:57.00~~
+M400FR~1984~6986~2 August 1984~1~George DiCarlo~USA~3:51.23~Gold~|2~John Mykkanen~USA~3:51.49~Silver~|3~Justin Lemberg~AUS~3:51.79~Bronze~|4~~~3:52.91~~|5~~~3:54.58~~|6~~~3:54.88~~|7~~~3:55.44~~|8~~~3:55.48~~
+M400FR~1988~7297~23 September 1988~1~Uwe Daßler~GDR~3:46.95~Gold~|2~Duncan Armstrong~AUS~3:47.15~Silver~|3~Artur Wojdat~POL~3:47.34~Bronze~|4~~~3:48.09~~|5~~~3:48.59~~|6~~~3:49.96~~|7~~~3:50.16~~|8~~~3:51.04~~
+#C7 crc:10dd07a1
+M400FR~1992~7654~29 July 1992~1~Yevgeny Sadovy~EUN~3:45.00~Gold~|2~Kieren Perkins~AUS~3:45.16~Silver~|3~Anders Holmertz~SWE~3:46.77~Bronze~|4~~~3:48.10~~|5~~~3:48.79~~|6~~~3:49.06~~|7~~~3:49.75~~|8~~~3:49.97~~
+M400FR~1996~8006~23 July 1996~1~Danyon Loader~NZL~3:47.97~Gold~|2~Paul Palmer~GBR~3:49.00~Silver~|3~Daniel Kowalski~AUS~3:49.39~Bronze~|4~~~3:49.87~~|5~~~3:50.68~~|6~~~3:51.04~~|7~~~3:52.15~~|8~~~3:54.45~~
+M400FR~2000~8381~16 September 2000~1~Ian Thorpe~AUS~3:40.59~Gold~|2~Massi Rosolino~ITA~3:43.40~Silver~|3~Klete Keller~USA~3:47.00~Bronze~|4~~~3:47.01~~|5~~~3:47.38~~|6~~~3:47.58~~|7~~~3:48.22~~|8~~~3:48.52~~
+M400FR~2004~8786~14 August 2004~1~Ian Thorpe~AUS~3:43.10~Gold~|2~Grant Hackett~AUS~3:43.36~Silver~|3~Klete Keller~USA~3:44.11~Bronze~|4~~~3:46.08~~|5~~~3:46.25~~|6~~~3:46.69~~|7~~~3:48.77~~|8~~~3:48.96~~
+M400FR~2008~261516~10 August 2008~1~Park Tae-Hwan~KOR~3:41.86~Gold~|2~Zhang Lin~CHN~3:42.44~Silver~|3~Larsen Jensen~USA~3:42.78~Bronze~|4~~~3:43.11~~|5~~~3:43.45~~|6~~~3:43.84~~|7~~~3:43.97~~|8~~~3:48.29~~
+M400FR~2012~322000~28 July 2012~1~Sun Yang~CHN~3:40.14~Gold~|2~Park Tae-Hwan~KOR~3:42.06~Silver~|3~Peter Vanderkaay~USA~3:44.69~Bronze~|4~~~3:46.02~~|5~~~3:46.39~~|6~~~3:47.03~~|7~~~3:48.62~~|8~~~3:49.25~~
+M400FR~2016~357025~6 August 2016~1~Mack Horton~AUS~3:41.55~Gold~|2~Sun Yang~CHN~3:41.68~Silver~|3~Gabriele Detti~ITA~3:43.49~Bronze~|4~~~3:44.01~~|5~~~3:44.16~~|6~~~3:44.68~~|7~~~3:45.28~~|8~~~3:49.07~~
+M400FR~2020~19000040~25 July 2021~1~Ahmed Hafnaoui~TUN~3:43.36~Gold~|2~Jack McLoughlin~AUS~3:43.52~Silver~|3~Kieran Smith~USA~3:43.94~Bronze~|=4~~~3:44.07~~|=4~~~3:44.07~~|6~~~3:44.88~~|7~~~3:45.20~~|8~~~3:45.39~~
+M400FR~2024~2001543~27 July 2024~1~Lukas Märtens~GER~3:41.78~Gold~|2~Elijah Winnington~AUS~3:42.21~Silver~|3~Kim U-Min~KOR~3:42.50~Bronze~|4~~~3:42.64~~|5~~~3:42.76~~|6~~~3:44.24~~|7~~~3:46.59~~|8~~~3:47.00~~
+M800FR~2020~19000047~29 July 2021~1~Bobby Finke~USA~7:41.87~Gold~|2~Gregorio Paltrinieri~ITA~7:42.11~Silver~|3~Mykhailo Romanchuk~UKR~7:42.33~Bronze~|4~~~7:42.68~~|5~~~7:45.00~~|6~~~7:45.11~~|7~~~7:49.14~~|8~~~7:53.31~~
+#C8 crc:79646213
+M800FR~2024~2001551~30 July 2024~1~Daniel Wiffen~IRL~7:38.19~Gold~|2~Bobby Finke~USA~7:38.75~Silver~|3~Gregorio Paltrinieri~ITA~7:39.38~Bronze~|4~~~7:42.83~~|=5~~~7:43.59~~|=5~~~7:43.59~~|7~~~7:46.16~~|8~~~7:48.36~~
+M1500FR~1908~4509~25 July 1908~1~Henry Taylor~GBR~22:48.4~Gold~|2~Sydney Battersby~GBR~22:51.2~Silver~|3~Frank Beaurepaire~ANZ~22:56.2~Bronze~
+M1500FR~1912~4585~10 July 1912~1~George Hodgson~CAN~22:00.0~Gold~|2~Jack Hatfield~GBR~22:39.0~Silver~|3~Harold Hardwick~ANZ~23:15.4~Bronze~
+M1500FR~1920~4673~25 August 1920~1~Norman Ross~USA~22:23.2~Gold~|2~George Vernot~CAN~22:36.4~Silver~|3~Frank Beaurepaire~AUS~23:04.0~Bronze~|4~~~23:59.1~~|5~~~24:04.3~~
+M1500FR~1924~4752~15 July 1924~1~Boy Charlton~AUS~20:06.6~Gold~|2~Arne Borg~SWE~20:41.4~Silver~|3~Frank Beaurepaire~AUS~21:48.4~Bronze~|4~~~21:55.6~~|5~~~22:10.4~~
+M1500FR~1928~4855~6 August 1928~1~Arne Borg~SWE~19:51.8~Gold~|2~Boy Charlton~AUS~20:02.6~Silver~|3~Buster Crabbe~USA~20:28.8~Bronze~|4~~~21:05.0~~|5~~~21:23.8~~|6~~~21:46.0~~
+M1500FR~1932~4957~13 August 1932~1~Kuzuo Kitamura~JPN~19:12.4~Gold~|2~Shozo Makino~JPN~19:14.1~Silver~|3~Jim Cristy~USA~19:39.5~Bronze~|4~~~19:45.1~~|5~~~20:02.7~~|6~~~20:09.7~~
+M1500FR~1936~5049~15 August 1936~1~Noboru Terada~JPN~19:13.7~Gold~|2~Jack Medica~USA~19:34.0~Silver~|3~Shunpei Uto~JPN~19:34.5~Bronze~|4~~~19:48.5~~|5~~~19:54.8~~|6~~~19:57.4~~|7~~~19:59.0~~
+M1500FR~1948~5157~7 August 1948~1~Jimmy McLane~USA~19:18.5~Gold~|2~John Marshall~AUS~19:31.3~Silver~|3~György Mitró~HUN~19:43.2~Bronze~|4~~~19:54.2~~|5~~~20:10.7~~|6~~~20:18.8~~|7~~~20:19.8~~|8~~~20:45.4~~
+M1500FR~1952~5273~2 August 1952~1~Ford Konno~USA~18:30.3~Gold~|2~Shiro Hashizume~JPN~18:41.4~Silver~|3~Tetsuo Okamoto~BRA~18:51.3~Bronze~|4~~~18:51.5~~|5~~~18:59.1~~|6~~~19:00.4~~|7~~~19:12.1~~|8~~~19:53.4~~
+#C9 crc:46fb3dd8
+M1500FR~1956~5398~7 December 1956~1~Murray Rose~AUS~17:58.9~Gold~|2~Tsuyoshi Yamanaka~JPN~18:00.3~Silver~|3~George Breen~USA~18:08.2~Bronze~|4~~~18:26.5~~|5~~~18:38.1~~|6~~~18:38.3~~|7~~~18:38.3~~|8~~~19:06.2~~
+M1500FR~1960~5512~3 September 1960~1~John Konrads~AUS~17:19.6~Gold~|2~Murray Rose~AUS~17:21.7~Silver~|3~George Breen~USA~17:30.6~Bronze~|4~~~17:34.7~~|5~~~17:43.7~~|6~~~17:44.9~~|7~~~18:02.8~~|8~~~18:22.7~~
+M1500FR~1964~5680~17 October 1964~1~Bob Windle~AUS~17:01.7~Gold~|2~John Nelson~USA~17:03.0~Silver~|3~Allan Wood~AUS~17:07.7~Bronze~|4~~~17:18.2~~|5~~~17:22.4~~|6~~~17:25.3~~|7~~~17:29.2~~|8~~~17:30.8~~
+M1500FR~1968~5887~26 October 1968~1~Mike Burton~USA~16:38.9~Gold~|2~John Kinsella~USA~16:57.3~Silver~|3~Greg Brough~AUS~17:04.7~Bronze~|4~~~17:08.0~~|5~~~17:15.6~~|6~~~17:36.4~~|7~~~17:46.6~~|8~~~18:05.1~~
+M1500FR~1972~6204~4 September 1972~1~Mike Burton~USA~15:52.58~Gold~|2~Graham Windeatt~AUS~15:58.48~Silver~|3~Doug Northway~USA~16:09.25~Bronze~|4~~~16:16.01~~|5~~~16:17.22~~|6~~~16:18.84~~|7~~~16:30.49~~|8~~~16:36.03~~
+M1500FR~1976~6505~20 July 1976~1~Brian Goodell~USA~15:02.40~Gold~|2~Bobby Hackett~USA~15:03.91~Silver~|3~Steve Holland~AUS~15:04.66~Bronze~|4~~~15:19.84~~|5~~~15:29.45~~|6~~~15:31.53~~|7~~~15:32.08~~|8~~~15:45.97~~
+M1500FR~1980~6773~22 July 1980~1~Vladimir Salnikov~URS~14:58.27~Gold~|2~Aleksandr Chayev~URS~15:14.30~Silver~|3~Max Metzker~AUS~15:14.49~Bronze~|4~~~15:15.29~~|5~~~15:21.78~~|6~~~15:21.88~~|7~~~15:26.70~~|8~~~15:28.24~~
+M1500FR~1984~6995~4 August 1984~1~Mike O'Brien~USA~15:05.20~Gold~|2~George DiCarlo~USA~15:10.59~Silver~|3~Stefan Pfeiffer~FRG~15:12.11~Bronze~|4~~~15:20.03~~|5~~~15:26.96~~|6~~~15:28.58~~|7~~~15:31.28~~|8~~~15:38.18~~
+M1500FR~1988~7308~25 September 1988~1~Vladimir Salnikov~URS~15:00.40~Gold~|2~Stefan Pfeiffer~FRG~15:02.69~Silver~|3~Uwe Daßler~GDR~15:06.15~Bronze~|4~~~15:06.42~~|5~~~15:14.76~~|6~~~15:18.19~~|7~~~15:21.16~~|8~~~15:37.12~~
+M1500FR~1992~7664~31 July 1992~1~Kieren Perkins~AUS~14:43.48~Gold~|2~Glen Housman~AUS~14:55.29~Silver~|3~Jörg Hoffmann~GER~15:02.29~Bronze~|4~~~15:04.28~~|5~~~15:13.35~~|6~~~15:19.12~~|7~~~15:19.41~~|8~~~15:33.94~~
+#C10 crc:2d40fae5
+M1500FR~1996~8015~26 July 1996~1~Kieren Perkins~AUS~14:56.40~Gold~|2~Daniel Kowalski~AUS~15:02.43~Silver~|3~Graeme Smith~GBR~15:02.48~Bronze~|4~~~15:08.58~~|5~~~15:14.63~~|6~~~15:17.28~~|7~~~15:18.86~~|8~~~15:21.68~~
+M1500FR~2000~8390~23 September 2000~1~Grant Hackett~AUS~14:48.33~Gold~|2~Kieren Perkins~AUS~14:53.59~Silver~|3~Chris Thompson~USA~14:56.81~Bronze~|4~~~14:56.88~~|5~~~15:00.48~~|6~~~15:08.61~~|7~~~15:08.80~~|8~~~15:19.87~~
+M1500FR~2004~8795~21 August 2004~1~Grant Hackett~AUS~14:43.40~Gold~|2~Larsen Jensen~USA~14:45.29~Silver~|3~Dave Davies~GBR~14:45.95~Bronze~|4~~~14:52.48~~|5~~~15:03.69~~|6~~~15:09.71~~|7~~~15:10.21~~|8~~~15:13.66~~
+M1500FR~2008~261524~17 August 2008~1~Oussama Mellouli~TUN~14:40.84~Gold~|2~Grant Hackett~AUS~14:41.53~Silver~|3~Ryan Cochrane~CAN~14:42.69~Bronze~|4~~~14:43.21~~|5~~~14:48.16~~|6~~~14:52.11~~|7~~~14:55.20~~|8~~~15:05.12~~
+M1500FR~2012~322337~4 August 2012~1~Sun Yang~CHN~14:31.02~Gold~|2~Ryan Cochrane~CAN~14:39.63~Silver~|3~Oussama Mellouli~TUN~14:40.31~Bronze~|4~~~14:50.61~~|5~~~14:51.92~~|6~~~14:52.99~~|7~~~14:54.32~~|8~~~15:00.76~~
+M1500FR~2016~357035~13 August 2016~1~Gregorio Paltrinieri~ITA~14:34.57~Gold~|2~Connor Jaeger~USA~14:39.48~Silver~|3~Gabriele Detti~ITA~14:40.86~Bronze~|4~~~14:45.03~~|5~~~14:49.54~~|6~~~14:49.61~~|7~~~14:52.73~~|8~~~15:02.66~~
+M1500FR~2020~19000054~1 August 2021~1~Bobby Finke~USA~14:39.65~Gold~|2~Mykhailo Romanchuk~UKR~14:40.66~Silver~|3~Florian Wellbrock~GER~14:40.91~Bronze~|4~~~14:45.01~~|5~~~14:55.48~~|6~~~14:55.85~~|7~~~15:03.47~~|8~~~15:04.26~~
+M1500FR~2024~2001559~4 August 2024~1~Bobby Finke~USA~14:30.67~Gold~|2~Gregorio Paltrinieri~ITA~14:34.55~Silver~|3~Daniel Wiffen~IRL~14:39.63~Bronze~|4~~~14:40.91~~|5~~~14:41.22~~|6~~~14:43.35~~|7~~~14:44.66~~|8~~~14:52.61~~
+M100BK~1908~4522~17 July 1908~1~Arno Bieberstein~GER~1:24.6~Gold~|2~Ludvig Dam~DEN~1:26.6~Silver~|3~Bert Haresnape~GBR~1:27.0~Bronze~|4~~~~~
+M100BK~1912~4596~13 July 1912~1~Harry Hebner~USA~1:21.2~Gold~|2~Otto Fahr~GER~1:22.4~Silver~|3~Paul Kellner~GER~1:24.0~Bronze~|4~~~1:25.2~~|5~~~1:25.8~~
+#C11 crc:fbf120b1
+M100BK~1920~4684~23 August 1920~1~Warren Kealoha~USA~1:15.2~Gold~|2~Ray Kegeris~USA~1:16.8~Silver~|3~Gérard Blitz~BEL~1:19.0~Bronze~|4~~~1:19.4~~|5~~~~~
+M100BK~1924~4763~18 July 1924~1~Warren Kealoha~USA~1:13.2~Gold~|2~Paul Wyatt~USA~1:15.4~Silver~|3~Károly Bartha~HUN~1:17.8~Bronze~|4~~~1:19.6~~|5~~~1:20.0~~
+M100BK~1928~4866~9 August 1928~1~George Kojac~USA~1:08.2~Gold~|2~Walter Laufer~USA~1:10.0~Silver~|3~Paul Wyatt~USA~1:12.0~Bronze~|4~~~1:13.6~~|5~~~1:13.8~~|6~~~1:15.4~~
+M100BK~1932~4967~12 August 1932~1~Masaji Kiyokawa~JPN~1:08.6~Gold~|2~Toshio Irie~JPN~1:09.8~Silver~|3~Kentaro Kawatsu~JPN~1:10.0~Bronze~|4~~~1:10.9~~|5~~~1:11.3~~|6~~~1:12.8~~
+M100BK~1936~5059~14 August 1936~1~Adolph Kiefer~USA~1:05.9~Gold~|2~Al Vande Weghe~USA~1:07.7~Silver~|3~Masaji Kiyokawa~JPN~1:08.4~Bronze~|4~~~1:09.4~~|5~~~1:09.7~~|6~~~1:10.4~~|7~~~1:10.7~~
+M100BK~1948~5169~6 August 1948~1~Allen Stack~USA~1:06.4~Gold~|2~Bob Cowell~USA~1:06.5~Silver~|3~Georges Vallerey, Jr.~FRA~1:07.8~Bronze~|=4~~~1:09.0~~|=4~~~1:09.0~~|6~~~1:09.1~~|7~~~1:09.2~~|8~~~1:09.6~~
+M100BK~1952~5282~1 August 1952~1~Yoshi Oyakawa~USA~1:05.4~Gold~|2~Gilbert Bozon~FRA~1:06.2~Silver~|3~Jack Taylor~USA~1:06.4~Bronze~|4~~~1:07.6~~|5~~~1:07.7~~|6~~~1:07.8~~|7~~~1:08.1~~|8~~~1:08.3~~
+M100BK~1956~5405~6 December 1956~1~David Theile~AUS~1:02.2~Gold~|2~John Monckton~AUS~1:03.2~Silver~|3~Frank McKinney~USA~1:04.5~Bronze~|4~~~1:04.9~~|5~~~1:05.0~~|6~~~1:05.6~~|7~~~1:05.8~~|8~~~1:06.9~~
+M100BK~1960~5520~31 August 1960~1~David Theile~AUS~1:01.9~Gold~|2~Frank McKinney~USA~1:02.1~Silver~|3~Bob Bennett~USA~1:02.3~Bronze~|4~~~1:03.2~~|5~~~1:03.5~~|6~~~1:03.5~~|7~~~1:04.1~~|8~~~1:04.6~~
+M100BK~1968~5894~22 October 1968~1~Roland Matthes~GDR~58.7~Gold~|2~Charlie Hickcox~USA~1:00.2~Silver~|3~Ronnie Mills~USA~1:00.5~Bronze~|4~~~1:01.1~~|5~~~1:01.4~~|6~~~1:01.8~~|7~~~1:01.9~~|8~~~1:02.0~~
+#C12 crc:2ac716cf
+M100BK~1972~6213~29 August 1972~1~Roland Matthes~GDR~56.58~Gold~|2~Mike Stamm~USA~57.70~Silver~|3~John Murphy~USA~58.35~Bronze~|4~~~58.48~~|5~~~59.50~~|6~~~59.80~~|7~~~59.93~~|8~~~1:00.41~~
+M100BK~1976~6513~19 July 1976~1~John Naber~USA~55.49~Gold~|2~Peter Rocca~USA~56.34~Silver~|3~Roland Matthes~GDR~57.22~Bronze~|4~~~57.28~~|5~~~57.49~~|6~~~57.69~~|7~~~57.94~~|8~~~58.42~~
+M100BK~1980~6779~21 July 1980~1~Bengt Baron~SWE~56.53~Gold~|2~Viktor Kuznetsov~URS~56.99~Silver~|3~Vladimir Dolgov~URS~57.63~Bronze~|4~~~57.74~~|5~~~57.84~~|6~~~57.95~~|7~~~57.98~~|8~~~58.38~~
+M100BK~1984~7002~3 August 1984~1~Rick Carey~USA~55.79~Gold~|2~Dave Wilson~USA~56.35~Silver~|3~Mike West~CAN~56.49~Bronze~|4~~~56.90~~|5~~~57.18~~|6~~~57.34~~|7~~~57.46~~|8~~~58.07~~
+M100BK~1988~7316~24 September 1988~1~Daichi Suzuki~JPN~55.05~Gold~|2~Dave Berkoff~USA~55.18~Silver~|3~Igor Polyansky~URS~55.20~Bronze~|4~~~55.37~~|5~~~56.09~~|6~~~56.10~~|7~~~56.19~~|8~~~56.32~~
+M100BK~1992~7671~30 July 1992~1~Mark Tewksbury~CAN~53.98~Gold~|2~Jeff Rouse~USA~54.04~Silver~|3~Dave Berkoff~USA~54.78~Bronze~|4~~~54.96~~|5~~~55.49~~|6~~~55.72~~|7~~~55.76~~|8~~~56.26~~
+M100BK~1996~8023~23 July 1996~1~Jeff Rouse~USA~54.10~Gold~|2~Rodolfo Falcón~CUB~54.98~Silver~|3~Neisser Bent~CUB~55.02~Bronze~|4~~~55.22~~|5~~~55.30~~|6~~~55.53~~|7~~~55.56~~|8~~~55.76~~
+M100BK~2000~8399~18 September 2000~1~Lenny Krayzelburg~USA~53.72~Gold~|2~Matt Welsh~AUS~54.07~Silver~|3~Stev Theloke~GER~54.82~Bronze~|4~~~55.01~~|5~~~55.04~~|6~~~55.14~~|7~~~55.27~~|8~~~55.74~~
+M100BK~2004~8803~16 August 2004~1~Aaron Peirsol~USA~54.06~Gold~|2~Markus Rogan~AUT~54.35~Silver~|3~Tomomi Morita~JPN~54.36~Bronze~|4~~~54.38~~|5~~~54.52~~|6~~~54.61~~|7~~~54.63~~|8~~~55.27~~
+M100BK~2008~261533~12 August 2008~1~Aaron Peirsol~USA~52.54~Gold~|2~Matt Grevers~USA~53.11~Silver~|=3~Arkady Vyatchanin~RUS~53.18~Bronze~|=3~Hayden Stoeckel~AUS~53.18~Bronze~|5~~~53.31~~|6~~~53.39~~|7~~~53.51~~|8~~~53.99~~
+#C13 crc:01b59e41
+M100BK~2012~322095~30 July 2012~1~Matt Grevers~USA~52.16~Gold~|2~Nick Thoman~USA~52.92~Silver~|3~Ryosuke Irie~JPN~52.97~Bronze~|4~~~53.08~~|5~~~53.35~~|6~~~53.48~~|7~~~53.55~~|8~~~53.77~~
+M100BK~2016~357044~8 August 2016~1~Ryan Murphy~USA~51.97~Gold~|2~Xu Jiayu~CHN~52.31~Silver~|3~David Plummer~USA~52.40~Bronze~|4~~~52.43~~|5~~~52.70~~|6~~~52.74~~|7~~~53.42~~|8~~~53.50~~
+M100BK~2020~19000071~27 July 2021~1~Yevgeny Rylov~ROC~51.98~Gold~|2~Kliment Kolesnikov~ROC~52.00~Silver~|3~Ryan Murphy~USA~52.19~Bronze~|4~~~52.30~~|5~~~52.51~~|6~~~52.78~~|7~~~52.79~~|8~~~52.95~~
+M100BK~2024~2001576~29 July 2024~1~Thomas Ceccon~ITA~52.00~Gold~|2~Xu Jiayu~CHN~52.32~Silver~|3~Ryan Murphy~USA~52.39~Bronze~|4~~~52.41~~|5~~~52.58~~|6~~~52.73~~|7~~~52.77~~|8~~~52.84~~
+M200BK~1964~5688~13 October 1964~1~Jed Graef~USA~2:10.3~Gold~|2~Gary Dilley~USA~2:10.5~Silver~|3~Bob Bennett~USA~2:13.1~Bronze~|4~~~2:13.2~~|5~~~2:15.7~~|6~~~2:15.9~~|7~~~2:15.9~~|8~~~2:16.6~~
+M200BK~1968~5906~25 October 1968~1~Roland Matthes~GDR~2:09.6~Gold~|2~Mitch Ivey~USA~2:10.6~Silver~|3~Jack Horsley~USA~2:10.9~Bronze~|4~~~2:12.6~~|5~~~2:12.9~~|6~~~2:15.4~~|7~~~2:15.8~~|8~~~2:16.5~~
+M200BK~1972~6225~2 September 1972~1~Roland Matthes~GDR~2:02.82~Gold~|2~Mike Stamm~USA~2:04.09~Silver~|3~Mitch Ivey~USA~2:04.33~Bronze~|4~~~2:06.59~~|5~~~2:07.29~~|6~~~2:08.67~~|7~~~2:10.09~~|8~~~2:11.77~~
+M200BK~1976~6525~24 July 1976~1~John Naber~USA~1:59.19~Gold~|2~Peter Rocca~USA~2:00.55~Silver~|3~Dan Harrigan~USA~2:01.35~Bronze~|4~~~2:03.17~~|5~~~2:04.07~~|6~~~2:05.81~~|7~~~2:07.30~~|8~~~2:08.23~~
+M200BK~1980~6790~26 July 1980~1~Sándor Wladár~HUN~2:01.93~Gold~|2~Zoltán Verrasztó~HUN~2:02.40~Silver~|3~Mark Kerry~AUS~2:03.14~Bronze~|4~~~2:03.48~~|5~~~2:03.92~~|6~~~2:04.10~~|7~~~2:04.23~~|8~~~2:06.15~~
+M200BK~1984~7013~31 July 1984~1~Rick Carey~USA~2:00.23~Gold~|2~Frédéric Delcourt~FRA~2:01.75~Silver~|3~Cam Henning~CAN~2:02.37~Bronze~|4~~~2:03.05~~|5~~~2:03.10~~|6~~~2:03.95~~|7~~~2:04.53~~|8~~~2:04.61~~
+#C14 crc:3bcf9783
+M200BK~1988~7327~22 September 1988~1~Igor Polyansky~URS~1:59.37~Gold~|2~Frank Baltrusch~GDR~1:59.60~Silver~|3~Paul Kingsman~NZL~2:00.48~Bronze~|4~~~2:00.52~~|5~~~2:01.67~~|6~~~2:01.84~~|7~~~2:02.26~~|8~~~2:02.28~~
+M200BK~1992~7682~28 July 1992~1~Martín López-Zubero~ESP~1:58.47~Gold~|2~Vladimir Selkov~EUN~1:58.87~Silver~|3~Stefano Battistelli~ITA~1:59.40~Bronze~|4~~~1:59.52~~|5~~~1:59.73~~|6~~~1:59.78~~|7~~~2:00.06~~|8~~~2:00.91~~
+M200BK~1996~8034~26 July 1996~1~Brad Bridgewater~USA~1:58.54~Gold~|2~Tripp Schwenk~USA~1:58.99~Silver~|3~Emanuele Merisi~ITA~1:59.18~Bronze~|4~~~2:00.05~~|5~~~2:00.10~~|6~~~2:00.74~~|7~~~2:01.27~~|8~~~2:08.14~~
+M200BK~2000~8412~21 September 2000~1~Lenny Krayzelburg~USA~1:56.76~Gold~|2~Aaron Peirsol~USA~1:57.35~Silver~|3~Matt Welsh~AUS~1:57.59~Bronze~|4~~~1:59.00~~|5~~~1:59.01~~|6~~~1:59.05~~|7~~~1:59.27~~|8~~~1:59.38~~
+M200BK~2004~8815~19 August 2004~1~Aaron Peirsol~USA~1:54.95~Gold~|2~Markus Rogan~AUT~1:57.35~Silver~|3~Răzvan Florea~ROU~1:57.56~Bronze~|4~~~1:57.76~~|5~~~1:58.40~~|6~~~1:58.49~~|7~~~1:59.28~~|8~~~2:00.06~~
+M200BK~2008~261545~15 August 2008~1~Ryan Lochte~USA~1:53.94~Gold~|2~Aaron Peirsol~USA~1:54.33~Silver~|3~Arkady Vyatchanin~RUS~1:54.93~Bronze~|4~~~1:55.49~~|5~~~1:55.72~~|6~~~1:56.39~~|7~~~1:56.52~~|8~~~1:57.00~~
+M200BK~2012~322239~2 August 2012~1~Tyler Clary~USA~1:53.41~Gold~|2~Ryosuke Irie~JPN~1:53.78~Silver~|3~Ryan Lochte~USA~1:53.94~Bronze~|=4~~~1:55.59~~|=4~~~1:55.59~~|6~~~1:57.03~~|7~~~1:57.62~~|8~~~1:58.02~~
+M200BK~2016~357055~11 August 2016~1~Ryan Murphy~USA~1:53.62~Gold~|2~Mitch Larkin~AUS~1:53.96~Silver~|3~Yevgeny Rylov~RUS~1:53.97~Bronze~|4~~~1:55.16~~|5~~~1:55.52~~|6~~~1:55.89~~|7~~~1:56.27~~|8~~~1:56.36~~
+M200BK~2020~19000083~30 July 2021~1~Yevgeny Rylov~ROC~1:53.27~Gold~|2~Ryan Murphy~USA~1:54.15~Silver~|3~Luke Greenbank~GBR~1:54.72~Bronze~|4~~~1:55.49~~|5~~~1:56.15~~|6~~~1:56.39~~|7~~~1:57.32~~|8~~~1:59.06~~
+M200BK~2024~2001588~1 August 2024~1~Hubert Kós~HUN~1:54.26~Gold~|2~Apostolos Christou~GRE~1:54.82~Silver~|3~Roman Mityukov~SUI~1:54.85~Bronze~|4~~~1:55.38~~|5~~~1:55.39~~|6~~~1:55.47~~|7~~~1:55.60~~|8~~~1:55.97~~
+#C15 crc:1a150c4a
+M100BR~1968~5914~19 October 1968~1~Don McKenzie~USA~1:07.7~Gold~|2~Vladimir Kosinsky~URS~1:08.0~Silver~|3~Nikolay Pankin~URS~1:08.0~Bronze~|4~~~1:08.1~~|5~~~1:08.4~~|6~~~1:08.6~~|7~~~1:08.7~~|8~~~1:09.7~~
+M100BR~1972~6233~30 August 1972~1~Nobutaka Taguchi~JPN~1:04.94~Gold~|2~Tom Bruce~USA~1:05.43~Silver~|3~John Hencken~USA~1:05.61~Bronze~|4~~~1:06.01~~|5~~~1:06.23~~|6~~~1:06.24~~|7~~~1:06.36~~|8~~~1:06.52~~
+M100BR~1976~6533~20 July 1976~1~John Hencken~USA~1:03.11~Gold~|2~David Wilkie~GBR~1:03.43~Silver~|3~Arvydas Juozaitis~URS~1:04.23~Bronze~|4~~~1:04.26~~|5~~~1:04.37~~|6~~~1:04.38~~|7~~~1:04.66~~|8~~~1:05.13~~
+M100BR~1980~6797~22 July 1980~1~Duncan Goodhew~GBR~1:03.34~Gold~|2~Arsens Miskarovs~URS~1:03.82~Silver~|3~Peter Evans~AUS~1:03.96~Bronze~|4~~~1:04.00~~|5~~~1:04.67~~|6~~~1:05.04~~|7~~~1:05.91~~
+M100BR~1984~7022~29 July 1984~1~Steve Lundquist~USA~1:01.65~Gold~|2~Victor Davis~CAN~1:01.99~Silver~|3~Peter Evans~AUS~1:02.97~Bronze~|4~~~1:03.25~~|5~~~1:03.29~~|6~~~1:03.49~~|7~~~1:03.95~~|8~~~1:04.11~~
+M100BR~1988~7337~19 September 1988~1~Adrian Moorhouse~GBR~1:02.04~Gold~|2~Károly Güttler~HUN~1:02.05~Silver~|3~Dmitry Volkov~URS~1:02.20~Bronze~|4~~~1:02.38~~|5~~~1:02.50~~|6~~~1:02.55~~|7~~~1:02.93~~|8~~~1:03.43~~
+M100BR~1992~7692~26 July 1992~1~Nelson Diebel~USA~1:01.50~Gold~|2~Norbert Rózsa~HUN~1:01.68~Silver~|3~Phil Rogers~AUS~1:01.76~Bronze~|4~~~1:01.86~~|5~~~1:01.87~~|6~~~1:02.07~~|7~~~1:02.32~~|8~~~1:02.33~~
+M100BR~1996~8044~20 July 1996~1~Fred Deburghgraeve~BEL~1:00.65~Gold~|2~Jeremy Linn~USA~1:00.77~Silver~|3~Mark Warnecke~GER~1:01.33~Bronze~|4~~~1:01.49~~|5~~~1:01.64~~|6~~~1:01.69~~|7~~~1:02.01~~|8~~~1:02.13~~
+M100BR~2000~8424~17 September 2000~1~Domenico Fioravanti~ITA~1:00.46~Gold~|2~Ed Moses~USA~1:00.73~Silver~|3~Roman Sludnov~RUS~1:00.91~Bronze~|4~~~1:01.34~~|5~~~1:01.50~~|6~~~1:01.58~~|7~~~1:01.63~~|8~~~1:01.88~~
+M100BR~2004~8826~15 August 2004~1~Kosuke Kitajima~JPN~1:00.08~Gold~|2~Brendan Hansen~USA~1:00.25~Silver~|3~Hugues Duboscq~FRA~1:00.88~Bronze~|4~~~1:01.17~~|5~~~1:01.34~~|6~~~1:01.36~~|7~~~1:01.66~~|8~~~1:02.42~~
+#C16 crc:2b45a5d2
+M100BR~2008~261558~11 August 2008~1~Kosuke Kitajima~JPN~58.91~Gold~|2~Alexander Dale Oen~NOR~59.20~Silver~|3~Hugues Duboscq~FRA~59.37~Bronze~|4~~~59.57~~|5~~~59.74~~|6~~~59.87~~|7~~~1:00.20~~|8~~~1:00.24~~
+M100BR~2012~322057~29 July 2012~1~Cameron van der Burgh~RSA~58.46~Gold~|2~Christian Sprenger~AUS~58.93~Silver~|3~Brendan Hansen~USA~59.49~Bronze~|4~~~59.53~~|5~~~59.79~~|6~~~59.87~~|7~~~59.97~~|8~~~1:00.84~~
+M100BR~2016~357065~7 August 2016~1~Adam Peaty~GBR~57.13~Gold~|2~Cameron van der Burgh~RSA~58.69~Silver~|3~Cody Miller~USA~58.87~Bronze~|4~~~59.22~~|5~~~59.31~~|6~~~59.37~~|7~~~59.38~~|8~~~59.95~~
+M100BR~2020~19000094~26 July 2021~1~Adam Peaty~GBR~57.37~Gold~|2~Arno Kamminga~NED~58.00~Silver~|3~Nicolò Martinenghi~ITA~58.33~Bronze~|4~~~58.84~~|5~~~58.96~~|=6~~~58.99~~|=6~~~58.99~~|8~~~59.36~~
+M100BR~2024~2001598~28 July 2024~1~Nicolò Martinenghi~ITA~59.03~Gold~|=2~Adam Peaty~GBR~59.05~Silver~|=2~Nic Fink~USA~59.05~Silver~|4~~~59.11~~|5~~~59.30~~|6~~~59.32~~|7~~~59.50~~|8~~~59.98~~
+M200BR~1908~4535~18 July 1908~1~Fred Holman~GBR~3:09.2~Gold~|2~William Robinson~GBR~3:12.8~Silver~|3~Pontus Hanson~SWE~3:14.6~Bronze~|4~~~3:15.2~~
+M200BR~1912~4607~10 July 1912~1~Walter Bathe~GER~3:01.8~Gold~|2~Willy Lützow~GER~3:05.0~Silver~|3~Paul Malisch~GER~3:08.0~Bronze~|4~~~3:08.8~~
+M200BR~1920~4689~29 August 1920~1~Håkan Malmrot~SWE~3:04.4~Gold~|2~Thor Henning~SWE~3:09.2~Silver~|3~Arvo Aaltonen~FIN~3:12.2~Bronze~|4~~~~~|5~~~~~
+M200BR~1924~4774~17 July 1924~1~Bob Skelton~USA~2:56.6~Gold~|2~Joseph De Combe~BEL~2:59.2~Silver~|3~Bill Kirschbaum~USA~3:01.0~Bronze~|4~~~3:02.2~~|5~~~3:05.6~~
+M200BR~1928~4877~8 August 1928~1~Yoshiyuki Tsuruta~JPN~2:48.8~Gold~|2~Erich Rademacher~GER~2:50.6~Silver~|3~Teófilo Yldefonso~PHI~2:56.4~Bronze~|4~~~2:56.6~~|5~~~2:56.8~~|6~~~2:57.2~~
+#C17 crc:f8beb17d
+M200BR~1932~4977~13 August 1932~1~Yoshiyuki Tsuruta~JPN~2:45.4~Gold~|2~Reizo Koike~JPN~2:46.6~Silver~|3~Teófilo Yldefonso~PHI~2:47.1~Bronze~|4~~~2:48.0~~|5~~~2:49.2~~|6~~~2:52.8~~
+M200BR~1936~5070~15 August 1936~1~Tetsuo Hamuro~JPN~2:41.5~Gold~|2~Erwin Sietas~GER~2:42.9~Silver~|3~Reizo Koike~JPN~2:44.2~Bronze~|4~~~2:45.2~~|5~~~2:47.6~~|6~~~2:47.8~~|7~~~2:51.1~~
+M200BR~1948~5181~7 August 1948~1~Joe Verdeur~USA~2:39.3~Gold~|2~Keith Carter~USA~2:40.2~Silver~|3~Bob Sohl~USA~2:43.9~Bronze~|4~~~2:43.7~~|5~~~2:46.1~~|6~~~2:46.4~~|7~~~2:47.5~~|8~~~2:47.6~~
+M200BR~1952~5295~2 August 1952~1~John Davies~AUS~2:34.4~Gold~|2~Bo Stassforth~USA~2:34.7~Silver~|3~Herbert Klein~GER~2:35.9~Bronze~|4~~~2:37.4~~|5~~~2:38.6~~|6~~~2:39.1~~|7~~~2:39.8~~|8~~~2:40.1~~
+M200BR~1956~5415~6 December 1956~1~Masaru Furukawa~JPN~2:34.7~Gold~|2~Masahiro Yoshimura~JPN~2:36.7~Silver~|3~Kharis Yunichev~URS~2:36.8~Bronze~|4~~~2:38.7~~|5~~~2:39.0~~|6~~~2:40.0~~|7~~~2:42.0~~
+M200BR~1960~5531~30 August 1960~1~Bill Mulliken~USA~2:37.4~Gold~|2~Yoshihiko Osaki~JPN~2:38.0~Silver~|3~Wieger Mensonides~NED~2:39.7~Bronze~|4~~~2:40.1~~|5~~~2:40.1~~|6~~~2:40.2~~|7~~~2:41.2~~|8~~~2:41.4~~
+M200BR~1964~5699~15 October 1964~1~Ian O'Brien~AUS~2:27.8~Gold~|2~Georgy Prokopenko~URS~2:28.2~Silver~|3~Chet Jastremski~USA~2:29.6~Bronze~|4~~~2:31.0~~|5~~~2:31.1~~|6~~~2:33.6~~|7~~~2:35.0~~|8~~~2:38.1~~
+M200BR~1968~5927~22 October 1968~1~Felipe Muñoz~MEX~2:28.7~Gold~|2~Vladimir Kosinsky~URS~2:29.2~Silver~|3~Brian Job~USA~2:29.9~Bronze~|4~~~2:30.3~~|5~~~2:32.8~~|6~~~2:33.2~~|7~~~2:33.6~~|8~~~2:34.9~~
+M200BR~1972~6245~2 September 1972~1~John Hencken~USA~2:21.55~Gold~|2~David Wilkie~GBR~2:23.67~Silver~|3~Nobutaka Taguchi~JPN~2:23.88~Bronze~|4~~~2:24.28~~|5~~~2:26.44~~|6~~~2:26.55~~|7~~~2:27.15~~|8~~~2:27.44~~
+M200BR~1976~6544~24 July 1976~1~David Wilkie~GBR~2:15.11~Gold~|2~John Hencken~USA~2:17.26~Silver~|3~Rick Colella~USA~2:19.20~Bronze~|4~~~2:19.42~~|5~~~2:20.79~~|6~~~2:21.87~~|7~~~2:22.21~~|8~~~2:22.36~~
+#C18 crc:d186c11b
+M200BR~1980~6804~26 July 1980~1~Robertas Žulpa~URS~2:15.85~Gold~|2~Albán Vermes~HUN~2:16.93~Silver~|3~Arsens Miskarovs~URS~2:17.28~Bronze~|4~~~2:19.64~~|5~~~2:19.68~~|6~~~2:20.92~~|7~~~2:21.65~~|8~~~2:22.39~~
+M200BR~1984~7033~2 August 1984~1~Victor Davis~CAN~2:13.34~Gold~|2~Glenn Beringen~AUS~2:15.79~Silver~|3~Étienne Dagon~SUI~2:17.41~Bronze~|4~~~2:18.03~~|5~~~2:18.86~~|6~~~2:18.96~~|7~~~2:20.69~~
+M200BR~1988~7350~23 September 1988~1~József Szabó~HUN~2:13.52~Gold~|2~Nick Gillingham~GBR~2:14.12~Silver~|3~Sergio López~ESP~2:15.21~Bronze~|4~~~2:15.45~~|5~~~2:16.16~~|6~~~2:16.70~~|7~~~2:17.10~~|8~~~2:17.12~~
+M200BR~1992~7704~29 July 1992~1~Mike Barrowman~USA~2:10.16~Gold~|2~Norbert Rózsa~HUN~2:11.23~Silver~|3~Nick Gillingham~GBR~2:11.29~Bronze~|4~~~2:13.29~~|5~~~2:13.32~~|6~~~2:13.59~~|7~~~2:14.70~~|8~~~2:15.11~~
+M200BR~1996~8054~24 July 1996~1~Norbert Rózsa~HUN~2:12.57~Gold~|2~Károly Güttler~HUN~2:13.03~Silver~|3~Andrey Korneyev~RUS~2:13.17~Bronze~|4~~~2:14.37~~|5~~~2:14.79~~|6~~~2:14.84~~|7~~~2:15.69~~|8~~~2:16.05~~
+M200BR~2000~8439~20 September 2000~1~Domenico Fioravanti~ITA~2:10.87~Gold~|2~Terence Parkin~RSA~2:12.50~Silver~|3~Davide Rummolo~ITA~2:12.73~Bronze~|4~~~2:12.88~~|5~~~2:13.20~~|6~~~2:13.27~~|7~~~2:13.31~~|8~~~2:14.00~~
+M200BR~2004~8840~18 August 2004~1~Kosuke Kitajima~JPN~2:09.44~Gold~|2~Dániel Gyurta~HUN~2:10.80~Silver~|3~Brendan Hansen~USA~2:10.87~Bronze~|4~~~2:11.20~~|5~~~2:11.76~~|6~~~2:11.94~~|7~~~2:11.95~~
+M200BR~2008~261573~14 August 2008~1~Kosuke Kitajima~JPN~2:07.64~Gold~|2~Brenton Rickard~AUS~2:08.88~Silver~|3~Hugues Duboscq~FRA~2:08.94~Bronze~|4~~~2:09.03~~|5~~~2:09.22~~|6~~~2:09.76~~|7~~~2:10.57~~|8~~~2:11.48~~
+M200BR~2012~322203~1 August 2012~1~Dániel Gyurta~HUN~2:07.28~Gold~|2~Michael Jamieson~GBR~2:07.43~Silver~|3~Ryo Tateishi~JPN~2:08.29~Bronze~|4~~~2:08.35~~|5~~~2:09.02~~|6~~~2:09.25~~|7~~~2:09.28~~|8~~~2:09.44~~
+M200BR~2016~357077~10 August 2016~1~Dmitry Balandin~KAZ~2:07.46~Gold~|2~Josh Prenot~USA~2:07.53~Silver~|3~Anton Chupkov~RUS~2:07.70~Bronze~|4~~~2:07.78~~|5~~~2:07.80~~|6~~~2:07.87~~|7~~~2:08.00~~|8~~~2:08.34~~
+#C19 crc:4a538882
+M200BR~2020~19000106~29 July 2021~1~Zac Stubblety-Cook~AUS~2:06.38~Gold~|2~Arno Kamminga~NED~2:07.01~Silver~|3~Matti Mattsson~FIN~2:07.13~Bronze~|4~~~2:07.24~~|5~~~2:07.93~~|6~~~2:08.19~~|7~~~2:08.42~~|8~~~2:08.88~~
+M200BR~2024~2001611~31 July 2024~1~Léon Marchand~FRA~2:05.85~Gold~|2~Zac Stubblety-Cook~AUS~2:06.79~Silver~|3~Caspar Corbeau~NED~2:07.90~Bronze~|4~~~2:08.46~~|5~~~2:08.79~~|6~~~2:08.83~~|7~~~2:09.52~~|8~~~2:11.44~~
+M100FL~1968~5935~21 October 1968~1~Doug Russell~USA~55.9~Gold~|2~Mark Spitz~USA~56.4~Silver~|3~Ross Wales~USA~57.2~Bronze~|4~~~58.1~~|5~~~58.6~~|6~~~58.8~~|7~~~58.9~~|8~~~59.8~~
+M100FL~1972~6254~31 August 1972~1~Mark Spitz~USA~54.27~Gold~|2~Bruce Robertson~CAN~55.56~Silver~|3~Jerry Heidenreich~USA~55.74~Bronze~|4~~~55.87~~|5~~~56.11~~|6~~~57.27~~|7~~~57.40~~|8~~~57.90~~
+M100FL~1976~6551~21 July 1976~1~Matt Vogel~USA~54.35~Gold~|2~Joe Bottom~USA~54.50~Silver~|3~Gary Hall~USA~54.65~Bronze~|4~~~55.09~~|5~~~55.11~~|6~~~55.81~~|7~~~56.34~~|8~~~56.57~~
+M100FL~1980~6810~23 July 1980~1~Pär Arvidsson~SWE~54.92~Gold~|2~Roger Pyttel~GDR~54.94~Silver~|3~David López-Zubero~ESP~55.13~Bronze~|4~~~55.25~~|5~~~55.35~~|6~~~55.42~~|7~~~55.66~~|8~~~55.70~~
+M100FL~1984~7044~30 July 1984~1~Michael Groß~FRG~53.08~Gold~|2~Pablo Morales~USA~53.23~Silver~|3~Glenn Buchanan~AUS~53.85~Bronze~|4~~~54.27~~|5~~~54.28~~|6~~~54.93~~|7~~~54.95~~|8~~~55.14~~
+M100FL~1988~7361~21 September 1988~1~Anthony Nesty~SUR~53.00~Gold~|2~Matt Biondi~USA~53.01~Silver~|3~Andy Jameson~GBR~53.30~Bronze~|4~~~53.33~~|5~~~53.44~~|6~~~54.07~~|7~~~54.09~~|8~~~54.60~~
+M100FL~1992~7715~27 July 1992~1~Pablo Morales~USA~53.32~Gold~|2~Rafał Szukała~POL~53.35~Silver~|3~Anthony Nesty~SUR~53.41~Bronze~|4~~~53.81~~|5~~~54.04~~|6~~~54.18~~|7~~~54.19~~|8~~~54.26~~
+M100FL~1996~8063~24 July 1996~1~Denis Pankratov~RUS~52.27~Gold~|2~Scott Miller~AUS~52.53~Silver~|3~Vladislav Kulikov~RUS~53.13~Bronze~|4~~~53.20~~|5~~~53.29~~|6~~~53.30~~|7~~~53.33~~|8~~~53.58~~
+#C20 crc:68966d4a
+M100FL~2000~8452~22 September 2000~1~Lars Frölander~SWE~52.00~Gold~|2~Michael Klim~AUS~52.18~Silver~|3~Geoff Huegill~AUS~52.22~Bronze~|4~~~52.44~~|=5~~~52.58~~|=5~~~52.58~~|=7~~~53.13~~|=7~~~53.13~~
+M100FL~2004~8852~20 August 2004~1~Michael Phelps~USA~51.25~Gold~|2~Ian Crocker~USA~51.29~Silver~|3~Andriy Serdinov~UKR~51.36~Bronze~|4~~~52.27~~|5~~~52.32~~|6~~~52.34~~|7~~~52.46~~|8~~~52.56~~
+M100FL~2008~261586~16 August 2008~1~Michael Phelps~USA~50.58~Gold~|2~Milorad Čavić~SRB~50.59~Silver~|3~Andrew Lauterstein~AUS~51.12~Bronze~|4~~~51.13~~|5~~~51.47~~|6~~~51.50~~|7~~~51.59~~|8~~~51.86~~
+M100FL~2012~322289~3 August 2012~1~Michael Phelps~USA~51.21~Gold~|=2~Chad le Clos~RSA~51.44~Silver~|=2~Yevgeny Korotyshkin~RUS~51.44~Silver~|=4~~~51.81~~|=4~~~51.81~~|6~~~51.82~~|7~~~51.88~~|8~~~52.05~~
+M100FL~2016~357088~12 August 2016~1~Joseph Schooling~SGP~50.39~Gold~|=2~Michael Phelps~USA~51.14~Silver~|=2~Chad le Clos~RSA~51.14~Silver~|=2~László Cseh, Jr.~HUN~51.14~Silver~|5~~~51.26~~|6~~~51.58~~|7~~~51.73~~|8~~~51.84~~
+M100FL~2020~19000117~31 July 2021~1~Caeleb Dressel~USA~49.45~Gold~|2~Kristóf Milák~HUN~49.68~Silver~|3~Noè Ponti~SUI~50.74~Bronze~|4~~~50.88~~|=5~~~50.92~~|=5~~~50.92~~|7~~~51.09~~|8~~~51.49~~
+M100FL~2024~2001622~3 August 2024~1~Kristóf Milák~HUN~49.90~Gold~|2~Josh Liendo~CAN~49.99~Silver~|3~Ilya Kharun~CAN~50.45~Bronze~|4~~~50.55~~|5~~~50.75~~|6~~~50.83~~|7~~~51.10~~|8~~~51.11~~
+M200FL~1956~5421~1 December 1956~1~Bill Yorzyk~USA~2:19.3~Gold~|2~Takashi Ishimoto~JPN~2:23.8~Silver~|3~György Tumpek~HUN~2:23.9~Bronze~|4~~~2:26.6~~|5~~~2:27.2~~|6~~~2:27.3~~|7~~~2:29.7~~|8~~~2:31.0~~
+M200FL~1960~5544~2 September 1960~1~Mike Troy~USA~2:12.8~Gold~|2~Neville Hayes~AUS~2:14.6~Silver~|3~Dave Gillanders~USA~2:15.3~Bronze~|4~~~2:16.0~~|5~~~2:18.3~~|6~~~2:18.5~~|7~~~2:18.9~~|8~~~2:19.4~~
+M200FL~1964~5710~18 October 1964~1~Kevin Berry~AUS~2:06.6~Gold~|2~Carl Robie~USA~2:07.5~Silver~|3~Fred Schmidt~USA~2:09.3~Bronze~|4~~~2:11.0~~|5~~~2:11.3~~|6~~~2:12.6~~|7~~~2:12.8~~|8~~~2:14.6~~
+#C21 crc:1cf616d6
+M200FL~1968~5949~24 October 1968~1~Carl Robie~USA~2:08.7~Gold~|2~Martyn Woodroffe~GBR~2:09.0~Silver~|3~John Ferris~USA~2:09.3~Bronze~|4~~~2:10.6~~|5~~~2:10.9~~|6~~~2:11.5~~|7~~~2:11.9~~|8~~~2:13.5~~
+M200FL~1972~6265~28 August 1972~1~Mark Spitz~USA~2:00.70~Gold~|2~Gary Hall~USA~2:02.86~Silver~|3~Robin Backhaus~USA~2:03.23~Bronze~|4~~~2:04.60~~|5~~~2:04.69~~|6~~~2:04.69~~|7~~~2:05.34~~|8~~~2:05.57~~
+M200FL~1976~6563~18 July 1976~1~Mike Bruner~USA~1:59.23~Gold~|2~Steve Gregg~USA~1:59.54~Silver~|3~Bill Forrester~USA~1:59.96~Bronze~|4~~~2:00.02~~|5~~~2:00.46~~|6~~~2:01.49~~|7~~~2:01.95~~|8~~~2:04.61~~
+M200FL~1980~6821~20 July 1980~1~Sergey Fesenko~URS~1:59.76~Gold~|2~Phil Hubble~GBR~2:01.20~Silver~|3~Roger Pyttel~GDR~2:01.39~Bronze~|4~~~2:02.27~~|5~~~2:02.44~~|6~~~2:02.52~~|7~~~2:02.61~~|8~~~2:02.93~~
+M200FL~1984~7055~3 August 1984~1~Jon Sieben~AUS~1:57.04~Gold~|2~Michael Groß~FRG~1:57.40~Silver~|3~Rafael Vidal~VEN~1:57.51~Bronze~|4~~~1:57.75~~|5~~~1:58.75~~|6~~~1:59.37~~|7~~~2:00.39~~|8~~~2:01.03~~
+M200FL~1988~7372~24 September 1988~1~Michael Groß~FRG~1:56.94~Gold~|2~Benny Nielsen~DEN~1:58.24~Silver~|3~Anthony Mosse~NZL~1:58.28~Bronze~|4~~~1:58.91~~|5~~~1:59.19~~|6~~~1:59.20~~|7~~~1:59.48~~|8~~~2:00.80~~
+M200FL~1992~7728~30 July 1992~1~Mel Stewart~USA~1:56.26~Gold~|2~Danyon Loader~NZL~1:57.93~Silver~|3~Franck Esposito~FRA~1:58.51~Bronze~|4~~~1:58.89~~|5~~~1:58.97~~|6~~~1:58.98~~|7~~~1:59.34~~|8~~~1:59.64~~
+M200FL~1996~8075~22 July 1996~1~Denis Pankratov~RUS~1:56.51~Gold~|2~Tom Malchow~USA~1:57.44~Silver~|3~Scott Goodman~AUS~1:57.48~Bronze~|4~~~1:58.10~~|5~~~1:58.28~~|6~~~1:58.37~~|7~~~1:58.47~~|8~~~1:59.12~~
+M200FL~2000~8466~19 September 2000~1~Tom Malchow~USA~1:55.35~Gold~|2~Denys Sylantiev~UKR~1:55.76~Silver~|3~Justin Norris~AUS~1:56.17~Bronze~|4~~~1:56.34~~|5~~~1:56.50~~|6~~~1:57.01~~|7~~~1:57.97~~|8~~~1:58.39~~
+M200FL~2004~8866~17 August 2004~1~Michael Phelps~USA~1:54.04~Gold~|2~Takashi Yamamoto~JPN~1:54.56~Silver~|3~Steve Parry~GBR~1:55.52~Bronze~|4~~~1:56.00~~|5~~~1:56.10~~|6~~~1:56.28~~|7~~~1:57.14~~|8~~~1:57.48~~
+#C22 crc:2789ccd2
+M200FL~2008~261601~13 August 2008~1~Michael Phelps~USA~1:52.03~Gold~|2~László Cseh, Jr.~HUN~1:52.70~Silver~|3~Takeshi Matsuda~JPN~1:52.97~Bronze~|=4~~~1:54.35~~|=4~~~1:54.35~~|6~~~1:54.60~~|7~~~1:54.71~~|8~~~1:55.14~~
+M200FL~2012~322143~31 July 2012~1~Chad le Clos~RSA~1:52.96~Gold~|2~Michael Phelps~USA~1:53.01~Silver~|3~Takeshi Matsuda~JPN~1:53.21~Bronze~|4~~~1:54.35~~|5~~~1:55.06~~|6~~~1:55.07~~|7~~~1:55.08~~|8~~~1:55.18~~
+M200FL~2016~357100~9 August 2016~1~Michael Phelps~USA~1:53.36~Gold~|2~Masato Sakai~JPN~1:53.40~Silver~|3~Tamás Kenderesi~HUN~1:53.62~Bronze~|4~~~1:54.06~~|5~~~1:54.82~~|6~~~1:55.64~~|7~~~1:56.24~~|8~~~1:57.04~~
+M200FL~2020~19000129~28 July 2021~1~Kristóf Milák~HUN~1:51.25~Gold~|2~Tomoru Honda~JPN~1:53.73~Silver~|3~Federico Burdisso~ITA~1:54.45~Bronze~|4~~~1:54.52~~|5~~~1:54.93~~|6~~~1:55.19~~|7~~~1:55.46~~|8~~~1:55.88~~
+M200FL~2024~2001636~31 July 2024~1~Léon Marchand~FRA~1:51.21~Gold~|2~Kristóf Milák~HUN~1:51.75~Silver~|3~Ilya Kharun~CAN~1:52.80~Bronze~|4~~~1:53.90~~|5~~~1:54.14~~|6~~~1:54.17~~|7~~~1:54.55~~|8~~~1:54.85~~
+M200IM~1968~5957~20 October 1968~1~Charlie Hickcox~USA~2:12.0~Gold~|2~Greg Buckingham~USA~2:13.0~Silver~|3~John Ferris~USA~2:13.3~Bronze~|4~~~2:13.7~~|5~~~2:15.9~~|6~~~2:16.6~~|7~~~2:16.8~~|8~~~2:18.3~~
+M200IM~1972~6272~3 September 1972~1~Gunnar Larsson~SWE~2:07.17~Gold~|2~Tim McKee~USA~2:08.37~Silver~|3~Steve Furniss~USA~2:08.45~Bronze~|4~~~2:08.49~~|5~~~2:09.66~~|6~~~2:11.78~~|7~~~2:11.87~~|8~~~2:13.56~~
+M200IM~1984~7064~4 August 1984~1~Alex Baumann~CAN~2:01.42~Gold~|2~Pablo Morales~USA~2:03.05~Silver~|3~Neil Cochran~GBR~2:04.38~Bronze~|4~~~2:04.52~~|5~~~2:04.91~~|6~~~2:05.60~~|7~~~2:05.88~~|8~~~2:06.66~~
+M200IM~1988~7382~25 September 1988~1~Tamás Darnyi~HUN~2:00.17~Gold~|2~Patrick Kühl~GDR~2:01.61~Silver~|3~Vadim Yaroshchuk~URS~2:02.40~Bronze~|4~~~2:02.92~~|5~~~2:03.81~~|6~~~2:04.34~~|7~~~2:04.82~~|8~~~2:06.35~~
+M200IM~1992~7739~31 July 1992~1~Tamás Darnyi~HUN~2:00.76~Gold~|2~Greg Burgess~USA~2:00.97~Silver~|3~Attila Czene~HUN~2:01.00~Bronze~|4~~~2:01.28~~|5~~~2:01.97~~|6~~~2:02.18~~|7~~~2:02.79~~|8~~~2:04.30~~
+#C23 crc:cb4b78fb
+M200IM~1996~8085~25 July 1996~1~Attila Czene~HUN~1:59.91~Gold~|2~Jani Sievinen~FIN~2:00.13~Silver~|3~Curtis Myden~CAN~2:01.13~Bronze~|4~~~2:01.45~~|5~~~2:01.57~~|6~~~2:02.56~~|7~~~2:03.89~~|8~~~2:04.29~~
+M200IM~2000~8478~21 September 2000~1~Massi Rosolino~ITA~1:58.98~Gold~|2~Tom Dolan~USA~1:59.77~Silver~|3~Tom Wilkens~USA~2:00.87~Bronze~|4~~~2:01.16~~|5~~~2:01.48~~|6~~~2:02.02~~|7~~~2:02.23~~|8~~~2:02.49~~
+M200IM~2004~8877~19 August 2004~1~Michael Phelps~USA~1:57.14~Gold~|2~Ryan Lochte~USA~1:58.78~Silver~|3~George Bovell~TTO~1:58.80~Bronze~|4~~~1:58.84~~|5~~~2:00.11~~|6~~~2:00.60~~|7~~~2:01.28~~|8~~~2:02.16~~
+M200IM~2008~261613~15 August 2008~1~Michael Phelps~USA~1:54.23~Gold~|2~László Cseh, Jr.~HUN~1:56.52~Silver~|3~Ryan Lochte~USA~1:56.53~Bronze~|4~~~1:58.14~~|5~~~1:58.22~~|6~~~1:59.24~~|7~~~1:59.43~~|8~~~2:00.76~~
+M200IM~2012~322251~2 August 2012~1~Michael Phelps~USA~1:54.27~Gold~|2~Ryan Lochte~USA~1:54.90~Silver~|3~László Cseh, Jr.~HUN~1:56.22~Bronze~|4~~~1:56.74~~|5~~~1:57.35~~|6~~~1:58.53~~|7~~~1:59.05~~|8~~~1:59.10~~
+M200IM~2016~357110~11 August 2016~1~Michael Phelps~USA~1:54.66~Gold~|2~Kosuke Hagino~JPN~1:56.61~Silver~|3~Wang Shun~CHN~1:57.05~Bronze~|4~~~1:57.21~~|5~~~1:57.47~~|6~~~1:57.48~~|7~~~1:58.02~~|8~~~1:58.54~~
+M200IM~2020~19000140~30 July 2021~1~Wang Shun~CHN~1:55.00~Gold~|2~Duncan Scott~GBR~1:55.28~Silver~|3~Jérémy Desplanches~SUI~1:56.17~Bronze~|4~~~1:56.22~~|5~~~1:57.31~~|6~~~1:57.49~~|7~~~1:57.68~~|8~~~1:57.70~~
+M200IM~2024~2001647~2 August 2024~1~Léon Marchand~FRA~1:54.06~Gold~|2~Duncan Scott~GBR~1:55.31~Silver~|3~Wang Shun~CHN~1:56.00~Bronze~|4~~~1:56.10~~|5~~~1:56.46~~|6~~~1:56.82~~|7~~~1:57.21~~|8~~~1:57.26~~
+M400IM~1964~5721~14 October 1964~1~Dick Roth~USA~4:45.4~Gold~|2~Roy Saari~USA~4:47.1~Silver~|3~Gerhard Hetz~GER~4:51.0~Bronze~|4~~~4:51.4~~|5~~~4:57.6~~|6~~~5:01.9~~|7~~~5:01.9~~|8~~~5:03.0~~
+M400IM~1968~5967~23 October 1968~1~Charlie Hickcox~USA~4:48.4~Gold~|2~Gary Hall~USA~4:48.7~Silver~|3~Mike Holthaus~FRG~4:51.4~Bronze~|4~~~4:51.4~~|5~~~4:56.7~~|6~~~4:59.8~~|7~~~5:00.3~~|8~~~5:04.3~~
+#C24 crc:625c410a
+M400IM~1972~6281~30 August 1972~1~Gunnar Larsson~SWE~4:31.98~Gold~|2~Tim McKee~USA~4:31.98~Silver~|3~András Hargitay~HUN~4:32.70~Bronze~|4~~~4:35.44~~|5~~~4:37.38~~|6~~~4:37.96~~|7~~~4:40.39~~|8~~~4:40.66~~
+M400IM~1976~6572~25 July 1976~1~Rod Strachan~USA~4:23.68~Gold~|2~Tim McKee~USA~4:24.62~Silver~|3~Andrey Smirnov~URS~4:26.90~Bronze~|4~~~4:27.13~~|5~~~4:28.64~~|6~~~4:29.23~~|7~~~4:29.87~~|8~~~4:34.95~~
+M400IM~1980~6828~27 July 1980~1~Aleksandr Sidorenko~URS~4:22.89~Gold~|2~Sergey Fesenko~URS~4:23.43~Silver~|3~Zoltán Verrasztó~HUN~4:24.24~Bronze~|4~~~4:24.48~~|5~~~4:26.81~~|6~~~4:26.99~~|7~~~4:28.89~~|8~~~4:29.86~~
+M400IM~1984~7074~30 July 1984~1~Alex Baumann~CAN~4:17.41~Gold~|2~Ricardo Prado~BRA~4:18.45~Silver~|3~Rob Woodhouse~AUS~4:20.50~Bronze~|4~~~4:21.46~~|5~~~4:22.76~~|6~~~4:23.28~~|7~~~4:25.80~~|8~~~4:26.05~~
+M400IM~1988~7394~21 September 1988~1~Tamás Darnyi~HUN~4:14.75~Gold~|2~Dave Wharton~USA~4:17.36~Silver~|3~Stefano Battistelli~ITA~4:18.01~Bronze~|4~~~4:18.15~~|5~~~4:18.44~~|6~~~4:21.71~~|7~~~4:23.23~~|8~~~4:24.02~~
+M400IM~1992~7751~27 July 1992~1~Tamás Darnyi~HUN~4:14.23~Gold~|2~Eric Namesnik~USA~4:15.57~Silver~|3~Luca Sacchi~ITA~4:16.34~Bronze~|4~~~4:17.26~~|5~~~4:17.88~~|6~~~4:19.66~~|7~~~4:22.93~~|8~~~4:23.86~~
+M400IM~1996~8094~21 July 1996~1~Tom Dolan~USA~4:14.90~Gold~|2~Eric Namesnik~USA~4:15.25~Silver~|3~Curtis Myden~CAN~4:16.28~Bronze~|4~~~4:16.66~~|5~~~4:17.71~~|6~~~4:18.31~~|7~~~4:20.50~~|8~~~4:21.15~~
+M400IM~2000~8491~17 September 2000~1~Tom Dolan~USA~4:11.76~Gold~|2~Erik Vendt~USA~4:14.23~Silver~|3~Curtis Myden~CAN~4:15.33~Bronze~|4~~~4:15.93~~|5~~~4:16.92~~|6~~~4:17.87~~|7~~~4:20.91~~|8~~~4:20.93~~
+M400IM~2004~8890~14 August 2004~1~Michael Phelps~USA~4:08.26~Gold~|2~Erik Vendt~USA~4:11.81~Silver~|3~László Cseh, Jr.~HUN~4:12.15~Bronze~|4~~~4:12.28~~|5~~~4:14.49~~|6~~~4:18.60~~|7~~~4:19.97~~|8~~~4:20.08~~
+M400IM~2008~261625~10 August 2008~1~Michael Phelps~USA~4:03.84~Gold~|2~László Cseh, Jr.~HUN~4:06.16~Silver~|3~Ryan Lochte~USA~4:08.09~Bronze~|4~~~4:12.16~~|5~~~4:12.47~~|6~~~4:12.84~~|7~~~4:13.38~~|8~~~4:15.40~~
+#C25 crc:ade7d357
+M400IM~2012~322007~28 July 2012~1~Ryan Lochte~USA~4:05.18~Gold~|2~Thiago Pereira~BRA~4:08.86~Silver~|3~Kosuke Hagino~JPN~4:08.94~Bronze~|4~~~4:09.28~~|5~~~4:12.42~~|6~~~4:13.30~~|7~~~4:13.49~~|8~~~4:14.89~~
+M400IM~2016~357120~6 August 2016~1~Kosuke Hagino~JPN~4:06.05~Gold~|2~Chase Kalisz~USA~4:06.75~Silver~|3~Daiya Seto~JPN~4:09.71~Bronze~|4~~~4:11.62~~|5~~~4:11.68~~|6~~~4:11.90~~|7~~~4:15.48~~|8~~~4:16.58~~
+M400IM~2020~19000151~25 July 2021~1~Chase Kalisz~USA~4:09.42~Gold~|2~Jay Litherland~USA~4:10.28~Silver~|3~Brendon Smith~AUS~4:10.38~Bronze~|=4~~~4:10.59~~|=4~~~4:10.59~~|6~~~4:11.16~~|7~~~4:11.22~~|8~~~4:11.32~~
+M400IM~2024~2001659~28 July 2024~1~Léon Marchand~FRA~4:02.95~Gold~|2~Tomoyuki Matsushita~JPN~4:08.62~Silver~|3~Carson Foster~USA~4:08.66~Bronze~|4~~~4:08.85~~|5~~~4:09.38~~|6~~~4:10.44~~|7~~~4:11.78~~|8~~~4:17.16~~
+W50FR~1988~7457~25 September 1988~1~Kristin Otto~GDR~25.49~Gold~|2~Yang Wenyi~CHN~25.64~Silver~|=3~Katrin Meißner~GDR~25.71~Bronze~|=3~Jill Sterkel~USA~25.71~Bronze~|5~~~25.78~~|6~~~25.80~~|7~~~25.90~~|8~~~26.01~~
+W50FR~1992~7814~31 July 1992~1~Yang Wenyi~CHN~24.79~Gold~|2~Zhuang Yong~CHN~25.08~Silver~|3~Angel Martino~USA~25.23~Bronze~|4~~~25.36~~|5~~~25.37~~|6~~~25.47~~|7~~~25.74~~|8~~~25.84~~
+W50FR~1996~8160~26 July 1996~1~Amy Van Dyken~USA~24.87~Gold~|2~Le Jingyi~CHN~24.90~Silver~|3~Sandra Völker~GER~25.14~Bronze~|4~~~25.31~~|5~~~25.49~~|6~~~25.63~~|7~~~25.70~~|8~~~25.88~~
+W50FR~2000~8550~23 September 2000~1~Inge de Bruijn~NED~24.32~Gold~|2~Therèse Alshammar~SWE~24.51~Silver~|3~Dara Torres~USA~24.63~Bronze~|4~~~25.04~~|5~~~25.24~~|6~~~25.27~~|7~~~25.45~~|8~~~25.65~~
+W50FR~2004~8940~21 August 2004~1~Inge de Bruijn~NED~24.58~Gold~|2~Malia Metella~FRA~24.89~Silver~|3~Libby Lenton~AUS~24.91~Bronze~|4~~~24.93~~|5~~~25.00~~|6~~~25.06~~|7~~~25.11~~|8~~~25.20~~
+W50FR~2008~261674~17 August 2008~1~Britta Steffen~GER~24.06~Gold~|2~Dara Torres~USA~24.07~Silver~|3~Cate Campbell~AUS~24.17~Bronze~|4~~~24.25~~|5~~~24.26~~|6~~~24.63~~|7~~~24.65~~|8~~~24.77~~
+#C26 crc:5dc7ed42
+W50FR~2012~322320~4 August 2012~1~Ranomi Kromowidjojo~NED~24.05~Gold~|2~Aliaksandra Herasimenia~BLR~24.28~Silver~|3~Marleen Veldhuis~NED~24.39~Bronze~|4~~~24.46~~|5~~~24.47~~|6~~~24.61~~|7~~~24.62~~|8~~~24.69~~
+W50FR~2016~357170~13 August 2016~1~Pernille Blume~DEN~24.07~Gold~|2~Simone Manuel~USA~24.09~Silver~|3~Aliaksandra Herasimenia~BLR~24.11~Bronze~|4~~~24.13~~|5~~~24.15~~|6~~~24.19~~|7~~~24.42~~|8~~~24.69~~
+W50FR~2020~19000164~30 July 2021~1~Emma McKeon~AUS~23.81~Gold~|2~Sarah Sjöström~SWE~24.07~Silver~|3~Pernille Blume~DEN~24.21~Bronze~|4~~~24.30~~|=5~~~24.32~~|=5~~~24.32~~|7~~~24.36~~|8~~~24.41~~
+W50FR~2024~2001671~4 August 2024~1~Sarah Sjöström~SWE~23.71~Gold~|2~Meg Harris~AUS~23.97~Silver~|3~Zhang Yufei~CHN~24.20~Bronze~|4~~~24.21~~|5~~~24.33~~|6~~~24.35~~|7~~~24.37~~|8~~~24.39~~
+W100FR~1912~4636~12 July 1912~1~Fanny Durack~ANZ~1:22.2~Gold~|2~Mina Wylie~ANZ~1:25.4~Silver~|3~Jennie Fletcher~GBR~1:27.0~Bronze~|4~~~1:27.2~~|5~~~1:27.4~~
+W100FR~1920~4715~25 August 1920~1~Ethelda Bleibtrey~USA~1:13.6~Gold~|2~Irene Guest~USA~1:17.0~Silver~|3~Frances Schroth~USA~1:17.2~Bronze~|4~~~1:22.8~~|5~~~~~|6~~~~~
+W100FR~1924~4795~20 July 1924~1~Ethel Lackie~USA~1:12.4~Gold~|2~Mariechen Wehselau~USA~1:12.8~Silver~|3~Trudy Ederle~USA~1:14.2~Bronze~|4~~~1:15.4~~|5~~~1:20.8~~
+W100FR~1928~4893~11 August 1928~1~Albina Osipowich~USA~1:11.0~Gold~|2~Eleanor Garatti~USA~1:11.4~Silver~|3~Joyce Cooper~GBR~1:13.6~Bronze~|4~~~1:13.8~~|5~~~1:14.6~~|6~~~1:15.2~~
+W100FR~1932~4989~8 August 1932~1~Helene Madison~USA~1:06.8~Gold~|2~Willy den Ouden~NED~1:07.8~Silver~|3~Eleanor Garatti-Saville~USA~1:08.2~Bronze~|4~~~1:09.3~~|5~~~1:09.9~~|6~~~1:10.8~~
+W100FR~1936~5087~10 August 1936~1~Rie Mastenbroek~NED~1:05.9~Gold~|2~Jeanette Campbell~ARG~1:06.4~Silver~|3~Gisela Arendt~GER~1:06.6~Bronze~|4~~~1:07.6~~|5~~~1:08.1~~|6~~~1:08.4~~|7~~~1:08.7~~
+#C27 crc:67f63457
+W100FR~1948~5197~2 August 1948~1~Greta Andersen~DEN~1:06.3~Gold~|2~Ann Curtis~USA~1:06.5~Silver~|3~Marie-Louise Vaessen~NED~1:07.6~Bronze~|4~~~1:08.1~~|5~~~1:08.4~~|6~~~1:08.4~~|7~~~1:08.8~~|8~~~1:09.1~~
+W100FR~1952~5325~28 July 1952~1~Kató Szőke~HUN~1:06.8~Gold~|2~Hannie Termeulen~NED~1:07.0~Silver~|3~Judit Temes~HUN~1:07.1~Bronze~|4~~~1:07.1~~|5~~~1:07.1~~|6~~~1:07.3~~|7~~~1:08.0~~|8~~~1:08.6~~
+W100FR~1956~5441~1 December 1956~1~Dawn Fraser~AUS~1:02.0~Gold~|2~Lorraine Crapp~AUS~1:02.3~Silver~|3~Faith Leech~AUS~1:05.1~Bronze~|4~~~1:05.2~~|5~~~1:05.4~~|6~~~1:05.6~~|7~~~1:05.6~~|8~~~1:05.8~~
+W100FR~1960~5588~29 August 1960~1~Dawn Fraser~AUS~1:01.2~Gold~|2~Chris von Saltza~USA~1:02.8~Silver~|3~Natalie Steward~GBR~1:03.1~Bronze~|4~~~1:03.4~~|5~~~1:03.6~~|6~~~1:04.3~~|7~~~1:04.7~~|8~~~1:05.5~~
+W100FR~1964~5770~13 October 1964~1~Dawn Fraser~AUS~59.5~Gold~|2~Sharon Stouder~USA~59.9~Silver~|3~Kathy Ellis~USA~1:00.8~Bronze~|4~~~1:01.8~~|5~~~1:02.2~~|6~~~1:02.4~~|7~~~1:02.5~~|8~~~1:02.7~~
+W100FR~1968~6025~19 October 1968~1~Jan Henne~USA~1:00.0~Gold~|2~Sue Pedersen~USA~1:00.3~Silver~|3~Linda Gustavson~USA~1:00.3~Bronze~|4~~~1:00.5~~|5~~~1:01.0~~|6~~~1:01.0~~|7~~~1:01.5~~|8~~~1:01.6~~
+W100FR~1972~6335~29 August 1972~1~Sandy Neilson~USA~58.59~Gold~|2~Shirley Babashoff~USA~59.02~Silver~|3~Shane Gould~AUS~59.06~Bronze~|4~~~59.21~~|5~~~59.73~~|6~~~59.91~~|7~~~1:00.02~~|8~~~1:00.09~~
+W100FR~1976~6612~19 July 1976~1~Kornelia Ender~GDR~55.65~Gold~|2~Petra Priemer~GDR~56.49~Silver~|3~Enith Brigitha~NED~56.65~Bronze~|4~~~56.81~~|5~~~56.95~~|6~~~56.99~~|7~~~57.06~~|8~~~57.26~~
+W100FR~1980~6863~21 July 1980~1~Barbara Krause~GDR~54.79~Gold~|2~Caren Metschuck~GDR~55.16~Silver~|3~Ines Diers~GDR~55.65~Bronze~|4~~~57.40~~|5~~~57.63~~|6~~~57.83~~|7~~~57.88~~|8~~~57.90~~
+W100FR~1984~7131~29 July 1984~=1~Carrie Steinseifer~USA~55.92~Gold~|=1~Nancy Hogshead~USA~55.92~Gold~|3~Annemarie Verstappen~NED~56.08~Bronze~|4~~~56.43~~|5~~~56.83~~|6~~~56.90~~|7~~~57.11~~|8~~~58.09~~
+#C28 crc:cd34aa32
+W100FR~1988~7468~19 September 1988~1~Kristin Otto~GDR~54.93~Gold~|2~Zhuang Yong~CHN~55.47~Silver~|3~Catherine Plewinski~FRA~55.49~Bronze~|4~~~55.52~~|5~~~55.90~~|6~~~56.15~~|7~~~56.25~~|8~~~56.54~~
+W100FR~1992~7825~26 July 1992~1~Zhuang Yong~CHN~54.64~Gold~|2~Jenny Thompson~USA~54.84~Silver~|3~Franziska van Almsick~GER~54.94~Bronze~|4~~~55.19~~|5~~~55.72~~|6~~~55.89~~|7~~~55.93~~|8~~~56.59~~
+W100FR~1996~8171~20 July 1996~1~Le Jingyi~CHN~54.50~Gold~|2~Sandra Völker~GER~54.88~Silver~|3~Angel Martino~USA~54.93~Bronze~|4~~~55.11~~|5~~~55.59~~|6~~~55.85~~|7~~~56.01~~|8~~~56.12~~
+W100FR~2000~8567~21 September 2000~1~Inge de Bruijn~NED~53.83~Gold~|2~Therèse Alshammar~SWE~54.33~Silver~|=3~Dara Torres~USA~54.43~Bronze~|=3~Jenny Thompson~USA~54.43~Bronze~|5~~~54.72~~|6~~~55.19~~|7~~~55.53~~|8~~~55.58~~
+W100FR~2004~8956~19 August 2004~1~Jodie Henry~AUS~53.84~Gold~|2~Inge de Bruijn~NED~54.16~Silver~|3~Natalie Coughlin~USA~54.40~Bronze~|4~~~54.50~~|5~~~54.54~~|6~~~54.81~~|7~~~55.12~~|8~~~55.24~~
+W100FR~2008~261692~15 August 2008~1~Britta Steffen~GER~53.12~Gold~|2~Libby Trickett~AUS~53.16~Silver~|3~Natalie Coughlin~USA~53.39~Bronze~|4~~~53.97~~|5~~~54.06~~|=6~~~54.21~~|=6~~~54.21~~|8~~~54.29~~
+W100FR~2012~322262~2 August 2012~1~Ranomi Kromowidjojo~NED~53.00~Gold~|2~Aliaksandra Herasimenia~BLR~53.38~Silver~|3~Tang Yi~CHN~53.44~Bronze~|4~~~53.47~~|5~~~53.64~~|6~~~53.66~~|7~~~53.75~~|8~~~54.02~~
+W100FR~2016~357188~11 August 2016~=1~Simone Manuel~USA~52.70~Gold~|=1~Penny Oleksiak~CAN~52.70~Gold~|3~Sarah Sjöström~SWE~52.99~Bronze~|4~~~53.04~~|5~~~53.08~~|6~~~53.24~~|7~~~53.30~~|8~~~53.36~~
+W100FR~2020~19000181~30 July 2021~1~Emma McKeon~AUS~51.96~Gold~|2~Siobhán Haughey~HKG~52.27~Silver~|3~Cate Campbell~AUS~52.52~Bronze~|4~~~52.59~~|5~~~52.68~~|6~~~52.79~~|7~~~52.83~~|8~~~53.23~~
+W100FR~2024~2001688~31 July 2024~1~Sarah Sjöström~SWE~52.16~Gold~|2~Torri Huske~USA~52.29~Silver~|3~Siobhán Haughey~HKG~52.33~Bronze~|4~~~52.34~~|5~~~52.72~~|6~~~52.82~~|7~~~52.83~~|8~~~53.04~~
+#C29 crc:9916d8aa
+W200FR~1968~6040~22 October 1968~1~Debbie Meyer~USA~2:10.5~Gold~|2~Jan Henne~USA~2:11.0~Silver~|3~Jane Barkman~USA~2:11.2~Bronze~|4~~~2:12.3~~|5~~~2:13.3~~|6~~~2:14.9~~|7~~~2:15.1~~|8~~~2:16.0~~
+W200FR~1972~6347~1 September 1972~1~Shane Gould~AUS~2:03.56~Gold~|2~Shirley Babashoff~USA~2:04.33~Silver~|3~Keena Rothhammer~USA~2:04.92~Bronze~|4~~~2:05.45~~|5~~~2:06.27~~|6~~~2:08.40~~|7~~~2:09.41~~|8~~~2:11.70~~
+W200FR~1976~6625~22 July 1976~1~Kornelia Ender~GDR~1:59.26~Gold~|2~Shirley Babashoff~USA~2:01.22~Silver~|3~Enith Brigitha~NED~2:01.40~Bronze~|4~~~2:02.56~~|5~~~2:03.32~~|6~~~2:04.20~~|7~~~2:04.61~~|8~~~2:05.63~~
+W200FR~1980~6870~24 July 1980~1~Barbara Krause~GDR~1:58.33~Gold~|2~Ines Diers~GDR~1:59.64~Silver~|3~Carmela Schmidt~GDR~2:01.44~Bronze~|4~~~2:02.29~~|5~~~2:02.76~~|6~~~2:03.15~~|7~~~2:03.74~~|8~~~2:04.00~~
+W200FR~1984~7141~30 July 1984~1~Mary Wayte~USA~1:59.23~Gold~|2~Sippy Woodhead~USA~1:59.50~Silver~|3~Annemarie Verstappen~NED~1:59.69~Bronze~|4~~~1:59.79~~|5~~~2:00.59~~|6~~~2:00.64~~|7~~~2:01.89~~|8~~~2:02.87~~
+W200FR~1988~7480~21 September 1988~1~Heike Friedrich~GDR~1:57.65~Gold~|2~Sylvia Poll~CRC~1:58.67~Silver~|3~Manuela Stellmach~GDR~1:59.01~Bronze~|4~~~1:59.04~~|5~~~1:59.24~~|6~~~2:00.23~~|7~~~2:00.73~~|8~~~2:02.88~~
+W200FR~1992~7835~27 July 1992~1~Nicole Haislett~USA~1:57.90~Gold~|2~Franziska van Almsick~GER~1:58.00~Silver~|3~Kerstin Kielgaß~GER~1:59.67~Bronze~|4~~~1:59.88~~|5~~~2:00.48~~|6~~~2:00.64~~|7~~~2:00.90~~|8~~~2:02.10~~
+W200FR~1996~8181~21 July 1996~1~Claudia Poll~CRC~1:58.16~Gold~|2~Franziska van Almsick~GER~1:58.57~Silver~|3~Dagmar Hase~GER~1:59.56~Bronze~|4~~~1:59.57~~|5~~~1:59.87~~|6~~~2:00.79~~|7~~~2:01.46~~|8~~~2:01.63~~
+W200FR~2000~8580~19 September 2000~1~Susie O'Neill~AUS~1:58.24~Gold~|2~Martina Moravcová~SVK~1:58.32~Silver~|3~Claudia Poll~CRC~1:58.81~Bronze~|=4~~~1:58.86~~|=4~~~1:58.86~~|6~~~1:59.28~~|7~~~1:59.46~~|8~~~1:59.55~~
+W200FR~2004~8969~17 August 2004~1~Camelia Potec~ROU~1:58.03~Gold~|2~Federica Pellegrini~ITA~1:58.22~Silver~|3~Solenne Figuès~FRA~1:58.45~Bronze~|4~~~1:58.62~~|5~~~1:58.88~~|6~~~1:58.98~~|7~~~1:59.16~~|8~~~1:59.20~~
+#C30 crc:c1d61c02
+W200FR~2008~261705~13 August 2008~1~Federica Pellegrini~ITA~1:54.82~Gold~|2~Sara Isakovič~SLO~1:54.97~Silver~|3~Pang Jiaying~CHN~1:55.05~Bronze~|4~~~1:55.78~~|5~~~1:56.87~~|6~~~1:57.65~~|=7~~~1:57.83~~|=7~~~1:57.83~~
+W200FR~2012~322132~31 July 2012~1~Allison Schmitt~USA~1:53.61~Gold~|2~Camille Muffat~FRA~1:55.58~Silver~|3~Bronte Barratt~AUS~1:55.81~Bronze~|4~~~1:55.82~~|5~~~1:56.73~~|6~~~1:57.25~~|7~~~1:57.60~~|8~~~1:57.68~~
+W200FR~2016~357200~9 August 2016~1~Katie Ledecky~USA~1:53.73~Gold~|2~Sarah Sjöström~SWE~1:54.08~Silver~|3~Emma McKeon~AUS~1:54.92~Bronze~|4~~~1:55.18~~|=5~~~1:55.25~~|=5~~~1:55.25~~|7~~~1:56.27~~|8~~~1:56.29~~
+W200FR~2020~19000194~28 July 2021~1~Ariarne Titmus~AUS~1:53.50~Gold~|2~Siobhán Haughey~HKG~1:53.92~Silver~|3~Penny Oleksiak~CAN~1:54.70~Bronze~|4~~~1:55.01~~|5~~~1:55.21~~|6~~~1:55.45~~|7~~~1:55.91~~|8~~~1:56.39~~
+W200FR~2024~2001702~29 July 2024~1~Mollie O'Callaghan~AUS~1:53.27~Gold~|2~Ariarne Titmus~AUS~1:53.81~Silver~|3~Siobhán Haughey~HKG~1:54.55~Bronze~|4~~~1:55.29~~|5~~~1:55.38~~|6~~~1:55.47~~|7~~~1:55.59~~|8~~~1:56.60~~
+W400FR~1924~4805~15 July 1924~1~Martha Norelius~USA~6:02.2~Gold~|2~Helen Wainwright~USA~6:03.8~Silver~|3~Trudy Ederle~USA~6:04.8~Bronze~|4~~~6:25.4~~
+W400FR~1928~4905~6 August 1928~1~Martha Norelius~USA~5:42.8~Gold~|2~Zus Braun~NED~5:57.8~Silver~|3~Josephine McKim~USA~6:00.2~Bronze~|4~~~6:07.0~~|5~~~6:07.2~~|6~~~6:11.6~~
+W400FR~1932~4999~13 August 1932~1~Helene Madison~USA~5:28.5~Gold~|2~Lenore Kight~USA~5:28.6~Silver~|3~Jenny Maakal~RSA~5:47.3~Bronze~|4~~~5:49.7~~|5~~~5:54.4~~|6~~~6:06.0~~
+W400FR~1936~5098~15 August 1936~1~Rie Mastenbroek~NED~5:26.4~Gold~|2~Ragnhild Hveger~DEN~5:27.5~Silver~|3~Lenore Kight-Wingard~USA~5:29.0~Bronze~|4~~~5:32.2~~|5~~~5:35.2~~|6~~~5:43.1~~|7~~~5:45.0~~|8~~~5:46.0~~
+W400FR~1948~5208~7 August 1948~1~Ann Curtis~USA~5:17.8~Gold~|2~Karen Margrethe Harup~DEN~5:21.2~Silver~|3~Cathie Gibson~GBR~5:22.5~Bronze~|4~~~5:25.3~~|5~~~5:26.0~~|6~~~5:29.4~~|7~~~5:29.4~~|8~~~5:32.9~~
+#C31 crc:8f43fc78
+W400FR~1952~5337~2 August 1952~1~Valéria Gyenge~HUN~5:12.1~Gold~|2~Éva Novák~HUN~5:13.7~Silver~|3~Evelyn Kawamoto~USA~5:14.6~Bronze~|4~~~5:16.5~~|5~~~5:16.9~~|6~~~5:17.9~~|7~~~5:24.0~~|8~~~5:27.0~~
+W400FR~1956~5452~7 December 1956~1~Lorraine Crapp~AUS~4:54.6~Gold~|2~Dawn Fraser~AUS~5:02.5~Silver~|3~Sylvia Ruuska~USA~5:07.1~Bronze~|4~~~5:12.9~~|5~~~5:14.2~~|6~~~5:14.3~~|7~~~5:15.4~~|8~~~5:21.0~~
+W400FR~1960~5599~1 September 1960~1~Chris von Saltza~USA~4:50.6~Gold~|2~Jane Cederqvist~SWE~4:53.9~Silver~|3~Tineke Lagerberg~NED~4:56.9~Bronze~|4~~~4:57.9~~|5~~~4:58.5~~|6~~~4:59.7~~|7~~~5:02.3~~|8~~~5:02.4~~
+W400FR~1964~5782~18 October 1964~1~Ginny Duenkel~USA~4:43.3~Gold~|2~Marilyn Ramenofsky~USA~4:44.6~Silver~|3~Terri Lee Stickles~USA~4:47.2~Bronze~|4~~~4:47.6~~|5~~~4:50.9~~|6~~~4:52.0~~|7~~~4:52.9~~|8~~~4:53.0~~
+W400FR~1968~6049~20 October 1968~1~Debbie Meyer~USA~4:31.8~Gold~|2~Linda Gustavson~USA~4:35.5~Silver~|3~Karen Moras~AUS~4:37.0~Bronze~|4~~~4:37.2~~|5~~~4:40.2~~|6~~~4:42.2~~|7~~~4:51.9~~|8~~~4:53.8~~
+W400FR~1972~6355~30 August 1972~1~Shane Gould~AUS~4:19.04~Gold~|2~Novella Calligaris~ITA~4:22.44~Silver~|3~Gudrun Wegner~GDR~4:23.11~Bronze~|4~~~4:23.59~~|5~~~4:24.07~~|6~~~4:24.22~~|7~~~4:29.70~~|8~~~4:31.51~~
+W400FR~1976~6634~20 July 1976~1~Petra Thümer~GDR~4:09.89~Gold~|2~Shirley Babashoff~USA~4:10.46~Silver~|3~Shannon Smith~CAN~4:14.60~Bronze~|4~~~4:14.76~~|5~~~4:15.50~~|6~~~4:17.43~~|7~~~4:17.44~~|8~~~4:20.42~~
+W400FR~1980~6877~22 July 1980~1~Ines Diers~GDR~4:08.76~Gold~|2~Petra Schneider~GDR~4:09.16~Silver~|3~Carmela Schmidt~GDR~4:10.86~Bronze~|4~~~4:11.65~~|5~~~4:14.40~~|6~~~4:15.79~~|7~~~4:15.95~~|8~~~4:19.18~~
+W400FR~1984~7150~31 July 1984~1~Tiffany Cohen~USA~4:07.10~Gold~|2~Sarah Hardcastle~GBR~4:10.27~Silver~|3~June Croft~GBR~4:11.49~Bronze~|4~~~4:12.26~~|5~~~4:13.95~~|6~~~4:16.05~~|7~~~4:16.33~~|8~~~4:16.41~~
+W400FR~1988~7490~22 September 1988~1~Janet Evans~USA~4:03.85~Gold~|2~Heike Friedrich~GDR~4:05.94~Silver~|3~Anke Möhring~GDR~4:06.62~Bronze~|4~~~4:08.16~~|5~~~4:10.64~~|6~~~4:11.73~~|7~~~4:13.05~~|8~~~4:13.92~~
+#C32 crc:ccfcee95
+W400FR~1992~7844~28 July 1992~1~Dagmar Hase~GER~4:07.18~Gold~|2~Janet Evans~USA~4:07.37~Silver~|3~Hayley Lewis~AUS~4:11.22~Bronze~|4~~~4:11.50~~|5~~~4:11.52~~|6~~~4:13.75~~|7~~~4:14.10~~|8~~~4:15.71~~
+W400FR~1996~8191~22 July 1996~1~Michelle Smith~IRL~4:07.25~Gold~|2~Dagmar Hase~GER~4:08.30~Silver~|3~Kirsten Vlieghuis~NED~4:08.70~Bronze~|4~~~4:09.83~~|5~~~4:10.00~~|6~~~4:10.06~~|7~~~4:11.68~~|8~~~4:14.21~~
+W400FR~2000~8592~17 September 2000~1~Brooke Bennett~USA~4:05.80~Gold~|2~Diana Munz~USA~4:07.07~Silver~|3~Claudia Poll~CRC~4:07.83~Bronze~|4~~~4:08.79~~|5~~~4:10.37~~|6~~~4:10.38~~|7~~~4:12.36~~|8~~~4:13.11~~
+W400FR~2004~8981~15 August 2004~1~Laure Manaudou~FRA~4:05.34~Gold~|2~Otylia Jędrzejczak~POL~4:05.84~Silver~|3~Kaitlin Sandeno~USA~4:06.19~Bronze~|4~~~4:06.34~~|5~~~4:07.51~~|6~~~4:10.91~~|7~~~4:10.92~~|8~~~4:11.35~~
+W400FR~2008~261717~11 August 2008~1~Becky Adlington~GBR~4:03.22~Gold~|2~Katie Hoff~USA~4:03.29~Silver~|3~Jo Jackson~GBR~4:03.52~Bronze~|4~~~4:03.60~~|5~~~4:04.56~~|6~~~4:04.66~~|7~~~4:05.05~~|8~~~4:11.26~~
+W400FR~2012~322049~29 July 2012~1~Camille Muffat~FRA~4:01.45~Gold~|2~Allison Schmitt~USA~4:01.77~Silver~|3~Becky Adlington~GBR~4:03.01~Bronze~|4~~~4:03.98~~|5~~~4:04.50~~|6~~~4:05.95~~|7~~~4:06.24~~|8~~~4:06.25~~
+W400FR~2016~357212~7 August 2016~1~Katie Ledecky~USA~3:56.46~Gold~|2~Jazz Carlin~GBR~4:01.23~Silver~|3~Leah Smith~USA~4:01.92~Bronze~|4~~~4:02.37~~|5~~~4:04.69~~|6~~~4:05.30~~|7~~~4:05.68~~|8~~~4:06.98~~
+W400FR~2020~19000205~26 July 2021~1~Ariarne Titmus~AUS~3:56.69~Gold~|2~Katie Ledecky~USA~3:57.36~Silver~|3~Li Bingjie~CHN~4:01.08~Bronze~|4~~~4:02.42~~|5~~~4:04.10~~|6~~~4:04.98~~|7~~~4:06.81~~|8~~~4:08.01~~
+W400FR~2024~2001712~27 July 2024~1~Ariarne Titmus~AUS~3:57.49~Gold~|2~Summer McIntosh~CAN~3:58.37~Silver~|3~Katie Ledecky~USA~4:00.86~Bronze~|4~~~4:01.12~~|5~~~4:02.14~~|6~~~4:02.26~~|7~~~4:03.53~~|8~~~4:04.96~~
+W800FR~1968~6058~24 October 1968~1~Debbie Meyer~USA~9:24.0~Gold~|2~Pam Kruse~USA~9:35.7~Silver~|3~María Teresa Ramírez~MEX~9:38.5~Bronze~|4~~~9:38.6~~|5~~~9:51.3~~|6~~~9:56.4~~|7~~~9:56.7~~|8~~~10:02.5~~
+#C33 crc:32ee0d2d
+W800FR~1972~6362~3 September 1972~1~Keena Rothhammer~USA~8:53.68~Gold~|2~Shane Gould~AUS~8:56.39~Silver~|3~Novella Calligaris~ITA~8:57.46~Bronze~|4~~~8:57.62~~|5~~~8:58.89~~|6~~~9:01.21~~|7~~~9:16.69~~|8~~~9:19.06~~
+W800FR~1976~6642~25 July 1976~1~Petra Thümer~GDR~8:37.14~Gold~|2~Shirley Babashoff~USA~8:37.59~Silver~|3~Wendy Weinberg~USA~8:42.60~Bronze~|4~~~8:47.21~~|5~~~8:47.33~~|6~~~8:48.15~~|7~~~8:50.40~~|8~~~8:52.88~~
+W800FR~1980~6883~26 July 1980~1~Michelle Ford~AUS~8:28.90~Gold~|2~Ines Diers~GDR~8:32.55~Silver~|3~Heike Dähne~GDR~8:33.48~Bronze~|4~~~8:38.05~~|5~~~8:42.04~~|6~~~8:44.84~~|7~~~8:45.28~~|8~~~8:46.45~~
+W800FR~1984~7158~3 August 1984~1~Tiffany Cohen~USA~8:24.95~Gold~|2~Michelle Richardson~USA~8:30.73~Silver~|3~Sarah Hardcastle~GBR~8:32.60~Bronze~|4~~~8:37.94~~|5~~~8:42.45~~|6~~~8:42.86~~|7~~~8:47.32~~|8~~~8:48.12~~
+W800FR~1988~7498~24 September 1988~1~Janet Evans~USA~8:20.20~Gold~|2~Astrid Strauß~GDR~8:22.09~Silver~|3~Julie M. McDonald~AUS~8:22.93~Bronze~|4~~~8:23.09~~|5~~~8:30.86~~|6~~~8:30.94~~|7~~~8:37.47~~|8~~~8:41.05~~
+W800FR~1992~7853~30 July 1992~1~Janet Evans~USA~8:25.52~Gold~|2~Hayley Lewis~AUS~8:30.34~Silver~|3~Jana Henke~GER~8:30.99~Bronze~|4~~~8:35.57~~|5~~~8:37.12~~|6~~~8:37.66~~|7~~~8:39.25~~|8~~~8:41.86~~
+W800FR~1996~8200~25 July 1996~1~Brooke Bennett~USA~8:27.89~Gold~|2~Dagmar Hase~GER~8:29.91~Silver~|3~Kirsten Vlieghuis~NED~8:30.84~Bronze~|4~~~8:31.06~~|5~~~8:38.34~~|6~~~8:38.91~~|7~~~8:40.43~~|8~~~8:41.75~~
+W800FR~2000~8599~22 September 2000~1~Brooke Bennett~USA~8:19.67~Gold~|2~Yana Klochkova~UKR~8:22.66~Silver~|3~Kaitlin Sandeno~USA~8:24.29~Bronze~|4~~~8:25.91~~|5~~~8:30.11~~|6~~~8:30.58~~|7~~~8:31.97~~|8~~~8:37.39~~
+W800FR~2004~8989~20 August 2004~1~Ai Shibata~JPN~8:24.54~Gold~|2~Laure Manaudou~FRA~8:24.96~Silver~|3~Diana Munz~USA~8:26.61~Bronze~|4~~~8:26.97~~|5~~~8:29.04~~|6~~~8:29.37~~|7~~~8:33.95~~|8~~~8:37.02~~
+W800FR~2008~261726~16 August 2008~1~Becky Adlington~GBR~8:14.10~Gold~|2~Alessia Filippi~ITA~8:20.23~Silver~|3~Lotte Friis~DEN~8:23.03~Bronze~|4~~~8:23.11~~|5~~~8:26.34~~|6~~~8:26.39~~|7~~~8:29.79~~|8~~~8:32.35~~
+#C34 crc:5fe72644
+W800FR~2012~322301~3 August 2012~1~Katie Ledecky~USA~8:14.63~Gold~|2~Mireia Belmonte~ESP~8:18.76~Silver~|3~Becky Adlington~GBR~8:20.32~Bronze~|4~~~8:22.72~~|5~~~8:23.86~~|6~~~8:23.89~~|7~~~8:29.26~~|8~~~8:29.28~~
+W800FR~2016~357219~12 August 2016~1~Katie Ledecky~USA~8:04.79~Gold~|2~Jazz Carlin~GBR~8:16.17~Silver~|3~Boglárka Kapás~HUN~8:16.37~Bronze~|4~~~8:18.55~~|5~~~8:20.32~~|6~~~8:20.95~~|7~~~8:24.50~~|8~~~8:27.75~~
+W800FR~2020~19000213~31 July 2021~1~Katie Ledecky~USA~8:12.57~Gold~|2~Ariarne Titmus~AUS~8:13.83~Silver~|3~Simona Quadarella~ITA~8:18.35~Bronze~|4~~~8:19.38~~|5~~~8:21.93~~|6~~~8:22.25~~|7~~~8:24.56~~|8~~~8:26.30~~
+W800FR~2024~2001719~3 August 2024~1~Katie Ledecky~USA~8:11.04~Gold~|2~Ariarne Titmus~AUS~8:12.29~Silver~|3~Paige Madden~USA~8:13.00~Bronze~|4~~~8:14.55~~|5~~~8:17.82~~|6~~~8:21.09~~|7~~~8:22.80~~|8~~~8:23.27~~
+W1500FR~2020~19000221~28 July 2021~1~Katie Ledecky~USA~15:37.34~Gold~|2~Erica Sullivan~USA~15:41.41~Silver~|3~Sarah Köhler~GER~15:42.91~Bronze~|4~~~15:46.37~~|5~~~15:53.97~~|6~~~16:00.36~~|7~~~16:00.38~~|8~~~16:05.81~~
+W1500FR~2024~2001726~31 July 2024~1~Katie Ledecky~USA~15:30.02~Gold~|2~Anastasiya Kirpichnikova~FRA~15:40.35~Silver~|3~Isabel Gose~GER~15:41.16~Bronze~|4~~~15:44.05~~|5~~~16:01.03~~|6~~~16:02.70~~|7~~~16:02.86~~|8~~~16:12.57~~
+W100BK~1924~4816~20 July 1924~1~Sybil Bauer~USA~1:23.2~Gold~|2~Phyllis Harding~GBR~1:27.4~Silver~|3~Aileen Riggin~USA~1:28.2~Bronze~|4~~~1:30.8~~|5~~~1:31.2~~
+W100BK~1928~4915~11 August 1928~1~Zus Braun~NED~1:22.0~Gold~|2~Ellen King~GBR~1:22.2~Silver~|3~Joyce Cooper~GBR~1:22.8~Bronze~|4~~~1:24.2~~|=5~~~1:24.4~~|=5~~~1:24.4~~|7~~~1:25.8~~
+W100BK~1932~5010~11 August 1932~1~Eleanor Holm~USA~1:19.4~Gold~|2~Bonnie Mealing~AUS~1:21.3~Silver~|3~Valerie Davies~GBR~1:22.5~Bronze~|4~~~1:22.6~~|5~~~1:23.2~~|6~~~1:23.4~~
+W100BK~1936~5109~13 August 1936~1~Nida Senff~NED~1:18.9~Gold~|2~Rie Mastenbroek~NED~1:19.2~Silver~|3~Alice Bridges~USA~1:19.4~Bronze~|4~~~1:19.6~~|5~~~1:20.4~~|6~~~1:20.6~~|7~~~1:21.5~~
+#C35 crc:b1782ba5
+W100BK~1948~5217~5 August 1948~1~Karen Margrethe Harup~DEN~1:14.4~Gold~|2~Suzanne Zimmerman~USA~1:16.0~Silver~|3~Judy-Joy Davies~AUS~1:16.7~Bronze~|4~~~1:18.4~~|5~~~1:18.8~~|6~~~1:18.9~~|7~~~1:19.0~~|8~~~1:19.1~~
+W100BK~1952~5348~31 July 1952~1~Joan Harrison~RSA~1:14.3~Gold~|2~Geertje Wielema~NED~1:14.5~Silver~|3~Jean Stewart~NZL~1:15.8~Bronze~|4~~~1:15.8~~|5~~~1:16.2~~|6~~~1:18.0~~|7~~~1:18.4~~
+W100BK~1956~5459~5 December 1956~1~Judith Grinham~GBR~1:12.9~Gold~|2~Carin Cone~USA~1:12.9~Silver~|3~Margaret Edwards~GBR~1:13.1~Bronze~|4~~~1:13.4~~|5~~~1:14.1~~|6~~~1:14.3~~|7~~~1:14.3~~|8~~~1:14.7~~
+W100BK~1960~5605~3 September 1960~1~Lynn Burke~USA~1:09.3~Gold~|2~Natalie Steward~GBR~1:10.8~Silver~|3~Satoko Tanaka~JPN~1:11.4~Bronze~|4~~~1:11.4~~|5~~~1:11.4~~|6~~~1:11.8~~|7~~~1:12.1~~|8~~~1:12.4~~
+W100BK~1964~5790~14 October 1964~1~Cathy Ferguson~USA~1:07.7~Gold~|2~Kiki Caron~FRA~1:07.9~Silver~|3~Ginny Duenkel~USA~1:08.0~Bronze~|4~~~1:08.6~~|5~~~1:09.4~~|6~~~1:09.5~~|7~~~1:09.8~~|8~~~1:11.2~~
+W100BK~1968~6066~23 October 1968~1~Kaye Hall~USA~1:06.2~Gold~|2~Elaine Tanner~CAN~1:06.7~Silver~|3~Jane Swagerty~USA~1:08.1~Bronze~|4~~~1:08.3~~|5~~~1:09.1~~|6~~~1:09.1~~|7~~~1:09.3~~|8~~~1:10.6~~
+W100BK~1972~6370~2 September 1972~1~Melissa Belote~USA~1:05.78~Gold~|2~Andrea Gyarmati~HUN~1:06.26~Silver~|3~Susie Atwood~USA~1:06.34~Bronze~|4~~~1:06.69~~|5~~~1:06.70~~|6~~~1:06.82~~|7~~~1:07.27~~|8~~~1:07.36~~
+W100BK~1976~6648~21 July 1976~1~Ulrike Richter~GDR~1:01.83~Gold~|2~Birgit Treiber~GDR~1:03.41~Silver~|3~Nancy Garapick~CAN~1:03.71~Bronze~|4~~~1:03.93~~|5~~~1:05.16~~|6~~~1:05.19~~|7~~~1:05.30~~|8~~~1:05.53~~
+W100BK~1980~6888~23 July 1980~1~Rica Reinisch~GDR~1:00.86~Gold~|2~Ina Kleber~GDR~1:02.07~Silver~|3~Petra Riedel~GDR~1:02.64~Bronze~|4~~~1:03.81~~|5~~~1:03.82~~|6~~~1:03.87~~|7~~~1:04.47~~|8~~~1:05.10~~
+W100BK~1984~7164~31 July 1984~1~Theresa Andrews~USA~1:02.55~Gold~|2~Betsy Mitchell~USA~1:02.63~Silver~|3~Jolanda de Rover~NED~1:02.91~Bronze~|4~~~1:03.21~~|5~~~1:03.29~~|6~~~1:03.46~~|7~~~1:04.16~~|8~~~1:04.47~~
+#C36 crc:02ba8fd7
+W100BK~1988~7505~22 September 1988~1~Kristin Otto~GDR~1:00.89~Gold~|2~Krisztina Egerszegi~HUN~1:01.56~Silver~|3~Cornelia Sirch~GDR~1:01.57~Bronze~|4~~~1:02.71~~|5~~~1:02.78~~|6~~~1:03.34~~|7~~~1:04.15~~|8~~~1:04.19~~
+W100BK~1992~7860~28 July 1992~1~Krisztina Egerszegi~HUN~1:00.68~Gold~|2~Tünde Szabó~HUN~1:01.14~Silver~|3~Lea Loveless~USA~1:01.43~Bronze~|4~~~1:01.78~~|5~~~1:01.81~~|6~~~1:02.07~~|7~~~1:02.36~~|8~~~1:03.23~~
+W100BK~1996~8207~22 July 1996~1~Beth Botsford~USA~1:01.19~Gold~|2~Whitney Hedgepeth~USA~1:01.47~Silver~|3~Marianne Kriel~RSA~1:02.12~Bronze~|4~~~1:02.33~~|5~~~1:02.50~~|6~~~1:02.52~~|7~~~1:02.70~~|8~~~1:02.78~~
+W100BK~2000~8606~18 September 2000~1~Diana Mocanu~ROU~1:00.21~Gold~|2~Mai Nakamura~JPN~1:00.55~Silver~|3~Nina Zhivanevskaya~ESP~1:00.89~Bronze~|4~~~1:01.10~~|5~~~1:01.14~~|6~~~1:01.47~~|7~~~1:01.61~~|8~~~1:02.02~~
+W100BK~2004~8996~16 August 2004~1~Natalie Coughlin~USA~1:00.37~Gold~|2~Kirsty Coventry~ZIM~1:00.50~Silver~|3~Laure Manaudou~FRA~1:00.88~Bronze~|4~~~1:01.05~~|5~~~1:01.12~~|6~~~1:01.39~~|7~~~1:01.51~~|8~~~1:01.76~~
+W100BK~2008~261735~12 August 2008~1~Natalie Coughlin~USA~58.96~Gold~|2~Kirsty Coventry~ZIM~59.19~Silver~|3~Margaret Hoelzer~USA~59.34~Bronze~|4~~~59.38~~|5~~~59.40~~|6~~~59.72~~|7~~~1:00.10~~|8~~~1:00.18~~
+W100BK~2012~322120~30 July 2012~1~Missy Franklin~USA~58.33~Gold~|2~Emily Seebohm~AUS~58.68~Silver~|3~Aya Terakawa~JPN~58.83~Bronze~|4~~~59.00~~|5~~~59.20~~|6~~~59.23~~|7~~~59.29~~|8~~~1:00.50~~
+W100BK~2016~357226~8 August 2016~1~Katinka Hosszú~HUN~58.45~Gold~|2~Kathleen Baker~USA~58.75~Silver~|=3~Kylie Masse~CAN~58.76~Bronze~|=3~Fu Yuanhui~CHN~58.76~Bronze~|5~~~58.80~~|6~~~58.95~~|7~~~59.19~~|8~~~59.23~~
+W100BK~2020~19000238~27 July 2021~1~Kaylee McKeown~AUS~57.47~Gold~|2~Kylie Masse~CAN~57.72~Silver~|3~Regan Smith~USA~58.05~Bronze~|4~~~58.43~~|5~~~58.45~~|6~~~58.70~~|7~~~59.11~~|8~~~59.53~~
+W100BK~2024~2001744~30 July 2024~1~Kaylee McKeown~AUS~57.33~Gold~|2~Regan Smith~USA~57.66~Silver~|3~Katharine Berkoff~USA~57.98~Bronze~|4~~~58.29~~|5~~~58.98~~|6~~~59.25~~|7~~~59.40~~|8~~~59.80~~
+#C37 crc:a37ec3fb
+W200BK~1968~6078~25 October 1968~1~Pokey Watson~USA~2:24.8~Gold~|2~Elaine Tanner~CAN~2:27.4~Silver~|3~Kaye Hall~USA~2:28.9~Bronze~|4~~~2:29.5~~|5~~~2:32.3~~|6~~~2:33.5~~|7~~~2:33.9~~|8~~~2:36.6~~
+W200BK~1972~6381~4 September 1972~1~Melissa Belote~USA~2:19.19~Gold~|2~Susie Atwood~USA~2:20.38~Silver~|3~Donna-Marie Gurr~CAN~2:23.22~Bronze~|4~~~2:23.35~~|5~~~2:23.44~~|6~~~2:23.70~~|7~~~2:24.65~~|8~~~2:25.80~~
+W200BK~1976~6659~25 July 1976~1~Ulrike Richter~GDR~2:13.43~Gold~|2~Birgit Treiber~GDR~2:14.97~Silver~|3~Nancy Garapick~CAN~2:15.60~Bronze~|4~~~2:16.28~~|5~~~2:17.27~~|6~~~2:17.55~~|7~~~2:17.74~~|8~~~2:17.95~~
+W200BK~1980~6895~27 July 1980~1~Rica Reinisch~GDR~2:11.77~Gold~|2~Cornelia Polit~GDR~2:13.75~Silver~|3~Birgit Treiber~GDR~2:14.14~Bronze~|4~~~2:15.20~~|5~~~2:15.58~~|6~~~2:16.66~~|7~~~2:16.75~~|8~~~2:17.72~~
+W200BK~1984~7173~4 August 1984~1~Jolanda de Rover~NED~2:12.38~Gold~|2~Amy White~USA~2:13.04~Silver~|3~Anca Pătrășcoiu~ROU~2:13.29~Bronze~|4~~~2:14.37~~|5~~~2:15.73~~|6~~~2:15.93~~|7~~~2:16.15~~|8~~~2:17.89~~
+W200BK~1988~7518~25 September 1988~1~Krisztina Egerszegi~HUN~2:09.29~Gold~|2~Kathrin Zimmermann~GDR~2:10.61~Silver~|3~Cornelia Sirch~GDR~2:11.45~Bronze~|4~~~2:12.39~~|5~~~2:13.43~~|6~~~2:15.02~~|7~~~2:15.17~~|8~~~2:15.94~~
+W200BK~1992~7870~31 July 1992~1~Krisztina Egerszegi~HUN~2:07.06~Gold~|2~Dagmar Hase~GER~2:09.46~Silver~|3~Nicole Stevenson~AUS~2:10.20~Bronze~|4~~~2:11.54~~|5~~~2:11.99~~|6~~~2:12.94~~|7~~~2:12.97~~|8~~~2:13.68~~
+W200BK~1996~8216~25 July 1996~1~Krisztina Egerszegi~HUN~2:07.83~Gold~|2~Whitney Hedgepeth~USA~2:11.98~Silver~|3~Cathleen Rund~GER~2:12.06~Bronze~|4~~~2:12.90~~|5~~~2:13.57~~|6~~~2:14.04~~|7~~~2:14.56~~|8~~~2:14.59~~
+W200BK~2000~8618~22 September 2000~1~Diana Mocanu~ROU~2:08.16~Gold~|2~Roxana Maracineanu~FRA~2:10.25~Silver~|3~Miki Nakao~JPN~2:11.05~Bronze~|4~~~2:11.21~~|5~~~2:12.35~~|6~~~2:12.75~~|7~~~2:13.31~~|8~~~2:14.57~~
+W200BK~2004~9009~20 August 2004~1~Kirsty Coventry~ZIM~2:09.19~Gold~|2~Stanislava Komarova~RUS~2:09.72~Silver~|=3~Reiko Nakamura~JPN~2:09.88~Bronze~|=3~Antje Buschschulte~GER~2:09.88~Bronze~|5~~~2:10.70~~|6~~~2:11.15~~|7~~~2:12.11~~|8~~~2:12.90~~
+#C38 crc:58c3233b
+W200BK~2008~261748~16 August 2008~1~Kirsty Coventry~ZIM~2:05.24~Gold~|2~Margaret Hoelzer~USA~2:06.23~Silver~|3~Reiko Nakamura~JPN~2:07.13~Bronze~|4~~~2:07.88~~|5~~~2:08.23~~|6~~~2:08.51~~|7~~~2:08.84~~|8~~~2:10.12~~
+W200BK~2012~322309~3 August 2012~1~Missy Franklin~USA~2:04.06~Gold~|2~Anastasiya Zuyeva~RUS~2:05.92~Silver~|3~Elizabeth Beisel~USA~2:06.55~Bronze~|4~~~2:07.26~~|5~~~2:07.43~~|6~~~2:08.18~~|7~~~2:08.43~~|8~~~2:09.86~~
+W200BK~2016~357237~12 August 2016~1~Maya DiRado~USA~2:05.99~Gold~|2~Katinka Hosszú~HUN~2:06.05~Silver~|3~Hilary Caldwell~CAN~2:07.54~Bronze~|4~~~2:07.89~~|5~~~2:08.02~~|6~~~2:08.80~~|7~~~2:09.03~~|8~~~2:09.44~~
+W200BK~2020~19000250~31 July 2021~1~Kaylee McKeown~AUS~2:04.68~Gold~|2~Kylie Masse~CAN~2:05.42~Silver~|3~Emily Seebohm~AUS~2:06.17~Bronze~|4~~~2:06.39~~|5~~~2:06.40~~|6~~~2:08.24~~|7~~~2:08.26~~|8~~~2:08.48~~
+W200BK~2024~2001756~2 August 2024~1~Kaylee McKeown~AUS~2:03.73~Gold~|2~Regan Smith~USA~2:04.26~Silver~|3~Kylie Masse~CAN~2:05.57~Bronze~|4~~~2:05.61~~|5~~~2:07.53~~|6~~~2:07.96~~|7~~~2:08.16~~|8~~~2:10.23~~
+W100BR~1968~6086~19 October 1968~1~Đurđica Bjedov~YUG~1:15.8~Gold~|2~Galina Prozumenshchikova~URS~1:15.9~Silver~|3~Sharon Wichman~USA~1:16.1~Bronze~|4~~~1:16.2~~|5~~~1:16.7~~|6~~~1:17.0~~|7~~~1:17.2~~|8~~~1:17.3~~
+W100BR~1972~6389~2 September 1972~1~Cathy Carr~USA~1:13.58~Gold~|2~Galina Stepanova~URS~1:14.99~Silver~|3~Beverley Whitfield~AUS~1:15.73~Bronze~|4~~~1:16.26~~|5~~~1:16.34~~|6~~~1:17.16~~|7~~~1:17.19~~|8~~~1:17.49~~
+W100BR~1976~6666~24 July 1976~1~Hannelore Anke~GDR~1:11.16~Gold~|2~Lyubov Rusanova~URS~1:13.04~Silver~|3~Marina Koshevaya~URS~1:13.30~Bronze~|4~~~1:13.33~~|5~~~1:14.15~~|6~~~1:14.17~~|7~~~1:14.20~~|8~~~1:14.21~~
+W100BR~1980~6901~24 July 1980~1~Ute Geweniger~GDR~1:10.22~Gold~|2~Elvira Vasilkova~URS~1:10.41~Silver~|3~Susanne Nielsson~DEN~1:11.16~Bronze~|4~~~1:11.48~~|5~~~1:11.72~~|6~~~1:12.11~~|7~~~1:12.21~~|8~~~1:12.51~~
+W100BR~1984~7181~2 August 1984~1~Petra van Staveren~NED~1:09.88~Gold~|2~Anne Ottenbrite~CAN~1:10.69~Silver~|3~Catherine Poirot~FRA~1:10.70~Bronze~|4~~~1:10.88~~|5~~~1:11.14~~|6~~~1:11.33~~|7~~~1:11.45~~|8~~~1:11.82~~
+#C39 crc:470d753c
+W100BR~1988~7527~23 September 1988~1~Tanya Dangalakova~BUL~1:07.95~Gold~|2~Antoaneta Frenkeva~BUL~1:08.74~Silver~|3~Silke Hörner~GDR~1:08.83~Bronze~|4~~~1:08.86~~|5~~~1:09.24~~|6~~~1:09.60~~|7~~~1:10.53~~|8~~~1:10.67~~
+W100BR~1992~7880~29 July 1992~1~Alena Rudkouskaya~EUN~1:08.00~Gold~|2~Anita Nall~USA~1:08.17~Silver~|3~Sam Riley~AUS~1:09.25~Bronze~|4~~~1:09.71~~|5~~~1:09.77~~|6~~~1:10.19~~|7~~~1:10.39~~|8~~~1:11.05~~
+W100BR~1996~8225~21 July 1996~1~Penny Heyns~RSA~1:07.73~Gold~|2~Amanda Beard~USA~1:08.09~Silver~|3~Sam Riley~AUS~1:09.18~Bronze~|4~~~1:09.21~~|5~~~1:09.24~~|6~~~1:09.40~~|7~~~1:09.55~~|8~~~1:09.79~~
+W100BR~2000~8629~18 September 2000~1~Megan Quann~USA~1:07.05~Gold~|2~Leisel Jones~AUS~1:07.49~Silver~|3~Penny Heyns~RSA~1:07.55~Bronze~|4~~~1:07.85~~|5~~~1:08.09~~|6~~~1:08.37~~|7~~~1:09.09~~|8~~~1:09.86~~
+W100BR~2004~9020~16 August 2004~1~Luo Xuejuan~CHN~1:06.64~Gold~|2~Brooke Hanson~AUS~1:07.15~Silver~|3~Leisel Jones~AUS~1:07.16~Bronze~|4~~~1:07.44~~|5~~~1:07.53~~|6~~~1:07.59~~|7~~~1:08.19~~
+W100BR~2008~261759~12 August 2008~1~Leisel Jones~AUS~1:05.17~Gold~|2~Rebecca Soni~USA~1:06.73~Silver~|3~Mirna Jukic~AUT~1:07.34~Bronze~|4~~~1:07.43~~|5~~~1:07.62~~|6~~~1:07.63~~|7~~~1:08.08~~|8~~~1:08.43~~
+W100BR~2012~322107~30 July 2012~1~Rūta Meilutytė~LTU~1:05.47~Gold~|2~Rebecca Soni~USA~1:05.55~Silver~|3~Satomi Suzuki~JPN~1:06.46~Bronze~|4~~~1:06.93~~|5~~~1:06.95~~|6~~~1:06.96~~|7~~~1:06.98~~|8~~~1:07.55~~
+W100BR~2016~357247~8 August 2016~1~Lilly King~USA~1:04.93~Gold~|2~Yuliya Yefimova~RUS~1:05.50~Silver~|3~Katie Meili~USA~1:05.69~Bronze~|4~~~1:06.37~~|5~~~1:06.68~~|6~~~1:07.18~~|7~~~1:07.32~~|8~~~1:08.10~~
+W100BR~2020~19000261~27 July 2021~1~Lydia Jacoby~USA~1:04.95~Gold~|2~Tatjana Schoenmaker~RSA~1:05.22~Silver~|3~Lilly King~USA~1:05.54~Bronze~|4~~~1:05.90~~|5~~~1:06.02~~|6~~~1:06.07~~|7~~~1:06.19~~|8~~~1:06.94~~
+W100BR~2024~2001766~29 July 2024~1~Tatjana Schoenmaker-Smith~RSA~1:05.28~Gold~|2~Tang Qianting~CHN~1:05.54~Silver~|3~Mona McSharry~IRL~1:05.59~Bronze~|=4~~~1:05.60~~|=4~~~1:05.60~~|6~~~1:05.85~~|7~~~1:06.50~~|8~~~1:06.54~~
+#C40 crc:5cea48de
+W200BR~1924~4821~18 July 1924~1~Lucy Morton~GBR~3:33.2~Gold~|2~Agnes Geraghty~USA~3:34.0~Silver~|3~Gladys Carson~GBR~3:35.4~Bronze~|4~~~3:37.6~~|5~~~3:38.0~~|6~~~3:39.2~~|7~~~3:47.6~~
+W200BR~1928~4921~9 August 1928~1~Hilde Schrader~GER~3:12.6~Gold~|2~Marie Baron~NED~3:15.2~Silver~|3~Lotte Mühe~GER~3:17.6~Bronze~|4~~~3:19.0~~|5~~~3:19.2~~|6~~~3:23.0~~
+W200BR~1932~5016~9 August 1932~1~Clare Dennis~AUS~3:06.3~Gold~|2~Hideko Maehata~JPN~3:06.4~Silver~|3~Else Jacobsen~DEN~3:07.1~Bronze~|4~~~3:11.7~~|5~~~3:11.8~~|6~~~3:16.0~~|7~~~3:18.2~~
+W200BR~1936~5118~11 August 1936~1~Hideko Maehata~JPN~3:03.6~Gold~|2~Martha Genenger~GER~3:04.2~Silver~|3~Inge Sørensen~DEN~3:07.8~Bronze~|=4~~~3:09.5~~|=4~~~3:09.5~~|6~~~3:09.7~~|7~~~3:12.8~~
+W200BR~1948~5227~3 August 1948~1~Nel van Vliet~NED~2:57.2~Gold~|2~Nancy Lyons~AUS~2:57.7~Silver~|3~Éva Novák~HUN~3:00.2~Bronze~|4~~~3:02.5~~|5~~~3:06.2~~|6~~~3:06.1~~|7~~~3:07.5~~|8~~~3:08.1~~
+W200BR~1952~5354~29 July 1952~1~Éva Székely~HUN~2:51.7~Gold~|2~Éva Novák~HUN~2:54.4~Silver~|3~Elenor Gordon~GBR~2:57.6~Bronze~|4~~~2:57.6~~|5~~~2:57.8~~|6~~~2:58.9~~|7~~~3:01.8~~|8~~~3:02.1~~
+W200BR~1956~5465~30 November 1956~1~Ursula Happe~GER~2:53.1~Gold~|2~Éva Székely~HUN~2:54.8~Silver~|3~Eva-Maria ten Elsen~GER~2:55.1~Bronze~|4~~~2:55.8~~|5~~~2:56.1~~|6~~~2:56.1~~|7~~~2:57.2~~|8~~~2:59.2~~
+W200BR~1960~5612~27 August 1960~1~Anita Lonsbrough~GBR~2:49.5~Gold~|2~Wiltrud Urselmann~GER~2:50.0~Silver~|3~Barbara Göbel~GER~2:53.6~Bronze~|4~~~2:54.4~~|5~~~2:54.6~~|6~~~2:55.4~~|7~~~2:55.5~~|8~~~2:55.7~~
+W200BR~1964~5797~12 October 1964~1~Galina Prozumenshchikova~URS~2:46.4~Gold~|2~Claudia Kolb~USA~2:47.6~Silver~|3~Svetlana Babanina~URS~2:48.6~Bronze~|4~~~2:49.0~~|5~~~2:49.6~~|6~~~2:51.0~~|7~~~2:51.3~~|8~~~2:53.9~~
+W200BR~1968~6097~23 October 1968~1~Sharon Wichman~USA~2:44.4~Gold~|2~Đurđica Bjedov~YUG~2:46.4~Silver~|3~Galina Prozumenshchikova~URS~2:47.0~Bronze~|4~~~2:47.1~~|5~~~2:48.4~~|6~~~2:48.4~~|7~~~2:51.5~~|8~~~2:51.9~~
+#C41 crc:d9938dbb
+W200BR~1972~6400~29 August 1972~1~Beverley Whitfield~AUS~2:41.71~Gold~|2~Dana Schoenfield~USA~2:42.05~Silver~|3~Galina Stepanova~URS~2:42.36~Bronze~|4~~~2:42.88~~|5~~~2:43.38~~|6~~~2:43.41~~|7~~~2:44.48~~|8~~~2:45.12~~
+W200BR~1976~6678~21 July 1976~1~Marina Koshevaya~URS~2:33.35~Gold~|2~Marina Yurchenya~URS~2:36.08~Silver~|3~Lyubov Rusanova~URS~2:36.22~Bronze~|4~~~2:36.49~~|5~~~2:36.97~~|6~~~2:38.27~~|7~~~2:38.37~~|8~~~2:39.01~~
+W200BR~1980~6908~23 July 1980~1~Lina Kačiušytė~URS~2:29.54~Gold~|2~Svetlana Varganova~URS~2:29.61~Silver~|3~Yuliya Bogdanova~URS~2:32.39~Bronze~|4~~~2:32.75~~|5~~~2:33.23~~|6~~~2:34.34~~|7~~~2:34.51~~|8~~~2:35.38~~
+W200BR~1984~7189~30 July 1984~1~Anne Ottenbrite~CAN~2:30.38~Gold~|2~Susan Rapp~USA~2:31.15~Silver~|3~Ingrid Lempereur~BEL~2:31.40~Bronze~|4~~~2:32.93~~|5~~~2:33.60~~|6~~~2:33.82~~|7~~~2:35.07~~|8~~~2:35.51~~
+W200BR~1988~7537~21 September 1988~1~Silke Hörner~GDR~2:26.71~Gold~|2~Huang Xiaomin~CHN~2:27.49~Silver~|3~Antoaneta Frenkeva~BUL~2:28.34~Bronze~|4~~~2:28.43~~|5~~~2:28.54~~|6~~~2:29.42~~|7~~~2:29.60~~|8~~~2:29.86~~
+W200BR~1992~7890~27 July 1992~1~Kyoko Iwasaki~JPN~2:26.65~Gold~|2~Lin Li~CHN~2:26.85~Silver~|3~Anita Nall~USA~2:26.88~Bronze~|4~~~2:28.47~~|5~~~2:29.88~~|6~~~2:30.11~~|7~~~2:31.21~~|8~~~2:31.76~~
+W200BR~1996~8235~23 July 1996~1~Penny Heyns~RSA~2:25.41~Gold~|2~Amanda Beard~USA~2:25.75~Silver~|3~Ágnes Kovács~HUN~2:26.57~Bronze~|4~~~2:27.91~~|5~~~2:28.05~~|6~~~2:28.34~~|7~~~2:28.36~~|8~~~2:31.45~~
+W200BR~2000~8641~21 September 2000~1~Ágnes Kovács~HUN~2:24.35~Gold~|2~Kristy Kowal~USA~2:24.56~Silver~|3~Amanda Beard~USA~2:25.35~Bronze~|4~~~2:25.36~~|5~~~2:25.47~~|6~~~2:25.72~~|7~~~2:26.98~~|8~~~2:27.33~~
+W200BR~2004~9032~19 August 2004~1~Amanda Beard~USA~2:23.37~Gold~|2~Leisel Jones~AUS~2:23.60~Silver~|3~Anne Poleska~GER~2:25.82~Bronze~|4~~~2:25.87~~|5~~~2:26.12~~|6~~~2:26.35~~|7~~~2:26.36~~|8~~~2:26.39~~
+W200BR~2008~261772~15 August 2008~1~Rebecca Soni~USA~2:20.22~Gold~|2~Leisel Jones~AUS~2:22.05~Silver~|3~Sara Nordenstam~NOR~2:23.02~Bronze~|4~~~2:23.24~~|5~~~2:23.76~~|6~~~2:23.77~~|7~~~2:25.14~~|8~~~2:25.23~~
+#C42 crc:65b3b1c8
+W200BR~2012~322228~2 August 2012~1~Rebecca Soni~USA~2:19.59~Gold~|2~Satomi Suzuki~JPN~2:20.72~Silver~|3~Yuliya Yefimova~RUS~2:20.92~Bronze~|4~~~2:21.65~~|5~~~2:23.16~~|6~~~2:23.27~~|7~~~2:23.72~~|8~~~2:26.00~~
+W200BR~2016~357259~11 August 2016~1~Rie Kaneto~JPN~2:20.30~Gold~|2~Yuliya Yefimova~RUS~2:21.97~Silver~|3~Shi Jinglin~CHN~2:22.28~Bronze~|4~~~2:22.34~~|5~~~2:22.43~~|6~~~2:22.72~~|7~~~2:23.19~~|8~~~2:23.74~~
+W200BR~2020~19000274~30 July 2021~1~Tatjana Schoenmaker~RSA~2:18.95~Gold~|2~Lilly King~USA~2:19.92~Silver~|3~Annie Lazor~USA~2:20.84~Bronze~|4~~~2:20.88~~|5~~~2:22.06~~|6~~~2:22.65~~|7~~~2:23.72~~|8~~~2:24.57~~
+W200BR~2024~2001778~1 August 2024~1~Kate Douglass~USA~2:19.24~Gold~|2~Tatjana Schoenmaker-Smith~RSA~2:19.60~Silver~|3~Tes Schouten~NED~2:21.05~Bronze~|4~~~2:22.54~~|5~~~2:23.75~~|6~~~2:24.31~~|7~~~2:24.46~~|8~~~2:25.91~~
+W100FL~1956~5470~5 December 1956~1~Shelley Mann~USA~1:11.0~Gold~|2~Nancy Ramey~USA~1:11.9~Silver~|3~Mary Sears~USA~1:14.4~Bronze~|4~~~1:14.9~~|5~~~1:15.2~~|6~~~1:17.4~~|7~~~1:17.9~~|8~~~1:18.4~~
+W100FL~1960~5619~30 August 1960~1~Carolyn Schuler~USA~1:09.5~Gold~|2~Marianne Heemskerk~NED~1:10.4~Silver~|3~Jan Andrew~AUS~1:12.2~Bronze~|4~~~1:13.3~~|5~~~1:13.3~~|6~~~1:13.3~~|7~~~1:13.6~~
+W100FL~1964~5804~16 October 1964~1~Sharon Stouder~USA~1:04.7~Gold~|2~Ada Kok~NED~1:05.6~Silver~|3~Kathy Ellis~USA~1:06.0~Bronze~|4~~~1:07.3~~|5~~~1:08.0~~|6~~~1:08.5~~|7~~~1:09.1~~|8~~~1:10.0~~
+W100FL~1968~6105~21 October 1968~1~Lyn McClements~AUS~1:05.5~Gold~|2~Ellie Daniel~USA~1:05.8~Silver~|3~Susan Shields~USA~1:06.2~Bronze~|4~~~1:06.2~~|5~~~1:06.8~~|6~~~1:06.9~~|7~~~1:07.5~~|8~~~1:07.6~~
+W100FL~1972~6409~1 September 1972~1~Mayumi Aoki~JPN~1:03.34~Gold~|2~Roswitha Beier~GDR~1:03.61~Silver~|3~Andrea Gyarmati~HUN~1:03.73~Bronze~|4~~~1:03.95~~|5~~~1:03.98~~|6~~~1:04.08~~|7~~~1:04.15~~|8~~~1:04.25~~
+W100FL~1976~6686~22 July 1976~1~Kornelia Ender~GDR~1:00.13~Gold~|2~Andrea Pollack~GDR~1:00.98~Silver~|3~Wendy Boglioli~USA~1:01.17~Bronze~|4~~~1:01.41~~|5~~~1:01.56~~|6~~~1:01.75~~|7~~~1:01.95~~|8~~~1:02.74~~
+#C43 crc:7ca737d6
+W100FL~1980~6915~24 July 1980~1~Caren Metschuck~GDR~1:00.42~Gold~|2~Andrea Pollack~GDR~1:00.90~Silver~|3~Christiane Knacke~GDR~1:01.44~Bronze~|4~~~1:02.21~~|5~~~1:02.40~~|6~~~1:02.61~~|7~~~1:02.89~~|8~~~1:02.90~~
+W100FL~1984~7196~2 August 1984~1~Mary T. Meagher~USA~59.26~Gold~|2~Jenna Johnson~USA~1:00.19~Silver~|3~Karin Seick~FRG~1:01.36~Bronze~|4~~~1:01.56~~|5~~~1:01.58~~|6~~~1:01.78~~|7~~~1:01.94~~|8~~~1:02.11~~
+W100FL~1988~7547~23 September 1988~1~Kristin Otto~GDR~59.00~Gold~|2~Birte Weigang~GDR~59.45~Silver~|3~Qian Hong~CHN~59.52~Bronze~|4~~~59.58~~|5~~~1:00.48~~|6~~~1:00.62~~|7~~~1:00.97~~|8~~~1:01.15~~
+W100FL~1992~7899~29 July 1992~1~Qian Hong~CHN~58.62~Gold~|2~Crissy Ahmann-Leighton~USA~58.74~Silver~|3~Catherine Plewinski~FRA~59.01~Bronze~|4~~~59.10~~|5~~~59.69~~|6~~~59.82~~|7~~~1:00.70~~|8~~~1:01.16~~
+W100FL~1996~8245~23 July 1996~1~Amy Van Dyken~USA~59.13~Gold~|2~Liu Limin~CHN~59.14~Silver~|3~Angel Martino~USA~59.23~Bronze~|4~~~1:00.11~~|5~~~1:00.17~~|6~~~1:00.18~~|7~~~1:00.46~~|8~~~1:00.76~~
+W100FL~2000~8652~17 September 2000~1~Inge de Bruijn~NED~56.61~Gold~|2~Martina Moravcová~SVK~57.97~Silver~|3~Dara Torres~USA~58.20~Bronze~|4~~~58.49~~|5~~~58.73~~|6~~~59.13~~|7~~~59.27~~|8~~~59.43~~
+W100FL~2004~9043~15 August 2004~1~Petria Thomas~AUS~57.72~Gold~|2~Otylia Jędrzejczak~POL~57.84~Silver~|3~Inge de Bruijn~NED~57.99~Bronze~|4~~~58.22~~|5~~~58.72~~|6~~~58.96~~|7~~~59.06~~|8~~~59.83~~
+W100FL~2008~261784~11 August 2008~1~Libby Trickett~AUS~56.73~Gold~|2~Christine Magnuson~USA~57.10~Silver~|3~Jess Schipper~AUS~57.25~Bronze~|4~~~57.84~~|5~~~57.99~~|6~~~58.06~~|7~~~58.10~~|8~~~58.54~~
+W100FL~2012~322037~29 July 2012~1~Dana Vollmer~USA~55.98~Gold~|2~Lu Ying~CHN~56.87~Silver~|3~Alicia Coutts~AUS~56.94~Bronze~|4~~~57.17~~|5~~~57.27~~|6~~~57.35~~|7~~~57.48~~|8~~~57.76~~
+W100FL~2016~357269~7 August 2016~1~Sarah Sjöström~SWE~55.48~Gold~|2~Penny Oleksiak~CAN~56.46~Silver~|3~Dana Vollmer~USA~56.63~Bronze~|4~~~56.76~~|5~~~56.86~~|6~~~57.05~~|7~~~57.17~~
+#C44 crc:533c2962
+W100FL~2020~19000285~28 July 2021~1~Maggie Mac Neil~CAN~55.59~Gold~|2~Zhang Yufei~CHN~55.64~Silver~|3~Emma McKeon~AUS~55.72~Bronze~|4~~~55.73~~|5~~~56.22~~|6~~~56.27~~|7~~~56.91~~|8~~~57.05~~
+W100FL~2024~2001788~28 July 2024~1~Torri Huske~USA~55.59~Gold~|2~Gretchen Walsh~USA~55.63~Silver~|3~Zhang Yufei~CHN~56.21~Bronze~|4~~~56.42~~|5~~~56.44~~|6~~~56.93~~|7~~~57.19~~|8~~~57.34~~
+W200FL~1968~6116~24 October 1968~1~Ada Kok~NED~2:24.7~Gold~|2~Helga Lindner~GDR~2:24.8~Silver~|3~Ellie Daniel~USA~2:25.9~Bronze~|4~~~2:26.2~~|5~~~2:27.9~~|6~~~2:31.7~~|7~~~2:33.2~~|8~~~2:34.3~~
+W200FL~1972~6419~4 September 1972~1~Karen Moe~USA~2:15.57~Gold~|2~Lynn Colella~USA~2:16.34~Silver~|3~Ellie Daniel~USA~2:16.74~Bronze~|4~~~2:17.11~~|5~~~2:19.50~~|6~~~2:20.47~~|7~~~2:21.88~~|8~~~2:22.84~~
+W200FL~1976~6698~19 July 1976~1~Andrea Pollack~GDR~2:11.41~Gold~|2~Ulrike Tauber~GDR~2:12.50~Silver~|3~Rosemarie Gabriel~GDR~2:12.86~Bronze~|4~~~2:12.90~~|5~~~2:13.68~~|6~~~2:13.91~~|7~~~2:14.26~~|8~~~2:14.50~~
+W200FL~1980~6922~21 July 1980~1~Ines Geißler~GDR~2:10.44~Gold~|2~Sybille Schönrock~GDR~2:10.45~Silver~|3~Michelle Ford~AUS~2:11.66~Bronze~|4~~~2:12.13~~|5~~~2:14.12~~|6~~~2:14.83~~|7~~~2:15.22~~|8~~~2:15.70~~
+W200FL~1984~7205~4 August 1984~1~Mary T. Meagher~USA~2:06.90~Gold~|2~Karen Phillips~AUS~2:10.56~Silver~|3~Ina Beyermann~FRG~2:11.91~Bronze~|4~~~2:11.98~~|5~~~2:12.33~~|6~~~2:12.57~~|7~~~2:15.38~~|8~~~2:17.39~~
+W200FL~1988~7557~25 September 1988~1~Kathleen Nord~GDR~2:09.51~Gold~|2~Birte Weigang~GDR~2:09.91~Silver~|3~Mary T. Meagher~USA~2:10.80~Bronze~|4~~~2:11.28~~|5~~~2:11.55~~|6~~~2:11.62~~|7~~~2:12.34~~|8~~~2:13.17~~
+W200FL~1992~7910~31 July 1992~1~Summer Sanders~USA~2:08.67~Gold~|2~Wang Xiaohong~CHN~2:09.01~Silver~|3~Susie O'Neill~AUS~2:09.03~Bronze~|4~~~2:09.88~~|5~~~2:10.24~~|6~~~2:11.46~~|7~~~2:11.87~~|8~~~2:13.78~~
+W200FL~1996~8255~26 July 1996~1~Susie O'Neill~AUS~2:07.76~Gold~|2~Petria Thomas~AUS~2:09.82~Silver~|3~Michelle Smith~IRL~2:09.91~Bronze~|4~~~2:10.26~~|5~~~2:10.70~~|6~~~2:11.40~~|7~~~2:11.93~~|8~~~2:11.96~~
+#C45 crc:4fd5ccad
+W200FL~2000~8665~20 September 2000~1~Misty Hyman~USA~2:05.88~Gold~|2~Susie O'Neill~AUS~2:06.58~Silver~|3~Petria Thomas~AUS~2:07.12~Bronze~|4~~~2:08.24~~|5~~~2:08.48~~|6~~~2:08.81~~|7~~~2:09.66~~|8~~~2:10.72~~
+W200FL~2004~9054~18 August 2004~1~Otylia Jędrzejczak~POL~2:06.05~Gold~|2~Petria Thomas~AUS~2:06.36~Silver~|3~Yuko Nakanishi~JPN~2:08.04~Bronze~|4~~~2:08.18~~|5~~~2:09.28~~|6~~~2:10.01~~|7~~~2:10.14~~|8~~~2:10.58~~
+W200FL~2008~261797~14 August 2008~1~Liu Zige~CHN~2:04.18~Gold~|2~Jiao Liuyang~CHN~2:04.72~Silver~|3~Jess Schipper~AUS~2:06.26~Bronze~|4~~~2:07.02~~|5~~~2:07.32~~|6~~~2:07.36~~|7~~~2:07.57~~|8~~~2:08.23~~
+W200FL~2012~322193~1 August 2012~1~Jiao Liuyang~CHN~2:04.06~Gold~|2~Mireia Belmonte~ESP~2:05.25~Silver~|3~Natsumi Hoshi~JPN~2:05.48~Bronze~|4~~~2:05.78~~|5~~~2:06.78~~|6~~~2:06.80~~|7~~~2:07.33~~|8~~~2:07.77~~
+W200FL~2016~357281~10 August 2016~1~Mireia Belmonte~ESP~2:04.85~Gold~|2~Madeline Groves~AUS~2:04.88~Silver~|3~Natsumi Hoshi~JPN~2:05.20~Bronze~|4~~~2:05.90~~|5~~~2:07.37~~|6~~~2:07.40~~|7~~~2:07.71~~|8~~~2:07.87~~
+W200FL~2020~19000297~29 July 2021~1~Zhang Yufei~CHN~2:03.86~Gold~|2~Regan Smith~USA~2:05.30~Silver~|3~Hali Flickinger~USA~2:05.65~Bronze~|4~~~2:06.53~~|5~~~2:07.70~~|6~~~2:07.85~~|7~~~2:07.90~~|8~~~2:09.48~~
+W200FL~2024~2001799~1 August 2024~1~Summer McIntosh~CAN~2:03.03~Gold~|2~Regan Smith~USA~2:03.84~Silver~|3~Zhang Yufei~CHN~2:05.09~Bronze~|=4~~~2:07.11~~|=4~~~2:07.11~~|6~~~2:07.73~~|7~~~2:08.15~~|8~~~2:08.82~~
+W200IM~1968~6123~20 October 1968~1~Claudia Kolb~USA~2:24.7~Gold~|2~Sue Pedersen~USA~2:28.8~Silver~|3~Jan Henne~USA~2:31.4~Bronze~|4~~~2:31.4~~|5~~~2:33.7~~|6~~~2:33.7~~|7~~~2:37.0~~
+W200IM~1972~6426~28 August 1972~1~Shane Gould~AUS~2:23.07~Gold~|2~Kornelia Ender~GDR~2:23.59~Silver~|3~Lynn Vidali~USA~2:24.06~Bronze~|4~~~2:24.55~~|5~~~2:24.83~~|6~~~2:25.90~~|7~~~2:26.35~~|8~~~2:27.42~~
+W200IM~1984~7214~3 August 1984~1~Tracy Caulkins~USA~2:12.64~Gold~|2~Nancy Hogshead~USA~2:15.17~Silver~|3~Michelle Pearson~AUS~2:15.92~Bronze~|4~~~2:16.75~~|5~~~2:17.82~~|6~~~2:19.69~~|7~~~2:19.86~~|8~~~2:20.48~~
+#C46 crc:1e8f582b
+W200IM~1988~7565~24 September 1988~1~Daniela Hunger~GDR~2:12.59~Gold~|2~Yelena Dendeberova~URS~2:13.31~Silver~|3~Noëmi Lung~ROU~2:14.85~Bronze~|4~~~2:16.31~~|5~~~2:16.40~~|6~~~2:16.70~~|7~~~2:17.42~~|8~~~2:17.99~~
+W200IM~1992~7919~30 July 1992~1~Lin Li~CHN~2:11.65~Gold~|2~Summer Sanders~USA~2:11.91~Silver~|3~Daniela Hunger~GER~2:13.92~Bronze~|4~~~2:15.47~~|5~~~2:15.76~~|6~~~2:17.09~~|7~~~2:17.13~~|8~~~2:18.85~~
+W200IM~1996~8264~24 July 1996~1~Michelle Smith~IRL~2:13.93~Gold~|2~Marianne Limpert~CAN~2:14.35~Silver~|3~Lin Li~CHN~2:14.74~Bronze~|4~~~2:15.30~~|5~~~2:16.04~~|6~~~2:16.43~~|7~~~2:16.73~~|8~~~2:17.25~~
+W200IM~2000~8676~19 September 2000~1~Yana Klochkova~UKR~2:10.68~Gold~|2~Beatrice Căşlaru~ROU~2:12.57~Silver~|3~Cristina Teuscher~USA~2:13.32~Bronze~|4~~~2:13.44~~|5~~~2:13.70~~|6~~~2:13.88~~|7~~~2:14.82~~|8~~~2:15.64~~
+W200IM~2004~9064~17 August 2004~1~Yana Klochkova~UKR~2:11.14~Gold~|2~Amanda Beard~USA~2:11.70~Silver~|3~Kirsty Coventry~ZIM~2:12.72~Bronze~|4~~~2:13.58~~|5~~~2:13.70~~|6~~~2:13.74~~|7~~~2:13.97~~|8~~~2:15.40~~
+W200IM~2008~261808~13 August 2008~1~Steph Rice~AUS~2:08.45~Gold~|2~Kirsty Coventry~ZIM~2:08.59~Silver~|3~Natalie Coughlin~USA~2:10.34~Bronze~|4~~~2:10.68~~|5~~~2:11.43~~|6~~~2:11.56~~|7~~~2:12.43~~|8~~~2:13.36~~
+W200IM~2012~322154~31 July 2012~1~Ye Shiwen~CHN~2:07.57~Gold~|2~Alicia Coutts~AUS~2:08.15~Silver~|3~Caitlin Leverenz~USA~2:08.95~Bronze~|4~~~2:09.55~~|5~~~2:09.83~~|6~~~2:11.13~~|7~~~2:11.29~~|8~~~2:14.19~~
+W200IM~2016~357291~9 August 2016~1~Katinka Hosszú~HUN~2:06.58~Gold~|2~Siobhan-Marie O'Connor~GBR~2:06.88~Silver~|3~Maya DiRado~USA~2:08.79~Bronze~|4~~~2:09.21~~|5~~~2:10.88~~|6~~~2:11.22~~|7~~~2:12.28~~|8~~~2:13.56~~
+W200IM~2020~19000307~28 July 2021~1~Yui Ohashi~JPN~2:08.52~Gold~|2~Alex Walsh~USA~2:08.65~Silver~|3~Kate Douglass~USA~2:09.04~Bronze~|4~~~2:09.15~~|5~~~2:09.57~~|6~~~2:10.05~~|7~~~2:12.38~~|8~~~2:12.86~~
+W200IM~2024~2001808~3 August 2024~1~Summer McIntosh~CAN~2:06.56~Gold~|2~Kate Douglass~USA~2:06.92~Silver~|3~Kaylee McKeown~AUS~2:08.08~Bronze~|4~~~2:08.49~~|5~~~2:09.51~~|6~~~2:09.74~~
+#C47 crc:31272a55
+W400IM~1964~5815~17 October 1964~1~Donna de Varona~USA~5:18.7~Gold~|2~Sharon Finneran~USA~5:24.1~Silver~|3~Martha Randall~USA~5:24.2~Bronze~|4~~~5:25.6~~|5~~~5:28.4~~|6~~~5:30.3~~|7~~~5:30.5~~|8~~~5:38.4~~
+W400IM~1968~6132~25 October 1968~1~Claudia Kolb~USA~5:08.5~Gold~|2~Lynn Vidali~USA~5:22.2~Silver~|3~Sabine Steinbach~GDR~5:25.3~Bronze~|4~~~5:25.8~~|5~~~5:30.5~~|6~~~5:32.0~~|7~~~5:34.6~~|8~~~5:35.7~~
+W400IM~1972~6435~31 August 1972~1~Gail Neall~AUS~5:02.97~Gold~|2~Leslie Cliff~CAN~5:03.57~Silver~|3~Novella Calligaris~ITA~5:03.99~Bronze~|4~~~5:05.56~~|5~~~5:06.80~~|6~~~5:09.98~~|7~~~5:13.06~~|8~~~5:15.68~~
+W400IM~1976~6706~24 July 1976~1~Ulrike Tauber~GDR~4:42.77~Gold~|2~Cheryl Gibson~CAN~4:48.10~Silver~|3~Becky Smith~CAN~4:50.48~Bronze~|4~~~4:52.40~~|5~~~4:53.50~~|6~~~4:55.34~~|7~~~5:00.19~~|8~~~5:00.21~~
+W400IM~1980~6928~26 July 1980~1~Petra Schneider~GDR~4:36.29~Gold~|2~Sharron Davies~GBR~4:46.83~Silver~|3~Agnieszka Czopek~POL~4:48.17~Bronze~|4~~~4:48.54~~|5~~~4:49.18~~|6~~~4:49.25~~|7~~~4:50.91~~|8~~~4:53.30~~
+W400IM~1984~7222~29 July 1984~1~Tracy Caulkins~USA~4:39.24~Gold~|2~Suzie Landells~AUS~4:48.30~Silver~|3~Petra Zindler~FRG~4:48.57~Bronze~|4~~~4:49.41~~|5~~~4:50.55~~|6~~~4:50.65~~|7~~~4:52.83~~|8~~~4:53.28~~
+W400IM~1988~7574~19 September 1988~1~Janet Evans~USA~4:37.76~Gold~|2~Noëmi Lung~ROU~4:39.46~Silver~|3~Daniela Hunger~GDR~4:39.76~Bronze~|4~~~4:40.44~~|5~~~4:41.64~~|6~~~4:45.86~~|7~~~4:47.05~~|8~~~4:47.51~~
+W400IM~1992~7929~26 July 1992~1~Krisztina Egerszegi~HUN~4:36.54~Gold~|2~Lin Li~CHN~4:36.73~Silver~|3~Summer Sanders~USA~4:37.58~Bronze~|4~~~4:43.75~~|5~~~4:46.24~~|6~~~4:47.57~~|7~~~4:47.78~~|8~~~4:53.32~~
+W400IM~1996~8274~20 July 1996~1~Michelle Smith~IRL~4:39.18~Gold~|2~Allison Wagner~USA~4:42.03~Silver~|3~Krisztina Egerszegi~HUN~4:42.53~Bronze~|4~~~4:43.78~~|5~~~4:44.02~~|6~~~4:44.91~~|7~~~4:45.17~~|8~~~4:46.20~~
+W400IM~2000~8687~16 September 2000~1~Yana Klochkova~UKR~4:33.59~Gold~|2~Yasuko Tajima~JPN~4:35.96~Silver~|3~Beatrice Căşlaru~ROU~4:37.18~Bronze~|4~~~4:41.03~~|5~~~4:43.56~~|6~~~4:44.63~~|7~~~4:45.17~~|8~~~4:45.99~~
+#C48 crc:ad590368
+W400IM~2004~9074~14 August 2004~1~Yana Klochkova~UKR~4:34.83~Gold~|2~Kaitlin Sandeno~USA~4:34.95~Silver~|3~Georgina Bardach~ARG~4:37.51~Bronze~|4~~~4:39.29~~|5~~~4:40.00~~|6~~~4:40.20~~|7~~~4:50.35~~|8~~~4:50.85~~
+W400IM~2008~261820~10 August 2008~1~Steph Rice~AUS~4:29.45~Gold~|2~Kirsty Coventry~ZIM~4:29.89~Silver~|3~Katie Hoff~USA~4:31.71~Bronze~|4~~~4:34.24~~|5~~~4:34.34~~|6~~~4:39.44~~|7~~~4:40.04~~|8~~~4:42.13~~
+W400IM~2012~322015~28 July 2012~1~Ye Shiwen~CHN~4:28.43~Gold~|2~Elizabeth Beisel~USA~4:31.27~Silver~|3~Li Xuanxu~CHN~4:32.91~Bronze~|4~~~4:33.49~~|5~~~4:34.17~~|=6~~~4:35.49~~|=6~~~4:35.49~~|8~~~4:35.62~~
+W400IM~2016~357302~6 August 2016~1~Katinka Hosszú~HUN~4:26.36~Gold~|2~Maya DiRado~USA~4:31.15~Silver~|3~Mireia Belmonte~ESP~4:32.39~Bronze~|4~~~4:32.54~~|5~~~4:34.70~~|6~~~4:34.98~~|7~~~4:35.04~~|8~~~4:38.06~~
+W400IM~2020~19000318~25 July 2021~1~Yui Ohashi~JPN~4:32.08~Gold~|2~Emma Weyant~USA~4:32.76~Silver~|3~Hali Flickinger~USA~4:34.90~Bronze~|4~~~4:35.13~~|5~~~4:35.98~~|6~~~4:37.75~~|7~~~4:38.30~~|8~~~4:40.65~~
+W400IM~2024~2001818~29 July 2024~1~Summer McIntosh~CAN~4:27.71~Gold~|2~Katie Grimes~USA~4:33.40~Silver~|3~Emma Weyant~USA~4:34.93~Bronze~|4~~~4:35.67~~|5~~~4:38.01~~|6~~~4:38.83~~|7~~~4:40.17~~|8~~~4:40.70~~

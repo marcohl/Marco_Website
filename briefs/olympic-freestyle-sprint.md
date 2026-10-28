@@ -1,162 +1,131 @@
-# Brief: Olympic Sprint Freestyle (working title)
+# Brief: Olympic champion times, all individual pool events (working title)
 
-- **Slug:** `olympic-freestyle-sprint`
+- **Slug:** `olympic-freestyle-sprint` (kept: same page and URL, as agreed with Marco on 2026-10-28)
 - **Code:** MHL-002
-- **Status:** publish (text approved 2026-10-18; set to published, not pushed)
-- **Started:** 2026-10-18
+- **Revision:** B (scope widened from 50/100 m freestyle to the 28 individual pool events)
+- **Status:** phase 1 approved 2026-10-28 (thesis A, B as closing note; 10 km out); phase 2 (data) done, checks pass; phase 3 (form) waiting for Marco
+- **Started:** 2026-10-18; rev B started 2026-10-28
 
 ## The one sentence
-Used in the page (headline: "More than 80% of the Olympic 100 m speed-up came before 1976"; intro: 29% and 37% faster, 81% and 88% by 1976). Waiting for Marco's approval.
+**Approved by Marco, 2026-10-28: A as the headline, B as the closing note.** Both computed from
+`src/data/olympic-freestyle-sprint/events.json`. The two candidates:
 
-Numbers from `src/data/olympic-freestyle-sprint/series.json`: men 65.6 s (1908) to
-46.40 s (2024); women 82.2 s (1912) to 52.16 s (2024). The share by 1976 is the best
-champion time up to that year divided by the total change. The first points are not
-like-for-like (see data caveats), so the text must say so.
+**A. Keep the approved story, now for every old event.**
+"In the nine events swum since 1924 or earlier, at least 81 % of the Olympic speed-up came before 1976."
+Share of total change = (first champion time - best champion time up to 1976) / (first champion time -
+2024 champion time). Values: men 100 m free 81 %, women 100 m free 88 %, men 400 m free 91 %, women 400 m
+free 90 %, men 1500 m free 94 %, men 100 m back 89 %, women 100 m back 83 %, men 200 m breast 85 %,
+women 200 m breast 81 %. Weak point: the first points are not like-for-like (see data caveats), and
+the claim cannot be made for events that joined later (see B).
+
+**B. A same-window claim for all 26 events that exist in both 1988 and 2024.**
+"Since 1988 the Olympic champion has got faster in all 26 events, by 1.8 % to 7.0 %."
+The gain is smallest in freestyle from 200 m up (1.8 % to 3.7 %, women's 800 m the lowest) and largest in
+the 50 m, butterfly, breaststroke and backstroke races (3.6 % to 7.0 % for every other event). Same window for every
+event, so no like-for-like problem with early Games. Weak point: "all faster" is a weaker headline than A,
+and 3.6 % (women's 400 m medley) sits below 3.7 % (women's 200 m free), so the freestyle/other split is a tendency, not a rule.
+
+Chosen: A as the headline (it continues the approved text and is the stronger finding), B as the
+closing note, shown in the compare view. Needs the Words phase to say plainly that A is a shape claim about
+champions' best times, and what it does not say (no cause).
 
 ## Question and reader
-- Question the chart answers: where, in 116 years, did the Olympic sprint get faster?
-- Main reader: curious general public.
-- They know swimming is timed to the hundredth; they do not know that the 50 m
-  freestyle only joined the Games in 1988, or that early Olympic races were not
-  swum in a normal pool.
-
-## What the data says so far (read 2026-10-18, to re-check in the Words phase)
-1. Early gain: yes. By 1976 the 100 m had made 81 % (men) and 88 % (women) of its
-   total gain. By 1964: 64 % and 76 %.
-2. The 50 m is not flat. Since 1988: 50 m men -4.0 %, women -7.0 %; 100 m men -4.6 %,
-   women -5.0 %. Both distances keep improving at a similar rate. Closing note only.
-3. Women/men time ratio in the 100 m: 1.30 (1912), 1.09 (1980), about 1.12 since 2000.
-4. 2008 suits: visible in men only (47.21 in 2008, 47.52 in 2012, 47.58 in 2016,
-   47.02 in 2020). Causes need a source before they are mentioned.
-5. Today's 8th place (2024) would have won gold at every Games up to 2004 (100 m men,
-   50 m both sexes) and up to 2008 (100 m women).
-6. Spread between 1st and 8th: from about 3 s (1948) to about 1 s; men's 100 m 2024
-   is wider again because of the 46.40 world record.
+- Question the chart answers: where, in 116 years, did Olympic swimming get faster, event by event?
+- Main reader: curious general public. Second reader: recruiter or peer who opens the method and code.
+- They know swimming is timed to the hundredth. They do not know that most events are younger than they
+  think (women's 800 m free joined in 1968, men's 800 m free in 2020), that the early races were not swum
+  in a normal pool, or that butterfly was once a breaststroke variant.
 
 ## Scope
-- In the MVP: line chart of the Olympic champion's time, 50 m and 100 m freestyle,
-  men and women, 1908-2024.
-  - Controls: distance (50 / 100 m); sex (men / women / both, inactive series stays
-    grey as context).
-  - Layers: champion line; band of finalists (positions 1-8) only where all eight
-    times exist (from 1948 in the 100 m, from 1988 in the 50 m); annotation marks.
-  - Fixed x axis 1908-2024, linear time, so gaps are real gaps. The 50 m series
-    starts in 1988; the empty space carries "event not contested until 1988".
-  - X marker on editions not held (1916, 1940, 1944), with a legend line
-    ("not held due to war", source Olympedia).
-  - A different marker on 1980 and 1984 (political absences), with a legend line.
-  - Tokyo 2020 is drawn at 2021, labelled "Tokyo 2020, held 2021".
-  - Co-champions kept: two points on the same time (men 50 m 2000; women 100 m 1984, 2016).
-  - Legend line for the early courses: 1908 a 100 m pool swum straight with no turns,
-    1912 open water in Stockholm harbour. Style of the 1912 point decided in Form.
-  - Text panel on the right with the insights (Words phase).
-- Out: 1896-1906 and the 1904 100 yards (open water / not metric); other strokes and
-  distances, relays, world-record progression, suit technology beyond one annotation.
+- In: champion time per Olympic Games, 1908-2024, for the 28 individual pool events of the Paris 2024
+  programme (14 per sex): freestyle 50, 100, 200, 400, 800, 1500 m; backstroke 100, 200; breaststroke 100,
+  200; butterfly 100, 200; medley 200, 400. 486 finals in total.
+  - Layers kept from rev A: champion line; finalist band (1st to 8th) only where all eight times exist;
+    marks for different course (1908, 1912), political absences (1980, 1984), co-champions, Games not held;
+    Tokyo 2020 plotted at 2021.
+  - Tables for every event in `<details>`, grouped by stroke.
+- Out: relays; 10 km marathon swimming (open water, not timed like a pool race); the 1904 races (yards);
+  1896-1906 open-water races and the 1906 Intercalated Games; discontinued events (men's 400 m breaststroke,
+  500 m, 1000 m, 4000 m, women's 300 m freestyle); world-record progression; suit technology beyond an annotation;
+  doping (no source in hand, no claim).
+- The 10 km marathon is out (Marco, 2026-10-28).
 
 ## Data
 | Dataset | Source (URL) | Accessed | Units | Notes |
 |---|---|---|---|---|
-| Final results positions 1-8, 100 m men 1908-2024 | Olympedia, https://www.olympedia.org/event_names/553 (per-Games pages in `raw/` extract) | 2026-10-18 | seconds | |
-| Same, 100 m women 1912-2024 | https://www.olympedia.org/event_names/588 | 2026-10-18 | seconds | |
-| Same, 50 m men 1988-2024 | https://www.olympedia.org/event_names/551 | 2026-10-18 | seconds | |
-| Same, 50 m women 1988-2024 | https://www.olympedia.org/event_names/587 | 2026-10-18 | seconds | |
-| Second source for champion times | Wikipedia "100 metre freestyle" and per-Games event pages | 2026-10-18 | seconds | All 73 equal to Olympedia |
+| Final results, positions 1-8, 28 events, 1908-2024 | Olympedia, https://www.olympedia.org/results/<id> per final; event index pages https://www.olympedia.org/event_names/<id> (ids in `build_data.py`) | 2026-10-28 (50/100 m freestyle first read 2026-10-18) | seconds | 486 finals |
+| Second source for champion times | Wikipedia "Swimming at the YYYY Summer Olympics - Men's/Women's N metre stroke", all 486 pages | 2026-10-28 | seconds | `analysis/olympic-freestyle-sprint/second_source_wikipedia.txt` |
 | Games not held, Tokyo held 2021 | https://www.olympedia.org/editions | 2026-10-18 | n/a | |
-| Absences | Wikipedia "List of Olympic Games boycotts", "1920 Summer Olympics", "1948 Summer Olympics" | 2026-10-18 | n/a | Rule-based list kept in `series.json`; chart shows 1980, 1984 |
+| Absences | Wikipedia "List of Olympic Games boycotts", "1920 Summer Olympics", "1948 Summer Olympics" | 2026-10-18 | n/a | Rule-based list in the data; the chart marks 1980 and 1984 |
 | Early courses | Wikipedia 1908 men's 100 m page; 1912 swimming page | 2026-10-18 | n/a | |
 
-Known reference values: men 100 m 1988 48.63; women 100 m 1988 54.93; men 50 m 1988
-22.14; women 50 m 1988 25.49; men 100 m 1908 1:05.6, 2024 46.40.
+Checks that pass in `build_data.py` (run 2026-10-28):
+- CRC32 of every block of the raw extract and of the second-source file.
+- Editions per event equal the programme list (28 events, 486 finals). The same lists equal the years on
+  the 28 Olympedia index pages (one-time comparison in the browser), except a 1920 women's "400 m freestyle"
+  that was a 300 m race; it is left out.
+- All 486 champion times equal the Wikipedia time, except two explained ones: men's 100 m free 1920 (Wikipedia prints
+  the first final, 1:00.4; Olympedia the re-swim, 1:01.4) and women's 800 m free 1984 (8:24.96 in Wikipedia's
+  Final table, 8:24.95 in its summary box and in Olympedia).
+- The 73 freestyle 50/100 m finals read on 2026-10-18 equal the 2026-10-28 read in names, countries, times and dates.
+- Six reference values (1988 winners in 50 and 100 m, men's 100 m 1908 and 2024).
+- Times never decrease with position, except three documented editions (below).
 
 Data caveats:
-- `raw/olympedia_finals_extract.txt` is the table text copied from each page, not the
-  original HTML (the shell cannot reach olympedia.org). Each block has a CRC32 that
-  `build_data.py` checks.
+- `raw/olympedia_finals_extract.txt` is cell text read from each result page in Chrome, not the original
+  HTML (the shell cannot reach olympedia.org). Each block carries a CRC32 that `build_data.py` checks.
+- Only finalists with a printed time are kept. DNS and DQ rows are dropped, so a final with a DNS or DQ has fewer
+  than 8 rows and no band (for example women's 200 m medley 2024).
 - Silver, bronze and positions 4-8 come from Olympedia only.
 - Time resolution: tenths up to 1968, hundredths from 1972.
-- Finals before 1948 have fewer than eight timed finishers, so no band there.
-- One champion discrepancy found and resolved: women 100 m 1992 is 54.64 (Olympedia and
-  the Wikipedia event page citing the official report); the aggregate Wikipedia page
-  says 54.65.
-- 1920 men 100 m: the final was re-swum; the official time (1:01.4) is the re-swim.
-- 1960 men 100 m: Olympedia lists the silver (55.1) faster than the gold (55.2).
+- Finals before 1948 mostly have fewer than eight timed finishers, so no band there.
+- Co-champions: men's 50 m free 2000, women's 100 m free 1984 and 2016.
+- Order anomalies in Olympedia: men's 100 m free 1960 (silver 55.1 faster than gold 55.2), men's 200 m breaststroke
+  1948 (4th 2:43.7 faster than bronze 2:43.9; Wikipedia says timekeepers and judges disagreed, flagged "citation
+  needed"), women's 200 m breaststroke 1948 (5th 3:06.2, 6th 3:06.1; reason not found). None is mentioned
+  in text until sourced.
+- Women's 100 m free 1992 is 54.64 (Olympedia and the event page citing the official report); the aggregate
+  Wikipedia page says 54.65.
+- Like-for-like problems, to state on the page: 1908 men's 100 m was one length of a purpose-built pool; 1912 was
+  open water in Stockholm harbour; 1920 and 1924 pools not confirmed; 1920 men's 100 m free is a re-swim; until
+  1956 the butterfly arm action was allowed in breaststroke races, so the early 200 m breaststroke times
+  (men 1908-1952, women 1924-1952) are a different race (source: Wikipedia 1948 women's 200 m breaststroke page;
+  check its reference). Hand timing to 0.1 s changed to electronic timing with hundredths in 1972 (the exact change
+  and date need a source).
 
-## Form and interaction (phase 3, for Marco's OK)
-Form: line over time (the question is change over time). One y axis in seconds,
-lower is faster, fixed for each distance and window (it does not rescale when you switch
-sex, so the grey context line stays fully visible); switching redraws with a 400-500 ms fade. Greyscale
-sketch with real data: see the image sent in chat on 2026-10-18.
+## Form and interaction (phase 3, for Marco's OK once the thesis is chosen)
+Kept from rev A (approved): line over time, one y axis in seconds, fixed per event, lower is faster; same
+marks and layers; hover/tap card pinned under the chart; keyboard steps editions; no JavaScript falls back to
+headline, text and tables.
 
-Layers, bottom to top: grid; band 1st to 8th place (only where all 8 times exist:
-from 1948 in the 100 m, from 1988 in the 50 m; broken at gaps); champion line
-(broken where Games were not held); markers; direct labels at the line end
-("Men", "Women"); up to four numbered annotation marks tied to the insights text.
+Changes proposed:
+1. Event picker: stroke [Freestyle | Backstroke | Breaststroke | Butterfly | Medley], then distance, then
+   sex [Women | Men | Both]. Default view: 100 m freestyle, both sexes (the page people already know).
+2. y axis format: seconds for races under 2 min, m:ss from 2 min up; ticks chosen per event.
+3. Window toggle: all editions, or since 1988 (the common window for 26 events).
+4. New view "Compare events" (decide with the thesis): one line per event of the chosen sex, y = % of the total improvement
+   reached (0 % at the first edition, 100 % at 2024), selected event in the accent colour, others grey.
+   One measure, one axis. Directly shows claim A.
+5. Tables: one per event in `<details>`, grouped by stroke.
+6. Callouts: 1920 re-swim, 1908/1912 course, 2020 held in 2021, plus the sourced rule change in breaststroke;
+   unsourced anomalies stay out.
+7. Phone (360 px): pickers collapse into two rows of segmented controls; compare view shows the selected line only
+   plus a grey envelope.
 
-Marks: filled dot = champion; hollow diamond = different course (1908 straight
-pool, 1912 open water); hollow dot = major nations absent (1980, 1984); ringed dot =
-co-champions; x in a lane under the x axis = Games not held (1916, 1940, 1944). The
-lane keeps the x off the data, so no y value is invented. Legend lines for each.
+Build plan: `SprintChart.astro` gets the event picker and compare view (or a second component
+`CompareChart.astro` if the file gets too large); `SprintTable.astro` takes any event; the home-page
+thumbnail reads the 100 m free series from `events.json` ids `M100FR` and `W100FR`; `series.json` is deleted when the
+components switch to `events.json`. Colours only from `tokens.css`; any new categorical colour goes through `check:palette`.
 
-Axes: x is linear time, fixed 1908-2024 (the 50 m series fills only the last third and
-the rest says "event not contested until 1988"). Tokyo 2020 sits at 2021. A small
-"lower = faster" cue on the y axis.
-
-Controls: Distance [50 m | 100 m], default 100. Swimmers [Women | Men | Both],
-default Both; inactive series stays grey when one sex is selected. Window
-[1908-2024 | Since 1988] (optional): rescales both axes to show the recent detail the
-full view squashes.
-
-Reading a value: hover on desktop; tap or drag on phone selects the nearest edition by
-x (27 editions in about 300 px leave no room for per-point targets). Vertical guide plus
-a card pinned under the chart on every screen size (a floating card covered the data
-in the build test; on wide screens the two sexes sit side by side): Games and year ("held 2021" for Tokyo), champion(s), country, time as the
-source prints it plus seconds, silver and bronze with times, 8th-place time when it
-exists, and the edition note if any (1908 and 1912 course, 1920 re-swim, absences).
-Keyboard: the chart takes focus; left/right arrows step editions, Home/End jump, Esc
-clears. Previous/next buttons for touch. The card is also an aria-live region.
-Record flags (OR/WR) are not reliable in the current data; they stay out of the card
-until sourced.
-
-Layout, desktop (>= 1000 px): headline across the top; figure about 64 % on the left,
-insights about 36 % on the right, top-aligned; legend under the figure; then the
-table `<details>`; then "Notes and method".
-
-    eyebrow
-    H1: a sentence with the number
-    +---------------------------------+  +------------------+
-    | [50|100] [Women|Men|Both] [Win] |  | 1  insight       |
-    | y axis, bands, lines, marks     |  | 2  insight       |
-    | x axis                          |  | 3  insight       |
-    | lane: x x  x                    |  | 4  insight       |
-    | legend                          |  |                  |
-    +---------------------------------+  +------------------+
-    > Table view
-    Notes and method
-
-Layout, phone (360 px): headline, two lines of intro, controls on two rows (44 px
-targets), chart full width (about 320 px tall), edition card pinned under the chart
-(never over the finger), legend in two columns, insights as a numbered list, table,
-method. The SVG viewBox follows the container size and redraws on resize, so text
-stays 11-12 px; fewer x ticks and at most three annotation marks.
-
-Without JavaScript: headline, text and a server-rendered table still carry the story.
-
-Build plan: `src/components/viz/olympic-freestyle-sprint/SprintChart.astro` (markup,
-controls, d3 script), `SprintTable.astro`, page
-`src/pages/projects/olympic-freestyle-sprint.mdx`. Plain Astro, d3 v7 modules, tokens
-only. Men/women colours come from the site tokens and go through `check:palette`.
-Out of the MVP: a second index chart comparing 50 and 100 m since 1988 (the closer
-stays in the text).
-
-## Decisions (Marco, 2026-10-18)
-- 50 m and 100 m, with selector; start in 1908; X for not-held years.
-- Thesis direction: where the gain happened (curve shape); the 50 m since 1988 as a closer.
-- Absence marker only for 1980 and 1984.
-- Tokyo 2020 plotted at 2021.
+## Decisions (Marco)
+- 2026-10-18: 50 m and 100 m with selector; start in 1908; X for not-held years; absence marker only for 1980
+  and 1984; Tokyo 2020 at 2021.
+- 2026-10-28: widen to all individual pool events (relays out); update the existing page (same URL).
+- 2026-10-28: thesis A (headline) with B as closing note; 10 km marathon out.
 
 ## Open questions
-- Course by edition: 1920 (Stade Nautique d'Anvers) and 1924 (Piscine des Tourelles)
-  pool length and type not found yet. The legend wording depends on it.
-- 1960 men 100 m: why the silver time is faster than the gold. Source before mentioning.
-- Approve the one sentence above (the 1908 and 1912 starting points are not like-for-like).
-- Title.
+- Form and interaction of rev B (section above).
+- Course by edition: 1920 (Stade Nautique d'Anvers) and 1924 (Piscine des Tourelles) pool length and type not found.
+- Reasons for the three order anomalies above.
+- Start of electronic timing and hundredths: source needed before the text says it.
+- Title: the slug stays `olympic-freestyle-sprint`; the page title and headline should drop "sprint freestyle".
