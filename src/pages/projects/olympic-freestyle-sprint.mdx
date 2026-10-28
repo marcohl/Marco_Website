@@ -1,50 +1,52 @@
 ---
 layout: ../../layouts/Project.astro
-title: Where the Olympic Sprint Got Faster
-description: Winning times in the Olympic 50 m and 100 m freestyle, men and women, 1908 to 2024, and when the improvement happened.
+title: Where Olympic Swimming Got Faster
+description: Winning times in the 28 individual Olympic pool events, 1908 to 2024, and when the improvement happened.
 date: 2026-10-18
 tags: [Swimming, Data]
 eyebrow: Olympic swimming, 1908–2024
 status: published
 code: MHL-002
-rev: A
+rev: B
 thumb: sprint
 ---
 import SprintChart from "../../components/viz/olympic-freestyle-sprint/SprintChart.astro";
 import PoolTop from "../../components/viz/olympic-freestyle-sprint/PoolTop.astro";
+import data from "../../data/olympic-freestyle-sprint/events.json";
 
 <div class="sp-intro">
 <div class="prose">
 
-# More than <em>80%</em> of the Olympic 100 m speed-up came before 1976
+# In the nine oldest Olympic swimming events, at least <em>80%</em> of the speed-up came before 1976
 
-The men's 100 m freestyle has been swum at every Olympics since 1908 and the women's since 1912, apart from the three Games lost to war. Put the winning times on a line and it falls from 65.6 s in 1908 to 46.40 s in 2024 for men, and from 82.2 s in 1912 to 52.16 s in 2024 for women. That is 29% and 37% faster. Each dot below is the winning time of one Games.
+Each Olympic Games crowns one champion per swimming event and records the winning time. This page follows those times in the 28 individual pool events of the 2024 programme, from 1908 to 2024. Relays are left out. Each dot in the chart is the winning time of one Games.
 
-Most of the drop came early. By 1976 the best champion time had covered 81% of the men's total gain and 88% of the women's. Later Games kept shaving time, in much smaller steps.
+Most of these events are younger than they look. Nine were already swum by 1924: the men's 100 m, 400 m and 1500 m freestyle, 100 m backstroke and 200 m breaststroke, and the women's 100 m and 400 m freestyle, 100 m backstroke and 200 m breaststroke. The women's 800 m freestyle began in 1968. The men's 800 m freestyle and the women's 1500 m freestyle began in 2020.
 
-Read the first points with care. The 1908 race was one length of a straight 100 m pool with no turns, and in 1912 the swimmers raced in open water in Stockholm harbour. Some of the early drop may come from changes in the course itself.
+Take those nine and measure the whole improvement, from the first champion time to the best one through 2024. By 1976 they had covered between 80.6% and 93.6% of it. The men's 100 m freestyle went from 65.6 s in 1908 to 49.99 s in 1976 and 46.40 s in 2024, which puts it at 81.3%.
+
+Read the early points with care. The 1908 men's 100 m was one length of a straight pool with no turns, and the 1912 races were swum in open water in Stockholm harbour. From the 1930s until after the 1952 Games, breaststroke swimmers could use the butterfly arm action. Part of the early drop may be the course and the rules changing, and this chart cannot separate that from swimmers getting faster.
 
 </div>
 <PoolTop />
 </div>
 
 <SprintChart callouts={[
-  { n: 1, series: "W100", year: 1948, dx: 18, dy: -30 },
-  { n: 2, series: "M100", year: 1992, dx: 8, dy: 30 },
-  { n: 3, series: "M100", year: 2024, dx: -16, dy: 32 },
-  { n: 4, series: "M50", year: 2024, dx: -16, dy: 32 },
+  { n: 1, series: "W100FR", year: 1948, dx: 18, dy: -30 },
+  { n: 2, series: "M100FR", year: 1992, dx: 8, dy: 30 },
+  { n: 4, series: "W50FR", year: 2024, dx: -16, dy: -32 },
 ]}>
 <div slot="insights">
 
 <p class="eyebrow">What to look at</p>
 
-1. Up to 1976 the line falls fast. Men's champions took 15.61 s off between 1908 and 1976, from 65.6 to 49.99 s. Women's took 26.55 s off between 1912 and 1976, from 82.2 to 55.65 s.
+1. Up to 1976 the 100 m freestyle line falls fast. Men's champions took 15.61 s off between 1908 and 1976, from 65.6 to 49.99 s. Women's took 26.55 s off between 1912 and 1976, from 82.2 to 55.65 s.
 
-2. After 1976 the fall is slow. In the next 48 years men's champions improved by 3.59 s (7.2%) and women's by 3.49 s (6.3%).
+2. After 1976 it flattens. In the next 48 years the best time improved by 3.59 s for men (7.2%) and by 3.69 s for women (6.6%).
 
-3. The back of the final has caught up with the old champions. The man who finished eighth in 2024 swam 47.98 s, faster than every men's champion up to 2004. The woman who finished eighth swam 53.04 s, faster than every women's champion up to 2008.
+3. Switch to "Compare events". Each line is one event, and its height is the share of that event's total improvement reached at each Games. The darker lines are the events swum by 1924. All nine are above 80% at the 1976 line, from 80.6% (women's 200 m breaststroke) to 93.6% (men's 1500 m freestyle).
 
-4. The 50 m joined the Games in 1988 and is still getting faster. Since then the men's winning time has fallen 4.0% and the women's 7.0%. The 100 m fell 4.6% and 5.0% over the same years. Switch to "Since 1988" to compare them.
+4. Since 1988 all 26 events that exist in both years have got faster, by 1.8% to 7.0% between the 1988 and 2024 champions. Freestyle events of 200 m and longer changed least, from 1.8% (women's 800 m) to 3.7%. The other events changed by 3.6% to 7.0%, most in the women's 50 m freestyle. Pick "Since 1988" in the one-event view to see the window.
 
 </div>
 </SprintChart>
@@ -58,28 +60,63 @@ Read the first points with care. The 1908 race was one length of a straight 100 
 
 ### Data
 
-Results come from the Olympedia final results of each Games, positions 1 to 8, for the men's and women's 50 m and 100 m freestyle, read on 2026-10-18. Every champion time was checked against a second source, the Wikipedia pages of each event, and all 73 match. Silver, bronze and places 4 to 8 come from Olympedia only.
+Results come from the Olympedia final results of every Games, positions 1 to 8, for the 28 individual pool events of the 2024 programme: 486 finals, read on 2026-10-28. The men's and women's 50 m and 100 m freestyle were first read on 2026-10-18 and read again, and the two reads agree. Finalists without a printed time (did not start, disqualified) are dropped.
+
+Every champion time was checked against a second source, the Wikipedia page of each final. All 486 match, with two explained exceptions. For the men's 100 m freestyle in 1920, Wikipedia prints the first final and Olympedia the re-swim. For the women's 800 m freestyle in 1984, Wikipedia's results table gives 8:24.96, while its summary box and Olympedia give 8:24.95. Silver, bronze and places 4 to 8 come from Olympedia only.
+
+I read the pages in a browser and kept the cell text. The extract and its checksums are in the repository, and the script checks them.
+
+</div>
+<div>
+
+### Scope
+
+In: the 28 individual pool events of the Paris 2024 programme, 14 per sex. Out: relays, 10 km marathon swimming (open water), the 1904 races (swum in yards), the open-water races before 1908, and events that have since been dropped, such as the men's 400 m breaststroke and the women's 300 m freestyle. A women's "400 m freestyle" listed for 1920 was a 300 m race and is left out.
+
+The nine events in the headline are the ones with a final by 1924. The 1976 cut-off carries over from the first version of this page. A different cut-off gives different shares.
 
 </div>
 <div>
 
 ### Times and shares
 
-Times are in seconds, as printed in the official results: tenths up to 1968 and hundredths from 1972. Percent changes use the champion's time. The share by 1976 is the first champion time minus the best time up to 1976, divided by the first time minus the 2024 time. Where two swimmers tied for gold (women's 100 m in 1984 and 2016, men's 50 m in 2000), the chart shows one point with a ring.
+Times are in seconds, as printed in the official results: tenths up to 1968 and hundredths from 1972. The chart shows minutes and seconds from 200 m up. The share of improvement at a Games is (first champion time minus best champion time so far) divided by (first champion time minus best champion time through 2024). Percent changes since 1988 compare the champion's time in 2024 with 1988. Where two swimmers tied for gold (women's 100 m freestyle in 1984 and 2016, men's 50 m freestyle in 2000), the chart shows one point with a ring.
 
 </div>
 <div>
 
 ### Editions and courses
 
-The 1908 men's race was a single length of a 100 m pool without turns. The 1912 races were held on a 100 m course in Stockholm harbour. I could not confirm the type and length of the pool in 1920 and 1924. In 1920 the men's final was re-swum after a disqualification, and the chart uses the official re-swim time, 1:01.4. Tokyo 2020 was held in 2021 and is drawn there. No Games took place in 1916, 1940 and 1944. The markers for 1980 and 1984 show boycotts. The card for each of those Games names the countries that medalled in this event at the previous or next Games but were absent. The band shows places 1 to 8 only where all eight times exist, which is from 1948 in the 100 m and 1988 in the 50 m. For the 1960 men's 100 m, Olympedia lists the silver time 0.1 s faster than the gold.
+The 1908 men's race was a single length of a purpose-built pool, without turns. The 1912 races were swum on a 100 m course in Stockholm harbour. I could not confirm the type and length of the pools in 1920 and 1924. In 1920 the men's 100 m final was re-swum after a disqualification, and the chart uses the re-swim time, 1:01.4. Tokyo 2020 was held in 2021 and is drawn there. No Games took place in 1916, 1940 and 1944. The markers for 1980 and 1984 show boycotts, and the card for each of those Games names the countries that medalled in this event at the previous or next Games but were absent. The band shows places 1 to 8 only where all eight finalists have a time, which excludes most finals before 1948.
+
+Swimmers could use the butterfly arm action in breaststroke races until FINA split the two strokes after the 1952 Games, and butterfly became its own Olympic event in 1956. Of the nine events, it touches only the two 200 m breaststroke events, whose earlier times come from a race that allowed it.
+
+</div>
+<div>
+
+### Open questions in the data
+
+Three finals list times that disagree with the order of finish: the men's 100 m freestyle in 1960 (silver 55.1 s, gold 55.2 s), the men's 200 m breaststroke in 1948 (fourth 2:43.7, third 2:43.9) and the women's 200 m breaststroke in 1948 (fifth 3:06.2, sixth 3:06.1). I found no confirmed reason for any of them and show the printed times. Only the 1960 case involves a champion time, and the difference there is 0.1 s.
+
+The data show when winning times fell. They say nothing about why. Suits, pool design, training and rules all changed over these years, and none of them is in the data.
 
 </div>
 <div>
 
 ### Sources
 
-[Olympedia, men's 100 m freestyle](https://www.olympedia.org/event_names/553), [women's 100 m](https://www.olympedia.org/event_names/588), [men's 50 m](https://www.olympedia.org/event_names/551), [women's 50 m](https://www.olympedia.org/event_names/587) and [list of editions](https://www.olympedia.org/editions). [Wikipedia, list of Olympic Games boycotts](https://en.wikipedia.org/wiki/List_of_Olympic_Games_boycotts), [swimming at the 1908 Games](https://en.wikipedia.org/wiki/Swimming_at_the_1908_Summer_Olympics_%E2%80%93_Men%27s_100_metre_freestyle) and [at the 1912 Games](https://en.wikipedia.org/wiki/Swimming_at_the_1912_Summer_Olympics).
+[Olympedia, list of editions](https://www.olympedia.org/editions) and the Olympedia event pages, one per event:
+
+<details>
+<summary>All 28 event pages</summary>
+<ul>
+{data.events.map((e) => (
+  <li><a href={e.event_index}>{e.sex === "men" ? "Men's" : "Women's"} {e.distance_m} m {e.stroke}</a></li>
+))}
+</ul>
+</details>
+
+Wikipedia: the page of each final ("Swimming at the YYYY Summer Olympics" plus the event name), [list of Olympic Games boycotts](https://en.wikipedia.org/wiki/List_of_Olympic_Games_boycotts), [the 1908 men's 100 m freestyle](https://en.wikipedia.org/wiki/Swimming_at_the_1908_Summer_Olympics_%E2%80%93_Men%27s_100_metre_freestyle), [swimming at the 1912 Games](https://en.wikipedia.org/wiki/Swimming_at_the_1912_Summer_Olympics) and [the 1920 Games](https://en.wikipedia.org/wiki/1920_Summer_Olympics). Swimming World, [how breaststroke and butterfly became separate strokes](https://swimmingworldmagazine.com/news/stroke-warsstroke-wars-how-breaststroke-and-butterfly-emerged-as-separate-strokes). Olympedia event pages, the Wikipedia pages of the finals and the Swimming World article were read on 2026-10-28, the other pages on 2026-10-18.
 
 Data built in `analysis/olympic-freestyle-sprint/build_data.py`.
 

@@ -1,10 +1,12 @@
 ---
-// Olympic champions' times in the 50 m and 100 m freestyle, 1908-2024: line chart with a finalists band.
-// Data: src/data/olympic-freestyle-sprint/series.json (built by analysis/olympic-freestyle-sprint/build_data.py)
-import data from "../../../data/olympic-freestyle-sprint/series.json";
+// Olympic champions' winning times in the 28 individual pool events, 1908-2024.
+// Two views: one event as a line chart with a finalists band, or all events of one sex compared by the
+// share of their total improvement reached (0 % at the first Games, 100 % at the best time).
+// Data: src/data/olympic-freestyle-sprint/events.json (built by analysis/olympic-freestyle-sprint/build_data.py)
+import data from "../../../data/olympic-freestyle-sprint/events.json";
 import SprintTable from "./SprintTable.astro";
 
-interface Callout { n: number; series: "M100" | "W100" | "M50" | "W50"; year: number; dx?: number; dy?: number }
+interface Callout { n: number; series: string; year: number; dx?: number; dy?: number }
 const { callouts = [] } = Astro.props as { callouts?: Callout[] };
 
 const list = (a: (string | number)[]) => (a.length < 2 ? a.join("") : `${a.slice(0, -1).join(", ")} and ${a[a.length - 1]}`);
@@ -13,6 +15,7 @@ const notHeldText = list(data.not_held.map((n) => n.year));
 const boycottYears = data.absence_flags.filter((f) => f.chart_marker && f.reason === "boycott").map((f) => f.year);
 if (boycottYears.length !== data.absence_flags.filter((f) => f.chart_marker).length) throw new Error("Legend text assumes every marked absence was a boycott.");
 const boycottText = list(boycottYears);
+const strokes = [...new Set(data.events.map((e) => e.stroke))];
 
 // Compact payload for the client script.
 const payload = {
@@ -25,14 +28,17 @@ const payload = {
     ]),
   ),
   notes: data.annotations.map((a) => ({ series: a.series, year: a.year, type: a.type, text: a.text, unsourced: !!(a as any).needs_source })),
-  series: data.series.map((s) => ({
-    id: s.id, dist: s.distance_m, sex: s.sex,
+  strokes,
+  events: data.events.map((s) => ({
+    id: s.id, dist: s.distance_m, sex: s.sex, stroke: s.stroke,
+    skipped: s.skipped_games, best: s.summary.best_time_s,
     eds: s.editions.map((e) => ({
       g: e.games_year, h: e.held_year, x: e.plot_year,
       ch: e.champions.map((c) => ({ n: c.name, c: c.noc, t: c.time_text, s: c.time_s })),
       pod: e.podium.filter((p) => p.medal !== "Gold").map((p) => ({ m: p.medal, n: p.name, c: p.noc, t: p.time_text })),
       b: e.band ? { f: e.band.fastest, s: e.band.slowest } : null,
       e8: (e.others.find((o) => o.pos === "8" || o.pos === "=8") ?? { time_text: null }).time_text,
+      sh: e.share_pct,
     })),
   })),
   callouts,
@@ -42,16 +48,24 @@ const payload = {
   <div class="sp-grid">
     <figure class="sp-fig">
       <div class="sp-controls">
-        <div class="sp-seg" role="group" aria-label="Distance">
-          <button type="button" data-ctl="dist" data-val="50" aria-pressed="false">50 m</button>
-          <button type="button" data-ctl="dist" data-val="100" aria-pressed="true">100 m</button>
+        <div class="sp-seg" role="group" aria-label="View">
+          <button type="button" data-ctl="view" data-val="event" aria-pressed="true">One event</button>
+          <button type="button" data-ctl="view" data-val="compare" aria-pressed="false">Compare events</button>
         </div>
+        <label class="sp-sel"><span>Stroke</span>
+          <select data-ctl="stroke" aria-label="Stroke">
+            {strokes.map((s) => <option value={s} selected={s === "freestyle"}>{s[0].toUpperCase() + s.slice(1)}</option>)}
+          </select>
+        </label>
+        <label class="sp-sel"><span>Distance</span>
+          <select data-ctl="dist" aria-label="Distance"><option value="100" selected>100 m</option></select>
+        </label>
         <div class="sp-seg" role="group" aria-label="Swimmers">
           <button type="button" data-ctl="sex" data-val="women" aria-pressed="false">Women</button>
           <button type="button" data-ctl="sex" data-val="men" aria-pressed="false">Men</button>
           <button type="button" data-ctl="sex" data-val="both" aria-pressed="true">Both</button>
         </div>
-        <div class="sp-seg" role="group" aria-label="Time window">
+        <div class="sp-seg" role="group" aria-label="Time window" data-for="event">
           <button type="button" data-ctl="win" data-val="full" aria-pressed="true">1908–2024</button>
           <button type="button" data-ctl="win" data-val="since" aria-pressed="false">Since 1988</button>
         </div>
@@ -64,12 +78,17 @@ const payload = {
       </div>
 
       <ul class="sp-legend" aria-label="Legend">
-        <li data-k="champion"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="4" class="lg-fill"/></svg><span>Winning time of the Olympic champion</span></li>
-        <li data-k="tie"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3" class="lg-fill"/><circle cx="8" cy="8" r="7" class="lg-ring"/></svg><span>Two champions in a tie</span></li>
-        <li data-k="course"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2 14 8 8 14 2 8Z" class="lg-hollow"/></svg><span>Not a standard pool: 1908 was a straight 100 m pool with no turns, 1912 an open-water course in Stockholm harbour</span></li>
-        <li data-k="boycott"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5" class="lg-hollow"/></svg><span>Boycotted Games ({boycottText}): some leading swimming nations stayed away</span></li>
-        <li data-k="nothold"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3 13 13M13 3 3 13" class="lg-x"/></svg><span>Games not held because of war ({notHeldText})</span></li>
-        <li data-k="band"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1" y="3" width="14" height="10" class="lg-band"/></svg><span>Range from 1st to 8th place, shown where all eight times exist</span></li>
+        <li data-k="champion" data-v="event"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="4" class="lg-fill"/></svg><span>Winning time of the Olympic champion</span></li>
+        <li data-k="tie" data-v="event"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3" class="lg-fill"/><circle cx="8" cy="8" r="7" class="lg-ring"/></svg><span>Two champions in a tie</span></li>
+        <li data-k="course" data-v="event"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2 14 8 8 14 2 8Z" class="lg-hollow"/></svg><span class="lg-course">Not a standard pool</span></li>
+        <li data-k="boycott" data-v="event"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5" class="lg-hollow"/></svg><span>Boycotted Games ({boycottText}): some leading swimming nations stayed away</span></li>
+        <li data-k="nothold" data-v="both"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3 13 13M13 3 3 13" class="lg-x"/></svg><span>Games not held because of war ({notHeldText})</span></li>
+        <li data-k="skipped" data-v="event"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1V15" class="lg-dash"/></svg><span class="lg-skipped">Event not on the programme</span></li>
+        <li data-k="band" data-v="event"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1" y="3" width="14" height="10" class="lg-band"/></svg><span>Range from 1st to 8th place, shown where all eight times exist</span></li>
+        <li data-k="cmpsel" data-v="compare"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8H15" class="lg-line"/><circle cx="8" cy="8" r="3.5" class="lg-fill"/></svg><span class="lg-cmpsel">Selected event</span></li>
+        <li data-k="cmpold" data-v="compare"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8H15" class="lg-grey-old"/></svg><span class="lg-cmpold">Other events swum since 1924 or earlier</span></li>
+        <li data-k="cmpnew" data-v="compare"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8H15" class="lg-grey"/></svg><span class="lg-cmpnew">Events added later</span></li>
+        <li data-k="cmp76" data-v="compare"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1V15" class="lg-dash"/></svg><span>1976</span></li>
       </ul>
       <noscript><p class="sp-nojs">The interactive chart needs JavaScript. The tables below list every result it shows.</p></noscript>
     </figure>
@@ -86,40 +105,51 @@ const payload = {
 
   type Ch = { n: string; c: string; t: string | null; s: number };
   type Pod = { m: string; n: string; c: string; t: string | null };
-  type Ed = { g: number; h: number; x: number; ch: Ch[]; pod: Pod[]; b: { f: number; s: number } | null; e8: string | null };
-  type Ser = { id: string; dist: number; sex: "men" | "women"; eds: Ed[] };
+  type Ed = { g: number; h: number; x: number; ch: Ch[]; pod: Pod[]; b: { f: number; s: number } | null; e8: string | null; sh: number | null };
+  type Ev = { id: string; dist: number; sex: "men" | "women"; stroke: string; skipped: number[]; best: number; eds: Ed[] };
   type Note = { series: string; year: number; type: string; text: string; unsourced: boolean };
   type Callout = { n: number; series: string; year: number; dx?: number; dy?: number };
   type Payload = {
     noc: Record<string, string>; notHeld: number[];
     absence: Record<string, { reason: string; series: Record<string, string[]> }>;
-    notes: Note[]; series: Ser[]; callouts: Callout[];
+    notes: Note[]; strokes: string[]; events: Ev[]; callouts: Callout[];
   };
   type Sex = "men" | "women" | "both";
 
   const GAP = 5; // years; a longer gap between editions breaks the line
+  const MIN_COMPARE = 5; // events with fewer Games are left out of the compare view
+  const OLD_BY = 1924; // events on the programme by this year are drawn darker in the compare view
+  const X_ALL: [number, number] = [1906, 2026];
   const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
-  const label = (s: Ser) => `${s.sex === "men" ? "Men's" : "Women's"} ${s.dist} m`;
+  const label = (s: Ev) => `${s.sex === "men" ? "Men's" : "Women's"} ${s.dist} m ${s.stroke}`;
+  const cap = (s: string) => s[0].toUpperCase() + s.slice(1);
+  const STEPS = [0.1, 0.2, 0.5, 1, 2, 5, 10, 15, 30, 60, 120, 300, 600];
 
   document.querySelectorAll<HTMLElement>('[data-viz="olympic-freestyle-sprint"]').forEach((root) => {
     const P: Payload = JSON.parse(root.querySelector(".sp-data")!.textContent!);
     root.classList.add("js");
     const q = <T extends Element>(s: string) => root.querySelector<T>(s)!;
     const svgEl = q<SVGSVGElement>("svg.sp-svg"), stage = q<HTMLElement>(".sp-stage"), card = q<HTMLElement>(".sp-card");
+    const selStroke = q<HTMLSelectElement>('select[data-ctl="stroke"]'), selDist = q<HTMLSelectElement>('select[data-ctl="dist"]');
     const svg = d3.select(svgEl);
     const reduce = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    const st = { dist: 100, sex: "both" as Sex, win: "full" as "full" | "since", sel: null as number | null };
+    const st = { view: "event" as "event" | "compare", stroke: "freestyle", dist: 100, sex: "both" as Sex, win: "full" as "full" | "since", sel: null as number | null };
     const courseKeys = new Set(P.notes.filter((n) => n.type === "course" || n.type === "open-water").map((n) => `${n.series}|${n.year}`));
-    const isCourse = (s: Ser, e: Ed) => courseKeys.has(`${s.id}|${e.g}`) || courseKeys.has(`ALL|${e.g}`);
+    const isCourse = (s: Ev, e: Ed) => courseKeys.has(`${s.id}|${e.g}`) || courseKeys.has(`ALL|${e.g}`);
     const isBoycott = (e: Ed) => !!P.absence[e.g];
-    const active = (s: Ser) => st.sex === "both" || s.sex === st.sex;
-    const inDist = () => P.series.filter((s) => s.dist === st.dist);
+    const active = (s: Ev) => st.sex === "both" || s.sex === st.sex;
+    const inEvent = () => P.events.filter((s) => s.stroke === st.stroke && s.dist === st.dist);
+    const distsFor = (stroke: string) => [...new Set(P.events.filter((s) => s.stroke === stroke).map((s) => s.dist))].sort((a, b) => a - b);
+    const cmpSex = () => (st.sex === "women" ? "women" : "men");
+    const cmpEvents = () => P.events.filter((s) => s.sex === cmpSex() && s.eds.length >= MIN_COMPARE);
+    const cmpSelected = () => P.events.find((s) => s.stroke === st.stroke && s.dist === st.dist && s.sex === cmpSex())!;
+    const longRace = () => st.dist >= 200;
 
     // ---- static layers, bottom to top ----
     const gGridY = svg.append("g").attr("class", "sp-ygrid");
     const gBase = svg.append("line").attr("class", "sp-base");
-    const gEmpty = svg.append("text").attr("class", "sp-empty");
+    const gEmpty = svg.append("g").attr("class", "sp-empty");
     const gNH = svg.append("g").attr("class", "sp-nothold");
     const gMarks = svg.append("g").attr("class", "sp-marks");
     const gX = svg.append("g").attr("class", "sp-xaxis");
@@ -127,32 +157,46 @@ const payload = {
     const gGuide = svg.append("g").attr("class", "sp-guide").attr("display", "none");
     const guideLine = gGuide.append("line");
     const gHit = svg.append("rect").attr("class", "sp-hit");
-    const yTitle = svg.append("text").attr("class", "sp-ytitle").text("seconds · lower is faster");
+    const yTitle = svg.append("text").attr("class", "sp-ytitle");
 
     // ---- geometry and scales (recomputed on resize / state change) ----
     let W = 0, H = 0, m = { t: 26, r: 56, b: 0, l: 40 }, lane = 0, ph = 0;
     let x: d3.ScaleLinear<number, number>, y: d3.ScaleLinear<number, number>, xd: [number, number];
+    let yTicks: number[] = [], yFmt: (v: number) => string = String;
 
+    const mmss = (v: number) => `${Math.floor(v / 60)}:${String(Math.round(v % 60)).padStart(2, "0")}`;
     function geometry() {
       W = Math.max(280, Math.round(stage.clientWidth));
       H = W < 520 ? 330 : Math.round(Math.min(470, Math.max(360, W * 0.58)));
-      xd = st.win === "full" ? [1906, 2026] : [1986, 2026];
-      lane = st.win === "full" ? 20 : 0;
-      m = { t: 26, r: W < 520 ? 52 : 62, b: lane + 26, l: W < 520 ? 34 : 40 };
+      const compare = st.view === "compare";
+      xd = !compare && st.win === "since" ? [1986, 2026] : X_ALL;
+      lane = xd === X_ALL ? 20 : 0;
+      const wide = compare ? 12 : 0; // room for percent labels
+      m = { t: 26, r: W < 520 ? 52 : 62, b: lane + 26, l: (W < 520 ? 34 : 40) + wide };
       ph = H - m.t - m.b;
       x = d3.scaleLinear().domain(xd).range([m.l, W - m.r]);
+      if (compare) {
+        y = d3.scaleLinear().domain([0, 100]).range([m.t + ph, m.t]);
+        yTicks = [0, 20, 40, 60, 80, 100]; yFmt = (v) => `${v}%`;
+        return;
+      }
       const vals: number[] = [];
-      inDist().forEach((s) => s.eds.forEach((e) => {
+      inEvent().forEach((s) => s.eds.forEach((e) => {
         if (e.x < xd[0] || e.x > xd[1]) return;
         vals.push(e.ch[0].s);
         if (e.b) vals.push(e.b.f, e.b.s);
       }));
       const [lo, hi] = d3.extent(vals) as [number, number];
       const pad = (hi - lo) * 0.05;
-      y = d3.scaleLinear().domain([lo - pad, hi + pad]).nice(5).range([m.t + ph, m.t]);
+      // the smallest step from a fixed list that gives at most six intervals
+      const step = STEPS.find((s) => (hi - lo + 2 * pad) / s <= 6) ?? 600;
+      const d0 = Math.floor((lo - pad) / step + 1e-9) * step, d1 = Math.ceil((hi + pad) / step - 1e-9) * step;
+      y = d3.scaleLinear().domain([d0, d1]).range([m.t + ph, m.t]);
+      yTicks = d3.range(Math.round(d0 / step), Math.round(d1 / step) + 1).map((i) => +(i * step).toFixed(2));
+      yFmt = longRace() ? mmss : (v) => (step < 1 ? v.toFixed(1) : String(Math.round(v)));
     }
 
-    function visible(s: Ser) { return s.eds.filter((e) => e.x >= xd[0] && e.x <= xd[1]); }
+    function visible(s: Ev) { return s.eds.filter((e) => e.x >= xd[0] && e.x <= xd[1]); }
     function segments(eds: Ed[]) {
       const out: Ed[][] = []; let cur: Ed[] = [];
       for (const e of eds) {
@@ -162,44 +206,92 @@ const payload = {
       if (cur.length) out.push(cur);
       return out;
     }
+    const shown = () => (st.view === "compare" ? cmpEvents() : inEvent().filter(active));
     const years = () => {
       const set = new Set<number>();
-      inDist().filter(active).forEach((s) => visible(s).forEach((e) => set.add(e.x)));
+      shown().forEach((s) => visible(s).forEach((e) => set.add(e.x)));
       return [...set].sort((a, b) => a - b);
     };
 
     // ---- drawing ----
     function render(animate: boolean) {
       geometry();
+      const compare = st.view === "compare";
       const animOn = animate && !reduce();
       const t = animOn ? d3.transition().duration(500).ease(d3.easeCubicOut) : null;
       svg.attr("viewBox", `0 0 ${W} ${H}`).attr("width", W).attr("height", H);
+      svgEl.setAttribute("aria-label", compare
+        ? `Line chart: for each ${cmpSex() === "men" ? "men's" : "women's"} event, the share of its total improvement reached at each Games. Use the left and right arrow keys to move between Games.`
+        : `Line chart of Olympic champions' winning times in the ${inEvent().filter(active).map(label).join(" and ")}. Use the left and right arrow keys to move between Games.`);
 
       // axes
-      const yAxis = d3.axisLeft(y).ticks(6).tickSize(-(W - m.l - m.r)).tickPadding(8).tickFormat(d3.format("d") as any);
+      const yAxis = d3.axisLeft(y).tickValues(yTicks).tickSize(-(W - m.l - m.r)).tickPadding(8).tickFormat(yFmt as any);
       (t ? (gGridY.transition(t) as any) : gGridY).attr("transform", `translate(${m.l},0)`).call(yAxis as any);
-      const tv = st.win === "full"
+      const tv = xd === X_ALL
         ? (W < 520 ? [1908, 1940, 1980, 2020] : [1908, 1920, 1940, 1960, 1980, 2000, 2020])
         : (W < 520 ? [1988, 2004, 2021] : [1988, 1996, 2004, 2012, 2021]);
       const xAxis = d3.axisBottom(x).tickValues(tv).tickFormat(d3.format("d") as any).tickSize(4).tickPadding(6);
       gX.attr("transform", `translate(0,${m.t + ph + lane})`).call(xAxis as any);
       gBase.attr("x1", m.l).attr("x2", W - m.r).attr("y1", m.t + ph).attr("y2", m.t + ph);
-      yTitle.attr("x", m.l).attr("y", 12);
+      yTitle.attr("x", m.l).attr("y", 12).text(compare ? "% of total improvement reached" : `${longRace() ? "min:sec" : "seconds"} · lower is faster`);
 
       // marks are rebuilt on each render and faded in on state changes
-      gMarks.selectAll("*").remove(); gNH.selectAll("*").remove(); gCall.selectAll("*").remove();
-      const eds = inDist();
-      const first50 = Math.min(...P.series.filter((s) => s.dist === 50).flatMap((s) => s.eds.map((e) => e.g)));
-      gEmpty.text(st.dist === 50 && st.win === "full" ? `Event not contested until ${first50}` : "")
-        .attr("x", x((1906 + first50) / 2)).attr("y", m.t + ph / 2).attr("text-anchor", "middle");
+      gMarks.selectAll("*").remove(); gNH.selectAll("*").remove(); gCall.selectAll("*").remove(); gEmpty.selectAll("*").remove();
 
       // years with no Games: a dashed guide in the plot and an x in the lane under it
       const nh = P.notHeld.filter((yr) => yr >= xd[0] && yr <= xd[1]);
       nh.forEach((yr) => {
         gNH.append("line").attr("class", "sp-nh-line").attr("x1", x(yr)).attr("x2", x(yr)).attr("y1", m.t).attr("y2", m.t + ph);
-        const cy = m.t + ph + lane / 2 + 1;
-        gNH.append("path").attr("class", "sp-nh-x").attr("d", `M${x(yr) - 4},${cy - 4}L${x(yr) + 4},${cy + 4}M${x(yr) + 4},${cy - 4}L${x(yr) - 4},${cy + 4}`);
+        if (lane) {
+          const cy = m.t + ph + lane / 2 + 1;
+          gNH.append("path").attr("class", "sp-nh-x").attr("d", `M${x(yr) - 4},${cy - 4}L${x(yr) + 4},${cy + 4}M${x(yr) + 4},${cy - 4}L${x(yr) - 4},${cy + 4}`);
+        }
       });
+
+      if (compare) drawCompare(); else drawEvent();
+
+      if (animOn) {
+        gMarks.attr("opacity", 0).transition().duration(400).attr("opacity", 1);
+        gNH.attr("opacity", 0).transition().duration(400).attr("opacity", 1);
+        gCall.attr("opacity", 0).transition().delay(250).duration(300).attr("opacity", 1);
+      } else {
+        gMarks.attr("opacity", 1); gNH.attr("opacity", 1); gCall.attr("opacity", 1);
+      }
+
+      gHit.attr("x", m.l).attr("y", m.t).attr("width", W - m.l - m.r).attr("height", ph + lane);
+      updateLegend();
+      if (st.sel != null && !years().includes(st.sel)) st.sel = null;
+      select(st.sel);
+    }
+
+    // text in the empty left part of the plot when an event starts late
+    function emptyNotes(evs: Ev[]) {
+      const rows = evs.map((s) => ({ s, first: s.eds[0].g })).filter((r) => r.first - xd[0] > 14);
+      const x0 = x(xd[0]);
+      rows.forEach((r, i) => {
+        const room = x(r.first) - x0 - 12;
+        const sex = r.s.sex === "men" ? "Men" : "Women";
+        const options = evs.length > 1
+          ? [`${sex} from ${r.first}`]
+          : [`Event not contested until ${r.first}`, `Not contested until ${r.first}`, `From ${r.first}`];
+        const t = gEmpty.append("text").attr("y", m.t + ph / 2 + i * 16).style("font-size", W < 520 ? "12px" : null);
+        const node = t.node() as SVGTextElement;
+        let pick = options[options.length - 1];
+        for (const o of options) { t.text(o); if (node.getComputedTextLength() <= room) { pick = o; break; } }
+        t.text(pick);
+        if (evs.length > 1) t.attr("x", x0 + 8).attr("text-anchor", "start");
+        else t.attr("x", x0 + 6 + room / 2).attr("text-anchor", "middle");
+      });
+    }
+
+    function drawEvent() {
+      const eds = inEvent();
+      emptyNotes(eds.filter(active));
+
+      // Games where this event was not on the programme: dashed guide, no cross
+      const skipped = new Set<number>();
+      eds.filter(active).forEach((s) => s.skipped.forEach((yr) => { if (yr >= xd[0] && yr <= xd[1]) skipped.add(yr); }));
+      skipped.forEach((yr) => gNH.append("line").attr("class", "sp-nh-line sp-skip").attr("x1", x(yr)).attr("x2", x(yr)).attr("y1", m.t).attr("y2", m.t + ph));
 
       // inactive series first (grey context), then active ones on top
       const ordered = [...eds.filter((s) => !active(s)), ...eds.filter(active)];
@@ -257,32 +349,63 @@ const payload = {
         g.append("circle").attr("cx", px + dx).attr("cy", py + dy).attr("r", 9);
         g.append("text").attr("x", px + dx).attr("y", py + dy).attr("dy", "0.35em").attr("text-anchor", "middle").text(c.n);
       });
+    }
 
-      if (animOn) {
-        gMarks.attr("opacity", 0).transition().duration(400).attr("opacity", 1);
-        gNH.attr("opacity", 0).transition().duration(400).attr("opacity", 1);
-        gCall.attr("opacity", 0).transition().delay(250).duration(300).attr("opacity", 1);
-      } else {
-        gMarks.attr("opacity", 1); gNH.attr("opacity", 1); gCall.attr("opacity", 1);
+    function drawCompare() {
+      const evs = cmpEvents(), sel = cmpSelected();
+      const line = d3.line<Ed>().x((e) => x(e.x)).y((e) => y(e.sh ?? 0));
+      // reference: 1976
+      gNH.append("line").attr("class", "sp-nh-line sp-ref").attr("x1", x(1976)).attr("x2", x(1976)).attr("y1", m.t).attr("y2", m.t + ph);
+      gNH.append("text").attr("x", x(1976) - 4).attr("y", m.t + 11).attr("text-anchor", "end").text("1976");
+      const sexClass = `s-${cmpSex()}`;
+      const sorted = [...evs.filter((s) => s.id !== sel.id), ...evs.filter((s) => s.id === sel.id)];
+      sorted.forEach((s) => {
+        const isSel = s.id === sel.id;
+        const g = gMarks.append("g").attr("class", `sp-s ${sexClass}${isSel ? "" : ` ctx cmp ${s.eds[0].g <= OLD_BY ? "old" : "new"}`}`);
+        segments(s.eds).forEach((seg) => { if (seg.length > 1) g.append("path").attr("class", "sp-line").attr("d", line(seg)!); });
+        if (isSel) {
+          s.eds.forEach((e) => g.append("circle").attr("class", "sp-dot").attr("cx", x(e.x)).attr("cy", y(e.sh ?? 0)).attr("r", 3.5));
+          const last = s.eds[s.eds.length - 1];
+          g.append("text").attr("class", "sp-endlabel").attr("x", x(last.x) + 9).attr("y", y(last.sh ?? 0)).attr("dy", "0.32em").text(cmpSex() === "men" ? "Men" : "Women");
+        }
+      });
+      if (!evs.some((s) => s.id === sel.id)) {
+        gEmpty.append("text").attr("x", (x(1906) + x(2026)) / 2).attr("y", m.t + ph + 0).attr("dy", "-0.6em").attr("text-anchor", "middle")
+          .text(`${label(sel)} has only ${sel.eds.length} Games so far, too few to compare.`);
       }
-
-      gHit.attr("x", m.l).attr("y", m.t).attr("width", W - m.l - m.r).attr("height", ph + lane);
-      updateLegend();
-      if (st.sel != null && !years().includes(st.sel)) st.sel = null;
-      select(st.sel);
     }
 
     function updateLegend() {
-      const act = inDist().filter(active), vis = act.flatMap((s) => visible(s).map((e) => ({ s, e })));
+      const compare = st.view === "compare";
+      const act = shown(), vis = act.flatMap((s) => visible(s).map((e) => ({ s, e })));
+      const skippedYears = [...new Set(act.flatMap((s) => s.skipped).filter((yr) => yr >= xd[0] && yr <= xd[1]))].sort((a, b) => a - b);
+      const courseParts = [...new Map(vis.filter((v) => isCourse(v.s, v.e)).map((v) => [v.e.g, v.e.g === 1908
+        ? "1908 was a single length of a straight 100 m pool, with no turns" : "1912 was an open-water course in Stockholm harbour"])).entries()]
+        .sort((a, b) => a[0] - b[0]).map((p) => p[1]);
       const show: Record<string, boolean> = {
         champion: true,
         tie: vis.some((v) => v.e.ch.length > 1),
-        course: vis.some((v) => isCourse(v.s, v.e)),
+        course: courseParts.length > 0,
         boycott: vis.some((v) => isBoycott(v.e)),
         nothold: lane > 0,
+        skipped: skippedYears.length > 0,
         band: vis.some((v) => v.e.b),
+        cmpsel: true, cmpold: true, cmpnew: true, cmp76: true,
       };
-      root.querySelectorAll<HTMLElement>(".sp-legend li").forEach((li) => { li.hidden = !show[li.dataset.k!]; });
+      root.querySelector<HTMLElement>(".lg-course")!.textContent = `Not a standard pool: ${courseParts.join("; ")}`;
+      root.querySelector<HTMLElement>(".lg-skipped")!.textContent = skippedYears.length ? `Event not on the programme (${skippedYears.join(" and ")})` : "";
+      if (compare) {
+        const sel = cmpSelected();
+        root.querySelector<HTMLElement>(".lg-cmpsel")!.textContent = `${label(sel)}`;
+        const others = cmpEvents().filter((e) => e.id !== sel.id), who = cmpSex() === "men" ? "men's" : "women's";
+        const nOld = others.filter((e) => e.eds[0].g <= OLD_BY).length;
+        root.querySelector<HTMLElement>(".lg-cmpold")!.textContent = `Other ${who} events swum since ${OLD_BY} or earlier (${nOld})`;
+        root.querySelector<HTMLElement>(".lg-cmpnew")!.textContent = `${who[0].toUpperCase() + who.slice(1)} events added later (${others.length - nOld})`;
+      }
+      root.querySelectorAll<HTMLElement>(".sp-legend li").forEach((li) => {
+        const v = li.dataset.v!;
+        li.hidden = !((v === "both" || v === st.view) && show[li.dataset.k!]);
+      });
     }
 
     // ---- reading a value ----
@@ -294,14 +417,18 @@ const payload = {
     };
     const gamesLabel = (e: Ed) => (e.g === e.h ? String(e.g) : e.g === 2020 ? `Tokyo 2020, held ${e.h}` : `${e.g}, held ${e.h}`);
     const nameList = (e: Ed) => e.ch.map((c) => `${esc(c.n)}<span class="c">${esc(P.noc[c.c] ?? c.c)}</span>`).join("");
+    const navHTML = `<span class="sp-nav"><button type="button" data-step="-1" aria-label="Previous Games">‹</button><button type="button" data-step="1" aria-label="Next Games">›</button></span>`;
 
     function cardHTML(year: number) {
-      const rows = inDist().filter(active).map((s) => ({ s, e: s.eds.find((v) => v.x === year) })).filter((r): r is { s: Ser; e: Ed } => !!r.e);
-      if (!rows.length) return "";
+      const rows = inEvent().filter(active).map((s) => ({ s, e: s.eds.find((v) => v.x === year) })).filter((r): r is { s: Ev; e: Ed } => !!r.e);
+      if (!rows.length) {
+        const sk = inEvent().filter(active).filter((s) => s.skipped.includes(year));
+        return sk.length ? `<div class="sp-card-h"><strong>${year}</strong>${navHTML}</div><p class="sp-hint">${sk.map(label).join(" and ")} was not on the programme at these Games.</p>` : "";
+      }
       const head = gamesLabel(rows[0].e);
       const multi = rows.length > 1;
       const notes: string[] = [];
-      const addNote = (text: string, s: Ser) => {
+      const addNote = (text: string, s: Ev) => {
         const t = multi && !text.startsWith("__all__") ? `${label(s)}: ${text}` : text.replace("__all__", "");
         if (!notes.includes(t)) notes.push(t);
       };
@@ -317,11 +444,30 @@ const payload = {
         if (ab && ab.series[s.id]?.length) {
           addNote(`Boycott. Absent, though they medalled at a neighbouring Games: ${ab.series[s.id].map((k) => P.noc[k] ?? k).join(", ")}.`, s);
         }
-        return `<section class="sp-blk s-${s.sex}"><h4><span class="sw"></span>${label(s)} freestyle</h4><ul>${rowsHtml}</ul></section>`;
+        return `<section class="sp-blk s-${s.sex}"><h4><span class="sw"></span>${label(s)}</h4><ul>${rowsHtml}</ul></section>`;
       }).join("");
-      return `<div class="sp-card-h"><strong>${esc(head)}</strong>
-        <span class="sp-nav"><button type="button" data-step="-1" aria-label="Previous Games">‹</button><button type="button" data-step="1" aria-label="Next Games">›</button></span></div>
+      return `<div class="sp-card-h"><strong>${esc(head)}</strong>${navHTML}</div>
         <div class="sp-blks">${blocks}</div>${notes.length ? `<p class="sp-notes">${notes.map(esc).join("<br>")}</p>` : ""}`;
+    }
+
+    function compareCardHTML(year: number) {
+      const sel = cmpSelected();
+      const at = cmpEvents().map((s) => ({ s, e: s.eds.find((v) => v.x === year) })).filter((r): r is { s: Ev; e: Ed } => !!r.e && r.e.sh != null);
+      if (!at.length) return "";
+      const me = at.find((r) => r.s.id === sel.id);
+      const head = gamesLabel(at[0].e);
+      const sh = at.map((r) => r.e.sh as number).sort((a, b) => a - b);
+      const lo = at.reduce((a, b) => ((b.e.sh as number) < (a.e.sh as number) ? b : a)), hi = at.reduce((a, b) => ((b.e.sh as number) > (a.e.sh as number) ? b : a));
+      const mid = d3.median(sh)!;
+      const block = me
+        ? `<section class="sp-blk s-${sel.sex}"><h4><span class="sw"></span>${label(sel)}</h4><ul>
+            <li><span class="m">Gain</span><span class="w">of the total improvement reached</span><span class="t">${me.e.sh!.toFixed(1)}%</span></li>
+            <li><span class="m">Gold</span><span class="w">${nameList(me.e)}</span><span class="t">${esc(timeText(me.e.ch[0].t))}</span></li>
+          </ul></section>`
+        : `<p class="sp-hint">${esc(label(sel))} ${year < sel.eds[0].x ? "had not started yet" : "was not on the programme"} at these Games.</p>`;
+      return `<div class="sp-card-h"><strong>${esc(head)}</strong>${navHTML}</div>
+        <div class="sp-blks">${block}</div>
+        <p class="sp-notes">Across the ${at.length} ${cmpSex() === "men" ? "men's" : "women's"} events contested so far: median ${mid.toFixed(0)}%, from ${lo.e.sh!.toFixed(0)}% (${esc(label(lo.s))}) to ${hi.e.sh!.toFixed(0)}% (${esc(label(hi.s))}).</p>`;
     }
 
     function select(year: number | null) {
@@ -335,7 +481,13 @@ const payload = {
       const gx = x(year);
       gGuide.attr("display", null);
       guideLine.attr("x1", gx).attr("x2", gx).attr("y1", m.t).attr("y2", m.t + ph + lane);
-      inDist().filter(active).forEach((s) => {
+      if (st.view === "compare") {
+        const s = cmpSelected(), e = s.eds.find((v) => v.x === year);
+        if (e) gMarks.append("circle").attr("class", "sp-selring").attr("cx", gx).attr("cy", y(e.sh ?? 0)).attr("r", 8);
+        card.innerHTML = compareCardHTML(year);
+        return;
+      }
+      inEvent().filter(active).forEach((s) => {
         const e = s.eds.find((v) => v.x === year);
         if (e) gMarks.append("circle").attr("class", "sp-selring").attr("cx", gx).attr("cy", y(e.ch[0].s)).attr("r", 9);
       });
@@ -376,18 +528,36 @@ const payload = {
     });
 
     // ---- controls ----
+    function syncControls() {
+      const compare = st.view === "compare";
+      if (compare && st.sex === "both") st.sex = "men";
+      const dists = distsFor(st.stroke);
+      if (!dists.includes(st.dist)) st.dist = dists.includes(100) ? 100 : dists[0];
+      selDist.innerHTML = dists.map((d) => `<option value="${d}"${d === st.dist ? " selected" : ""}>${d} m</option>`).join("");
+      selStroke.value = st.stroke;
+      root.querySelectorAll<HTMLButtonElement>('.sp-seg button[data-ctl="sex"]').forEach((b) => {
+        b.hidden = compare && b.dataset.val === "both";
+        b.setAttribute("aria-pressed", String(b.dataset.val === st.sex));
+      });
+      root.querySelectorAll<HTMLButtonElement>('.sp-seg button[data-ctl="view"]').forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.val === st.view)));
+      root.querySelectorAll<HTMLButtonElement>('.sp-seg button[data-ctl="win"]').forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.val === st.win)));
+      root.querySelector<HTMLElement>('[data-for="event"]')!.hidden = compare;
+    }
     root.querySelectorAll<HTMLButtonElement>(".sp-seg button").forEach((btn) => btn.addEventListener("click", () => {
-      const k = btn.dataset.ctl as "dist" | "sex" | "win", v = btn.dataset.val!;
-      if (k === "dist") st.dist = Number(v); else if (k === "sex") st.sex = v as Sex; else st.win = v as "full" | "since";
-      btn.parentElement!.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
+      const k = btn.dataset.ctl as "view" | "sex" | "win", v = btn.dataset.val!;
+      if (k === "view") st.view = v as "event" | "compare"; else if (k === "sex") st.sex = v as Sex; else st.win = v as "full" | "since";
+      syncControls();
       render(true);
     }));
+    selStroke.addEventListener("change", () => { st.stroke = selStroke.value; syncControls(); render(true); });
+    selDist.addEventListener("change", () => { st.dist = Number(selDist.value); syncControls(); render(true); });
 
     let lastW = 0;
     new ResizeObserver(() => {
       const w = Math.round(stage.clientWidth);
       if (w && w !== lastW) { lastW = w; render(false); }
     }).observe(stage);
+    syncControls();
     render(false);
   });
 </script>
@@ -398,10 +568,13 @@ const payload = {
   .sp-fig { margin: 0; min-width: 0; background: var(--panel); border: 1px solid var(--rule); border-radius: var(--radius); padding: 12px; }
   .sp-controls { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
   .sp-seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; background: var(--bg); }
+  .sp-seg[hidden], .sp-seg button[hidden] { display: none; }
   .sp-seg button { font: 600 13.5px/1 var(--f-body); color: var(--ink-2); background: none; border: 0; padding: 14px 10px; min-height: 44px; cursor: pointer; }
-  .sp-controls .sp-seg:nth-child(2) { order: 3; }
   .sp-seg button + button { border-left: 1px solid var(--rule); }
   .sp-seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+  .sp-sel { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--rule); border-radius: 6px; background: var(--bg); padding-left: 10px; color: var(--ink-3); font: 600 11px/1 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; }
+  .sp-sel select { font: 600 13.5px/1 var(--f-body); color: var(--ink); background: none; border: 0; min-height: 42px; padding: 0 6px 0 2px; cursor: pointer; text-transform: none; letter-spacing: 0; }
+  .sp-sel:focus-within, .sp-seg button:focus-visible { outline: 2px solid var(--ink); outline-offset: 1px; }
 
   .sp-stage { position: relative; }
   .sp-svg { display: block; width: 100%; height: auto; overflow: visible; }
@@ -414,8 +587,9 @@ const payload = {
   .sp-xaxis .tick text { fill: var(--ink-2); }
   .sp-base { stroke: var(--ink-3); stroke-width: 1; }
   .sp-ytitle { font-size: 11px; letter-spacing: .04em; }
-  .sp-empty { font-family: var(--f-body); font-size: 14px; font-style: italic; fill: var(--ink-3); }
+  .sp-empty text { font-family: var(--f-body); font-size: 14px; font-style: italic; fill: var(--ink-3); }
   .sp-nh-line { stroke: var(--rule); stroke-dasharray: 2 4; }
+  .sp-nh-line.sp-skip, .sp-nh-line.sp-ref { stroke: var(--ink-3); stroke-dasharray: 3 4; }
   .sp-nh-x { stroke: var(--ink-2); stroke-width: 1.6; fill: none; stroke-linecap: round; }
 
   .sp-s.s-men { --c: var(--cat-1); }
@@ -423,6 +597,8 @@ const payload = {
   .sp-s.ctx { --c: var(--ink-3); }
   .sp-line { fill: none; stroke: var(--c); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
   .sp-s.ctx .sp-line { stroke-width: 1.5; opacity: .55; }
+  .sp-s.cmp.old .sp-line { stroke-width: 1.5; opacity: .8; }
+  .sp-s.cmp.new .sp-line { stroke-width: 1.2; opacity: .32; }
   .sp-band { fill: var(--c); fill-opacity: .17; stroke: none; }
   .sp-dot { fill: var(--c); stroke: var(--c); stroke-width: 1.8; }
   .sp-dot.hollow { fill: var(--panel); }
@@ -445,7 +621,7 @@ const payload = {
   .sp-nav button { font: 600 18px/1 var(--f-body); color: var(--ink); background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; width: 44px; height: 44px; cursor: pointer; }
   .sp-blks { display: grid; gap: 12px; }
   .sp-blk h4 { margin: 0 0 3px; font: 600 11px/1.2 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); display: flex; align-items: center; gap: 6px; }
-  .sp-blk .sw { width: 10px; height: 3px; border-radius: 1px; background: var(--c); }
+  .sp-blk .sw { width: 10px; height: 3px; border-radius: 1px; background: var(--c); flex: none; }
   .sp-blk.s-men { --c: var(--cat-1); }
   .sp-blk.s-women { --c: var(--cat-2); }
   .sp-blk ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
@@ -467,6 +643,10 @@ const payload = {
   .lg-hollow { fill: var(--panel); stroke: var(--ink-2); stroke-width: 1.8; }
   .lg-x { stroke: var(--ink-2); stroke-width: 1.8; fill: none; stroke-linecap: round; }
   .lg-band { fill: var(--ink-3); fill-opacity: .25; }
+  .lg-dash { stroke: var(--ink-3); stroke-width: 1.4; stroke-dasharray: 3 3; fill: none; }
+  .lg-line { stroke: var(--ink-2); stroke-width: 2; fill: none; }
+  .lg-grey { stroke: var(--ink-3); stroke-width: 1.2; fill: none; opacity: .4; }
+  .lg-grey-old { stroke: var(--ink-3); stroke-width: 1.5; fill: none; opacity: .9; }
   .sp-nojs { font-size: 14px; color: var(--ink-2); }
   .sp:not(.js) .sp-controls, .sp:not(.js) .sp-stage, .sp:not(.js) .sp-legend { display: none; }
 
@@ -478,6 +658,8 @@ const payload = {
 
   .sp-details { margin-top: 24px; font-size: 14px; }
   .sp-details summary { cursor: pointer; font-weight: 600; padding-block: 6px; }
+  .sp-details .sp-details { margin-top: 8px; margin-left: 4px; }
+  .sp-details .sp-details > summary { font-weight: 600; color: var(--ink-2); }
   .sp-tnote { color: var(--ink-2); max-width: var(--measure); }
   .sp-tbl { overflow-x: auto; margin-top: 14px; }
   .sp-tbl table { border-collapse: collapse; min-width: 720px; width: 100%; }
@@ -487,11 +669,16 @@ const payload = {
   .sp-tbl tbody th { font-family: var(--f-mono); white-space: nowrap; }
   .sp-tbl .num { text-align: right; font-family: var(--f-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
 
+  @media (max-width: 699px) {
+    .sp-sel { padding-left: 0; }
+    .sp-sel span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    .sp-sel select { padding-left: 10px; }
+  }
   @media (min-width: 700px) {
     .sp-fig { padding: 18px; }
     .sp-controls { gap: 8px 12px; }
     .sp-seg button { font-size: 14px; padding: 11px 14px; min-height: 40px; }
-    .sp-controls .sp-seg:nth-child(2) { order: 0; }
+    .sp-sel select { font-size: 14px; min-height: 38px; }
     .sp-legend { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
   @media (min-width: 560px) {

@@ -11,12 +11,14 @@
 `src/data/olympic-freestyle-sprint/events.json`. The two candidates:
 
 **A. Keep the approved story, now for every old event.**
-"In the nine events swum since 1924 or earlier, at least 81 % of the Olympic speed-up came before 1976."
-Share of total change = (first champion time - best champion time up to 1976) / (first champion time -
-2024 champion time). Values: men 100 m free 81 %, women 100 m free 88 %, men 400 m free 91 %, women 400 m
-free 90 %, men 1500 m free 94 %, men 100 m back 89 %, women 100 m back 83 %, men 200 m breast 85 %,
-women 200 m breast 81 %. Weak point: the first points are not like-for-like (see data caveats), and
-the claim cannot be made for events that joined later (see B).
+"In the nine events swum since 1924 or earlier, at least 80 % of the Olympic speed-up came before 1976."
+Share of the gain = (first champion time - best champion time up to 1976) / (first champion time - best
+champion time up to 2024). Values (`summary.share_by_1976_pct` in the data): men 100 m free 81.3 %, women 100 m free
+87.8 %, men 400 m free 89.9 %, women 400 m free 89.3 %, men 1500 m free 93.6 %, men 100 m back 89.2 %, women 100 m
+back 82.6 %, men 200 m breast 85.4 %, women 200 m breast 80.6 %. (My first message said "at least 81 %"; the
+lowest value is 80.6 %, so the sentence says 80 %. Rev A divided by the 2024 time instead of the best time; the
+two definitions agree to within 1.2 points for these nine events: W200BR 80.9 vs 80.6.) Weak point: the first points are not like-for-like (see data
+caveats), and the claim cannot be made for events that joined later (see B).
 
 **B. A same-window claim for all 26 events that exist in both 1988 and 2024.**
 "Since 1988 the Olympic champion has got faster in all 26 events, by 1.8 % to 7.0 %."

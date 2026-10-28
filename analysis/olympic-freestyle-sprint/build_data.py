@@ -192,17 +192,14 @@ ANNOTATIONS = [
              "The reason is not in this data; source it before any text mentions it.",
      "source": "https://www.olympedia.org/results/5227", "needs_source": True},
     {"series": "M200BR", "year": 1956, "type": "rules",
-     "text": "Until 1956 the butterfly arm action was allowed in breaststroke races. Butterfly became its own "
-             "event in 1956 and was banned from breaststroke, so the early 200 m breaststroke times (men 1908-1952, "
-             "women 1924-1952) are not like-for-like with the later ones. The 1948 women's page says this; "
-             "check its cited reference in the Words phase.",
-     "source": "https://en.wikipedia.org/wiki/Swimming_at_the_1948_Summer_Olympics_%E2%80%93_Women%27s_200_metre_breaststroke",
-     "needs_source": True},
+     "text": "Swimmers could use the butterfly arm action in breaststroke races until FINA split the two strokes "
+             "after the 1952 Games. Butterfly became its own Olympic event in 1956. Breaststroke times from the "
+             "1930s to 1952 come from a race that allowed it, so they are not like-for-like with later ones.",
+     "source": "https://swimmingworldmagazine.com/news/stroke-warsstroke-wars-how-breaststroke-and-butterfly-emerged-as-separate-strokes"},
     {"series": "W200BR", "year": 1956, "type": "rules",
-     "text": "Same rule change as the men's 200 m breaststroke: butterfly became its own event in 1956 and was "
-             "banned from breaststroke.",
-     "source": "https://en.wikipedia.org/wiki/Swimming_at_the_1948_Summer_Olympics_%E2%80%93_Women%27s_200_metre_breaststroke",
-     "needs_source": True},
+     "text": "Same rule change as the men's 200 m breaststroke: FINA split butterfly from breaststroke after the "
+             "1952 Games and butterfly became its own Olympic event in 1956.",
+     "source": "https://swimmingworldmagazine.com/news/stroke-warsstroke-wars-how-breaststroke-and-butterfly-emerged-as-separate-strokes"},
     {"series": "ALL", "year": 1912, "type": "open-water",
      "text": "Swum on a 100 m course built in Stockholm harbour (open water), not in a pool.",
      "source": "https://en.wikipedia.org/wiki/Swimming_at_the_1912_Summer_Olympics"},
@@ -274,6 +271,32 @@ def build_edition(ev, games_year, rid, date, finalists):
         "others": rest,
         "n_finalists": len(finalists), "n_timed": len(timed),
         "band": {"fastest": min(timed), "slowest": max(timed)} if complete else None,
+    }
+
+
+def derive(editions):
+    """Share of the total gain reached at each Games, and a summary per event.
+
+    Gain = first champion time minus the best champion time of any Games to 2024. The share at a Games is
+    (first time - best time up to and including that Games) / gain, in percent: 0 at the first Games and
+    100 once the best time has been swum. Times are the champion's winning time in seconds.
+    """
+    years = sorted(editions)
+    t = {y: editions[y]["champions"][0]["time_s"] for y in years}
+    t0, best = t[years[0]], min(t.values())
+    gain = t0 - best
+    cummin, shares = t0, {}
+    for y in years:
+        cummin = min(cummin, t[y])
+        shares[y] = round(100 * (t0 - cummin) / gain, 1) if gain > 0 else None
+        editions[y]["share_pct"] = shares[y]
+    up_to_1976 = [y for y in years if y <= 1976]
+    return {
+        "first_year": years[0], "first_time_s": t0, "last_time_s": t[years[-1]],
+        "best_time_s": best, "best_year": next(y for y in years if t[y] == best),
+        "change_first_to_last_pct": round(100 * (t[years[-1]] - t0) / t0, 1),
+        "share_by_1976_pct": shares[up_to_1976[-1]] if up_to_1976 else None,
+        "change_since_1988_pct": round(100 * (t[2024] - t[1988]) / t[1988], 1) if 1988 in t else None,
     }
 
 
@@ -360,15 +383,28 @@ def main():
           {f["year"] for f in flags if f["chart_marker"]} == CHART_MARKER_YEARS)
     check("Tokyo 2020 is plotted at 2021", all(data[ev][2020]["plot_year"] == 2021 for ev in EVENTS))
 
-    if not all(CHECKS):
-        sys.exit("Checks failed; data not written.")
-
     events_out = []
+    summaries = {}
     for ev in EVENT_ORDER:
         meta = EVENTS[ev]
+        summaries[ev] = derive(data[ev])
         events_out.append({"id": ev, "distance_m": meta["distance_m"], "sex": meta["sex"],
                            "stroke": meta["stroke"], "event_index": meta["index"],
+                           "summary": summaries[ev],
+                           "skipped_games": [g for g in GAMES if min(data[ev]) <= g <= 2024 and g not in data[ev]],
                            "editions": [data[ev][y] for y in sorted(data[ev])]})
+
+    # Numbers behind the thesis (brief rev B): A = the events on the programme by 1924, B = the 1988-2024 window.
+    old_events = [ev for ev in EVENT_ORDER if summaries[ev]["first_year"] <= 1924]
+    low_a = min(summaries[ev]["share_by_1976_pct"] for ev in old_events)
+    check("thesis A: 9 events on the programme by 1924, each with at least 80 % of its gain before 1976",
+          len(old_events) == 9 and low_a >= 80, f"{len(old_events)} events, lowest {low_a}")
+    since88 = {ev: summaries[ev]["change_since_1988_pct"] for ev in EVENT_ORDER if summaries[ev]["change_since_1988_pct"] is not None}
+    check("thesis B: 26 events with Games in 1988 and 2024, all faster in 2024, by 1.8 % to 7.0 %",
+          len(since88) == 26 and max(since88.values()) < 0 and round(-max(since88.values()), 1) == 1.8
+          and round(-min(since88.values()), 1) == 7.0, f"{len(since88)} events, {min(since88.values())} to {max(since88.values())}")
+    if not all(CHECKS):
+        sys.exit("Checks failed; data not written.")
 
     out = {
         "units": "seconds", "accessed": ACCESSED,

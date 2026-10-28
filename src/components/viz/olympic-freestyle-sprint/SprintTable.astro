@@ -1,44 +1,47 @@
 ---
 // Text alternative to the chart: every plotted edition as a table (also the no-JavaScript view).
-// Data: src/data/olympic-freestyle-sprint/series.json (built by analysis/olympic-freestyle-sprint/build_data.py)
-import data from "../../../data/olympic-freestyle-sprint/series.json";
+// Data: src/data/olympic-freestyle-sprint/events.json (built by analysis/olympic-freestyle-sprint/build_data.py)
+import data from "../../../data/olympic-freestyle-sprint/events.json";
 
 const names = data.noc_names as Record<string, string>;
 const who = (p: { name: string; noc: string; time_text: string | null }) =>
   `${p.name} (${names[p.noc] ?? p.noc})`;
-const label: Record<string, string> = {
-  M100: "Men's 100 m freestyle", W100: "Women's 100 m freestyle",
-  M50: "Men's 50 m freestyle", W50: "Women's 50 m freestyle",
-};
-const order = ["M100", "W100", "M50", "W50"];
-const series = order.map((id) => data.series.find((s) => s.id === id)!);
+const label = (e: { sex: string; distance_m: number; stroke: string }) =>
+  `${e.sex === "men" ? "Men's" : "Women's"} ${e.distance_m} m ${e.stroke}`;
+const strokes = [...new Set(data.events.map((e) => e.stroke))];
+const groups = strokes.map((stroke) => ({ stroke, events: data.events.filter((e) => e.stroke === stroke) }));
 ---
 <details class="sp-details">
   <summary>Show the data as tables</summary>
-  <p class="sp-tnote">Times are as printed in the official results: tenths of a second up to 1968, hundredths from 1972. Silver and bronze come from a single source (Olympedia).</p>
-  {series.map((s) => (
-    <div class="sp-tbl">
-      <table>
-        <caption>{label[s.id]}</caption>
-        <thead>
-          <tr><th scope="col">Games</th><th scope="col">Champion</th><th scope="col" class="num">Time</th><th scope="col">Silver</th><th scope="col">Bronze</th></tr>
-        </thead>
-        <tbody>
-          {s.editions.map((e) => {
-            const silver = e.podium.find((p) => p.medal === "Silver");
-            const bronze = e.podium.find((p) => p.medal === "Bronze");
-            return (
-              <tr>
-                <th scope="row">{e.games_year}{e.held_year !== e.games_year ? ` (held ${e.held_year})` : ""}</th>
-                <td>{e.champions.map(who).join(" and ")}</td>
-                <td class="num">{e.champions[0].time_text}</td>
-                <td>{silver ? `${who(silver)}, ${silver.time_text ?? "no time"}` : e.champions.length > 1 ? "No silver (tied gold)" : "Not listed"}</td>
-                <td>{bronze ? `${who(bronze)}, ${bronze.time_text ?? "no time"}` : "Not listed"}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </div>
+  <p class="sp-tnote">Times are as printed in the official results: tenths of a second up to 1968, hundredths from 1972. Silver and bronze come from a single source (Olympedia). There is one table per event, grouped by stroke.</p>
+  {groups.map((grp) => (
+    <details class="sp-details">
+      <summary>{grp.stroke[0].toUpperCase() + grp.stroke.slice(1)} ({grp.events.length} events)</summary>
+      {grp.events.map((s) => (
+        <div class="sp-tbl">
+          <table>
+            <caption>{label(s)}</caption>
+            <thead>
+              <tr><th scope="col">Games</th><th scope="col">Champion</th><th scope="col" class="num">Time</th><th scope="col">Silver</th><th scope="col">Bronze</th></tr>
+            </thead>
+            <tbody>
+              {s.editions.map((e) => {
+                const silver = e.podium.find((p) => p.medal === "Silver");
+                const bronze = e.podium.find((p) => p.medal === "Bronze");
+                return (
+                  <tr>
+                    <th scope="row">{e.games_year}{e.held_year !== e.games_year ? ` (held ${e.held_year})` : ""}</th>
+                    <td>{e.champions.map(who).join(" and ")}</td>
+                    <td class="num">{e.champions[0].time_text}</td>
+                    <td>{silver ? `${who(silver)}, ${silver.time_text ?? "no time"}` : e.champions.length > 1 ? "No silver (tied gold)" : "Not listed"}</td>
+                    <td>{bronze ? `${who(bronze)}, ${bronze.time_text ?? "no time"}` : e.podium.filter((p) => p.pos.endsWith("2")).length > 1 ? "No bronze (tied silver)" : "Not listed"}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      ))}
+    </details>
   ))}
 </details>

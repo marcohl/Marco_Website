@@ -1,6 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
-import sprint from "../data/olympic-freestyle-sprint/series.json";
+import sprint from "../data/olympic-freestyle-sprint/events.json";
 
 // Every MDX file in src/pages/projects/ with status "published" is listed (all of them in dev).
 const modules = import.meta.glob("./projects/*.mdx", { eager: true }) as Record<string, any>;
@@ -11,7 +11,7 @@ const projects = Object.entries(modules)
 const ym = (d: unknown) => new Date(d as string).toISOString().slice(0, 7);
 
 // Thumbnail of the Olympic sprint sheet: the two 100 m champion lines, drawn from the project data.
-const sp100 = sprint.series.filter((s) => s.distance_m === 100);
+const sp100 = sprint.events.filter((s) => s.id === "M100FR" || s.id === "W100FR");
 const tAll = sp100.flatMap((s) => s.editions.map((e) => e.champions[0].time_s));
 const [tMin, tMax] = [Math.min(...tAll), Math.max(...tAll)];
 const tx = (yr: number) => 12 + ((yr - 1906) / 120) * 296;
@@ -41,8 +41,8 @@ const nextCode = "MHL-" + String(Object.keys(modules).length + 1).padStart(3, "0
             {p.thumb === "sprint" && (
               <svg class="thumb-chart" viewBox="0 0 320 160" aria-hidden="true">
                 <line class="base" x1="12" y1="150" x2="308" y2="150" />
-                <path class="w" d={thumbPath("W100")} />
-                <path class="m" d={thumbPath("M100")} />
+                <path class="w" d={thumbPath("W100FR")} />
+                <path class="m" d={thumbPath("M100FR")} />
               </svg>
             )}
           </div>

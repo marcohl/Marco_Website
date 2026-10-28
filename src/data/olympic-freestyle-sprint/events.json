@@ -1349,17 +1349,15 @@
       "series": "M200BR",
       "year": 1956,
       "type": "rules",
-      "text": "Until 1956 the butterfly arm action was allowed in breaststroke races. Butterfly became its own event in 1956 and was banned from breaststroke, so the early 200 m breaststroke times (men 1908-1952, women 1924-1952) are not like-for-like with the later ones. The 1948 women's page says this; check its cited reference in the Words phase.",
-      "source": "https://en.wikipedia.org/wiki/Swimming_at_the_1948_Summer_Olympics_%E2%80%93_Women%27s_200_metre_breaststroke",
-      "needs_source": true
+      "text": "Swimmers could use the butterfly arm action in breaststroke races until FINA split the two strokes after the 1952 Games. Butterfly became its own Olympic event in 1956. Breaststroke times from the 1930s to 1952 come from a race that allowed it, so they are not like-for-like with later ones.",
+      "source": "https://swimmingworldmagazine.com/news/stroke-warsstroke-wars-how-breaststroke-and-butterfly-emerged-as-separate-strokes"
     },
     {
       "series": "W200BR",
       "year": 1956,
       "type": "rules",
-      "text": "Same rule change as the men's 200 m breaststroke: butterfly became its own event in 1956 and was banned from breaststroke.",
-      "source": "https://en.wikipedia.org/wiki/Swimming_at_the_1948_Summer_Olympics_%E2%80%93_Women%27s_200_metre_breaststroke",
-      "needs_source": true
+      "text": "Same rule change as the men's 200 m breaststroke: FINA split butterfly from breaststroke after the 1952 Games and butterfly became its own Olympic event in 1956.",
+      "source": "https://swimmingworldmagazine.com/news/stroke-warsstroke-wars-how-breaststroke-and-butterfly-emerged-as-separate-strokes"
     },
     {
       "series": "ALL",
@@ -1383,6 +1381,17 @@
       "sex": "men",
       "stroke": "freestyle",
       "event_index": "https://www.olympedia.org/event_names/551",
+      "summary": {
+        "first_year": 1988,
+        "first_time_s": 22.14,
+        "last_time_s": 21.25,
+        "best_time_s": 21.07,
+        "best_year": 2020,
+        "change_first_to_last_pct": -4.0,
+        "share_by_1976_pct": null,
+        "change_since_1988_pct": -4.0
+      },
+      "skipped_games": [],
       "editions": [
         {
           "games_year": 1988,
@@ -1459,7 +1468,8 @@
           "band": {
             "fastest": 22.14,
             "slowest": 23.15
-          }
+          },
+          "share_pct": 0.0
         },
         {
           "games_year": 1992,
@@ -1536,7 +1546,8 @@
           "band": {
             "fastest": 21.91,
             "slowest": 22.73
-          }
+          },
+          "share_pct": 21.5
         },
         {
           "games_year": 1996,
@@ -1613,7 +1624,8 @@
           "band": {
             "fastest": 22.13,
             "slowest": 22.73
-          }
+          },
+          "share_pct": 21.5
         },
         {
           "games_year": 2000,
@@ -1698,7 +1710,8 @@
           "band": {
             "fastest": 21.98,
             "slowest": 22.51
-          }
+          },
+          "share_pct": 21.5
         },
         {
           "games_year": 2004,
@@ -1775,7 +1788,8 @@
           "band": {
             "fastest": 21.93,
             "slowest": 22.37
-          }
+          },
+          "share_pct": 21.5
         },
         {
           "games_year": 2008,
@@ -1852,7 +1866,8 @@
           "band": {
             "fastest": 21.3,
             "slowest": 21.72
-          }
+          },
+          "share_pct": 78.5
         },
         {
           "games_year": 2012,
@@ -1929,7 +1944,8 @@
           "band": {
             "fastest": 21.34,
             "slowest": 21.98
-          }
+          },
+          "share_pct": 78.5
         },
         {
           "games_year": 2016,
@@ -2006,7 +2022,8 @@
           "band": {
             "fastest": 21.4,
             "slowest": 22.08
-          }
+          },
+          "share_pct": 78.5
         },
         {
           "games_year": 2020,
@@ -2083,7 +2100,8 @@
           "band": {
             "fastest": 21.07,
             "slowest": 21.79
-          }
+          },
+          "share_pct": 100.0
         },
         {
           "games_year": 2024,
@@ -2160,7 +2178,8 @@
           "band": {
             "fastest": 21.25,
             "slowest": 21.64
-          }
+          },
+          "share_pct": 100.0
         }
       ]
     },
@@ -2170,6 +2189,17 @@
       "sex": "women",
       "stroke": "freestyle",
       "event_index": "https://www.olympedia.org/event_names/587",
+      "summary": {
+        "first_year": 1988,
+        "first_time_s": 25.49,
+        "last_time_s": 23.71,
+        "best_time_s": 23.71,
+        "best_year": 2024,
+        "change_first_to_last_pct": -7.0,
+        "share_by_1976_pct": null,
+        "change_since_1988_pct": -7.0
+      },
+      "skipped_games": [],
       "editions": [
         {
           "games_year": 1988,
@@ -2249,7 +2279,8 @@
           "band": {
             "fastest": 25.49,
             "slowest": 26.01
-          }
+          },
+          "share_pct": 0.0
         },
         {
           "games_year": 1992,
@@ -2326,7 +2357,8 @@
           "band": {
             "fastest": 24.79,
             "slowest": 25.84
-          }
+          },
+          "share_pct": 39.3
         },
         {
           "games_year": 1996,
@@ -2403,7 +2435,8 @@
           "band": {
             "fastest": 24.87,
             "slowest": 25.88
-          }
+          },
+          "share_pct": 39.3
         },
         {
           "games_year": 2000,
@@ -2480,7 +2513,8 @@
           "band": {
             "fastest": 24.32,
             "slowest": 25.65
-          }
+          },
+          "share_pct": 65.7
         },
         {
           "games_year": 2004,
@@ -2557,7 +2591,8 @@
           "band": {
             "fastest": 24.58,
             "slowest": 25.2
-          }
+          },
+          "share_pct": 65.7
         },
         {
           "games_year": 2008,
@@ -2634,7 +2669,8 @@
           "band": {
             "fastest": 24.06,
             "slowest": 24.77
-          }
+          },
+          "share_pct": 80.3
         },
         {
           "games_year": 2012,
@@ -2711,7 +2747,8 @@
           "band": {
             "fastest": 24.05,
             "slowest": 24.69
-          }
+          },
+          "share_pct": 80.9
         },
         {
           "games_year": 2016,
@@ -2788,7 +2825,8 @@
           "band": {
             "fastest": 24.07,
             "slowest": 24.69
-          }
+          },
+          "share_pct": 80.9
         },
         {
           "games_year": 2020,
@@ -2865,7 +2903,8 @@
           "band": {
             "fastest": 23.81,
             "slowest": 24.41
-          }
+          },
+          "share_pct": 94.4
         },
         {
           "games_year": 2024,
@@ -2942,7 +2981,8 @@
           "band": {
             "fastest": 23.71,
             "slowest": 24.39
-          }
+          },
+          "share_pct": 100.0
         }
       ]
     },
@@ -2952,6 +2992,17 @@
       "sex": "men",
       "stroke": "freestyle",
       "event_index": "https://www.olympedia.org/event_names/553",
+      "summary": {
+        "first_year": 1908,
+        "first_time_s": 65.6,
+        "last_time_s": 46.4,
+        "best_time_s": 46.4,
+        "best_year": 2024,
+        "change_first_to_last_pct": -29.3,
+        "share_by_1976_pct": 81.3,
+        "change_since_1988_pct": -4.6
+      },
+      "skipped_games": [],
       "editions": [
         {
           "games_year": 1908,
@@ -3005,7 +3056,8 @@
           ],
           "n_finalists": 4,
           "n_timed": 3,
-          "band": null
+          "band": null,
+          "share_pct": 0.0
         },
         {
           "games_year": 1912,
@@ -3064,7 +3116,8 @@
           ],
           "n_finalists": 5,
           "n_timed": 5,
-          "band": null
+          "band": null,
+          "share_pct": 11.5
         },
         {
           "games_year": 1920,
@@ -3118,7 +3171,8 @@
           ],
           "n_finalists": 4,
           "n_timed": 4,
-          "band": null
+          "band": null,
+          "share_pct": 21.9
         },
         {
           "games_year": 1924,
@@ -3177,7 +3231,8 @@
           ],
           "n_finalists": 5,
           "n_timed": 5,
-          "band": null
+          "band": null,
+          "share_pct": 34.4
         },
         {
           "games_year": 1928,
@@ -3246,7 +3301,8 @@
           ],
           "n_finalists": 7,
           "n_timed": 7,
-          "band": null
+          "band": null,
+          "share_pct": 36.5
         },
         {
           "games_year": 1932,
@@ -3310,7 +3366,8 @@
           ],
           "n_finalists": 6,
           "n_timed": 6,
-          "band": null
+          "band": null,
+          "share_pct": 38.5
         },
         {
           "games_year": 1936,
@@ -3379,7 +3436,8 @@
           ],
           "n_finalists": 7,
           "n_timed": 7,
-          "band": null
+          "band": null,
+          "share_pct": 41.7
         },
         {
           "games_year": 1948,
@@ -3456,7 +3514,8 @@
           "band": {
             "fastest": 57.3,
             "slowest": 60.5
-          }
+          },
+          "share_pct": 43.2
         },
         {
           "games_year": 1952,
@@ -3533,7 +3592,8 @@
           "band": {
             "fastest": 57.4,
             "slowest": 58.8
-          }
+          },
+          "share_pct": 43.2
         },
         {
           "games_year": 1956,
@@ -3610,7 +3670,8 @@
           "band": {
             "fastest": 55.4,
             "slowest": 58.1
-          }
+          },
+          "share_pct": 53.1
         },
         {
           "games_year": 1960,
@@ -3687,7 +3748,8 @@
           "band": {
             "fastest": 55.1,
             "slowest": 57.1
-          }
+          },
+          "share_pct": 54.2
         },
         {
           "games_year": 1964,
@@ -3764,7 +3826,8 @@
           "band": {
             "fastest": 53.4,
             "slowest": 56.1
-          }
+          },
+          "share_pct": 63.5
         },
         {
           "games_year": 1968,
@@ -3841,7 +3904,8 @@
           "band": {
             "fastest": 52.2,
             "slowest": 53.9
-          }
+          },
+          "share_pct": 69.8
         },
         {
           "games_year": 1972,
@@ -3918,7 +3982,8 @@
           "band": {
             "fastest": 51.22,
             "slowest": 52.92
-          }
+          },
+          "share_pct": 74.9
         },
         {
           "games_year": 1976,
@@ -3995,7 +4060,8 @@
           "band": {
             "fastest": 49.99,
             "slowest": 52.15
-          }
+          },
+          "share_pct": 81.3
         },
         {
           "games_year": 1980,
@@ -4072,7 +4138,8 @@
           "band": {
             "fastest": 50.4,
             "slowest": 52.22
-          }
+          },
+          "share_pct": 81.3
         },
         {
           "games_year": 1984,
@@ -4149,7 +4216,8 @@
           "band": {
             "fastest": 49.8,
             "slowest": 50.93
-          }
+          },
+          "share_pct": 82.3
         },
         {
           "games_year": 1988,
@@ -4226,7 +4294,8 @@
           "band": {
             "fastest": 48.63,
             "slowest": 50.54
-          }
+          },
+          "share_pct": 88.4
         },
         {
           "games_year": 1992,
@@ -4303,7 +4372,8 @@
           "band": {
             "fastest": 49.02,
             "slowest": 50.25
-          }
+          },
+          "share_pct": 88.4
         },
         {
           "games_year": 1996,
@@ -4380,7 +4450,8 @@
           "band": {
             "fastest": 48.74,
             "slowest": 49.84
-          }
+          },
+          "share_pct": 88.4
         },
         {
           "games_year": 2000,
@@ -4457,7 +4528,8 @@
           "band": {
             "fastest": 48.3,
             "slowest": 49.44
-          }
+          },
+          "share_pct": 90.1
         },
         {
           "games_year": 2004,
@@ -4534,7 +4606,8 @@
           "band": {
             "fastest": 48.17,
             "slowest": 49.3
-          }
+          },
+          "share_pct": 90.8
         },
         {
           "games_year": 2008,
@@ -4614,7 +4687,8 @@
           "band": {
             "fastest": 47.21,
             "slowest": 48.33
-          }
+          },
+          "share_pct": 95.8
         },
         {
           "games_year": 2012,
@@ -4691,7 +4765,8 @@
           "band": {
             "fastest": 47.52,
             "slowest": 48.44
-          }
+          },
+          "share_pct": 95.8
         },
         {
           "games_year": 2016,
@@ -4768,7 +4843,8 @@
           "band": {
             "fastest": 47.58,
             "slowest": 48.41
-          }
+          },
+          "share_pct": 95.8
         },
         {
           "games_year": 2020,
@@ -4845,7 +4921,8 @@
           "band": {
             "fastest": 47.02,
             "slowest": 48.1
-          }
+          },
+          "share_pct": 96.8
         },
         {
           "games_year": 2024,
@@ -4922,7 +4999,8 @@
           "band": {
             "fastest": 46.4,
             "slowest": 47.98
-          }
+          },
+          "share_pct": 100.0
         }
       ]
     },
@@ -4932,6 +5010,17 @@
       "sex": "women",
       "stroke": "freestyle",
       "event_index": "https://www.olympedia.org/event_names/588",
+      "summary": {
+        "first_year": 1912,
+        "first_time_s": 82.2,
+        "last_time_s": 52.16,
+        "best_time_s": 51.96,
+        "best_year": 2020,
+        "change_first_to_last_pct": -36.5,
+        "share_by_1976_pct": 87.8,
+        "change_since_1988_pct": -5.0
+      },
+      "skipped_games": [],
       "editions": [
         {
           "games_year": 1912,
@@ -4990,7 +5079,8 @@
           ],
           "n_finalists": 5,
           "n_timed": 5,
-          "band": null
+          "band": null,
+          "share_pct": 0.0
         },
         {
           "games_year": 1920,
@@ -5054,7 +5144,8 @@
           ],
           "n_finalists": 6,
           "n_timed": 4,
-          "band": null
+          "band": null,
+          "share_pct": 28.4
         },
         {
           "games_year": 1924,
@@ -5113,7 +5204,8 @@
           ],
           "n_finalists": 5,
           "n_timed": 5,
-          "band": null
+          "band": null,
+          "share_pct": 32.4
         },
         {
           "games_year": 1928,
@@ -5177,7 +5269,8 @@
           ],
           "n_finalists": 6,
           "n_timed": 6,
-          "band": null
+          "band": null,
+          "share_pct": 37.0
         },
         {
           "games_year": 1932,
@@ -5241,7 +5334,8 @@
           ],
           "n_finalists": 6,
           "n_timed": 6,
-          "band": null
+          "band": null,
+          "share_pct": 50.9
         },
         {
           "games_year": 1936,
@@ -5310,7 +5404,8 @@
           ],
           "n_finalists": 7,
           "n_timed": 7,
-          "band": null
+          "band": null,
+          "share_pct": 53.9
         },
         {
           "games_year": 1948,
@@ -5387,7 +5482,8 @@
           "band": {
             "fastest": 66.3,
             "slowest": 69.1
-          }
+          },
+          "share_pct": 53.9
         },
         {
           "games_year": 1952,
@@ -5464,7 +5560,8 @@
           "band": {
             "fastest": 66.8,
             "slowest": 68.6
-          }
+          },
+          "share_pct": 53.9
         },
         {
           "games_year": 1956,
@@ -5541,7 +5638,8 @@
           "band": {
             "fastest": 62.0,
             "slowest": 65.8
-          }
+          },
+          "share_pct": 66.8
         },
         {
           "games_year": 1960,
@@ -5618,7 +5716,8 @@
           "band": {
             "fastest": 61.2,
             "slowest": 65.5
-          }
+          },
+          "share_pct": 69.4
         },
         {
           "games_year": 1964,
@@ -5695,7 +5794,8 @@
           "band": {
             "fastest": 59.5,
             "slowest": 62.7
-          }
+          },
+          "share_pct": 75.1
         },
         {
           "games_year": 1968,
@@ -5772,7 +5872,8 @@
           "band": {
             "fastest": 60.0,
             "slowest": 61.6
-          }
+          },
+          "share_pct": 75.1
         },
         {
           "games_year": 1972,
@@ -5849,7 +5950,8 @@
           "band": {
             "fastest": 58.59,
             "slowest": 60.09
-          }
+          },
+          "share_pct": 78.1
         },
         {
           "games_year": 1976,
@@ -5926,7 +6028,8 @@
           "band": {
             "fastest": 55.65,
             "slowest": 57.26
-          }
+          },
+          "share_pct": 87.8
         },
         {
           "games_year": 1980,
@@ -6003,7 +6106,8 @@
           "band": {
             "fastest": 54.79,
             "slowest": 57.9
-          }
+          },
+          "share_pct": 90.6
         },
         {
           "games_year": 1984,
@@ -6088,7 +6192,8 @@
           "band": {
             "fastest": 55.92,
             "slowest": 58.09
-          }
+          },
+          "share_pct": 90.6
         },
         {
           "games_year": 1988,
@@ -6165,7 +6270,8 @@
           "band": {
             "fastest": 54.93,
             "slowest": 56.54
-          }
+          },
+          "share_pct": 90.6
         },
         {
           "games_year": 1992,
@@ -6242,7 +6348,8 @@
           "band": {
             "fastest": 54.64,
             "slowest": 56.59
-          }
+          },
+          "share_pct": 91.1
         },
         {
           "games_year": 1996,
@@ -6319,7 +6426,8 @@
           "band": {
             "fastest": 54.5,
             "slowest": 56.12
-          }
+          },
+          "share_pct": 91.6
         },
         {
           "games_year": 2000,
@@ -6399,7 +6507,8 @@
           "band": {
             "fastest": 53.83,
             "slowest": 55.58
-          }
+          },
+          "share_pct": 93.8
         },
         {
           "games_year": 2004,
@@ -6476,7 +6585,8 @@
           "band": {
             "fastest": 53.84,
             "slowest": 55.24
-          }
+          },
+          "share_pct": 93.8
         },
         {
           "games_year": 2008,
@@ -6553,7 +6663,8 @@
           "band": {
             "fastest": 53.12,
             "slowest": 54.29
-          }
+          },
+          "share_pct": 96.2
         },
         {
           "games_year": 2012,
@@ -6630,7 +6741,8 @@
           "band": {
             "fastest": 53.0,
             "slowest": 54.02
-          }
+          },
+          "share_pct": 96.6
         },
         {
           "games_year": 2016,
@@ -6715,7 +6827,8 @@
           "band": {
             "fastest": 52.7,
             "slowest": 53.36
-          }
+          },
+          "share_pct": 97.6
         },
         {
           "games_year": 2020,
@@ -6792,7 +6905,8 @@
           "band": {
             "fastest": 51.96,
             "slowest": 53.23
-          }
+          },
+          "share_pct": 100.0
         },
         {
           "games_year": 2024,
@@ -6869,7 +6983,8 @@
           "band": {
             "fastest": 52.16,
             "slowest": 53.04
-          }
+          },
+          "share_pct": 100.0
         }
       ]
     },
@@ -6879,6 +6994,17 @@
       "sex": "men",
       "stroke": "freestyle",
       "event_index": "https://www.olympedia.org/event_names/555",
+      "summary": {
+        "first_year": 1968,
+        "first_time_s": 115.2,
+        "last_time_s": 104.72,
+        "best_time_s": 102.96,
+        "best_year": 2008,
+        "change_first_to_last_pct": -9.1,
+        "share_by_1976_pct": 40.1,
+        "change_since_1988_pct": -2.4
+      },
+      "skipped_games": [],
       "editions": [
         {
           "games_year": 1968,
@@ -6947,7 +7073,8 @@
           ],
           "n_finalists": 7,
           "n_timed": 7,
-          "band": null
+          "band": null,
+          "share_pct": 0.0
         },
         {
           "games_year": 1972,
@@ -7024,7 +7151,8 @@
           "band": {
             "fastest": 112.78,
             "slowest": 117.56
-          }
+          },
+          "share_pct": 19.8
         },
         {
           "games_year": 1976,
@@ -7101,7 +7229,8 @@
           "band": {
             "fastest": 110.29,
             "slowest": 113.33
-          }
+          },
+          "share_pct": 40.1
         },
         {
           "games_year": 1980,
@@ -7178,7 +7307,8 @@
           "band": {
             "fastest": 109.81,
             "slowest": 113.25
-          }
+          },
+          "share_pct": 44.0
         },
         {
           "games_year": 1984,
@@ -7255,7 +7385,8 @@
           "band": {
             "fastest": 107.44,
             "slowest": 113.84
-          }
+          },
+          "share_pct": 63.4
         },
         {
           "games_year": 1988,
@@ -7332,7 +7463,8 @@
           "band": {
             "fastest": 107.25,
             "slowest": 109.19
-          }
+          },
+          "share_pct": 65.0
         },
         {
           "games_year": 1992,
@@ -7409,7 +7541,8 @@
           "band": {
             "fastest": 106.7,
             "slowest": 110.57
-          }
+          },
+          "share_pct": 69.4
         },
         {
           "games_year": 1996,
@@ -7486,7 +7619,8 @@
           "band": {
             "fastest": 107.63,
             "slowest": 109.39
-          }
+          },
+          "share_pct": 69.4
         },
         {
           "games_year": 2000,
@@ -7563,7 +7697,8 @@
           "band": {
             "fastest": 105.35,
             "slowest": 109.46
-          }
+          },
+          "share_pct": 80.5
         },
         {
           "games_year": 2004,
@@ -7640,7 +7775,8 @@
           "band": {
             "fastest": 104.71,
             "slowest": 108.4
-          }
+          },
+          "share_pct": 85.7
         },
         {
           "games_year": 2008,
@@ -7717,7 +7853,8 @@
           "band": {
             "fastest": 102.96,
             "slowest": 107.47
-          }
+          },
+          "share_pct": 100.0
         },
         {
           "games_year": 2012,
@@ -7794,7 +7931,8 @@
           "band": {
             "fastest": 103.14,
             "slowest": 107.75
-          }
+          },
+          "share_pct": 100.0
         },
         {
           "games_year": 2016,
@@ -7871,7 +8009,8 @@
           "band": {
             "fastest": 104.65,
             "slowest": 105.91
-          }
+          },
+          "share_pct": 100.0
         },
         {
           "games_year": 2020,
@@ -7948,7 +8087,8 @@
           "band": {
             "fastest": 104.22,
             "slowest": 105.78
-          }
+          },
+          "share_pct": 100.0
         },
         {
           "games_year": 2024,
@@ -8025,7 +8165,8 @@
           "band": {
             "fastest": 104.72,
             "slowest": 106.26
-          }
+          },
+          "share_pct": 100.0
         }
       ]
     },
@@ -8035,6 +8176,17 @@
       "sex": "women",
       "stroke": "freestyle",
       "event_index": "https://www.olympedia.org/event_names/589",
+      "summary": {
+        "first_year": 1968,
+        "first_time_s": 130.5,
+        "last_time_s": 113.27,
+        "best_time_s": 113.27,
+        "best_year": 2024,
+        "change_first_to_last_pct": -13.2,
+        "share_by_1976_pct": 65.2,
+        "change_since_1988_pct": -3.7
+      },
+      "skipped_games": [],
       "editions": [
         {
           "games_year": 1968,
@@ -8111,7 +8263,8 @@
           "band": {
             "fastest": 130.5,
             "slowest": 136.0
-          }
+          },
+          "share_pct": 0.0
         },
         {
           "games_year": 1972,
@@ -8188,7 +8341,8 @@
           "band": {
             "fastest": 123.56,
             "slowest": 131.7
-          }
+          },
+          "share_pct": 40.3
         },
         {
           "games_year": 1976,
@@ -8265,7 +8419,8 @@
           "band": {
             "fastest": 119.26,
             "slowest": 125.63
-          }
+          },
+          "share_pct": 65.2
         },
         {
           "games_year": 1980,
@@ -8342,7 +8497,8 @@
           "band": {
             "fastest": 118.33,
             "slowest": 124.0
-          }
+          },
+          "share_pct": 70.6
         },
         {
           "games_year": 1984,
@@ -8419,7 +8575,8 @@
           "band": {
             "fastest": 119.23,
             "slowest": 122.87
-          }
+          },
+          "share_pct": 70.6
         },
         {
           "games_year": 1988,
@@ -8496,7 +8653,8 @@
           "band": {
             "fastest": 117.65,
             "slowest": 122.88
-          }
+          },
+          "share_pct": 74.6
         },
         {
           "games_year": 1992,
@@ -8573,7 +8731,8 @@
           "band": {
             "fastest": 117.9,
             "slowest": 122.1
-          }
+          },
+          "share_pct": 74.6
         },
         {
           "games_year": 1996,
@@ -8650,7 +8809,8 @@
           "band": {
             "fastest": 118.16,
             "slowest": 121.63
-          }
+          },
+          "share_pct": 74.6
         },
         {
           "games_year": 2000,
@@ -8727,7 +8887,8 @@
           "band": {
             "fastest": 118.24,
             "slowest": 119.55
-          }
+          },
+          "share_pct": 74.6
         },
         {
           "games_year": 2004,
@@ -8804,7 +8965,8 @@
           "band": {
             "fastest": 118.03,
             "slowest": 119.2
-          }
+          },
+          "share_pct": 74.6
         },
         {
           "games_year": 2008,
@@ -8881,7 +9043,8 @@
           "band": {
             "fastest": 114.82,
             "slowest": 117.83
-          }
+          },
+          "share_pct": 91.0
         },
         {
           "games_year": 2012,
@@ -8958,7 +9121,8 @@
           "band": {
             "fastest": 113.61,
             "slowest": 117.68
-          }
+          },
+          "share_pct": 98.0
         },
         {
           "games_year": 2016,
@@ -9035,7 +9199,8 @@
           "band": {
             "fastest": 113.73,
             "slowest": 116.29
-          }
+          },
+          "share_pct": 98.0
         },
         {
           "games_year": 2020,
@@ -9112,7 +9277,8 @@
           "band": {
             "fastest": 113.5,
             "slowest": 116.39
-          }
+          },
+          "share_pct": 98.7
         },
         {
           "games_year": 2024,
@@ -9189,7 +9355,8 @@
           "band": {
             "fastest": 113.27,
             "slowest": 116.6
-          }
+          },
+          "share_pct": 100.0
         }
       ]
     },
@@ -9199,6 +9366,17 @@
       "sex": "men",
       "stroke": "freestyle",
       "event_index": "https://www.olympedia.org/event_names/557",
+      "summary": {
+        "first_year": 1908,
+        "first_time_s": 336.8,
+        "last_time_s": 221.78,
+        "best_time_s": 220.14,
+        "best_year": 2012,
+        "change_first_to_last_pct": -34.2,
+        "share_by_1976_pct": 89.9,
+        "change_since_1988_pct": -2.3
+      },
+      "skipped_games": [],
       "editions": [
         {
           "games_year": 1908,
@@ -9252,7 +9430,8 @@
           ],
           "n_finalists": 4,
           "n_timed": 3,
-          "band": null
+          "band": null,
+          "share_pct": 0.0
         },
         {
           "games_year": 1912,
@@ -9311,7 +9490,8 @@
           ],
           "n_finalists": 5,
           "n_timed": 5,
-          "band": null
+          "band": null,
+          "share_pct": 10.6
         },
         {
           "games_year": 1920,
@@ -9365,7 +9545,8 @@
           ],
           "n_finalists": 4,
           "n_timed": 3,
-          "band": null
+          "band": null,
+          "share_pct": 10.6
         },
         {
           "games_year": 1924,
@@ -9424,7 +9605,8 @@
           ],
           "n_finalists": 5,
           "n_timed": 5,
-          "band": null
+          "band": null,
+          "share_pct": 27.9
         },
         {
           "games_year": 1928,
@@ -9488,7 +9670,8 @@
           ],
           "n_finalists": 6,
           "n_timed": 6,
-          "band": null
+          "band": null,
+          "share_pct": 30.2
         },
         {
           "games_year": 1932,
@@ -9552,7 +9735,8 @@
           ],
           "n_finalists": 6,
           "n_timed": 6,
-          "band": null
+          "band": null,
+          "share_pct": 41.5
         },
         {
           "games_year": 1936,
@@ -9621,7 +9805,8 @@
           ],
           "n_finalists": 7,
           "n_timed": 7,
-          "band": null
+          "band": null,
+          "share_pct": 44.8
         },
         {
           "games_year": 1948,
@@ -9698,7 +9883,8 @@
           "band": {
             "fastest": 281.0,
             "slowest": 298.7
-          }
+          },
+          "share_pct": 47.8
         },
         {
           "games_year": 1952,
@@ -9775,7 +9961,8 @@
           "band": {
             "fastest": 270.7,
             "slowest": 282.1
-          }
+          },
+          "share_pct": 56.7
         },
         {
           "games_year": 1956,
@@ -9852,7 +10039,8 @@
           "band": {
             "fastest": 267.3,
             "slowest": 281.7
-          }
+          },
+          "share_pct": 59.6
         },
         {
           "games_year": 1960,
@@ -9929,7 +10117,8 @@
           "band": {
             "fastest": 258.3,
             "slowest": 269.6
-          }
+          },
+          "share_pct": 67.3
         },
         {
           "games_year": 1964,
@@ -10006,7 +10195,8 @@
           "band": {
             "fastest": 252.2,
             "slowest": 261.4
-          }
+          },
+          "share_pct": 72.5
         },
         {
           "games_year": 1968,
@@ -10083,7 +10273,8 @@
           "band": {
             "fastest": 249.0,
             "slowest": 266.0
-          }
+          },
+          "share_pct": 75.3
         },
         {
           "games_year": 1972,
@@ -10152,7 +10343,8 @@
           ],
           "n_finalists": 7,
           "n_timed": 7,
-          "band": null
+          "band": null,
+          "share_pct": 82.7
         },
         {
           "games_year": 1976,
@@ -10229,7 +10421,8 @@
           "band": {
             "fastest": 231.93,
             "slowest": 260.83
-          }
+          },
+          "share_pct": 89.9
         },
         {
           "games_year": 1980,
@@ -10306,7 +10499,8 @@
           "band": {
             "fastest": 231.31,
             "slowest": 237.0
-          }
+          },
+          "share_pct": 90.4
         },
         {
           "games_year": 1984,
@@ -10383,7 +10577,8 @@
           "band": {
             "fastest": 231.23,
             "slowest": 235.48
-          }
+          },
+          "share_pct": 90.5
         },
         {
           "games_year": 1988,
@@ -10460,7 +10655,8 @@
           "band": {
             "fastest": 226.95,
             "slowest": 231.04
-          }
+          },
+          "share_pct": 94.2
         },
         {
           "games_year": 1992,
@@ -10537,7 +10733,8 @@
           "band": {
             "fastest": 225.0,
             "slowest": 229.97
-          }
+          },
+          "share_pct": 95.8
         },
         {
           "games_year": 1996,
@@ -10614,7 +10811,8 @@
           "band": {
             "fastest": 227.97,
             "slowest": 234.45
-          }
+          },
+          "share_pct": 95.8
         },
         {
           "games_year": 2000,
@@ -10691,7 +10889,8 @@
           "band": {
             "fastest": 220.59,
             "slowest": 228.52
-          }
+          },
+          "share_pct": 99.6
         },
         {
           "games_year": 2004,
@@ -10768,7 +10967,8 @@
           "band": {
             "fastest": 223.1,
             "slowest": 228.96
-          }
+          },
+          "share_pct": 99.6
         },
         {
           "games_year": 2008,
@@ -10845,7 +11045,8 @@
           "band": {
             "fastest": 221.86,
             "slowest": 228.29
-          }
+          },
+          "share_pct": 99.6
         },
         {
           "games_year": 2012,
@@ -10922,7 +11123,8 @@
           "band": {
             "fastest": 220.14,
             "slowest": 229.25
-          }
+          },
+          "share_pct": 100.0
         },
         {
           "games_year": 2016,
@@ -10999,7 +11201,8 @@
           "band": {
             "fastest": 221.55,
             "slowest": 229.07
-          }
+          },
+          "share_pct": 100.0
         },
         {
           "games_year": 2020,
@@ -11076,7 +11279,8 @@
           "band": {
             "fastest": 223.36,
             "slowest": 225.39
-          }
+          },
+          "share_pct": 100.0
         },
         {
           "games_year": 2024,
@@ -11153,7 +11357,8 @@
           "band": {
             "fastest": 221.78,
             "slowest": 227.0
-          }
+          },
+          "share_pct": 100.0
         }
       ]
     },
@@ -11163,6 +11368,17 @@
       "sex": "women",
       "stroke": "freestyle",
       "event_index": "https://www.olympedia.org/event_names/591",
+      "summary": {
+        "first_year": 1924,
+        "first_time_s": 362.2,
+        "last_time_s": 237.49,
+        "best_time_s": 236.46,
+        "best_year": 2016,
+        "change_first_to_last_pct": -34.4,
+        "share_by_1976_pct": 89.3,
+        "change_since_1988_pct": -2.6
+      },
+      "skipped_games": [],
       "editions": [
         {
           "games_year": 1924,
@@ -11216,7 +11432,8 @@
           ],
           "n_finalists": 4,
           "n_timed": 4,
-          "band": null
+          "band": null,
+          "share_pct": 0.0
         },
         {
           "games_year": 1928,
@@ -11280,7 +11497,8 @@
           ],
           "n_finalists": 6,
           "n_timed": 6,
-          "band": null
+          "band": null,
+          "share_pct": 15.4
         },
         {
           "games_year": 1932,
@@ -11344,7 +11562,8 @@
           ],
           "n_finalists": 6,
           "n_timed": 6,
-          "band": null
+          "band": null,
+          "share_pct": 26.8
         },
         {
           "games_year": 1936,
@@ -11421,7 +11640,8 @@
           "band": {
             "fastest": 326.4,
             "slowest": 346.0
-          }
+          },
+          "share_pct": 28.5
         },
         {
           "games_year": 1948,
@@ -11498,7 +11718,8 @@
           "band": {
             "fastest": 317.8,
             "slowest": 332.9
-          }
+          },
+          "share_pct": 35.3
         },
         {
           "games_year": 1952,
@@ -11575,7 +11796,8 @@
           "band": {
             "fastest": 312.1,
             "slowest": 327.0
-          }
+          },
+          "share_pct": 39.8
         },
         {
           "games_year": 1956,
@@ -11652,7 +11874,8 @@
           "band": {
             "fastest": 294.6,
             "slowest": 321.0
-          }
+          },
+          "share_pct": 53.8
         },
         {
           "games_year": 1960,
@@ -11729,7 +11952,8 @@
           "band": {
             "fastest": 290.6,
             "slowest": 302.4
-          }
+          },
+          "share_pct": 56.9
         },
         {
           "games_year": 1964,
@@ -11806,7 +12030,8 @@
           "band": {
             "fastest": 283.3,
             "slowest": 293.0
-          }
+          },
+          "share_pct": 62.7
         },
         {
           "games_year": 1968,
@@ -11883,7 +12108,8 @@
           "band": {
             "fastest": 271.8,
             "slowest": 293.8
-          }
+          },
+          "share_pct": 71.9
         },
         {
           "games_year": 1972,
@@ -11960,7 +12186,8 @@
           "band": {
             "fastest": 259.04,
             "slowest": 271.51
-          }
+          },
+          "share_pct": 82.0
         },
         {
           "games_year": 1976,
@@ -12037,7 +12264,8 @@
           "band": {
             "fastest": 249.89,
             "slowest": 260.42
-          }
+          },
+          "share_pct": 89.3
         },
         {
           "games_year": 1980,
@@ -12114,7 +12342,8 @@
           "band": {
             "fastest": 248.76,
             "slowest": 259.18
-          }
+          },
+          "share_pct": 90.2
         },
         {
           "games_year": 1984,
@@ -12191,7 +12420,8 @@
           "band": {
             "fastest": 247.1,
             "slowest": 256.41
-          }
+          },
+          "share_pct": 91.5
         },
         {
           "games_year": 1988,
@@ -12268,7 +12498,8 @@
           "band": {
             "fastest": 243.85,
             "slowest": 253.92
-          }
+          },
+          "share_pct": 94.1
         },
         {
           "games_year": 1992,
@@ -12345,7 +12576,8 @@
           "band": {
             "fastest": 247.18,
             "slowest": 255.71
-          }
+          },
+          "share_pct": 94.1
         },
         {
           "games_year": 1996,
@@ -12422,7 +12654,8 @@
           "band": {
             "fastest": 247.25,
             "slowest": 254.21
-          }
+          },
+          "share_pct": 94.1
         },
         {
           "games_year": 2000,
@@ -12499,7 +12732,8 @@
           "band": {
             "fastest": 245.8,
             "slowest": 253.11
-          }
+          },
+          "share_pct": 94.1
         },
         {
           "games_year": 2004,
@@ -12576,7 +12810,8 @@
           "band": {
             "fastest": 245.34,
             "slowest": 251.35
-          }
+          },
+          "share_pct": 94.1
         },
         {
           "games_year": 2008,
@@ -12653,7 +12888,8 @@
           "band": {
             "fastest": 243.22,
             "slowest": 251.26
-          }
+          },
+          "share_pct": 94.6
         },
         {
           "games_year": 2012,
@@ -12730,7 +12966,8 @@
           "band": {
             "fastest": 241.45,
             "slowest": 246.25
-          }
+          },
+          "share_pct": 96.0
         },
         {
           "games_year": 2016,
@@ -12807,7 +13044,8 @@
           "band": {
             "fastest": 236.46,
             "slowest": 246.98
-          }
+          },
+          "share_pct": 100.0
         },
         {
           "games_year": 2020,
@@ -12884,7 +13122,8 @@
           "band": {
             "fastest": 236.69,
             "slowest": 248.01
-          }
+          },
+          "share_pct": 100.0
         },
         {
           "games_year": 2024,
@@ -12961,7 +13200,8 @@
           "band": {
             "fastest": 237.49,
             "slowest": 244.96
-          }
+          },
+          "share_pct": 100.0
         }
       ]
     },
@@ -12971,6 +13211,17 @@
       "sex": "men",
       "stroke": "freestyle",
       "event_index": "https://www.olympedia.org/event_names/560",
+      "summary": {
+        "first_year": 2020,
+        "first_time_s": 461.87,
+        "last_time_s": 458.19,
+        "best_time_s": 458.19,
+        "best_year": 2024,
+        "change_first_to_last_pct": -0.8,
+        "share_by_1976_pct": null,
+        "change_since_1988_pct": null
+      },
+      "skipped_games": [],
       "editions": [
         {
           "games_year": 2020,
@@ -13047,7 +13298,8 @@
           "band": {
             "fastest": 461.87,
             "slowest": 473.31
-          }
+          },
+          "share_pct": 0.0
         },
         {
           "games_year": 2024,
@@ -13124,7 +13376,8 @@
           "band": {
             "fastest": 458.19,
             "slowest": 468.36
-          }
+          },
+          "share_pct": 100.0
         }
       ]
     },
@@ -13134,6 +13387,17 @@
       "sex": "women",
       "stroke": "freestyle",
       "event_index": "https://www.olympedia.org/event_names/592",
+      "summary": {
+        "first_year": 1968,
+        "first_time_s": 564.0,
+        "last_time_s": 491.04,
+        "best_time_s": 484.79,
+        "best_year": 2016,
+        "change_first_to_last_pct": -12.9,
+        "share_by_1976_pct": 59.2,
+        "change_since_1988_pct": -1.8
+      },
+      "skipped_games": [],
       "editions": [
         {
           "games_year": 1968,
@@ -13210,7 +13474,8 @@
           "band": {
             "fastest": 564.0,
             "slowest": 602.5
-          }
+          },
+          "share_pct": 0.0
         },
         {
           "games_year": 1972,
@@ -13287,7 +13552,8 @@
           "band": {
             "fastest": 533.68,
             "slowest": 559.06
-          }
+          },
+          "share_pct": 38.3
         },
         {
           "games_year": 1976,
@@ -13364,7 +13630,8 @@
           "band": {
             "fastest": 517.14,
             "slowest": 532.88
-          }
+          },
+          "share_pct": 59.2
         },
         {
           "games_year": 1980,
@@ -13441,7 +13708,8 @@
           "band": {
             "fastest": 508.9,
             "slowest": 526.45
-          }
+          },
+          "share_pct": 69.6
         },
         {
           "games_year": 1984,
@@ -13518,7 +13786,8 @@
           "band": {
             "fastest": 504.95,
             "slowest": 528.12
-          }
+          },
+          "share_pct": 74.5
         },
         {
           "games_year": 1988,
@@ -13595,7 +13864,8 @@
           "band": {
             "fastest": 500.2,
             "slowest": 521.05
-          }
+          },
+          "share_pct": 80.5
         },
         {
           "games_year": 1992,
@@ -13672,7 +13942,8 @@
           "band": {
             "fastest": 505.52,
             "slowest": 521.86
-          }
+          },
+          "share_pct": 80.5
         },
         {
           "games_year": 1996,
@@ -13749,7 +14020,8 @@
           "band": {
             "fastest": 507.89,
             "slowest": 521.75
-          }
+          },
+          "share_pct": 80.5
         },
         {
           "games_year": 2000,
@@ -13826,7 +14098,8 @@
           "band": {
             "fastest": 499.67,
             "slowest": 517.39
-          }
+          },
+          "share_pct": 81.2
         },
         {
           "games_year": 2004,
@@ -13903,7 +14176,8 @@
           "band": {
             "fastest": 504.54,
             "slowest": 517.02
-          }
+          },
+          "share_pct": 81.2
         },
         {
           "games_year": 2008,
@@ -13980,7 +14254,8 @@
           "band": {
             "fastest": 494.1,
             "slowest": 512.35
-          }
+          },
+          "share_pct": 88.2
         },
         {
           "games_year": 2012,
@@ -14057,7 +14332,8 @@
           "band": {
             "fastest": 494.63,
             "slowest": 509.28
-          }
+          },
+          "share_pct": 88.2
         },
         {
           "games_year": 2016,
@@ -14134,7 +14410,8 @@
           "band": {
             "fastest": 484.79,
             "slowest": 507.75
-          }
+          },
+          "share_pct": 100.0
         },
         {
           "games_year": 2020,
@@ -14211,7 +14488,8 @@
           "band": {
             "fastest": 492.57,
             "slowest": 506.3
-          }
+          },
+          "share_pct": 100.0
         },
         {
           "games_year": 2024,
@@ -14288,7 +14566,8 @@
           "band": {
             "fastest": 491.04,
             "slowest": 503.27
-          }
+          },
+          "share_pct": 100.0
         }
       ]
     },
@@ -14298,6 +14577,17 @@
       "sex": "men",
       "stroke": "freestyle",
       "event_index": "https://www.olympedia.org/event_names/563",
+      "summary": {
+        "first_year": 1908,
+        "first_time_s": 1368.4,
+        "last_time_s": 870.67,
+        "best_time_s": 870.67,
+        "best_year": 2024,
+        "change_first_to_last_pct": -36.4,
+        "share_by_1976_pct": 93.6,
+        "change_since_1988_pct": -3.3
+      },
+      "skipped_games": [],
       "editions": [
         {
           "games_year": 1908,
@@ -14345,7 +14635,8 @@
           "others": [],
           "n_finalists": 3,
           "n_timed": 3,
-          "band": null
+          "band": null,
+          "share_pct": 0.0
         },
         {
           "games_year": 1912,
@@ -14393,7 +14684,8 @@
           "others": [],
           "n_finalists": 3,
           "n_timed": 3,
-          "band": null
+          "band": null,
+          "share_pct": 9.7
         },
         {
           "games_year": 1920,
@@ -14452,7 +14744,8 @@
           ],
           "n_finalists": 5,
           "n_timed": 5,
-          "band": null
+          "band": null,
+          "share_pct": 9.7
         },
         {
           "games_year": 1924,
@@ -14511,7 +14804,8 @@
           ],
           "n_finalists": 5,
           "n_timed": 5,
-          "band": null
+          "band": null,
+          "share_pct": 32.5
         },
         {
           "games_year": 1928,
@@ -14575,7 +14869,8 @@
           ],
           "n_finalists": 6,
           "n_timed": 6,
-          "band": null
+          "band": null,
+          "share_pct": 35.5
         },
         {
           "games_year": 1932,
@@ -14639,7 +14934,8 @@
           ],
           "n_finalists": 6,
           "n_timed": 6,
-          "band": null
+          "band": null,
+          "share_pct": 43.4
         },
         {
           "games_year": 1936,
@@ -14708,7 +15004,8 @@
           ],
           "n_finalists": 7,
           "n_timed": 7,
-          "band": null
+          "band": null,
+          "share_pct": 43.4
         },
         {
           "games_year": 1948,
@@ -14785,7 +15082,8 @@
           "band": {
             "fastest": 1158.5,
             "slowest": 1245.4
-          }
+          },
+          "share_pct": 43.4
         },
         {
           "games_year": 1952,
@@ -14862,7 +15160,8 @@
           "band": {
             "fastest": 1110.3,
             "slowest": 1193.4
-          }
+          },
+          "share_pct": 51.9
         },
         {
           "games_year": 1956,
@@ -14939,7 +15238,8 @@
           "band": {
             "fastest": 1078.9,
             "slowest": 1146.2
-          }
+          },
+          "share_pct": 58.2
         },
         {
           "games_year": 1960,
@@ -15016,7 +15316,8 @@
           "band": {
             "fastest": 1039.6,
             "slowest": 1102.7
-          }
+          },
+          "share_pct": 66.1
         },
         {
           "games_year": 1964,
@@ -15093,7 +15394,8 @@
           "band": {
             "fastest": 1021.7,
             "slowest": 1050.8
-          }
+          },
+          "share_pct": 69.7
         },
         {
           "games_year": 1968,
@@ -15170,7 +15472,8 @@
           "band": {
             "fastest": 998.9,
             "slowest": 1085.1
-          }
+          },
+          "share_pct": 74.2
         },
         {
           "games_year": 1972,
@@ -15247,7 +15550,8 @@
           "band": {
             "fastest": 952.58,
             "slowest": 996.03
-          }
+          },
+          "share_pct": 83.5
         },
         {
           "games_year": 1976,
@@ -15324,7 +15628,8 @@
           "band": {
             "fastest": 902.4,
             "slowest": 945.97
-          }
+          },
+          "share_pct": 93.6
         },
         {
           "games_year": 1980,
@@ -15401,7 +15706,8 @@
           "band": {
             "fastest": 898.27,
             "slowest": 928.24
-          }
+          },
+          "share_pct": 94.5
         },
         {
           "games_year": 1984,
@@ -15478,7 +15784,8 @@
           "band": {
             "fastest": 905.2,
             "slowest": 938.18
-          }
+          },
+          "share_pct": 94.5
         },
         {
           "games_year": 1988,
@@ -15555,7 +15862,8 @@
           "band": {
             "fastest": 900.4,
             "slowest": 937.12
-          }
+          },
+          "share_pct": 94.5
         },
         {
           "games_year": 1992,
@@ -15632,7 +15940,8 @@
           "band": {
             "fastest": 883.48,
             "slowest": 933.94
-          }
+          },
+          "share_pct": 97.4
         },
         {
           "games_year": 1996,
@@ -15709,7 +16018,8 @@
           "band": {
             "fastest": 896.4,
             "slowest": 921.68
-          }
+          },
+          "share_pct": 97.4
         },
         {
           "games_year": 2000,
@@ -15786,7 +16096,8 @@
           "band": {
             "fastest": 888.33,
             "slowest": 919.87
-          }
+          },
+          "share_pct": 97.4
         },
         {
           "games_year": 2004,
@@ -15863,7 +16174,8 @@
           "band": {
             "fastest": 883.4,
             "slowest": 913.66
-          }
+          },
+          "share_pct": 97.4
         },
         {
           "games_year": 2008,
@@ -15940,7 +16252,8 @@
           "band": {
             "fastest": 880.84,
             "slowest": 905.12
-          }
+          },
+          "share_pct": 98.0
         },
         {
           "games_year": 2012,
@@ -16017,7 +16330,8 @@
           "band": {
             "fastest": 871.02,
             "slowest": 900.76
-          }
+          },
+          "share_pct": 99.9
         },
         {
           "games_year": 2016,
@@ -16094,7 +16408,8 @@
           "band": {
             "fastest": 874.57,
             "slowest": 902.66
-          }
+          },
+          "share_pct": 99.9
         },
         {
           "games_year": 2020,
@@ -16171,7 +16486,8 @@
           "band": {
             "fastest": 879.65,
             "slowest": 904.26
-          }
+          },
+          "share_pct": 99.9
         },
         {
           "games_year": 2024,
@@ -16248,7 +16564,8 @@
           "band": {
             "fastest": 870.67,
             "slowest": 892.61
-          }
+          },
+          "share_pct": 100.0
         }
       ]
     },
@@ -16258,6 +16575,17 @@
       "sex": "women",
       "stroke": "freestyle",
       "event_index": "https://www.olympedia.org/event_names/2570",
+      "summary": {
+        "first_year": 2020,
+        "first_time_s": 937.34,
+        "last_time_s": 930.02,
+        "best_time_s": 930.02,
+        "best_year": 2024,
+        "change_first_to_last_pct": -0.8,
+        "share_by_1976_pct": null,
+        "change_since_1988_pct": null
+      },
+      "skipped_games": [],
       "editions": [
         {
           "games_year": 2020,
@@ -16334,7 +16662,8 @@
           "band": {
             "fastest": 937.34,
             "slowest": 965.81
-          }
+          },
+          "share_pct": 0.0
         },
         {
           "games_year": 2024,
@@ -16411,7 +16740,8 @@
           "band": {
             "fastest": 930.02,
             "slowest": 972.57
-          }
+          },
+          "share_pct": 100.0
         }
       ]
     },
@@ -16421,6 +16751,19 @@
       "sex": "men",
       "stroke": "backstroke",
       "event_index": "https://www.olympedia.org/event_names/570",
+      "summary": {
+        "first_year": 1908,
+        "first_time_s": 84.6,
+        "last_time_s": 52.0,
+        "best_time_s": 51.97,
+        "best_year": 2016,
+        "change_first_to_last_pct": -38.5,
+        "share_by_1976_pct": 89.2,
+        "change_since_1988_pct": -5.5
+      },
+      "skipped_games": [
+        1964
+      ],
       "editions": [
         {
           "games_year": 1908,
@@ -16474,7 +16817,8 @@
           ],
           "n_finalists": 4,
           "n_timed": 3,
-          "band": null
+          "band": null,
+          "share_pct": 0.0
         },
         {
           "games_year": 1912,
@@ -16533,7 +16877,8 @@
           ],
           "n_finalists": 5,
           "n_timed": 5,
-          "band": null
+          "band": null,
+          "share_pct": 10.4
         },
         {
           "games_year": 1920,
@@ -16592,7 +16937,8 @@
           ],
           "n_finalists": 5,
           "n_timed": 4,
-          "band": null
+          "band": null,
+          "share_pct": 28.8
         },
         {
           "games_year": 1924,
@@ -16651,7 +16997,8 @@
           ],
           "n_finalists": 5,
           "n_timed": 5,
-          "band": null
+          "band": null,
+          "share_pct": 34.9
         },
         {
           "games_year": 1928,
@@ -16715,7 +17062,8 @@
           ],
           "n_finalists": 6,
           "n_timed": 6,
-          "band": null
+          "band": null,
+          "share_pct": 50.3
         },
         {
           "games_year": 1932,
@@ -16779,7 +17127,8 @@
           ],
           "n_finalists": 6,
           "n_timed": 6,
-          "band": null
+          "band": null,
+          "share_pct": 50.3
         },
         {
           "games_year": 1936,
@@ -16848,7 +17197,8 @@
           ],
           "n_finalists": 7,
           "n_timed": 7,
-          "band": null
+          "band": null,
+          "share_pct": 57.3
         },
         {
           "games_year": 1948,
@@ -16925,7 +17275,8 @@
           "band": {
             "fastest": 66.4,
             "slowest": 69.6
-          }
+          },
+          "share_pct": 57.3
         },
         {
           "games_year": 1952,
@@ -17002,7 +17353,8 @@
           "band": {
             "fastest": 65.4,
             "slowest": 68.3
-          }
+          },
+          "share_pct": 58.8
         },
         {
           "games_year": 1956,
@@ -17079,7 +17431,8 @@
           "band": {
             "fastest": 62.2,
             "slowest": 66.9
-          }
+          },
+          "share_pct": 68.6
         },
         {
           "games_year": 1960,
@@ -17156,7 +17509,8 @@
           "band": {
             "fastest": 61.9,
             "slowest": 64.6
-          }
+          },
+          "share_pct": 69.6
         },
         {
           "games_year": 1968,
@@ -17233,7 +17587,8 @@
           "band": {
             "fastest": 58.7,
             "slowest": 62.0
-          }
+          },
+          "share_pct": 79.4
         },
         {
           "games_year": 1972,
@@ -17310,7 +17665,8 @@
           "band": {
             "fastest": 56.58,
             "slowest": 60.41
-          }
+          },
+          "share_pct": 85.9
         },
         {
           "games_year": 1976,
@@ -17387,7 +17743,8 @@
           "band": {
             "fastest": 55.49,
             "slowest": 58.42
-          }
+          },
+          "share_pct": 89.2
         },
         {
           "games_year": 1980,
@@ -17464,7 +17821,8 @@
           "band": {
             "fastest": 56.53,
             "slowest": 58.38
-          }
+          },
+          "share_pct": 89.2
         },
         {
           "games_year": 1984,
@@ -17541,7 +17899,8 @@
           "band": {
             "fastest": 55.79,
             "slowest": 58.07
-          }
+          },
+          "share_pct": 89.2
         },
         {
           "games_year": 1988,
@@ -17618,7 +17977,8 @@
           "band": {
             "fastest": 55.05,
             "slowest": 56.32
-          }
+          },
+          "share_pct": 90.6
         },
         {
           "games_year": 1992,
@@ -17695,7 +18055,8 @@
           "band": {
             "fastest": 53.98,
             "slowest": 56.26
-          }
+          },
+          "share_pct": 93.8
         },
         {
           "games_year": 1996,
@@ -17772,7 +18133,8 @@
           "band": {
             "fastest": 54.1,
             "slowest": 55.76
-          }
+          },
+          "share_pct": 93.8
         },
         {
           "games_year": 2000,
@@ -17849,7 +18211,8 @@
           "band": {
             "fastest": 53.72,
             "slowest": 55.74
-          }
+          },
+          "share_pct": 94.6
         },
         {
           "games_year": 2004,
@@ -17926,7 +18289,8 @@
           "band": {
             "fastest": 54.06,
             "slowest": 55.27
-          }
+          },
+          "share_pct": 94.6
         },
         {
           "games_year": 2008,
@@ -18006,7 +18370,8 @@
           "band": {
             "fastest": 52.54,
             "slowest": 53.99
-          }
+          },
+          "share_pct": 98.3
         },
         {
           "games_year": 2012,
@@ -18083,7 +18448,8 @@
           "band": {
             "fastest": 52.16,
             "slowest": 53.77
-          }
+          },
+          "share_pct": 99.4
         },
         {
           "games_year": 2016,
@@ -18160,7 +18526,8 @@
           "band": {
             "fastest": 51.97,
             "slowest": 53.5
-          }
+          },
+          "share_pct": 100.0
         },
         {
           "games_year": 2020,
@@ -18237,7 +18604,8 @@
           "band": {
             "fastest": 51.98,
             "slowest": 52.95
-          }
+          },
+          "share_pct": 100.0
         },
         {
           "games_year": 2024,
@@ -18314,7 +18682,8 @@
           "band": {
             "fastest": 52.0,
             "slowest": 52.84
-          }
+          },
+          "share_pct": 100.0
         }
       ]
     },
@@ -18324,6 +18693,17 @@
       "sex": "women",
       "stroke": "backstroke",
       "event_index": "https://www.olympedia.org/event_names/595",
+      "summary": {
+        "first_year": 1924,
+        "first_time_s": 83.2,
+        "last_time_s": 57.33,
+        "best_time_s": 57.33,
+        "best_year": 2024,
+        "change_first_to_last_pct": -31.1,
+        "share_by_1976_pct": 82.6,
+        "change_since_1988_pct": -5.8
+      },
+      "skipped_games": [],
       "editions": [
         {
           "games_year": 1924,
@@ -18382,7 +18762,8 @@
           ],
           "n_finalists": 5,
           "n_timed": 5,
-          "band": null
+          "band": null,
+          "share_pct": 0.0
         },
         {
           "games_year": 1928,
@@ -18451,7 +18832,8 @@
           ],
           "n_finalists": 7,
           "n_timed": 7,
-          "band": null
+          "band": null,
+          "share_pct": 4.6
         },
         {
           "games_year": 1932,
@@ -18515,7 +18897,8 @@
           ],
           "n_finalists": 6,
           "n_timed": 6,
-          "band": null
+          "band": null,
+          "share_pct": 14.7
         },
         {
           "games_year": 1936,
@@ -18584,7 +18967,8 @@
           ],
           "n_finalists": 7,
           "n_timed": 7,
-          "band": null
+          "band": null,
+          "share_pct": 16.6
         },
         {
           "games_year": 1948,
@@ -18661,7 +19045,8 @@
           "band": {
             "fastest": 74.4,
             "slowest": 79.1
-          }
+          },
+          "share_pct": 34.0
         },
         {
           "games_year": 1952,
@@ -18730,7 +19115,8 @@
           ],
           "n_finalists": 7,
           "n_timed": 7,
-          "band": null
+          "band": null,
+          "share_pct": 34.4
         },
         {
           "games_year": 1956,
@@ -18807,7 +19193,8 @@
           "band": {
             "fastest": 72.9,
             "slowest": 74.7
-          }
+          },
+          "share_pct": 39.8
         },
         {
           "games_year": 1960,
@@ -18884,7 +19271,8 @@
           "band": {
             "fastest": 69.3,
             "slowest": 72.4
-          }
+          },
+          "share_pct": 53.7
         },
         {
           "games_year": 1964,
@@ -18961,7 +19349,8 @@
           "band": {
             "fastest": 67.7,
             "slowest": 71.2
-          }
+          },
+          "share_pct": 59.9
         },
         {
           "games_year": 1968,
@@ -19038,7 +19427,8 @@
           "band": {
             "fastest": 66.2,
             "slowest": 70.6
-          }
+          },
+          "share_pct": 65.7
         },
         {
           "games_year": 1972,
@@ -19115,7 +19505,8 @@
           "band": {
             "fastest": 65.78,
             "slowest": 67.36
-          }
+          },
+          "share_pct": 67.3
         },
         {
           "games_year": 1976,
@@ -19192,7 +19583,8 @@
           "band": {
             "fastest": 61.83,
             "slowest": 65.53
-          }
+          },
+          "share_pct": 82.6
         },
         {
           "games_year": 1980,
@@ -19269,7 +19661,8 @@
           "band": {
             "fastest": 60.86,
             "slowest": 65.1
-          }
+          },
+          "share_pct": 86.4
         },
         {
           "games_year": 1984,
@@ -19346,7 +19739,8 @@
           "band": {
             "fastest": 62.55,
             "slowest": 64.47
-          }
+          },
+          "share_pct": 86.4
         },
         {
           "games_year": 1988,
@@ -19423,7 +19817,8 @@
           "band": {
             "fastest": 60.89,
             "slowest": 64.19
-          }
+          },
+          "share_pct": 86.4
         },
         {
           "games_year": 1992,
@@ -19500,7 +19895,8 @@
           "band": {
             "fastest": 60.68,
             "slowest": 63.23
-          }
+          },
+          "share_pct": 87.1
         },
         {
           "games_year": 1996,
@@ -19577,7 +19973,8 @@
           "band": {
             "fastest": 61.19,
             "slowest": 62.78
-          }
+          },
+          "share_pct": 87.1
         },
         {
           "games_year": 2000,
@@ -19654,7 +20051,8 @@
           "band": {
             "fastest": 60.21,
             "slowest": 62.02
-          }
+          },
+          "share_pct": 88.9
         },
         {
           "games_year": 2004,
@@ -19731,7 +20129,8 @@
           "band": {
             "fastest": 60.37,
             "slowest": 61.76
-          }
+          },
+          "share_pct": 88.9
         },
         {
           "games_year": 2008,
@@ -19808,7 +20207,8 @@
           "band": {
             "fastest": 58.96,
             "slowest": 60.18
-          }
+          },
+          "share_pct": 93.7
         },
         {
           "games_year": 2012,
@@ -19885,7 +20285,8 @@
           "band": {
             "fastest": 58.33,
             "slowest": 60.5
-          }
+          },
+          "share_pct": 96.1
         },
         {
           "games_year": 2016,
@@ -19965,7 +20366,8 @@
           "band": {
             "fastest": 58.45,
             "slowest": 59.23
-          }
+          },
+          "share_pct": 96.1
         },
         {
           "games_year": 2020,
@@ -20042,7 +20444,8 @@
           "band": {
             "fastest": 57.47,
             "slowest": 59.53
-          }
+          },
+          "share_pct": 99.5
         },
         {
           "games_year": 2024,
@@ -20119,7 +20522,8 @@
           "band": {
             "fastest": 57.33,
             "slowest": 59.8
-          }
+          },
+          "share_pct": 100.0
         }
       ]
     },
@@ -20129,6 +20533,17 @@
       "sex": "men",
       "stroke": "backstroke",
       "event_index": "https://www.olympedia.org/event_names/572",
+      "summary": {
+        "first_year": 1964,
+        "first_time_s": 130.3,
+        "last_time_s": 114.26,
+        "best_time_s": 113.27,
+        "best_year": 2020,
+        "change_first_to_last_pct": -12.3,
+        "share_by_1976_pct": 65.2,
+        "change_since_1988_pct": -4.3
+      },
+      "skipped_games": [],
       "editions": [
         {
           "games_year": 1964,
@@ -20205,7 +20620,8 @@
           "band": {
             "fastest": 130.3,
             "slowest": 136.6
-          }
+          },
+          "share_pct": 0.0
         },
         {
           "games_year": 1968,
@@ -20282,7 +20698,8 @@
           "band": {
             "fastest": 129.6,
             "slowest": 136.5
-          }
+          },
+          "share_pct": 4.1
         },
         {
           "games_year": 1972,
@@ -20359,7 +20776,8 @@
           "band": {
             "fastest": 122.82,
             "slowest": 131.77
-          }
+          },
+          "share_pct": 43.9
         },
         {
           "games_year": 1976,
@@ -20436,7 +20854,8 @@
           "band": {
             "fastest": 119.19,
             "slowest": 128.23
-          }
+          },
+          "share_pct": 65.2
         },
         {
           "games_year": 1980,
@@ -20513,7 +20932,8 @@
           "band": {
             "fastest": 121.93,
             "slowest": 126.15
-          }
+          },
+          "share_pct": 65.2
         },
         {
           "games_year": 1984,
@@ -20590,7 +21010,8 @@
           "band": {
             "fastest": 120.23,
             "slowest": 124.61
-          }
+          },
+          "share_pct": 65.2
         },
         {
           "games_year": 1988,
@@ -20667,7 +21088,8 @@
           "band": {
             "fastest": 119.37,
             "slowest": 122.28
-          }
+          },
+          "share_pct": 65.2
         },
         {
           "games_year": 1992,
@@ -20744,7 +21166,8 @@
           "band": {
             "fastest": 118.47,
             "slowest": 120.91
-          }
+          },
+          "share_pct": 69.5
         },
         {
           "games_year": 1996,
@@ -20821,7 +21244,8 @@
           "band": {
             "fastest": 118.54,
             "slowest": 128.14
-          }
+          },
+          "share_pct": 69.5
         },
         {
           "games_year": 2000,
@@ -20898,7 +21322,8 @@
           "band": {
             "fastest": 116.76,
             "slowest": 119.38
-          }
+          },
+          "share_pct": 79.5
         },
         {
           "games_year": 2004,
@@ -20975,7 +21400,8 @@
           "band": {
             "fastest": 114.95,
             "slowest": 120.06
-          }
+          },
+          "share_pct": 90.1
         },
         {
           "games_year": 2008,
@@ -21052,7 +21478,8 @@
           "band": {
             "fastest": 113.94,
             "slowest": 117.0
-          }
+          },
+          "share_pct": 96.1
         },
         {
           "games_year": 2012,
@@ -21129,7 +21556,8 @@
           "band": {
             "fastest": 113.41,
             "slowest": 118.02
-          }
+          },
+          "share_pct": 99.2
         },
         {
           "games_year": 2016,
@@ -21206,7 +21634,8 @@
           "band": {
             "fastest": 113.62,
             "slowest": 116.36
-          }
+          },
+          "share_pct": 99.2
         },
         {
           "games_year": 2020,
@@ -21283,7 +21712,8 @@
           "band": {
             "fastest": 113.27,
             "slowest": 119.06
-          }
+          },
+          "share_pct": 100.0
         },
         {
           "games_year": 2024,
@@ -21360,7 +21790,8 @@
           "band": {
             "fastest": 114.26,
             "slowest": 115.97
-          }
+          },
+          "share_pct": 100.0
         }
       ]
     },
@@ -21370,6 +21801,17 @@
       "sex": "women",
       "stroke": "backstroke",
       "event_index": "https://www.olympedia.org/event_names/596",
+      "summary": {
+        "first_year": 1968,
+        "first_time_s": 144.8,
+        "last_time_s": 123.73,
+        "best_time_s": 123.73,
+        "best_year": 2024,
+        "change_first_to_last_pct": -14.6,
+        "share_by_1976_pct": 54.0,
+        "change_since_1988_pct": -4.3
+      },
+      "skipped_games": [],
       "editions": [
         {
           "games_year": 1968,
@@ -21446,7 +21888,8 @@
           "band": {
             "fastest": 144.8,
             "slowest": 156.6
-          }
+          },
+          "share_pct": 0.0
         },
         {
           "games_year": 1972,
@@ -21523,7 +21966,8 @@
           "band": {
             "fastest": 139.19,
             "slowest": 145.8
-          }
+          },
+          "share_pct": 26.6
         },
         {
           "games_year": 1976,
@@ -21600,7 +22044,8 @@
           "band": {
             "fastest": 133.43,
             "slowest": 137.95
-          }
+          },
+          "share_pct": 54.0
         },
         {
           "games_year": 1980,
@@ -21677,7 +22122,8 @@
           "band": {
             "fastest": 131.77,
             "slowest": 137.72
-          }
+          },
+          "share_pct": 61.8
         },
         {
           "games_year": 1984,
@@ -21754,7 +22200,8 @@
           "band": {
             "fastest": 132.38,
             "slowest": 137.89
-          }
+          },
+          "share_pct": 61.8
         },
         {
           "games_year": 1988,
@@ -21831,7 +22278,8 @@
           "band": {
             "fastest": 129.29,
             "slowest": 135.94
-          }
+          },
+          "share_pct": 73.6
         },
         {
           "games_year": 1992,
@@ -21908,7 +22356,8 @@
           "band": {
             "fastest": 127.06,
             "slowest": 133.68
-          }
+          },
+          "share_pct": 84.2
         },
         {
           "games_year": 1996,
@@ -21985,7 +22434,8 @@
           "band": {
             "fastest": 127.83,
             "slowest": 134.59
-          }
+          },
+          "share_pct": 84.2
         },
         {
           "games_year": 2000,
@@ -22062,7 +22512,8 @@
           "band": {
             "fastest": 128.16,
             "slowest": 134.57
-          }
+          },
+          "share_pct": 84.2
         },
         {
           "games_year": 2004,
@@ -22142,7 +22593,8 @@
           "band": {
             "fastest": 129.19,
             "slowest": 132.9
-          }
+          },
+          "share_pct": 84.2
         },
         {
           "games_year": 2008,
@@ -22219,7 +22671,8 @@
           "band": {
             "fastest": 125.24,
             "slowest": 130.12
-          }
+          },
+          "share_pct": 92.8
         },
         {
           "games_year": 2012,
@@ -22296,7 +22749,8 @@
           "band": {
             "fastest": 124.06,
             "slowest": 129.86
-          }
+          },
+          "share_pct": 98.4
         },
         {
           "games_year": 2016,
@@ -22373,7 +22827,8 @@
           "band": {
             "fastest": 125.99,
             "slowest": 129.44
-          }
+          },
+          "share_pct": 98.4
         },
         {
           "games_year": 2020,
@@ -22450,7 +22905,8 @@
           "band": {
             "fastest": 124.68,
             "slowest": 128.48
-          }
+          },
+          "share_pct": 98.4
         },
         {
           "games_year": 2024,
@@ -22527,7 +22983,8 @@
           "band": {
             "fastest": 123.73,
             "slowest": 130.23
-          }
+          },
+          "share_pct": 100.0
         }
       ]
     },
@@ -22537,6 +22994,17 @@
       "sex": "men",
       "stroke": "breaststroke",
       "event_index": "https://www.olympedia.org/event_names/573",
+      "summary": {
+        "first_year": 1968,
+        "first_time_s": 67.7,
+        "last_time_s": 59.03,
+        "best_time_s": 57.13,
+        "best_year": 2016,
+        "change_first_to_last_pct": -12.8,
+        "share_by_1976_pct": 43.4,
+        "change_since_1988_pct": -4.9
+      },
+      "skipped_games": [],
       "editions": [
         {
           "games_year": 1968,
@@ -22613,7 +23081,8 @@
           "band": {
             "fastest": 67.7,
             "slowest": 69.7
-          }
+          },
+          "share_pct": 0.0
         },
         {
           "games_year": 1972,
@@ -22690,7 +23159,8 @@
           "band": {
             "fastest": 64.94,
             "slowest": 66.52
-          }
+          },
+          "share_pct": 26.1
         },
         {
           "games_year": 1976,
@@ -22767,7 +23237,8 @@
           "band": {
             "fastest": 63.11,
             "slowest": 65.13
-          }
+          },
+          "share_pct": 43.4
         },
         {
           "games_year": 1980,
@@ -22836,7 +23307,8 @@
           ],
           "n_finalists": 7,
           "n_timed": 7,
-          "band": null
+          "band": null,
+          "share_pct": 43.4
         },
         {
           "games_year": 1984,
@@ -22913,7 +23385,8 @@
           "band": {
             "fastest": 61.65,
             "slowest": 64.11
-          }
+          },
+          "share_pct": 57.2
         },
         {
           "games_year": 1988,
@@ -22990,7 +23463,8 @@
           "band": {
             "fastest": 62.04,
             "slowest": 63.43
-          }
+          },
+          "share_pct": 57.2
         },
         {
           "games_year": 1992,
@@ -23067,7 +23541,8 @@
           "band": {
             "fastest": 61.5,
             "slowest": 62.33
-          }
+          },
+          "share_pct": 58.7
         },
         {
           "games_year": 1996,
@@ -23144,7 +23619,8 @@
           "band": {
             "fastest": 60.65,
             "slowest": 62.13
-          }
+          },
+          "share_pct": 66.7
         },
         {
           "games_year": 2000,
@@ -23221,7 +23697,8 @@
           "band": {
             "fastest": 60.46,
             "slowest": 61.88
-          }
+          },
+          "share_pct": 68.5
         },
         {
           "games_year": 2004,
@@ -23298,7 +23775,8 @@
           "band": {
             "fastest": 60.08,
             "slowest": 62.42
-          }
+          },
+          "share_pct": 72.1
         },
         {
           "games_year": 2008,
@@ -23375,7 +23853,8 @@
           "band": {
             "fastest": 58.91,
             "slowest": 60.24
-          }
+          },
+          "share_pct": 83.2
         },
         {
           "games_year": 2012,
@@ -23452,7 +23931,8 @@
           "band": {
             "fastest": 58.46,
             "slowest": 60.84
-          }
+          },
+          "share_pct": 87.4
         },
         {
           "games_year": 2016,
@@ -23529,7 +24009,8 @@
           "band": {
             "fastest": 57.13,
             "slowest": 59.95
-          }
+          },
+          "share_pct": 100.0
         },
         {
           "games_year": 2020,
@@ -23606,7 +24087,8 @@
           "band": {
             "fastest": 57.37,
             "slowest": 59.36
-          }
+          },
+          "share_pct": 100.0
         },
         {
           "games_year": 2024,
@@ -23683,7 +24165,8 @@
           "band": {
             "fastest": 59.03,
             "slowest": 59.98
-          }
+          },
+          "share_pct": 100.0
         }
       ]
     },
@@ -23693,6 +24176,17 @@
       "sex": "women",
       "stroke": "breaststroke",
       "event_index": "https://www.olympedia.org/event_names/597",
+      "summary": {
+        "first_year": 1968,
+        "first_time_s": 75.8,
+        "last_time_s": 65.28,
+        "best_time_s": 64.93,
+        "best_year": 2016,
+        "change_first_to_last_pct": -13.9,
+        "share_by_1976_pct": 42.7,
+        "change_since_1988_pct": -3.9
+      },
+      "skipped_games": [],
       "editions": [
         {
           "games_year": 1968,
@@ -23769,7 +24263,8 @@
           "band": {
             "fastest": 75.8,
             "slowest": 77.3
-          }
+          },
+          "share_pct": 0.0
         },
         {
           "games_year": 1972,
@@ -23846,7 +24341,8 @@
           "band": {
             "fastest": 73.58,
             "slowest": 77.49
-          }
+          },
+          "share_pct": 20.4
         },
         {
           "games_year": 1976,
@@ -23923,7 +24419,8 @@
           "band": {
             "fastest": 71.16,
             "slowest": 74.21
-          }
+          },
+          "share_pct": 42.7
         },
         {
           "games_year": 1980,
@@ -24000,7 +24497,8 @@
           "band": {
             "fastest": 70.22,
             "slowest": 72.51
-          }
+          },
+          "share_pct": 51.3
         },
         {
           "games_year": 1984,
@@ -24077,7 +24575,8 @@
           "band": {
             "fastest": 69.88,
             "slowest": 71.82
-          }
+          },
+          "share_pct": 54.5
         },
         {
           "games_year": 1988,
@@ -24154,7 +24653,8 @@
           "band": {
             "fastest": 67.95,
             "slowest": 70.67
-          }
+          },
+          "share_pct": 72.2
         },
         {
           "games_year": 1992,
@@ -24231,7 +24731,8 @@
           "band": {
             "fastest": 68.0,
             "slowest": 71.05
-          }
+          },
+          "share_pct": 72.2
         },
         {
           "games_year": 1996,
@@ -24308,7 +24809,8 @@
           "band": {
             "fastest": 67.73,
             "slowest": 69.79
-          }
+          },
+          "share_pct": 74.2
         },
         {
           "games_year": 2000,
@@ -24385,7 +24887,8 @@
           "band": {
             "fastest": 67.05,
             "slowest": 69.86
-          }
+          },
+          "share_pct": 80.5
         },
         {
           "games_year": 2004,
@@ -24454,7 +24957,8 @@
           ],
           "n_finalists": 7,
           "n_timed": 7,
-          "band": null
+          "band": null,
+          "share_pct": 84.3
         },
         {
           "games_year": 2008,
@@ -24531,7 +25035,8 @@
           "band": {
             "fastest": 65.17,
             "slowest": 68.43
-          }
+          },
+          "share_pct": 97.8
         },
         {
           "games_year": 2012,
@@ -24608,7 +25113,8 @@
           "band": {
             "fastest": 65.47,
             "slowest": 67.55
-          }
+          },
+          "share_pct": 97.8
         },
         {
           "games_year": 2016,
@@ -24685,7 +25191,8 @@
           "band": {
             "fastest": 64.93,
             "slowest": 68.1
-          }
+          },
+          "share_pct": 100.0
         },
         {
           "games_year": 2020,
@@ -24762,7 +25269,8 @@
           "band": {
             "fastest": 64.95,
             "slowest": 66.94
-          }
+          },
+          "share_pct": 100.0
         },
         {
           "games_year": 2024,
@@ -24839,7 +25347,8 @@
           "band": {
             "fastest": 65.28,
             "slowest": 66.54
-          }
+          },
+          "share_pct": 100.0
         }
       ]
     },
@@ -24849,6 +25358,17 @@
       "sex": "men",
       "stroke": "breaststroke",
       "event_index": "https://www.olympedia.org/event_names/574",
+      "summary": {
+        "first_year": 1908,
+        "first_time_s": 189.2,
+        "last_time_s": 125.85,
+        "best_time_s": 125.85,
+        "best_year": 2024,
+        "change_first_to_last_pct": -33.5,
+        "share_by_1976_pct": 85.4,
+        "change_since_1988_pct": -5.7
+      },
+      "skipped_games": [],
       "editions": [
         {
           "games_year": 1908,
@@ -24902,7 +25422,8 @@
           ],
           "n_finalists": 4,
           "n_timed": 4,
-          "band": null
+          "band": null,
+          "share_pct": 0.0
         },
         {
           "games_year": 1912,
@@ -24956,7 +25477,8 @@
           ],
           "n_finalists": 4,
           "n_timed": 4,
-          "band": null
+          "band": null,
+          "share_pct": 11.7
         },
         {
           "games_year": 1920,
@@ -25015,7 +25537,8 @@
           ],
           "n_finalists": 5,
           "n_timed": 3,
-          "band": null
+          "band": null,
+          "share_pct": 11.7
         },
         {
           "games_year": 1924,
@@ -25074,7 +25597,8 @@
           ],
           "n_finalists": 5,
           "n_timed": 5,
-          "band": null
+          "band": null,
+          "share_pct": 19.9
         },
         {
           "games_year": 1928,
@@ -25138,7 +25662,8 @@
           ],
           "n_finalists": 6,
           "n_timed": 6,
-          "band": null
+          "band": null,
+          "share_pct": 32.2
         },
         {
           "games_year": 1932,
@@ -25202,7 +25727,8 @@
           ],
           "n_finalists": 6,
           "n_timed": 6,
-          "band": null
+          "band": null,
+          "share_pct": 37.6
         },
         {
           "games_year": 1936,
@@ -25271,7 +25797,8 @@
           ],
           "n_finalists": 7,
           "n_timed": 7,
-          "band": null
+          "band": null,
+          "share_pct": 43.7
         },
         {
           "games_year": 1948,
@@ -25348,7 +25875,8 @@
           "band": {
             "fastest": 159.3,
             "slowest": 167.6
-          }
+          },
+          "share_pct": 47.2
         },
         {
           "games_year": 1952,
@@ -25425,7 +25953,8 @@
           "band": {
             "fastest": 154.4,
             "slowest": 160.1
-          }
+          },
+          "share_pct": 54.9
         },
         {
           "games_year": 1956,
@@ -25494,7 +26023,8 @@
           ],
           "n_finalists": 7,
           "n_timed": 7,
-          "band": null
+          "band": null,
+          "share_pct": 54.9
         },
         {
           "games_year": 1960,
@@ -25571,7 +26101,8 @@
           "band": {
             "fastest": 157.4,
             "slowest": 161.4
-          }
+          },
+          "share_pct": 54.9
         },
         {
           "games_year": 1964,
@@ -25648,7 +26179,8 @@
           "band": {
             "fastest": 147.8,
             "slowest": 158.1
-          }
+          },
+          "share_pct": 65.4
         },
         {
           "games_year": 1968,
@@ -25725,7 +26257,8 @@
           "band": {
             "fastest": 148.7,
             "slowest": 154.9
-          }
+          },
+          "share_pct": 65.4
         },
         {
           "games_year": 1972,
@@ -25802,7 +26335,8 @@
           "band": {
             "fastest": 141.55,
             "slowest": 147.44
-          }
+          },
+          "share_pct": 75.2
         },
         {
           "games_year": 1976,
@@ -25879,7 +26413,8 @@
           "band": {
             "fastest": 135.11,
             "slowest": 142.36
-          }
+          },
+          "share_pct": 85.4
         },
         {
           "games_year": 1980,
@@ -25956,7 +26491,8 @@
           "band": {
             "fastest": 135.85,
             "slowest": 142.39
-          }
+          },
+          "share_pct": 85.4
         },
         {
           "games_year": 1984,
@@ -26025,7 +26561,8 @@
           ],
           "n_finalists": 7,
           "n_timed": 7,
-          "band": null
+          "band": null,
+          "share_pct": 88.2
         },
         {
           "games_year": 1988,
@@ -26102,7 +26639,8 @@
           "band": {
             "fastest": 133.52,
             "slowest": 137.12
-          }
+          },
+          "share_pct": 88.2
         },
         {
           "games_year": 1992,
@@ -26179,7 +26717,8 @@
           "band": {
             "fastest": 130.16,
             "slowest": 135.11
-          }
+          },
+          "share_pct": 93.2
         },
         {
           "games_year": 1996,
@@ -26256,7 +26795,8 @@
           "band": {
             "fastest": 132.57,
             "slowest": 136.05
-          }
+          },
+          "share_pct": 93.2
         },
         {
           "games_year": 2000,
@@ -26333,7 +26873,8 @@
           "band": {
             "fastest": 130.87,
             "slowest": 134.0
-          }
+          },
+          "share_pct": 93.2
         },
         {
           "games_year": 2004,
@@ -26402,7 +26943,8 @@
           ],
           "n_finalists": 7,
           "n_timed": 7,
-          "band": null
+          "band": null,
+          "share_pct": 94.3
         },
         {
           "games_year": 2008,
@@ -26479,7 +27021,8 @@
           "band": {
             "fastest": 127.64,
             "slowest": 131.48
-          }
+          },
+          "share_pct": 97.2
         },
         {
           "games_year": 2012,
@@ -26556,7 +27099,8 @@
           "band": {
             "fastest": 127.28,
             "slowest": 129.44
-          }
+          },
+          "share_pct": 97.7
         },
         {
           "games_year": 2016,
@@ -26633,7 +27177,8 @@
           "band": {
             "fastest": 127.46,
             "slowest": 128.34
-          }
+          },
+          "share_pct": 97.7
         },
         {
           "games_year": 2020,
@@ -26710,7 +27255,8 @@
           "band": {
             "fastest": 126.38,
             "slowest": 128.88
-          }
+          },
+          "share_pct": 99.2
         },
         {
           "games_year": 2024,
@@ -26787,7 +27333,8 @@
           "band": {
             "fastest": 125.85,
             "slowest": 131.44
-          }
+          },
+          "share_pct": 100.0
         }
       ]
     },
@@ -26797,6 +27344,17 @@
       "sex": "women",
       "stroke": "breaststroke",
       "event_index": "https://www.olympedia.org/event_names/598",
+      "summary": {
+        "first_year": 1924,
+        "first_time_s": 213.2,
+        "last_time_s": 139.24,
+        "best_time_s": 138.95,
+        "best_year": 2020,
+        "change_first_to_last_pct": -34.7,
+        "share_by_1976_pct": 80.6,
+        "change_since_1988_pct": -5.1
+      },
+      "skipped_games": [],
       "editions": [
         {
           "games_year": 1924,
@@ -26865,7 +27423,8 @@
           ],
           "n_finalists": 7,
           "n_timed": 7,
-          "band": null
+          "band": null,
+          "share_pct": 0.0
         },
         {
           "games_year": 1928,
@@ -26929,7 +27488,8 @@
           ],
           "n_finalists": 6,
           "n_timed": 6,
-          "band": null
+          "band": null,
+          "share_pct": 27.7
         },
         {
           "games_year": 1932,
@@ -26998,7 +27558,8 @@
           ],
           "n_finalists": 7,
           "n_timed": 7,
-          "band": null
+          "band": null,
+          "share_pct": 36.2
         },
         {
           "games_year": 1936,
@@ -27067,7 +27628,8 @@
           ],
           "n_finalists": 7,
           "n_timed": 7,
-          "band": null
+          "band": null,
+          "share_pct": 39.9
         },
         {
           "games_year": 1948,
@@ -27144,7 +27706,8 @@
           "band": {
             "fastest": 177.2,
             "slowest": 188.1
-          }
+          },
+          "share_pct": 48.5
         },
         {
           "games_year": 1952,
@@ -27221,7 +27784,8 @@
           "band": {
             "fastest": 171.7,
             "slowest": 182.1
-          }
+          },
+          "share_pct": 55.9
         },
         {
           "games_year": 1956,
@@ -27298,7 +27862,8 @@
           "band": {
             "fastest": 173.1,
             "slowest": 179.2
-          }
+          },
+          "share_pct": 55.9
         },
         {
           "games_year": 1960,
@@ -27375,7 +27940,8 @@
           "band": {
             "fastest": 169.5,
             "slowest": 175.7
-          }
+          },
+          "share_pct": 58.9
         },
         {
           "games_year": 1964,
@@ -27452,7 +28018,8 @@
           "band": {
             "fastest": 166.4,
             "slowest": 173.9
-          }
+          },
+          "share_pct": 63.0
         },
         {
           "games_year": 1968,
@@ -27529,7 +28096,8 @@
           "band": {
             "fastest": 164.4,
             "slowest": 171.9
-          }
+          },
+          "share_pct": 65.7
         },
         {
           "games_year": 1972,
@@ -27606,7 +28174,8 @@
           "band": {
             "fastest": 161.71,
             "slowest": 165.12
-          }
+          },
+          "share_pct": 69.3
         },
         {
           "games_year": 1976,
@@ -27683,7 +28252,8 @@
           "band": {
             "fastest": 153.35,
             "slowest": 159.01
-          }
+          },
+          "share_pct": 80.6
         },
         {
           "games_year": 1980,
@@ -27760,7 +28330,8 @@
           "band": {
             "fastest": 149.54,
             "slowest": 155.38
-          }
+          },
+          "share_pct": 85.7
         },
         {
           "games_year": 1984,
@@ -27837,7 +28408,8 @@
           "band": {
             "fastest": 150.38,
             "slowest": 155.51
-          }
+          },
+          "share_pct": 85.7
         },
         {
           "games_year": 1988,
@@ -27914,7 +28486,8 @@
           "band": {
             "fastest": 146.71,
             "slowest": 149.86
-          }
+          },
+          "share_pct": 89.5
         },
         {
           "games_year": 1992,
@@ -27991,7 +28564,8 @@
           "band": {
             "fastest": 146.65,
             "slowest": 151.76
-          }
+          },
+          "share_pct": 89.6
         },
         {
           "games_year": 1996,
@@ -28068,7 +28642,8 @@
           "band": {
             "fastest": 145.41,
             "slowest": 151.45
-          }
+          },
+          "share_pct": 91.3
         },
         {
           "games_year": 2000,
@@ -28145,7 +28720,8 @@
           "band": {
             "fastest": 144.35,
             "slowest": 147.33
-          }
+          },
+          "share_pct": 92.7
         },
         {
           "games_year": 2004,
@@ -28222,7 +28798,8 @@
           "band": {
             "fastest": 143.37,
             "slowest": 146.39
-          }
+          },
+          "share_pct": 94.0
         },
         {
           "games_year": 2008,
@@ -28299,7 +28876,8 @@
           "band": {
             "fastest": 140.22,
             "slowest": 145.23
-          }
+          },
+          "share_pct": 98.3
         },
         {
           "games_year": 2012,
@@ -28376,7 +28954,8 @@
           "band": {
             "fastest": 139.59,
             "slowest": 146.0
-          }
+          },
+          "share_pct": 99.1
         },
         {
           "games_year": 2016,
@@ -28453,7 +29032,8 @@
           "band": {
             "fastest": 140.3,
             "slowest": 143.74
-          }
+          },
+          "share_pct": 99.1
         },
         {
           "games_year": 2020,
@@ -28530,7 +29110,8 @@
           "band": {
             "fastest": 138.95,
             "slowest": 144.57
-          }
+          },
+          "share_pct": 100.0
         },
         {
           "games_year": 2024,
@@ -28607,7 +29188,8 @@
           "band": {
             "fastest": 139.24,
             "slowest": 145.91
-          }
+          },
+          "share_pct": 100.0
         }
       ]
     },
@@ -28617,6 +29199,17 @@
       "sex": "men",
       "stroke": "butterfly",
       "event_index": "https://www.olympedia.org/event_names/577",
+      "summary": {
+        "first_year": 1968,
+        "first_time_s": 55.9,
+        "last_time_s": 49.9,
+        "best_time_s": 49.45,
+        "best_year": 2020,
+        "change_first_to_last_pct": -10.7,
+        "share_by_1976_pct": 25.3,
+        "change_since_1988_pct": -5.8
+      },
+      "skipped_games": [],
       "editions": [
         {
           "games_year": 1968,
@@ -28693,7 +29286,8 @@
           "band": {
             "fastest": 55.9,
             "slowest": 59.8
-          }
+          },
+          "share_pct": 0.0
         },
         {
           "games_year": 1972,
@@ -28770,7 +29364,8 @@
           "band": {
             "fastest": 54.27,
             "slowest": 57.9
-          }
+          },
+          "share_pct": 25.3
         },
         {
           "games_year": 1976,
@@ -28847,7 +29442,8 @@
           "band": {
             "fastest": 54.35,
             "slowest": 56.57
-          }
+          },
+          "share_pct": 25.3
         },
         {
           "games_year": 1980,
@@ -28924,7 +29520,8 @@
           "band": {
             "fastest": 54.92,
             "slowest": 55.7
-          }
+          },
+          "share_pct": 25.3
         },
         {
           "games_year": 1984,
@@ -29001,7 +29598,8 @@
           "band": {
             "fastest": 53.08,
             "slowest": 55.14
-          }
+          },
+          "share_pct": 43.7
         },
         {
           "games_year": 1988,
@@ -29078,7 +29676,8 @@
           "band": {
             "fastest": 53.0,
             "slowest": 54.6
-          }
+          },
+          "share_pct": 45.0
         },
         {
           "games_year": 1992,
@@ -29155,7 +29754,8 @@
           "band": {
             "fastest": 53.32,
             "slowest": 54.26
-          }
+          },
+          "share_pct": 45.0
         },
         {
           "games_year": 1996,
@@ -29232,7 +29832,8 @@
           "band": {
             "fastest": 52.27,
             "slowest": 53.58
-          }
+          },
+          "share_pct": 56.3
         },
         {
           "games_year": 2000,
@@ -29309,7 +29910,8 @@
           "band": {
             "fastest": 52.0,
             "slowest": 53.13
-          }
+          },
+          "share_pct": 60.5
         },
         {
           "games_year": 2004,
@@ -29386,7 +29988,8 @@
           "band": {
             "fastest": 51.25,
             "slowest": 52.56
-          }
+          },
+          "share_pct": 72.1
         },
         {
           "games_year": 2008,
@@ -29463,7 +30066,8 @@
           "band": {
             "fastest": 50.58,
             "slowest": 51.86
-          }
+          },
+          "share_pct": 82.5
         },
         {
           "games_year": 2012,
@@ -29540,7 +30144,8 @@
           "band": {
             "fastest": 51.21,
             "slowest": 52.05
-          }
+          },
+          "share_pct": 82.5
         },
         {
           "games_year": 2016,
@@ -29620,7 +30225,8 @@
           "band": {
             "fastest": 50.39,
             "slowest": 51.84
-          }
+          },
+          "share_pct": 85.4
         },
         {
           "games_year": 2020,
@@ -29697,7 +30303,8 @@
           "band": {
             "fastest": 49.45,
             "slowest": 51.49
-          }
+          },
+          "share_pct": 100.0
         },
         {
           "games_year": 2024,
@@ -29774,7 +30381,8 @@
           "band": {
             "fastest": 49.9,
             "slowest": 51.11
-          }
+          },
+          "share_pct": 100.0
         }
       ]
     },
@@ -29784,6 +30392,17 @@
       "sex": "women",
       "stroke": "butterfly",
       "event_index": "https://www.olympedia.org/event_names/599",
+      "summary": {
+        "first_year": 1956,
+        "first_time_s": 71.0,
+        "last_time_s": 55.59,
+        "best_time_s": 55.48,
+        "best_year": 2016,
+        "change_first_to_last_pct": -21.7,
+        "share_by_1976_pct": 70.0,
+        "change_since_1988_pct": -5.8
+      },
+      "skipped_games": [],
       "editions": [
         {
           "games_year": 1956,
@@ -29860,7 +30479,8 @@
           "band": {
             "fastest": 71.0,
             "slowest": 78.4
-          }
+          },
+          "share_pct": 0.0
         },
         {
           "games_year": 1960,
@@ -29929,7 +30549,8 @@
           ],
           "n_finalists": 7,
           "n_timed": 7,
-          "band": null
+          "band": null,
+          "share_pct": 9.7
         },
         {
           "games_year": 1964,
@@ -30006,7 +30627,8 @@
           "band": {
             "fastest": 64.7,
             "slowest": 70.0
-          }
+          },
+          "share_pct": 40.6
         },
         {
           "games_year": 1968,
@@ -30083,7 +30705,8 @@
           "band": {
             "fastest": 65.5,
             "slowest": 67.6
-          }
+          },
+          "share_pct": 40.6
         },
         {
           "games_year": 1972,
@@ -30160,7 +30783,8 @@
           "band": {
             "fastest": 63.34,
             "slowest": 64.25
-          }
+          },
+          "share_pct": 49.4
         },
         {
           "games_year": 1976,
@@ -30237,7 +30861,8 @@
           "band": {
             "fastest": 60.13,
             "slowest": 62.74
-          }
+          },
+          "share_pct": 70.0
         },
         {
           "games_year": 1980,
@@ -30314,7 +30939,8 @@
           "band": {
             "fastest": 60.42,
             "slowest": 62.9
-          }
+          },
+          "share_pct": 70.0
         },
         {
           "games_year": 1984,
@@ -30391,7 +31017,8 @@
           "band": {
             "fastest": 59.26,
             "slowest": 62.11
-          }
+          },
+          "share_pct": 75.6
         },
         {
           "games_year": 1988,
@@ -30468,7 +31095,8 @@
           "band": {
             "fastest": 59.0,
             "slowest": 61.15
-          }
+          },
+          "share_pct": 77.3
         },
         {
           "games_year": 1992,
@@ -30545,7 +31173,8 @@
           "band": {
             "fastest": 58.62,
             "slowest": 61.16
-          }
+          },
+          "share_pct": 79.8
         },
         {
           "games_year": 1996,
@@ -30622,7 +31251,8 @@
           "band": {
             "fastest": 59.13,
             "slowest": 60.76
-          }
+          },
+          "share_pct": 79.8
         },
         {
           "games_year": 2000,
@@ -30699,7 +31329,8 @@
           "band": {
             "fastest": 56.61,
             "slowest": 59.43
-          }
+          },
+          "share_pct": 92.7
         },
         {
           "games_year": 2004,
@@ -30776,7 +31407,8 @@
           "band": {
             "fastest": 57.72,
             "slowest": 59.83
-          }
+          },
+          "share_pct": 92.7
         },
         {
           "games_year": 2008,
@@ -30853,7 +31485,8 @@
           "band": {
             "fastest": 56.73,
             "slowest": 58.54
-          }
+          },
+          "share_pct": 92.7
         },
         {
           "games_year": 2012,
@@ -30930,7 +31563,8 @@
           "band": {
             "fastest": 55.98,
             "slowest": 57.76
-          }
+          },
+          "share_pct": 96.8
         },
         {
           "games_year": 2016,
@@ -30999,7 +31633,8 @@
           ],
           "n_finalists": 7,
           "n_timed": 7,
-          "band": null
+          "band": null,
+          "share_pct": 100.0
         },
         {
           "games_year": 2020,
@@ -31076,7 +31711,8 @@
           "band": {
             "fastest": 55.59,
             "slowest": 57.05
-          }
+          },
+          "share_pct": 100.0
         },
         {
           "games_year": 2024,
@@ -31153,7 +31789,8 @@
           "band": {
             "fastest": 55.59,
             "slowest": 57.34
-          }
+          },
+          "share_pct": 100.0
         }
       ]
     },
@@ -31163,6 +31800,17 @@
       "sex": "men",
       "stroke": "butterfly",
       "event_index": "https://www.olympedia.org/event_names/578",
+      "summary": {
+        "first_year": 1956,
+        "first_time_s": 139.3,
+        "last_time_s": 111.21,
+        "best_time_s": 111.21,
+        "best_year": 2024,
+        "change_first_to_last_pct": -20.2,
+        "share_by_1976_pct": 71.4,
+        "change_since_1988_pct": -4.9
+      },
+      "skipped_games": [],
       "editions": [
         {
           "games_year": 1956,
@@ -31239,7 +31887,8 @@
           "band": {
             "fastest": 139.3,
             "slowest": 151.0
-          }
+          },
+          "share_pct": 0.0
         },
         {
           "games_year": 1960,
@@ -31316,7 +31965,8 @@
           "band": {
             "fastest": 132.8,
             "slowest": 139.4
-          }
+          },
+          "share_pct": 23.1
         },
         {
           "games_year": 1964,
@@ -31393,7 +32043,8 @@
           "band": {
             "fastest": 126.6,
             "slowest": 134.6
-          }
+          },
+          "share_pct": 45.2
         },
         {
           "games_year": 1968,
@@ -31470,7 +32121,8 @@
           "band": {
             "fastest": 128.7,
             "slowest": 133.5
-          }
+          },
+          "share_pct": 45.2
         },
         {
           "games_year": 1972,
@@ -31547,7 +32199,8 @@
           "band": {
             "fastest": 120.7,
             "slowest": 125.57
-          }
+          },
+          "share_pct": 66.2
         },
         {
           "games_year": 1976,
@@ -31624,7 +32277,8 @@
           "band": {
             "fastest": 119.23,
             "slowest": 124.61
-          }
+          },
+          "share_pct": 71.4
         },
         {
           "games_year": 1980,
@@ -31701,7 +32355,8 @@
           "band": {
             "fastest": 119.76,
             "slowest": 122.93
-          }
+          },
+          "share_pct": 71.4
         },
         {
           "games_year": 1984,
@@ -31778,7 +32433,8 @@
           "band": {
             "fastest": 117.04,
             "slowest": 121.03
-          }
+          },
+          "share_pct": 79.2
         },
         {
           "games_year": 1988,
@@ -31855,7 +32511,8 @@
           "band": {
             "fastest": 116.94,
             "slowest": 120.8
-          }
+          },
+          "share_pct": 79.6
         },
         {
           "games_year": 1992,
@@ -31932,7 +32589,8 @@
           "band": {
             "fastest": 116.26,
             "slowest": 119.64
-          }
+          },
+          "share_pct": 82.0
         },
         {
           "games_year": 1996,
@@ -32009,7 +32667,8 @@
           "band": {
             "fastest": 116.51,
             "slowest": 119.12
-          }
+          },
+          "share_pct": 82.0
         },
         {
           "games_year": 2000,
@@ -32086,7 +32745,8 @@
           "band": {
             "fastest": 115.35,
             "slowest": 118.39
-          }
+          },
+          "share_pct": 85.3
         },
         {
           "games_year": 2004,
@@ -32163,7 +32823,8 @@
           "band": {
             "fastest": 114.04,
             "slowest": 117.48
-          }
+          },
+          "share_pct": 89.9
         },
         {
           "games_year": 2008,
@@ -32240,7 +32901,8 @@
           "band": {
             "fastest": 112.03,
             "slowest": 115.14
-          }
+          },
+          "share_pct": 97.1
         },
         {
           "games_year": 2012,
@@ -32317,7 +32979,8 @@
           "band": {
             "fastest": 112.96,
             "slowest": 115.18
-          }
+          },
+          "share_pct": 97.1
         },
         {
           "games_year": 2016,
@@ -32394,7 +33057,8 @@
           "band": {
             "fastest": 113.36,
             "slowest": 117.04
-          }
+          },
+          "share_pct": 97.1
         },
         {
           "games_year": 2020,
@@ -32471,7 +33135,8 @@
           "band": {
             "fastest": 111.25,
             "slowest": 115.88
-          }
+          },
+          "share_pct": 99.9
         },
         {
           "games_year": 2024,
@@ -32548,7 +33213,8 @@
           "band": {
             "fastest": 111.21,
             "slowest": 114.85
-          }
+          },
+          "share_pct": 100.0
         }
       ]
     },
@@ -32558,6 +33224,17 @@
       "sex": "women",
       "stroke": "butterfly",
       "event_index": "https://www.olympedia.org/event_names/600",
+      "summary": {
+        "first_year": 1968,
+        "first_time_s": 144.7,
+        "last_time_s": 123.03,
+        "best_time_s": 123.03,
+        "best_year": 2024,
+        "change_first_to_last_pct": -15.0,
+        "share_by_1976_pct": 61.3,
+        "change_since_1988_pct": -5.0
+      },
+      "skipped_games": [],
       "editions": [
         {
           "games_year": 1968,
@@ -32634,7 +33311,8 @@
           "band": {
             "fastest": 144.7,
             "slowest": 154.3
-          }
+          },
+          "share_pct": 0.0
         },
         {
           "games_year": 1972,
@@ -32711,7 +33389,8 @@
           "band": {
             "fastest": 135.57,
             "slowest": 142.84
-          }
+          },
+          "share_pct": 42.1
         },
         {
           "games_year": 1976,
@@ -32788,7 +33467,8 @@
           "band": {
             "fastest": 131.41,
             "slowest": 134.5
-          }
+          },
+          "share_pct": 61.3
         },
         {
           "games_year": 1980,
@@ -32865,7 +33545,8 @@
           "band": {
             "fastest": 130.44,
             "slowest": 135.7
-          }
+          },
+          "share_pct": 65.8
         },
         {
           "games_year": 1984,
@@ -32942,7 +33623,8 @@
           "band": {
             "fastest": 126.9,
             "slowest": 137.39
-          }
+          },
+          "share_pct": 82.1
         },
         {
           "games_year": 1988,
@@ -33019,7 +33701,8 @@
           "band": {
             "fastest": 129.51,
             "slowest": 133.17
-          }
+          },
+          "share_pct": 82.1
         },
         {
           "games_year": 1992,
@@ -33096,7 +33779,8 @@
           "band": {
             "fastest": 128.67,
             "slowest": 133.78
-          }
+          },
+          "share_pct": 82.1
         },
         {
           "games_year": 1996,
@@ -33173,7 +33857,8 @@
           "band": {
             "fastest": 127.76,
             "slowest": 131.96
-          }
+          },
+          "share_pct": 82.1
         },
         {
           "games_year": 2000,
@@ -33250,7 +33935,8 @@
           "band": {
             "fastest": 125.88,
             "slowest": 130.72
-          }
+          },
+          "share_pct": 86.8
         },
         {
           "games_year": 2004,
@@ -33327,7 +34013,8 @@
           "band": {
             "fastest": 126.05,
             "slowest": 130.58
-          }
+          },
+          "share_pct": 86.8
         },
         {
           "games_year": 2008,
@@ -33404,7 +34091,8 @@
           "band": {
             "fastest": 124.18,
             "slowest": 128.23
-          }
+          },
+          "share_pct": 94.7
         },
         {
           "games_year": 2012,
@@ -33481,7 +34169,8 @@
           "band": {
             "fastest": 124.06,
             "slowest": 127.77
-          }
+          },
+          "share_pct": 95.2
         },
         {
           "games_year": 2016,
@@ -33558,7 +34247,8 @@
           "band": {
             "fastest": 124.85,
             "slowest": 127.87
-          }
+          },
+          "share_pct": 95.2
         },
         {
           "games_year": 2020,
@@ -33635,7 +34325,8 @@
           "band": {
             "fastest": 123.86,
             "slowest": 129.48
-          }
+          },
+          "share_pct": 96.2
         },
         {
           "games_year": 2024,
@@ -33712,7 +34403,8 @@
           "band": {
             "fastest": 123.03,
             "slowest": 128.82
-          }
+          },
+          "share_pct": 100.0
         }
       ]
     },
@@ -33722,6 +34414,20 @@
       "sex": "men",
       "stroke": "medley",
       "event_index": "https://www.olympedia.org/event_names/579",
+      "summary": {
+        "first_year": 1968,
+        "first_time_s": 132.0,
+        "last_time_s": 114.06,
+        "best_time_s": 114.06,
+        "best_year": 2024,
+        "change_first_to_last_pct": -13.6,
+        "share_by_1976_pct": 26.9,
+        "change_since_1988_pct": -5.1
+      },
+      "skipped_games": [
+        1976,
+        1980
+      ],
       "editions": [
         {
           "games_year": 1968,
@@ -33798,7 +34504,8 @@
           "band": {
             "fastest": 132.0,
             "slowest": 138.3
-          }
+          },
+          "share_pct": 0.0
         },
         {
           "games_year": 1972,
@@ -33875,7 +34582,8 @@
           "band": {
             "fastest": 127.17,
             "slowest": 133.56
-          }
+          },
+          "share_pct": 26.9
         },
         {
           "games_year": 1984,
@@ -33952,7 +34660,8 @@
           "band": {
             "fastest": 121.42,
             "slowest": 126.66
-          }
+          },
+          "share_pct": 59.0
         },
         {
           "games_year": 1988,
@@ -34029,7 +34738,8 @@
           "band": {
             "fastest": 120.17,
             "slowest": 126.35
-          }
+          },
+          "share_pct": 65.9
         },
         {
           "games_year": 1992,
@@ -34106,7 +34816,8 @@
           "band": {
             "fastest": 120.76,
             "slowest": 124.3
-          }
+          },
+          "share_pct": 65.9
         },
         {
           "games_year": 1996,
@@ -34183,7 +34894,8 @@
           "band": {
             "fastest": 119.91,
             "slowest": 124.29
-          }
+          },
+          "share_pct": 67.4
         },
         {
           "games_year": 2000,
@@ -34260,7 +34972,8 @@
           "band": {
             "fastest": 118.98,
             "slowest": 122.49
-          }
+          },
+          "share_pct": 72.6
         },
         {
           "games_year": 2004,
@@ -34337,7 +35050,8 @@
           "band": {
             "fastest": 117.14,
             "slowest": 122.16
-          }
+          },
+          "share_pct": 82.8
         },
         {
           "games_year": 2008,
@@ -34414,7 +35128,8 @@
           "band": {
             "fastest": 114.23,
             "slowest": 120.76
-          }
+          },
+          "share_pct": 99.1
         },
         {
           "games_year": 2012,
@@ -34491,7 +35206,8 @@
           "band": {
             "fastest": 114.27,
             "slowest": 119.1
-          }
+          },
+          "share_pct": 99.1
         },
         {
           "games_year": 2016,
@@ -34568,7 +35284,8 @@
           "band": {
             "fastest": 114.66,
             "slowest": 118.54
-          }
+          },
+          "share_pct": 99.1
         },
         {
           "games_year": 2020,
@@ -34645,7 +35362,8 @@
           "band": {
             "fastest": 115.0,
             "slowest": 117.7
-          }
+          },
+          "share_pct": 99.1
         },
         {
           "games_year": 2024,
@@ -34722,7 +35440,8 @@
           "band": {
             "fastest": 114.06,
             "slowest": 117.26
-          }
+          },
+          "share_pct": 100.0
         }
       ]
     },
@@ -34732,6 +35451,20 @@
       "sex": "women",
       "stroke": "medley",
       "event_index": "https://www.olympedia.org/event_names/601",
+      "summary": {
+        "first_year": 1968,
+        "first_time_s": 144.7,
+        "last_time_s": 126.56,
+        "best_time_s": 126.56,
+        "best_year": 2024,
+        "change_first_to_last_pct": -12.5,
+        "share_by_1976_pct": 9.0,
+        "change_since_1988_pct": -4.5
+      },
+      "skipped_games": [
+        1976,
+        1980
+      ],
       "editions": [
         {
           "games_year": 1968,
@@ -34800,7 +35533,8 @@
           ],
           "n_finalists": 7,
           "n_timed": 7,
-          "band": null
+          "band": null,
+          "share_pct": 0.0
         },
         {
           "games_year": 1972,
@@ -34877,7 +35611,8 @@
           "band": {
             "fastest": 143.07,
             "slowest": 147.42
-          }
+          },
+          "share_pct": 9.0
         },
         {
           "games_year": 1984,
@@ -34954,7 +35689,8 @@
           "band": {
             "fastest": 132.64,
             "slowest": 140.48
-          }
+          },
+          "share_pct": 66.5
         },
         {
           "games_year": 1988,
@@ -35031,7 +35767,8 @@
           "band": {
             "fastest": 132.59,
             "slowest": 137.99
-          }
+          },
+          "share_pct": 66.8
         },
         {
           "games_year": 1992,
@@ -35108,7 +35845,8 @@
           "band": {
             "fastest": 131.65,
             "slowest": 138.85
-          }
+          },
+          "share_pct": 71.9
         },
         {
           "games_year": 1996,
@@ -35185,7 +35923,8 @@
           "band": {
             "fastest": 133.93,
             "slowest": 137.25
-          }
+          },
+          "share_pct": 71.9
         },
         {
           "games_year": 2000,
@@ -35262,7 +36001,8 @@
           "band": {
             "fastest": 130.68,
             "slowest": 135.64
-          }
+          },
+          "share_pct": 77.3
         },
         {
           "games_year": 2004,
@@ -35339,7 +36079,8 @@
           "band": {
             "fastest": 131.14,
             "slowest": 135.4
-          }
+          },
+          "share_pct": 77.3
         },
         {
           "games_year": 2008,
@@ -35416,7 +36157,8 @@
           "band": {
             "fastest": 128.45,
             "slowest": 133.36
-          }
+          },
+          "share_pct": 89.6
         },
         {
           "games_year": 2012,
@@ -35493,7 +36235,8 @@
           "band": {
             "fastest": 127.57,
             "slowest": 134.19
-          }
+          },
+          "share_pct": 94.4
         },
         {
           "games_year": 2016,
@@ -35570,7 +36313,8 @@
           "band": {
             "fastest": 126.58,
             "slowest": 133.56
-          }
+          },
+          "share_pct": 99.9
         },
         {
           "games_year": 2020,
@@ -35647,7 +36391,8 @@
           "band": {
             "fastest": 128.52,
             "slowest": 132.86
-          }
+          },
+          "share_pct": 99.9
         },
         {
           "games_year": 2024,
@@ -35711,7 +36456,8 @@
           ],
           "n_finalists": 6,
           "n_timed": 6,
-          "band": null
+          "band": null,
+          "share_pct": 100.0
         }
       ]
     },
@@ -35721,6 +36467,17 @@
       "sex": "men",
       "stroke": "medley",
       "event_index": "https://www.olympedia.org/event_names/580",
+      "summary": {
+        "first_year": 1964,
+        "first_time_s": 285.4,
+        "last_time_s": 242.95,
+        "best_time_s": 242.95,
+        "best_year": 2024,
+        "change_first_to_last_pct": -14.9,
+        "share_by_1976_pct": 51.2,
+        "change_since_1988_pct": -4.6
+      },
+      "skipped_games": [],
       "editions": [
         {
           "games_year": 1964,
@@ -35797,7 +36554,8 @@
           "band": {
             "fastest": 285.4,
             "slowest": 303.0
-          }
+          },
+          "share_pct": 0.0
         },
         {
           "games_year": 1968,
@@ -35874,7 +36632,8 @@
           "band": {
             "fastest": 288.4,
             "slowest": 304.3
-          }
+          },
+          "share_pct": 0.0
         },
         {
           "games_year": 1972,
@@ -35951,7 +36710,8 @@
           "band": {
             "fastest": 271.98,
             "slowest": 280.66
-          }
+          },
+          "share_pct": 31.6
         },
         {
           "games_year": 1976,
@@ -36028,7 +36788,8 @@
           "band": {
             "fastest": 263.68,
             "slowest": 274.95
-          }
+          },
+          "share_pct": 51.2
         },
         {
           "games_year": 1980,
@@ -36105,7 +36866,8 @@
           "band": {
             "fastest": 262.89,
             "slowest": 269.86
-          }
+          },
+          "share_pct": 53.0
         },
         {
           "games_year": 1984,
@@ -36182,7 +36944,8 @@
           "band": {
             "fastest": 257.41,
             "slowest": 266.05
-          }
+          },
+          "share_pct": 65.9
         },
         {
           "games_year": 1988,
@@ -36259,7 +37022,8 @@
           "band": {
             "fastest": 254.75,
             "slowest": 264.02
-          }
+          },
+          "share_pct": 72.2
         },
         {
           "games_year": 1992,
@@ -36336,7 +37100,8 @@
           "band": {
             "fastest": 254.23,
             "slowest": 263.86
-          }
+          },
+          "share_pct": 73.4
         },
         {
           "games_year": 1996,
@@ -36413,7 +37178,8 @@
           "band": {
             "fastest": 254.9,
             "slowest": 261.15
-          }
+          },
+          "share_pct": 73.4
         },
         {
           "games_year": 2000,
@@ -36490,7 +37256,8 @@
           "band": {
             "fastest": 251.76,
             "slowest": 260.93
-          }
+          },
+          "share_pct": 79.2
         },
         {
           "games_year": 2004,
@@ -36567,7 +37334,8 @@
           "band": {
             "fastest": 248.26,
             "slowest": 260.08
-          }
+          },
+          "share_pct": 87.5
         },
         {
           "games_year": 2008,
@@ -36644,7 +37412,8 @@
           "band": {
             "fastest": 243.84,
             "slowest": 255.4
-          }
+          },
+          "share_pct": 97.9
         },
         {
           "games_year": 2012,
@@ -36721,7 +37490,8 @@
           "band": {
             "fastest": 245.18,
             "slowest": 254.89
-          }
+          },
+          "share_pct": 97.9
         },
         {
           "games_year": 2016,
@@ -36798,7 +37568,8 @@
           "band": {
             "fastest": 246.05,
             "slowest": 256.58
-          }
+          },
+          "share_pct": 97.9
         },
         {
           "games_year": 2020,
@@ -36875,7 +37646,8 @@
           "band": {
             "fastest": 249.42,
             "slowest": 251.32
-          }
+          },
+          "share_pct": 97.9
         },
         {
           "games_year": 2024,
@@ -36952,7 +37724,8 @@
           "band": {
             "fastest": 242.95,
             "slowest": 257.16
-          }
+          },
+          "share_pct": 100.0
         }
       ]
     },
@@ -36962,6 +37735,17 @@
       "sex": "women",
       "stroke": "medley",
       "event_index": "https://www.olympedia.org/event_names/602",
+      "summary": {
+        "first_year": 1964,
+        "first_time_s": 318.7,
+        "last_time_s": 267.71,
+        "best_time_s": 266.36,
+        "best_year": 2016,
+        "change_first_to_last_pct": -16.0,
+        "share_by_1976_pct": 68.6,
+        "change_since_1988_pct": -3.6
+      },
+      "skipped_games": [],
       "editions": [
         {
           "games_year": 1964,
@@ -37038,7 +37822,8 @@
           "band": {
             "fastest": 318.7,
             "slowest": 338.4
-          }
+          },
+          "share_pct": 0.0
         },
         {
           "games_year": 1968,
@@ -37115,7 +37900,8 @@
           "band": {
             "fastest": 308.5,
             "slowest": 335.7
-          }
+          },
+          "share_pct": 19.5
         },
         {
           "games_year": 1972,
@@ -37192,7 +37978,8 @@
           "band": {
             "fastest": 302.97,
             "slowest": 315.68
-          }
+          },
+          "share_pct": 30.1
         },
         {
           "games_year": 1976,
@@ -37269,7 +38056,8 @@
           "band": {
             "fastest": 282.77,
             "slowest": 300.21
-          }
+          },
+          "share_pct": 68.6
         },
         {
           "games_year": 1980,
@@ -37346,7 +38134,8 @@
           "band": {
             "fastest": 276.29,
             "slowest": 293.3
-          }
+          },
+          "share_pct": 81.0
         },
         {
           "games_year": 1984,
@@ -37423,7 +38212,8 @@
           "band": {
             "fastest": 279.24,
             "slowest": 293.28
-          }
+          },
+          "share_pct": 81.0
         },
         {
           "games_year": 1988,
@@ -37500,7 +38290,8 @@
           "band": {
             "fastest": 277.76,
             "slowest": 287.51
-          }
+          },
+          "share_pct": 81.0
         },
         {
           "games_year": 1992,
@@ -37577,7 +38368,8 @@
           "band": {
             "fastest": 276.54,
             "slowest": 293.32
-          }
+          },
+          "share_pct": 81.0
         },
         {
           "games_year": 1996,
@@ -37654,7 +38446,8 @@
           "band": {
             "fastest": 279.18,
             "slowest": 286.2
-          }
+          },
+          "share_pct": 81.0
         },
         {
           "games_year": 2000,
@@ -37731,7 +38524,8 @@
           "band": {
             "fastest": 273.59,
             "slowest": 285.99
-          }
+          },
+          "share_pct": 86.2
         },
         {
           "games_year": 2004,
@@ -37808,7 +38602,8 @@
           "band": {
             "fastest": 274.83,
             "slowest": 290.85
-          }
+          },
+          "share_pct": 86.2
         },
         {
           "games_year": 2008,
@@ -37885,7 +38680,8 @@
           "band": {
             "fastest": 269.45,
             "slowest": 282.13
-          }
+          },
+          "share_pct": 94.1
         },
         {
           "games_year": 2012,
@@ -37962,7 +38758,8 @@
           "band": {
             "fastest": 268.43,
             "slowest": 275.62
-          }
+          },
+          "share_pct": 96.0
         },
         {
           "games_year": 2016,
@@ -38039,7 +38836,8 @@
           "band": {
             "fastest": 266.36,
             "slowest": 278.06
-          }
+          },
+          "share_pct": 100.0
         },
         {
           "games_year": 2020,
@@ -38116,7 +38914,8 @@
           "band": {
             "fastest": 272.08,
             "slowest": 280.65
-          }
+          },
+          "share_pct": 100.0
         },
         {
           "games_year": 2024,
@@ -38193,7 +38992,8 @@
           "band": {
             "fastest": 267.71,
             "slowest": 280.7
-          }
+          },
+          "share_pct": 100.0
         }
       ]
     }
