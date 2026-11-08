@@ -47,7 +47,7 @@ const ropes = Array.from({ length: LANES + 1 }, (_, k) => X0 + k * LANE_W + (k =
       <path class="deck-edge" d={`M0,${WALL + 9}H${W}`} />
       {lines.map((i) => (
         <g class="block">
-          <rect class="base" x={cx(i) - 11} y={WALL + 15} width="22" height="26" rx="2" />
+          <rect class="base" x={cx(i) - 11} y={WALL + 15} width="22" height="26" />
           <path class="tex" d={`M${cx(i) - 7},${WALL + 24}l6,-6M${cx(i) - 7},${WALL + 31}l12,-12M${cx(i) - 2},${WALL + 36}l9,-9M${cx(i) + 3},${WALL + 37}l4,-4`} />
           <path class="lip" d={`M${cx(i) - 11},${WALL + 15}h22`} />
         </g>

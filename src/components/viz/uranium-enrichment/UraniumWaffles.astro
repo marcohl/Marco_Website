@@ -110,7 +110,7 @@ const first = data.cases[0];
     let mode: Mode = "sorted", cur = 0, nNow = steps[0].n;
     const svg = d3.select(svgEl).attr("viewBox", `0 0 ${W} ${H}`);
     const rects = svg.selectAll<SVGRectElement, Atom>("rect").data(atoms).join("rect")
-      .attr("width", CELL - GAP).attr("height", CELL - GAP).attr("rx", 1.5)
+      .attr("width", CELL - GAP).attr("height", CELL - GAP)
       .attr("x", (_, i) => pos(i).x).attr("y", (_, i) => pos(i).y)
       .classed("u235", (a) => a.sorted < nNow)
       .on("pointerenter pointermove", (ev: PointerEvent, a) => {
@@ -192,9 +192,9 @@ const first = data.cases[0];
   .uw .scrolly { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; }
   .uw .stage { position: sticky; top: 0; z-index: 2; margin-inline: -20px; padding: 10px 20px 8px; background: var(--bg); border-bottom: 1px solid var(--rule); }
   .uw .stage-in { display: grid; gap: 6px; min-width: 0; }
-  .uw .kicker { font: 600 11px/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+  .uw .kicker { font: 600 15px/1.2 var(--f-display); color: var(--ink-3); }
   .uw .count { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
-  .uw .n { font: 600 32px/1 var(--f-mono); color: var(--cat-2); font-variant-numeric: tabular-nums; }
+  .uw .n { font: 700 36px/1 var(--f-display); color: var(--on-marker); background: var(--marker); padding: 3px 8px 1px; font-variant-numeric: tabular-nums; }
   .uw .of { font-size: 15px; color: var(--ink-2); }
   .uw .waffle { width: 100%; height: auto; max-height: 32vh; display: block; }
   .uw .waffle rect { fill: var(--cat-1); transition: fill .35s ease, opacity .15s; }
@@ -202,21 +202,21 @@ const first = data.cases[0];
   .uw .waffle.dim-u235 rect.u235, .uw .waffle.dim-u238 rect:not(.u235) { opacity: .18; }
   .uw .controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; }
   .uw .legend { display: flex; flex-wrap: wrap; gap: 4px 18px; }
-  .uw .chip { display: inline-flex; align-items: center; gap: 8px; font: 600 14px/1.2 var(--f-body); color: var(--ink); background: none; border: 0; padding: 6px 2px; cursor: pointer; }
-  .uw .chip small { display: none; font: 400 13px/1.2 var(--f-body); color: var(--ink-3); }
-  .uw .sw { width: 14px; height: 14px; border-radius: 3px; }
+  .uw .chip { display: inline-flex; align-items: center; gap: 8px; font: 600 14px/1.2 var(--f-data); color: var(--ink); background: none; border: 0; padding: 6px 2px; cursor: pointer; }
+  .uw .chip small { display: none; font: 400 13px/1.2 var(--f-data); color: var(--ink-3); }
+  .uw .sw { width: 14px; height: 14px; border-radius: 0; }
   .uw .sw-235 { background: var(--cat-2); } .uw .sw-238 { background: var(--cat-1); }
-  .uw .seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; background: var(--bg); }
-  .uw .seg button { font: 600 13px/1 var(--f-body); color: var(--ink-2); background: none; border: 0; padding: 9px 12px; cursor: pointer; }
+  .uw .seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 0; overflow: hidden; background: var(--bg); }
+  .uw .seg button { font: 600 13px/1 var(--f-data); color: var(--ink-2); background: none; border: 0; padding: 9px 12px; cursor: pointer; }
   .uw .seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
   .uw .stats { display: none; grid-template-columns: auto 1fr; gap: 4px 14px; font-size: 14px; margin: 0; padding-top: 10px; border-top: 1px solid var(--rule); }
   .uw .stats dt { color: var(--ink-3); }
-  .uw .stats dd { margin: 0; font: 400 13.5px var(--f-mono); text-align: right; font-variant-numeric: tabular-nums; }
+  .uw .stats dd { margin: 0; font: 400 13.5px var(--f-data); text-align: right; font-variant-numeric: tabular-nums; }
 
   .uw .steps { min-width: 0; }
   .uw .step { min-height: 70vh; display: flex; flex-direction: column; justify-content: flex-start; padding-top: 28px; gap: 12px; max-width: 46ch; }
   .uw .step:last-child { margin-bottom: 12vh; }
-  .uw .step h3 { font: 700 28px/1.05 var(--f-display); font-stretch: 85%; margin: 0; }
+  .uw .step h3 { font: 600 30px/1.05 var(--f-display); margin: 0; }
   .uw .step p { margin: 0; color: var(--ink-2); }
   .uw.js .step { opacity: .3; transition: opacity .3s; }
   .uw.js .step.active { opacity: 1; }
@@ -226,19 +226,19 @@ const first = data.cases[0];
   .uw .tbl { overflow-x: auto; margin-top: 10px; }
   .uw table { border-collapse: collapse; min-width: 560px; }
   .uw th, .uw td { text-align: left; padding: 6px 14px 6px 0; border-bottom: 1px solid var(--rule); }
-  .uw .num { text-align: right; font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
-  .uw .tip { position: fixed; pointer-events: none; z-index: 5; background: var(--ink); color: var(--bg); font: 400 13px/1.35 var(--f-body); padding: 8px 10px; border-radius: 6px; max-width: 220px; }
+  .uw .num { text-align: right; font-family: var(--f-data); font-variant-numeric: tabular-nums; }
+  .uw .tip { position: fixed; pointer-events: none; z-index: 5; background: var(--ink); color: var(--bg); font: 400 13px/1.35 var(--f-data); padding: 8px 10px; border-radius: 0; max-width: 220px; }
 
   @media (min-width: 901px) {
     [data-viz="uranium-enrichment"] { margin-block: 32px; }
     .uw .scrolly { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 48px; align-items: start; }
     .uw .stage { top: 24px; align-self: start; margin-inline: 0; padding: 0; background: none; border-bottom: 0; }
-    .uw .stage-in { background: var(--panel); border: 1px solid var(--rule); border-radius: var(--radius); padding: 20px; gap: 12px; }
+    .uw .stage-in { background: var(--panel); border: 1px solid var(--rule); border-radius: 0; padding: 20px; gap: 12px; }
     .uw .n { font-size: 44px; }
     .uw .waffle { max-height: none; }
     .uw .chip small { display: inline; }
     .uw .stats { display: grid; }
-    .uw .step { min-height: 90vh; justify-content: center; padding-top: 0; }
+    .uw .step { min-height: 62vh; justify-content: center; padding-top: 0; }
     .uw .step h3 { font-size: 34px; }
   }
 </style>

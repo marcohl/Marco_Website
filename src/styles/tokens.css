@@ -1,55 +1,78 @@
-/* Site-wide design tokens. Components use these; never literal colors.
-   Categorical colors are validated with scripts/check_palette.py (light + dark). */
+/* Site-wide design tokens ("Blueline"). Components use these; never literal colors.
+   Ink is blue, paper is white, like a diazo print. Categorical colors are validated with
+   scripts/check_palette.py on --bg and --panel, light and dark.
+   Marker yellow is a highlighter: a band behind one key figure, never a mark or text color. */
 :root {
-  /* light theme: warm cream */
-  --bg: #F7F2E7;
-  --panel: #FBF8F0;
-  --ink: #1C1A16;
-  --ink-2: #51493F;
-  --ink-3: #75695B;
-  --rule: #E0D8C6;
-  --grid: #E9E1CF;
+  /* light theme: blueline print */
+  --bg: #F2F3F0;
+  --panel: #FAFAF8;
+  --ink: #1B2A6B;
+  --ink-2: #4B5688;
+  --ink-3: #5F6993;
+  --rule: #C9CDE0;
+  --grid: #DDE0EE;
+  --marker: #FFE14D;
+  --on-marker: #1B2A6B;
 
   /* categorical: slot 1 = context, slot 2 = accent (the story) */
-  --cat-1: #3F74AC;
-  --cat-2: #CF5F14;
+  --cat-1: #5A68B0;
+  --cat-2: #C8372D;
 
-  --f-display: "Archivo Variable", "Archivo", "Arial Narrow", system-ui, sans-serif;
-  --f-body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
-  --f-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  /* Three roles. Display: headings, nav, buttons. Body: running text (serif). Data: tables, charts and
+     their controls (Atkinson Hyperlegible Next, tabular figures, slashed zero). */
+  --f-display: "Barlow Semi Condensed", "Arial Narrow", system-ui, sans-serif;
+  --f-body: "Literata Variable", Literata, Georgia, "Times New Roman", serif;
+  --f-data: "Atkinson Hyperlegible Next Variable", "Atkinson Hyperlegible Next", system-ui, sans-serif;
 
   color-scheme: light;
   --measure: 64ch;
-  --radius: 8px;
 }
-/* Dark theme is opt-in via the toggle (data-theme="dark" on <html>). Light cream is the default. */
+/* Dark theme is opt-in via the toggle (data-theme="dark" on <html>): the cyanotype. */
 :root[data-theme="dark"] {
-  --bg: #11171B; --panel: #182026; --ink: #EDF1F3; --ink-2: #AEB9C0; --ink-3: #8C979E; --rule: #2A343B; --grid: #1E292F;
-  --cat-1: #5690D6; --cat-2: #D4661C;
+  --bg: #0E1740; --panel: #162257; --ink: #EAF0FF; --ink-2: #B9C4F2; --ink-3: #98A5DC; --rule: #2C3A7A; --grid: #1B2766;
+  --marker: #FFD84D; --on-marker: #0E1740;
+  --cat-1: #8FA2F0; --cat-2: #FF7A66;
   color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
-body { margin: 0; background: var(--bg); color: var(--ink); font: 400 17px/1.55 var(--f-body); }
-a { color: inherit; text-decoration-color: var(--cat-2); text-underline-offset: 3px; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 17px/1.6 var(--f-body); }
+a { color: inherit; text-decoration-color: var(--cat-1); text-decoration-thickness: 1px; text-underline-offset: 3px; }
 a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 img, svg { max-width: 100%; }
+svg text, table, .num { font-variant-numeric: tabular-nums; }
 
 .wrap { max-width: 1180px; margin: 0 auto; padding-inline: 20px; padding-block: 40px 64px; }
 .prose { max-width: var(--measure); }
 .prose p, .prose li { color: var(--ink-2); }
-.prose strong { color: var(--ink); font-weight: 600; white-space: nowrap; }
-.prose h2 { font: 700 26px/1.15 var(--f-display); font-stretch: 85%; margin: 48px 0 8px; color: var(--ink); }
-.eyebrow { font: 600 12px/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
-h1 { font: 800 clamp(38px, 6.5vw, 72px)/0.98 var(--f-display); font-stretch: 75%; margin: 12px 0 20px; text-wrap: balance; }
-h1 em { font-style: normal; color: var(--cat-2); }
-.method { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--rule); }
-.method h2 { font: 700 26px/1.15 var(--f-display); font-stretch: 85%; margin: 0 0 24px; }
+.prose strong { color: var(--ink); font-weight: 700; white-space: nowrap; }
+.prose h2 { font: 600 28px/1.1 var(--f-display); margin: 48px 0 8px; color: var(--ink); }
+/* Small heading above a block of text. Sentence case, no tracking. */
+.eyebrow { font: 600 16px/1.2 var(--f-display); color: var(--ink-2); margin: 0 0 8px; }
+h1 { font: 700 clamp(40px, 6vw, 72px)/1 var(--f-display); letter-spacing: -.01em; margin: 12px 0 20px; text-wrap: balance; }
+h1 em { font-style: normal; }
+/* Highlighter band behind one key figure. */
+.mk { background: linear-gradient(transparent 10%, var(--marker) 10% 94%, transparent 94%); color: var(--on-marker); padding-inline: .14em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+
+/* Title block: the cartouche of a drawing sheet. Cells hold a small label and a value. */
+.tblock { --cols: 4; display: grid; grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); border: 1px solid var(--ink); background: var(--panel); }
+.tblock > * { padding: 8px 12px; border-left: 1px solid var(--ink); min-width: 0; overflow-wrap: anywhere; }
+.tblock > :first-child { border-left: 0; }
+.tblock small { display: block; font: 400 13px/1.2 var(--f-data); color: var(--ink-3); margin-bottom: 3px; }
+.tblock b { display: block; font: 600 17px/1.2 var(--f-display); color: var(--ink); }
+@media (max-width: 559px) {
+  .tblock { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tblock > :nth-child(odd) { border-left: 0; }
+  .tblock > :nth-child(n+3) { border-top: 1px solid var(--ink); }
+}
+
+.method { margin-top: 56px; padding-top: 24px; border-top: 2px solid var(--ink); }
+.method h2 { font: 600 28px/1.1 var(--f-display); margin: 0 0 24px; }
 .method-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; }
-.method h3 { font: 600 11px/1.2 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 8px; }
+.method h3 { font: 600 18px/1.2 var(--f-display); color: var(--ink); margin: 0 0 8px; }
 .method p { font-size: 15px; color: var(--ink-2); margin: 0 0 10px; }
-.method code { font: 400 .9em var(--f-mono); overflow-wrap: anywhere; }
+.method code { font: 400 .88em ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; overflow-wrap: anywhere; }
 @media (min-width: 640px) { .method-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 40px; } }
 @media (min-width: 1000px) { .method-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 

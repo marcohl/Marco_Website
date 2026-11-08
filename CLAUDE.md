@@ -50,7 +50,7 @@ sport, food...). The method below does not depend on the topic.
 ```
 npm run dev              # local site at localhost:4321
 npm run build            # static build to dist/
-npm run check:palette -- "#hex,#hex" --surface "#F4F6F7"
+npm run check:palette -- "#hex,#hex" --surface "#F2F3F0"
 python3 analysis/<slug>/build_data.py
 ```
 

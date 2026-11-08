@@ -1,6 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
 import sprint from "../data/olympic-freestyle-sprint/events.json";
+import waffles from "../data/uranium-enrichment/waffles.json";
 
 // Every MDX file in src/pages/projects/ with status "published" is listed (all of them in dev).
 const modules = import.meta.glob("./projects/*.mdx", { eager: true }) as Record<string, any>;
@@ -9,6 +10,16 @@ const projects = Object.entries(modules)
   .filter((p) => p.status === "published" || import.meta.env.DEV)
   .sort((a, b) => String(b.date).localeCompare(String(a.date)));
 const ym = (d: unknown) => new Date(d as string).toISOString().slice(0, 7);
+const featured = projects.filter((p) => p.thumb).slice(0, 2);
+
+// Thumbnail of the uranium sheet: 1,000 atoms, the U-235 ones in the story color (data from the project).
+const natural = waffles.cases.find((c) => c.id === "natural")!;
+const COLS = 40, CELL = 12, GAP = 2, P = CELL + GAP;
+const ROWS = Math.ceil(waffles.sample_size / COLS);
+const cellPath = (from: number, to: number) =>
+  Array.from({ length: to - from }, (_, k) => { const i = from + k; return `M${(i % COLS) * P},${Math.floor(i / COLS) * P}h${CELL}v${CELL}h-${CELL}z`; }).join("");
+const wafW = COLS * P - GAP, wafH = ROWS * P - GAP;
+const shown = natural.u235_atoms_shown;
 
 // Thumbnail of the Olympic sprint sheet: the two 100 m champion lines, drawn from the project data.
 const sp100 = sprint.events.filter((s) => s.id === "M100FR" || s.id === "W100FR");
@@ -20,109 +31,143 @@ const thumbPath = (id: string) => {
   const eds = sp100.find((s) => s.id === id)!.editions;
   return eds.map((e, i) => `${i === 0 || e.plot_year - eds[i - 1].plot_year > 5 ? "M" : "L"}${tx(e.plot_year).toFixed(1)},${ty(e.champions[0].time_s).toFixed(1)}`).join("");
 };
-const nextCode = "MHL-" + String(Object.keys(modules).length + 1).padStart(3, "0");
 ---
 <Base title="Marco Herbas Lopez" description="Energy, data and everything else: interactive charts and small data-analysis projects by Marco Herbas Lopez.">
-  <section class="hero">
-    <div class="wrap hero-in">
-      <span class="eyebrow">Drawing no. MHL-000 · Index of work</span>
-      <h1>I turn data about stuff I like into charts you can explore and discover.</h1>
-      <p class="lead">Hello! My name is Marco, I am an electrical and nuclear engineer from Bolivia currently based in Milan. I work in the energy field, I enjoy learning and discovering new things and I believe one of the best ways of doing so is through the analysis of data. It is said: Data is the new gold and I think it's true.</p> 
-      <p class="lead">In this project, with the help of IA I practice data analysis, on whatever catches my curiosity, one project at a time.</p>
-      <p class="lead">I am passionate about good coffee and IA. I hope you will learn or discover new things with my mini projects.</p>
+  <section class="wrap hero">
+    <div class="hero-text">
+      <h1>I turn data about things I like into charts you can explore.</h1>
+      <p class="lead">I'm Marco, an electrical and nuclear engineer from Bolivia, now living in Milan. I work in energy. I like finding out how things work, and I've found that data is one of the best ways to do it.</p>
+      <p class="lead">This site is where I practice. Each project starts with a question I'm curious about, finds the data that answers it and ends in one chart you can explore. I build them with help from AI.</p>
+      <p class="lead">Outside of work I like good coffee and AI. I hope you learn something new from these projects.</p>
       <a class="btn" href="#work">See the projects</a>
     </div>
-  </section>
-
-  <section id="work" class="wrap work">
-    <div class="sheets">
-      {projects.map((p) => (
+    <div class="hero-sheets">
+      {featured.map((p) => (
         <a class="sheet" href={p.href}>
           <div class="fig">
-            {p.thumb === "waffle" && <div class="thumb" aria-hidden="true"></div>}
+            {p.thumb === "waffle" && (
+              <svg viewBox={`0 0 ${wafW} ${wafH}`} role="img" aria-label={`${p.title}: ${shown} of every ${waffles.sample_size.toLocaleString("en-US")} natural uranium atoms are U-235`}>
+                <path class="ctx" d={cellPath(shown, waffles.sample_size)} />
+                <path class="story" d={cellPath(0, shown)} />
+              </svg>
+            )}
             {p.thumb === "sprint" && (
-              <svg class="thumb-chart" viewBox="0 0 320 160" aria-hidden="true">
+              <svg viewBox="0 0 320 160" role="img" aria-label={`${p.title}: winning times in the Olympic 100 m freestyle, men and women`}>
                 <line class="base" x1="12" y1="150" x2="308" y2="150" />
                 <path class="w" d={thumbPath("W100FR")} />
                 <path class="m" d={thumbPath("M100FR")} />
               </svg>
             )}
           </div>
-          <div class="body">
-            <h3>{p.title}</h3>
-            <p>{p.description}</p>
-          </div>
-          <div class="tb">
-            <span>{p.code}</span><span>Rev. {p.rev ?? "A"}</span><span>{ym(p.date)}</span><span>{p.tags?.[0]}</span>
-          </div>
+          <div class="tblock"><div><b>{p.code}</b></div><div><b>Rev. {p.rev ?? "A"}</b></div><div><b>{ym(p.date)}</b></div><div><b>{p.tags?.[0]}</b></div></div>
         </a>
       ))}
-      <div class="sheet next">
-        <div class="fig"><span class="lbl">In preparation</span></div>
-        <div class="body"><h3>Next sheet</h3><p>The next project will appear here.</p></div>
-        <div class="tb"><span>{nextCode}</span><span>Rev. –</span><span>–</span><span>–</span></div>
-      </div>
     </div>
   </section>
 
-  <section id="about" class="wrap">
-    <div class="about">
-    <span class="lbl">About</span>
-    <p>I'm an electrical and nuclear engineer based in Milan, with over ten years of experience in high-voltage electrical systems, nuclear engineering and renewable energy. I hold an MSc in Nuclear Engineering from Politecnico di Milano and work professionally in Spanish, Italian, English and French.</p>
+  <section id="work" class="wrap work">
+    <h2>Projects</h2>
+    <div class="reg-head" aria-hidden="true"><span>No.</span><span>Title</span><span>Rev.</span><span>Date</span><span>Topic</span></div>
+    <ul class="register">
+      {projects.map((p) => (
+        <li>
+          <a class="row" href={p.href}>
+            <span class="no">{p.code}</span>
+            <span class="what"><span class="ttl">{p.title}</span><span class="desc">{p.description}</span></span>
+            <span class="rev">Rev. {p.rev ?? "A"}</span>
+            <span class="date">{ym(p.date)}</span>
+            <span class="topic">{p.tags?.[0]}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section id="about" class="wrap about">
+    <div class="about-text">
+      <h2>About</h2>
+      <p>I'm an electrical and nuclear engineer based in Milan, with over ten years of experience in high-voltage electrical systems, nuclear engineering and renewable energy. I hold an MSc in Nuclear Engineering from Politecnico di Milano and work professionally in Spanish, Italian, English and French.</p>
+    </div>
+    <div class="tblock author">
+      <div><small>Based in</small><b>Milan</b></div>
+      <div><small>Experience</small><b>10+ years: high-voltage electrical systems, nuclear engineering, renewable energy</b></div>
+      <div><small>Degree</small><b>MSc in Nuclear Engineering, Politecnico di Milano</b></div>
+      <div><small>Working languages</small><b>Spanish, Italian, English, French</b></div>
     </div>
   </section>
 </Base>
 
 <style>
-  /* Mobile first. Columns and larger type start at 700px / 1000px. */
-  .lbl { font: 600 10px/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
-  .hero { margin-top: 20px; border-block: 1px solid var(--rule); background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 24px 24px; }
-  .hero-in { padding-block: 40px 44px; display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
-  .hero h1 { margin: 0; font-size: clamp(44px, 11vw, 88px); max-width: 14ch; }
-  .lead { margin: 0; max-width: 600px; font-size: 17px; color: var(--ink-2); background: var(--bg); }
-  .btn { display: inline-flex; align-items: center; min-height: 48px; padding: 0 22px; background: var(--ink); color: var(--bg); font-weight: 600; font-size: 16px; text-decoration: none; }
+  /* Mobile first. Columns start at 700px / 900px. No band of the page is left empty:
+     the hero pairs text with two real sheets, the register uses the full width, About pairs text with a facts block. */
+  h2 { font: 600 30px/1.1 var(--f-display); margin: 0 0 16px; }
 
-  .work { padding-block: 32px 0; }
-  .sheets { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; align-items: start; }
-  .sheet { display: flex; flex-direction: column; border: 1px solid var(--ink); background: var(--panel); text-decoration: none; color: inherit; min-width: 0; }
-  a.sheet:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink); }
-  .fig { padding: 16px; border-bottom: 1px solid var(--ink); min-height: 120px; display: flex; align-items: center; justify-content: center; }
-  .body { padding: 16px; display: grid; gap: 8px; }
-  .body h3 { margin: 0; font: 700 28px/1.1 var(--f-display); font-stretch: 85%; }
-  .body p { margin: 0; font-size: 15px; color: var(--ink-2); }
-  .tb { display: grid; grid-template-columns: 1.2fr .8fr 1fr 1fr; border-top: 1px solid var(--ink); font: 400 12px/1.2 var(--f-mono); }
-  .tb span { padding: 9px 10px; border-left: 1px solid var(--ink); min-width: 0; overflow-wrap: anywhere; }
-  .tb span:first-child { border-left: 0; }
-  .next { border-style: dashed; border-color: var(--ink-3); color: var(--ink-3); background: none; }
-  .next .fig, .next .tb { border-color: var(--ink-3); border-style: dashed; border-width: 0; }
-  .next .fig { border-bottom-width: 1px; }
-  .next .tb { border-top-width: 1px; }
-  .next .tb span { border-left-color: var(--ink-3); }
-  .next .body p, .next .body h3 { color: var(--ink-3); }
+  .hero { padding-block: 32px 48px; display: grid; gap: 32px; align-items: stretch; }
+  .hero-text { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; min-width: 0; }
+  .hero h1 { margin: 0 0 4px; font-size: clamp(42px, 10.5vw, 88px); }
+  .lead { margin: 0; max-width: 60ch; color: var(--ink-2); }
+  .btn { display: inline-flex; align-items: center; min-height: 48px; padding: 0 22px; margin-top: 8px; background: var(--ink); color: var(--bg); font: 600 19px/1 var(--f-display); text-decoration: none; border: 1px solid var(--ink); }
+  .btn:hover { background: var(--marker); color: var(--on-marker); }
 
-  /* The 7-in-1000 waffle, as a thumbnail: one orange row-start of 7 cells over blue. */
-  .thumb { position: relative; width: 100%; max-width: 320px; height: 160px; overflow: hidden; background-color: var(--cat-1); background-image: linear-gradient(to right, transparent 6px, var(--panel) 6px), linear-gradient(to bottom, transparent 6px, var(--panel) 6px); background-size: 8px 8px; }
-  .thumb::before { content: ""; position: absolute; left: 0; top: 0; width: 56px; height: 8px; background-color: var(--cat-2); background-image: linear-gradient(to right, transparent 6px, var(--panel) 6px), linear-gradient(to bottom, transparent 6px, var(--panel) 6px); background-size: 8px 8px; }
-
-  .thumb-chart { width: 100%; max-width: 320px; height: 160px; }
-  .thumb-chart path { fill: none; stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; }
-  .thumb-chart .m { stroke: var(--cat-1); }
-  .thumb-chart .w { stroke: var(--cat-2); }
-  .thumb-chart .base { stroke: var(--ink-3); stroke-width: 1; }
-
-  .about { padding-top: 48px; display: grid; gap: 12px; max-width: 760px; }
-  .about p { margin: 0; color: var(--ink-2); }
-
-  @media (min-width: 700px) {
-    .sheets { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
-    .hero { background-size: 32px 32px; margin-top: 32px; }
-    .hero-in { padding-block: 72px 80px; gap: 28px; }
-    .lead { font-size: 20px; }
-    .fig { min-height: 200px; }
-    .thumb { height: 200px; }
-    .thumb-chart { height: 200px; }
+  .hero-sheets { display: grid; gap: 20px; grid-template-columns: minmax(0, 1fr); min-width: 0; }
+  .sheet { container-type: inline-size; display: flex; flex-direction: column; border: 1px solid var(--ink); background: var(--panel); text-decoration: none; color: inherit; min-width: 0; }
+  .sheet .fig { flex: 1; display: flex; align-items: center; justify-content: center; padding: 20px; min-height: 160px; }
+  .sheet .fig svg { width: 100%; height: auto; display: block; }
+  .sheet .tblock { border: 0; border-top: 1px solid var(--ink); background: none; }
+  .sheet .tblock b { font-size: 16px; }
+  .sheet:hover .tblock { background: var(--marker); }
+  .sheet:hover .tblock b { color: var(--on-marker); }
+  .sheet .ctx { fill: var(--cat-1); }
+  .sheet .story { fill: var(--cat-2); }
+  .sheet path.m, .sheet path.w { fill: none; stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; }
+  .sheet .m { stroke: var(--cat-1); }
+  .sheet .w { stroke: var(--cat-2); }
+  .sheet .base { stroke: var(--ink-3); stroke-width: 1; }
+  /* Narrow sheets (phone, or two side by side on a tablet) get a 2 x 2 title block. */
+  @container (max-width: 459px) {
+    .sheet .tblock { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .sheet .tblock > :nth-child(odd) { border-left: 0; }
+    .sheet .tblock > :nth-child(n+3) { border-top: 1px solid var(--ink); }
   }
-  @media (min-width: 1000px) {
-    .sheets { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+  .work { padding-block: 24px 16px; }
+  .reg-head { display: none; }
+  .register { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--ink); }
+  .register li { border-bottom: 1px solid var(--ink); }
+  .row { display: grid; grid-template-columns: auto auto auto 1fr; grid-template-areas: "no rev date topic" "what what what what"; gap: 6px 16px; padding: 16px 8px; text-decoration: none; color: var(--ink); }
+  a.row:hover { background: var(--marker); color: var(--on-marker); }
+  a.row:hover .desc, a.row:hover .rev, a.row:hover .date, a.row:hover .topic { color: var(--on-marker); }
+  .no { grid-area: no; }
+  .rev { grid-area: rev; } .date { grid-area: date; } .topic { grid-area: topic; }
+  .no, .rev, .date, .topic { font: 400 17px/1.3 var(--f-display); color: var(--ink-3); font-variant-numeric: tabular-nums; }
+  .no { color: var(--ink); font-weight: 600; }
+  a.row:hover .no { color: var(--on-marker); }
+  .what { grid-area: what; display: grid; gap: 4px; }
+  .ttl { font: 700 30px/1.05 var(--f-display); }
+  .desc { font-size: 16px; color: var(--ink-2); max-width: 62ch; }
+
+  .about { padding-block: 40px 0; display: grid; gap: 28px; align-items: start; }
+  .about-text p { margin: 0; font-size: 19px; line-height: 1.55; color: var(--ink-2); max-width: 60ch; }
+  .author { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .author > :nth-child(odd) { border-left: 0; }
+  .author > :nth-child(even) { border-left: 1px solid var(--ink); }
+  .author > :nth-child(n+3) { border-top: 1px solid var(--ink); }
+  .author b { font-size: 16px; line-height: 1.25; }
+
+  @media (max-width: 559px) {
+    .author { grid-template-columns: minmax(0, 1fr); }
+    .author > :nth-child(even) { border-left: 0; }
+    .author > :nth-child(n+2) { border-top: 1px solid var(--ink); }
+  }
+  @media (min-width: 700px) {
+    .hero { padding-block: 48px 64px; }
+    .row { grid-template-columns: 110px minmax(0, 1fr) 64px 84px 96px; grid-template-areas: "no what rev date topic"; gap: 0 20px; align-items: baseline; padding: 20px 8px; }
+    .reg-head { display: grid; grid-template-columns: 110px minmax(0, 1fr) 64px 84px 96px; gap: 0 20px; padding: 0 8px 8px; font: 400 15px/1.3 var(--f-display); color: var(--ink-3); }
+    .reg-head span:nth-child(n) { margin: 0; }
+  }
+  @media (min-width: 560px) and (max-width: 899px) { .hero-sheets { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 900px) {
+    .hero { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 56px; }
+    .about { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; }
   }
 </style>

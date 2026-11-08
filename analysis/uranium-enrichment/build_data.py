@@ -36,9 +36,9 @@ cases = [
     {"id": "natural", "title": "Natural uranium", "kicker": "As mined",
      "u235_mass_pct": round(mass_fraction(NATURAL_U235_ATOM) * 100, 3),
      "u235_atom_pct": NATURAL_U235_ATOM * 100},
-    {"id": "leu", "title": "Enriched to 5%", "kicker": "Low-enriched · reactor fuel",
+    {"id": "leu", "title": "Enriched to 5%", "kicker": "Low-enriched, reactor fuel",
      "u235_mass_pct": 5.0, "u235_atom_pct": atom_fraction(0.05) * 100},
-    {"id": "heu", "title": "Enriched to 90%", "kicker": "Highly enriched · weapons-grade",
+    {"id": "heu", "title": "Enriched to 90%", "kicker": "Highly enriched, weapons-grade",
      "u235_mass_pct": 90.0, "u235_atom_pct": atom_fraction(0.90) * 100},
 ]
 

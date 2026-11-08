@@ -565,29 +565,29 @@ const payload = {
 <style is:global>
   [data-viz="olympic-freestyle-sprint"] { margin-block: 24px; }
   .sp-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; }
-  .sp-fig { margin: 0; min-width: 0; background: var(--panel); border: 1px solid var(--rule); border-radius: var(--radius); padding: 12px; }
+  .sp-fig { margin: 0; min-width: 0; background: var(--panel); border: 1px solid var(--rule); border-radius: 0; padding: 12px; }
   .sp-controls { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
-  .sp-seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; background: var(--bg); }
+  .sp-seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 0; overflow: hidden; background: var(--bg); }
   .sp-seg[hidden], .sp-seg button[hidden] { display: none; }
-  .sp-seg button { font: 600 13.5px/1 var(--f-body); color: var(--ink-2); background: none; border: 0; padding: 14px 10px; min-height: 44px; cursor: pointer; }
+  .sp-seg button { font: 600 13.5px/1 var(--f-data); color: var(--ink-2); background: none; border: 0; padding: 14px 10px; min-height: 44px; cursor: pointer; }
   .sp-seg button + button { border-left: 1px solid var(--rule); }
   .sp-seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
-  .sp-sel { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--rule); border-radius: 6px; background: var(--bg); padding-left: 10px; color: var(--ink-3); font: 600 11px/1 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; }
-  .sp-sel select { font: 600 13.5px/1 var(--f-body); color: var(--ink); background: none; border: 0; min-height: 42px; padding: 0 6px 0 2px; cursor: pointer; text-transform: none; letter-spacing: 0; }
+  .sp-sel { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--rule); border-radius: 0; background: var(--bg); padding-left: 10px; color: var(--ink-3); font: 600 12px/1 var(--f-data); }
+  .sp-sel select { font: 600 13.5px/1 var(--f-data); color: var(--ink); background: none; border: 0; min-height: 42px; padding: 0 6px 0 2px; cursor: pointer; text-transform: none; }
   .sp-sel:focus-within, .sp-seg button:focus-visible { outline: 2px solid var(--ink); outline-offset: 1px; }
 
   .sp-stage { position: relative; }
   .sp-svg { display: block; width: 100%; height: auto; overflow: visible; }
-  .sp-svg:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; border-radius: 2px; }
-  .sp-svg text { font-family: var(--f-mono); font-size: 11px; fill: var(--ink-3); }
+  .sp-svg:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; border-radius: 0; }
+  .sp-svg text { font-family: var(--f-data); font-size: 12px; fill: var(--ink-3); }
   .sp-ygrid .domain, .sp-xaxis .domain { display: none; }
   .sp-ygrid .tick line { stroke: var(--grid); }
   .sp-ygrid .tick text { fill: var(--ink-3); }
   .sp-xaxis .tick line { stroke: var(--ink-3); }
   .sp-xaxis .tick text { fill: var(--ink-2); }
   .sp-base { stroke: var(--ink-3); stroke-width: 1; }
-  .sp-ytitle { font-size: 11px; letter-spacing: .04em; }
-  .sp-empty text { font-family: var(--f-body); font-size: 14px; font-style: italic; fill: var(--ink-3); }
+  .sp-ytitle { font-size: 12px; }
+  .sp-empty text { font-family: var(--f-data); font-size: 14px; font-style: italic; fill: var(--ink-3); }
   .sp-nh-line { stroke: var(--rule); stroke-dasharray: 2 4; }
   .sp-nh-line.sp-skip, .sp-nh-line.sp-ref { stroke: var(--ink-3); stroke-dasharray: 3 4; }
   .sp-nh-x { stroke: var(--ink-2); stroke-width: 1.6; fill: none; stroke-linecap: round; }
@@ -604,31 +604,31 @@ const payload = {
   .sp-dot.hollow { fill: var(--panel); }
   .sp-ring { fill: none; stroke: var(--c); stroke-width: 1.2; }
   .sp-selring { fill: none; stroke: var(--ink); stroke-width: 1.5; pointer-events: none; }
-  .sp-svg .sp-endlabel { font-family: var(--f-body); font-size: 13px; font-weight: 600; fill: var(--ink); }
+  .sp-svg .sp-endlabel { font-family: var(--f-data); font-size: 13px; font-weight: 600; fill: var(--ink); }
   .sp-s.ctx .sp-endlabel { fill: var(--ink-3); font-weight: 400; }
   .sp-guide line { stroke: var(--ink-2); stroke-width: 1; pointer-events: none; }
   .sp-hit { fill: transparent; touch-action: pan-y; cursor: crosshair; }
   .sp-callout line { stroke: var(--ink-2); stroke-width: 1; }
   .sp-callout circle { fill: var(--panel); stroke: var(--ink); stroke-width: 1.3; }
-  .sp-svg .sp-callout text { font: 600 11px var(--f-mono); fill: var(--ink); }
+  .sp-svg .sp-callout text { font: 600 12px var(--f-data); fill: var(--ink); }
 
   /* reading card: always under the chart, so it never covers the data */
-  .sp-card { margin-top: 10px; padding: 10px 12px; border: 1px solid var(--rule); border-radius: 6px; background: var(--bg); color: var(--ink); font-size: 14px; line-height: 1.35; min-height: 5.6em; }
+  .sp-card { margin-top: 10px; padding: 10px 12px; border: 1px solid var(--rule); border-radius: 0; background: var(--bg); color: var(--ink); font-size: 14px; line-height: 1.35; min-height: 5.6em; }
   .sp-hint { margin: 0; color: var(--ink-3); }
   .sp-card-h { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px; }
   .sp-card-h strong { font: 700 16px/1.2 var(--f-display); }
   .sp-nav { display: inline-flex; gap: 6px; }
-  .sp-nav button { font: 600 18px/1 var(--f-body); color: var(--ink); background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; width: 44px; height: 44px; cursor: pointer; }
+  .sp-nav button { font: 600 18px/1 var(--f-data); color: var(--ink); background: var(--panel); border: 1px solid var(--rule); border-radius: 0; width: 44px; height: 44px; cursor: pointer; }
   .sp-blks { display: grid; gap: 12px; }
-  .sp-blk h4 { margin: 0 0 3px; font: 600 11px/1.2 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); display: flex; align-items: center; gap: 6px; }
+  .sp-blk h4 { margin: 0 0 3px; font: 600 12px/1.2 var(--f-data); color: var(--ink-3); display: flex; align-items: center; gap: 6px; }
   .sp-blk .sw { width: 10px; height: 3px; border-radius: 1px; background: var(--c); flex: none; }
   .sp-blk.s-men { --c: var(--cat-1); }
   .sp-blk.s-women { --c: var(--cat-2); }
   .sp-blk ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
   .sp-blk li { display: grid; grid-template-columns: 3.4em minmax(0, 1fr) auto; gap: 8px; align-items: baseline; }
-  .sp-blk .m { font: 400 11px var(--f-mono); color: var(--ink-3); }
+  .sp-blk .m { font: 400 12px var(--f-data); color: var(--ink-3); }
   .sp-blk .c { display: block; font-size: 13px; color: var(--ink-3); }
-  .sp-blk .t { font: 500 13px var(--f-mono); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+  .sp-blk .t { font: 500 13px var(--f-data); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
   .sp-blk li:first-child .t { font-weight: 700; }
   .sp-blk li:first-child .w { font-weight: 600; }
   .sp-blk .eighth { color: var(--ink-3); }
@@ -653,7 +653,7 @@ const payload = {
   .sp-insights { min-width: 0; }
   .sp-insights ol { list-style: none; counter-reset: sp; margin: 14px 0 0; padding: 0; display: grid; gap: 18px; }
   .sp-insights li { counter-increment: sp; position: relative; padding-left: 38px; color: var(--ink-2); }
-  .sp-insights li::before { content: counter(sp); position: absolute; left: 0; top: 1px; width: 24px; height: 24px; border: 1.3px solid var(--ink); border-radius: 50%; background: var(--panel); color: var(--ink); font: 600 11px/22px var(--f-mono); text-align: center; }
+  .sp-insights li::before { content: counter(sp); position: absolute; left: 0; top: 1px; width: 24px; height: 24px; border: 1.3px solid var(--ink); border-radius: 50%; background: var(--panel); color: var(--ink); font: 600 12px/22px var(--f-data); text-align: center; }
   .sp-insights p { margin: 0; }
 
   .sp-details { margin-top: 24px; font-size: 14px; }
@@ -663,11 +663,11 @@ const payload = {
   .sp-tnote { color: var(--ink-2); max-width: var(--measure); }
   .sp-tbl { overflow-x: auto; margin-top: 14px; }
   .sp-tbl table { border-collapse: collapse; min-width: 720px; width: 100%; }
-  .sp-tbl caption { text-align: left; font: 600 11px/1.2 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); padding-bottom: 6px; }
+  .sp-tbl caption { text-align: left; font: 600 12px/1.2 var(--f-data); color: var(--ink-3); padding-bottom: 6px; }
   .sp-tbl th, .sp-tbl td { text-align: left; padding: 6px 14px 6px 0; border-bottom: 1px solid var(--rule); vertical-align: top; font-weight: 400; }
   .sp-tbl thead th { font-weight: 600; }
-  .sp-tbl tbody th { font-family: var(--f-mono); white-space: nowrap; }
-  .sp-tbl .num { text-align: right; font-family: var(--f-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .sp-tbl tbody th { font-family: var(--f-data); white-space: nowrap; }
+  .sp-tbl .num { text-align: right; font-family: var(--f-data); font-variant-numeric: tabular-nums; white-space: nowrap; }
 
   @media (max-width: 699px) {
     .sp-sel { padding-left: 0; }

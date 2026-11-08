@@ -3,25 +3,26 @@ import Base from "./Base.astro";
 const { frontmatter } = Astro.props;
 // Social image: public/og/<slug>.png (1200x630), slug taken from the page URL.
 const slug = Astro.url.pathname.split("/").filter(Boolean).pop();
+const ym = (d: unknown) => new Date(d as string).toISOString().slice(0, 7);
+const subject = frontmatter.eyebrow ?? frontmatter.tags?.join(", ");
 ---
 <Base title={frontmatter.title} description={frontmatter.description} image={`/og/${slug}.png`} type="article">
-  <div class="post">
-    <div class="grid-top" aria-hidden="true"></div>
-    <div class="wrap">
-      <article>
-        <span class="eyebrow">{frontmatter.eyebrow ?? frontmatter.tags?.join(" · ")}</span>
-        <slot />
-      </article>
-    </div>
+  <div class="wrap post">
+    <article>
+      <div class="tblock cartouche">
+        <div><small>Drawing no.</small><b>{frontmatter.code}</b></div>
+        <div><small>Subject</small><b>{subject}</b></div>
+        <div><small>Revision</small><b>{frontmatter.rev ?? "A"}</b></div>
+        <div><small>Date</small><b>{ym(frontmatter.date)}</b></div>
+      </div>
+      <slot />
+    </article>
   </div>
 </Base>
 
 <style>
-  /* Same drafting grid as the home hero, behind the whole post. */
-  .post { position: relative; margin-top: 20px; }
-  .grid-top { position: absolute; inset: 0; z-index: 0; pointer-events: none; border-top: 1px solid var(--rule);
-    background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-    background-size: 24px 24px; }
-  .post > .wrap { position: relative; z-index: 1; }
-  @media (min-width: 700px) { .post { margin-top: 32px; } .grid-top { background-size: 32px 32px; } }
+  .post { padding-top: 28px; }
+  .cartouche { margin-bottom: 28px; }
+  @media (min-width: 560px) { .cartouche { grid-template-columns: .9fr 2.2fr .7fr .8fr; } }
+  @media (min-width: 700px) { .post { padding-top: 36px; } }
 </style>
