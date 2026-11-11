@@ -65,7 +65,8 @@ src/components/viz/<slug>/*.astro     # the d3 component(s) for this project
 src/pages/projects/<slug>.mdx         # the published page (text + components)
 src/styles/tokens.css                 # site-wide design tokens (colors, type)
 src/layouts/                          # Base and Project layouts
-docs/                                 # brief template, design notes
+docs/brief-template.md                # template for briefs/<slug>.md
+docs/design-system.md                 # Blueline design rules: colors, type, layout, components, charts
 scripts/check_palette.py              # color validator (CVD, contrast)
 ```
 
@@ -110,6 +111,8 @@ Decide what job the data does and pick the form:
 - flow or mass balance -> Sankey
 - one headline number -> big number, not a chart
 Sketch in words (or ASCII) the layout, the interaction, and the phone layout.
+Read `docs/design-system.md` first: the layout and components must fit the
+Blueline system.
 
 Gate: Marco agrees on form and interaction.
 
@@ -119,8 +122,10 @@ Gate: Marco agrees on form and interaction.
   state beyond its own root element.
 - Interaction is the default: tooltip on hover/tap, highlight via legend. Add a
   control only if it reveals something new (a toggle, a slider, a scenario).
-- Use `src/styles/tokens.css` tokens for every color and font. No literal colors
-  in components.
+- Follow `docs/design-system.md` (Blueline): tokens, font roles, components,
+  chart marks. Use `src/styles/tokens.css` tokens for every color and font. No
+  literal colors in components. If a design rule changes, update the doc in
+  the same commit.
 - New categorical colors must pass `scripts/check_palette.py` in light and dark.
 - Build the first working version fast; refine after Marco sees it.
 
@@ -147,6 +152,7 @@ Gate: Marco approves the text.
 - [ ] A table view or text alternative (`aria-label`, `<details>` table).
 - [ ] Frontmatter complete (title, description, date, tags, status, code `MHL-00N`, rev, thumb).
 - [ ] Text audited against the banned list.
+- [ ] Design checklist in `docs/design-system.md` section 8 passes.
 
 ### 7. Publish
 - Set `status: published` in the frontmatter; the home page lists it.
