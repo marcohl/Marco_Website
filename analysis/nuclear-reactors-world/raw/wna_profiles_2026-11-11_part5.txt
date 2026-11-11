@@ -1,0 +1,36 @@
+### countries-t-z/usa-nuclear-power
+# Updated Wednesday, 4 November 2026
+## Nuclear power reactors restarting
+Site | MWe net | Proponent/utility | Licensing status | Loan guarantee; restart date | Licence expiration, once restored
+Palisades | 805 | Holtec | January 2023: Request filed to restore operational status July 2025: Authorized to receive fresh nuclear fuel | $1.52 billion; 2026 | March 2031
+Crane Clean Energy Center (Three Mile Island 1) | 819 | Constellation | November 2024: Request filed to restore operational status June 2026: Draft environmental assessment issued September 2026: Final environmental assessment issued | $1 billion; 2027 | April 2034
+Duane Arnold | 601 | NextEra | January 2025: Request filed to restore operational status July 2026: Draft environmental assessment issued | $1.9 billion; early 2029 | February 2034
+Subtotal restarting: 2225 MWe
+## Proposed nuclear reactors
+Site | Technology | MWe gross | Proponent/utility | Licensing status
+Kemmerer 1, Wyoming | Natrium | 345 | US SFR Owner (a TerraPower subsidiary) | Construction permit application March 2024; issued March 2026. Non-nuclear plant construction under way from April 2026
+Seadrift, Texas | Xe-100 | 4x80 | X-energy, Long Mott Energy (a Dow subsidiary) | Construction permit application March 2025; environmental assessment completed May 2026; final safety evaluation report issued October 2026.
+Clinch River, Tennessee | BWRX-300 | 1 x 300 | TVA | ESP application May 2016, issued December 2019. Construction permit application April 2025; safety evaluation completed June 2026; Construction licence issued September 2026
+Adjacent to Columbia Generating Station, Washington | Xe-100 | 12 x 80 | X-energy, Energy Northwest |
+Palisades, Michigan | SMR-300 | 2 x 300 | Holtec | Partial construction permit application submitted December 2025; accepted for review February 2026; preliminary safety analysis report submitted September 2026.
+Idaho National Laboratory, Idaho | Aurora | 75 | Oklo | DOE issued site use permit in 2019. In July 2025 Oklo completed a pre-application readiness assessment for Phase 1 of a COL application. In June 2026 the DOE approved the preliminary documented safety analysis for the first unit.
+Fermi America 1-4, Carson County, Texas | AP1000 | 4 x 1250 | Fermi America | COL application submitted in parts, June and August 2025; accepted for review September 2025.
+Subtotal proposed: 21 small (2600 MWe) and 4 large (5000 MWe)
+### countries-t-z/uzbekistan
+# Updated Wednesday, 28 October 2026
+## Plans for power reactors
+Region | Type | MWe gross
+Jizzakh 1&2 | RITM-200N | 2x55
+Jizzakh 3&4 | VVER-1000 | 2x1000
+### countries-t-z/vietnam
+# Updated Wednesday, 12 August 2026
+## Nuclear power plans
+Location | Plant (province) | Type | MWe nominal
+Phuoc Dinh | Ninh Thuan 1-1 | VVER-1200/V-491 | 1200
+| Ninh Thuan 1-2 | VVER-1200/V-491 | 1200
+## Nuclear power plans
+Location | Plant (province) | Type | MWe nominal
+Vinh Hai | Ninh Thuan 2-1 | ? | 1200
+| Ninh Thuan 2-2 | ? | 1200
+| Ninh Thuan 2-3 | ? | 1200
+| Ninh Thuan 2-4 | ? | 1200

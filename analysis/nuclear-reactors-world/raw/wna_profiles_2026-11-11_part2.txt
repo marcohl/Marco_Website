@@ -1,0 +1,271 @@
+### countries-a-f/china-nuclear-power
+# Updated Wednesday, 11 November 2026
+## Ling Ao Phase II (Ling Dong)
+Reactor name | Province | Project control | Model | Reactor type | Net capacity (MWe) | Construction start | Grid connection
+Changjiang 1 | Hainan | Huaneng & CNNC | CNP-600 | PWR | 601 | 25/04/2010 | 07/11/2015
+Changjiang 2 | Hainan | Huaneng & CNNC | CNP-600 | PWR | 601 | 21/11/2010 | 20/06/2016
+Changjiang-3 | Hainan | Huaneng & CNNC | Hualong One | PWR | 1100 | 31/03/2021 | 01/08/2026
+Daya Bay 1 | Guangdong | CGN | M310 | PWR | 986 | 07/08/1987 | 31/08/1993
+Daya Bay 2 | Guangdong | CGN | M310 | PWR | 986 | 07/04/1988 | 07/02/1994
+Fangchenggang 1 | Guangxi | CGN | CPR-1000 | PWR | 1000 | 30/07/2010 | 25/10/2015
+Fangchenggang 2 | Guangxi | CGN | CPR-1000 | PWR | 1000 | 23/12/2010 | 15/07/2016
+Fangchenggang 3 | Guangxi | CGN | HPR1000 | PWR | 1105 | 24/12/2015 | 10/01/2023
+Fangchenggang 4 | Guangxi | CGN | HPR1000 | PWR | 1105 | 23/12/2016 | 09/04/2024
+Fangjiashan 1 | Zhejiang | CNNC | CPR-1000 | PWR | 1012 | 26/12/2008 | 04/11/2014
+Fangjiashan 2 | Zhejiang | CNNC | CPR-1000 | PWR | 1012 | 17/07/2009 | 12/01/2015
+Fuqing 1 | Fujian | CNNC & Huadian | CPR-1000 | PWR | 1000 | 21/11/2008 | 20/08/2014
+Fuqing 2 | Fujian | CNNC & Huadian | CPR-1000 | PWR | 1000 | 17/06/2009 | 06/08/2015
+Fuqing 3 | Fujian | CNNC & Huadian | CPR-1000 | PWR | 1000 | 31/12/2010 | 07/09/2016
+Fuqing 4 | Fujian | CNNC & Huadian | CPR-1000 | PWR | 1000 | 17/11/2012 | 29/07/2017
+Fuqing 5 | Fujian | CNNC & Huadian | Hualong One | PWR | 1075 | 07/05/2015 | 27/11/2020
+Fuqing 6 | Fujian | CNNC & Huadian | HPR1000 | PWR | 1075 | 22/12/2015 | 01/01/2022
+Haiyang 1 | Shandong | SPIC | AP1000 | PWR | 1170 | 24/09/2009 | 17/08/2018
+Haiyang 2 | Shandong | SPIC | AP1000 | PWR | 1170 | 20/06/2010 | 13/10/2018
+Hongyanhe 1 | Liaoning | CGN & SPIC | CPR-1000 | PWR | 1061 | 18/08/2007 | 17/02/2013
+Hongyanhe 2 | Liaoning | CGN & SPIC | CPR-1000 | PWR | 1061 | 28/03/2008 | 23/11/2013
+Hongyanhe 3 | Liaoning | CGN & SPIC | CPR-1000 | PWR | 1061 | 07/03/2009 | 23/03/2015
+Hongyanhe 4 | Liaoning | CGN & SPIC | CPR-1000 | PWR | 1061 | 15/08/2009 | 01/04/2016
+Hongyanhe 5 | Liaoning | CGN & SPIC | ACPR-1000 | PWR | 1061 | 29/03/2015 | 25/06/2021
+Hongyanhe 6 | Liaoning | CGN & SPIC | ACPR-1000 | PWR | 1061 | 24/07/2015 | 02/05/2022
+Ling Ao 1 | Guangdong | CGN | M310 | PWR | 950 | 15/05/1997 | 26/02/2002
+Ling Ao 2 | Guangdong | CGN | M310 | PWR | 950 | 28/11/1997 | 14/09/2002
+Ling Ao 3 | Guangdong | CGN | CPR-1000 | PWR | 1007 | 15/12/2005 | 15/07/2010
+Ling Ao 4 | Guangdong | CGN | CPR-1000 | PWR | 1007 | 15/06/2006 | 03/05/2011
+Ningde 1 | Fujian | CGN & Datang | CPR-1000 | PWR | 1018 | 18/02/2008 | 28/12/2012
+Ningde 2 | Fujian | CGN & Datang | CPR-1000 | PWR | 1018 | 12/11/2008 | 04/01/2014
+Ningde 3 | Fujian | CGN & Datang | CPR-1000 | PWR | 1018 | 08/01/2010 | 21/03/2015
+Ningde 4 | Fujian | CGN & Datang | CPR-1000 | PWR | 1018 | 29/09/2010 | 29/03/2016
+Qinshan 1 | Zhejiang | CNNC | CNP-300 | PWR | 326 | 20/03/1985 | 15/12/1991
+Qinshan 2 1 | Zhejiang | CNNC | CNP-600 | PWR | 623 | 02/06/1996 | 06/02/2002
+Qinshan 2 2 | Zhejiang | CNNC | CNP-600 | PWR | 623 | 01/04/1997 | 11/03/2004
+Qinshan 2 3 | Zhejiang | CNNC | CNP-600 | PWR | 623 | 28/04/2006 | 01/08/2010
+Qinshan 2 4 | Zhejiang | CNNC | CNP-600 | PWR | 623 | 28/01/2007 | 25/11/2011
+Qinshan 3 1 | Zhejiang | CNNC | CANDU 6 | PHWR | 677 | 08/06/1998 | 19/11/2002
+Qinshan 3 2 | Zhejiang | CNNC | CANDU 6 | PHWR | 677 | 25/09/1998 | 12/06/2003
+San'ao 1 | Zhejiang | CGN | Hualong One | PWR | 1117 | 31/12/2020 | 12/03/2026
+Sanmen 1 | Zhejiang | CNNC | AP1000 | PWR | 1157 | 19/04/2009 | 30/06/2018
+Sanmen 2 | Zhejiang | CNNC | AP1000 | PWR | 1157 | 15/12/2009 | 24/08/2018
+Shidaowan Guohe One 1 | Shandong | SPIC & Huaneng | CAP1400 | PWR | 1419 | 19/06/2019 | 31/10/2024
+Shidaowan Guohe One 2 | Shandong | Huaneng & CNNC | CAP1400 | PWR | 1419 | 21/04/2020 | 01/09/2025
+Shidaowan HTR-PM 1 | Shandong | Huaneng | HTR-PM | HTGR | 150 | 09/12/2012 | 14/12/2021
+Taipingling 1 | Guangdong | CGN | Hualong One | PWR | 1116 | 26/12/2019 | 13/02/2026
+Taipingling 2 | Guangdong | CGN | Hualong One | PWR | 1116 | 15/10/2020 | 04/07/2026
+Taishan 1 | Guangdong | CGN | EPR-1750 | PWR | 1660 | 18/11/2009 | 29/06/2018
+Taishan 2 | Guangdong | CGN | EPR-1750 | PWR | 1660 | 15/04/2010 | 23/06/2019
+Tianwan 1 | Jiangsu | CNNC | VVER V-428 | PWR | 1000 | 20/10/1999 | 12/05/2006
+Tianwan 2 | Jiangsu | CNNC | VVER V-428 | PWR | 1000 | 20/09/2000 | 14/05/2007
+Tianwan 3 | Jiangsu | CNNC | VVER V-428M | PWR | 1060 | 27/12/2012 | 30/12/2017
+Tianwan 4 | Jiangsu | CNNC | VVER V-428M | PWR | 1060 | 27/09/2013 | 27/10/2018
+Tianwan 5 | Jiangsu | CNNC | ACPR-1000 | PWR | 1060 | 27/12/2015 | 08/08/2020
+Tianwan 6 | Jiangsu | CNNC | ACPR-1000 | PWR | 1060 | 07/09/2016 | 11/05/2021
+Tianwan 7 | Jiangsu | CNNC | VVER V-491 | PWR | 1100 | 19/05/2021 | 08/10/2026
+Yangjiang 1 | Guangdong | CGN | CPR-1000 | PWR | 1000 | 16/12/2008 | 31/12/2013
+Yangjiang 2 | Guangdong | CGN | CPR-1000 | PWR | 1000 | 04/06/2009 | 10/03/2015
+Yangjiang 3 | Guangdong | CGN | CPR-1000 | PWR | 1000 | 15/11/2010 | 18/10/2015
+Yangjiang 4 | Guangdong | CGN | CPR-1000 | PWR | 1000 | 17/11/2012 | 08/01/2017
+Yangjiang 5 | Guangdong | CGN | ACPR-1000 | PWR | 1000 | 18/09/2013 | 23/05/2018
+Yangjiang 6 | Guangdong | CGN | ACPR-1000 | PWR | 1000 | 23/12/2013 | 29/06/2019
+Zhangzhou 1 | Fujian | CNNC | Hualong One | PWR | 1126 | 16/10/2019 | 28/11/2024
+Zhangzhou 2 | Fujian | CNNC | Hualong One | PWR | 1126 | 04/09/2020 | 22/11/2025
+## Further nuclear plants: operating, under construction and planned
+Reactor name | Province | Project control | Model | Reactor type | Net capacity (MWe) | Construction start
+Bailong 1 | Guangxi | SPIC | CAP1000 | PWR | 1161 | 25/12/2025
+Bailong 2 | Guangxi | SPIC | CAP1000 | PWR | 1161 | 27/09/2026
+Changjiang SMR-1 | Hainan | CNNC | ACP100 | PWR | 100 | 13/07/2021
+Changjiang-4 | Hainan | Huaneng & CNNC | Hualong One | PWR | 1100 | 28/12/2021
+Haiyang 3 | Shandong | SPIC | CAP1000 | PWR | 1161 | 07/07/2022
+Haiyang 4 | Shandong | SPIC | CAP1000 | PWR | 1161 | 22/04/2023
+Haiyang 5 | Shandong | SPIC | CAP1000 | PWR | 1161 | 31/10/2026
+Jinqimen 1 | Zhejiang | CNNC | Hualong One | PWR | 1120 | 10/08/2025
+Jinqimen 2 | Zhejiang | CNNC | Hualong One | PWR | 1120 | 04/04/2026
+Lianjiang 1 | Guangdong | SPIC | CAP1000 | PWR | 1161 | 27/09/2023
+Lianjiang 2 | Guangdong | SPIC | CAP1000 | PWR | 1161 | 26/04/2024
+Lufeng 1 | Guangdong | CGN | CAP1000 | PWR | 1161 | 24/02/2025
+Lufeng 2 | Guangdong | CGN | CAP1000 | PWR | 1161 | 22/12/2025
+Lufeng 5 | Guangdong | CGN | Hualong One | PWR | 1116 | 08/09/2022
+Lufeng 6 | Guangdong | CGN | Hualong One | PWR | 1116 | 26/08/2023
+Ningde 5 | Fujian | CGN & Datang | Hualong One | PWR | 1116 | 28/07/2024
+Ningde 6 | Fujian | CGN & Datang | Hualong One | PWR | 1116 | 16/12/2025
+San'ao 2 | Zhejiang | CGN | Hualong One | PWR | 1117 | 30/12/2021
+San'ao 3 | Zhejiang | CGN | Hualong One | PWR | 1117 | 19/11/2025
+San'ao 4 | Zhejiang | CGN | Hualong One | PWR | 1117 | 10/11/2026
+Sanmen 3 | Zhejiang | CNNC | CAP1000 | PWR | 1163 | 28/06/2022
+Sanmen 4 | Zhejiang | CNNC | CAP1000 | PWR | 1163 | 22/03/2023
+Shidaowan 1 | Shandong | SPIC & Huaneng | Hualong One | PWR | 1134 | 28/07/2024
+Shidaowan 2 | Shandong | SPIC & Huaneng | Hualong One | PWR | 1134 | 08/05/2025
+Taipingling 3 | Guangdong | CGN | Hualong One | PWR | 1116 | 10/06/2025
+Taipingling 4 | Guangdong | CGN | Hualong One | PWR | 1116 | 10/05/2026
+Tianwan 8 | Jiangsu | CNNC | VVER V-491 | PWR | 1100 | 25/02/2022
+Xiapu 1 | Fujian | CNNC | CFR-600 | FBR | 600 | 29/12/2017
+Xiapu 2 | Fujian | CNNC | CFR-600 | FBR | 600 | 27/12/2020
+Xin'an HTR-PM 600-1 | Shandong | CNNC | HTR-PM600 | HTGR | 600 | 10/06/2024
+Xin'an HTR-PM 600-2 | Shandong | CNNC | HTR-PM600 | HTGR | 600 | 09/12/2024
+Xudabao 1 | Liaoning | CNNC & Datang | CAP1000 | PWR | 1000 | 03/11/2023
+Xudabao 2 | Liaoning | CNNC & Datang | CAP1000 | PWR | 1000 | 17/07/2024
+Xudabao 3 | Liaoning | CNNC & Datang | VVER V-491 | PWR | 1200 | 28/07/2021
+Xudabao 4 | Liaoning | CNNC & Datang | VVER V-491 | PWR | 1200 | 19/05/2022
+Xuwei 1 | Jiangsu | CNNC | Hualong One | PWR | 1116 | 16/01/2026
+Xuwei HTR-PM 600-1 | Jiangsu | CNNC | HTR-PM600 | HTGR | 600 | 06/11/2026
+Zhangzhou 3 | Fujian | CNNC | Hualong One | PWR | 1126 | 22/02/2024
+Zhangzhou 4 | Fujian | CNNC | Hualong One | PWR | 1129 | 27/09/2024
+Zhaoyuan 1 | Shandong | CGN | Hualong One | PWR | 1116 | 18/11/2025
+Zhaoyuan 2 | Shandong | CGN | Hualong One | PWR | 1116 | 05/09/2026
+## Further nuclear plants: operating, under construction and planned
+Units | Province | MWe gross | Reactor model | Project control | State approval
+Bohai Shipyard FNPP | Liaoning | 1x60 | ACPR50S | CGN |
+Lufeng 3&4 | Guangdong | 2x1250 | CAP1000 | CGN |
+Huaneng Xiapu 3&4 | Fujian | 2x1200 | Hualong One | Huaneng & CNNC | April 2025
+Huaneng Xiapu 5&6 | Fujian | 2x1200 | Hualong One | Huaneng & CNNC |
+Haixing 1&2 | Hebei | 2x1250 | CAP1000 | CNNC & Huadian |
+Fangchenggang 5&6 | Guangxi | 2x1200 | Hualong One | CGN | April 2025
+Changjiang SMR 2 | Hainan | 1x125 | ACP100 | CNNC |
+Taishan 3&4 | Guangdong | 2x1200 | Hualong One | CGN | April 2025
+Xianning 1&2 | Hubei (inland) | 2x1250 | CAP1000 | CGN |
+Zhuanghe 1&2 | Liaoning | 2x1200 | Hualong One | CNNC & Datang | July 2026
+Zhuanghe 3-6 | Liaoning | 4x1200 | Hualong One | CNNC & Datang |
+Cangnan/San'ao 4-6 | Zhejiang | 3x1200 | Hualong One | CGN |
+Sanmen 5&6 | Zhejiang | 2x1200 | Hualong One | CNNC | April 2025
+Shidaowan 3&4 | Shandong | 2x1200 | Hualong One | China Huaneng & CNNC |
+Haiyang 6 | Shandong | 1x1250 | CAP1000 | SPIC | April 2025
+Xiapu HTR | Fujian | 1x600 | HTR-PM600 | Huaneng |
+Xuwei 2 | Jiangsu | 1x1200 | Hualong One | CNNC | August 2024
+Xuwei HTR 1 | Jiangsu | 1x600 | HTR-PM600 | CNNC |
+Xin'an 1&2 | Shandong | 2x1200 | Hualong One | CNNC |
+Laiyang 1&2 | Shandong | 2x1500 | CAP1400 | SPIC | July 2026
+Taipingling 5&6 | Guangdong | 2x1200 | Hualong One | CGN | July 2026
+Jinqimen 3&4 | Zhejiang | 2x1200 | Hualong One | CNNC | July 2026
+Total: 41 | | 46,735 | | |
+## Further nuclear plants: operating, under construction and planned
+Units | Province | MWe gross | Expected model | Project control
+Nanchong (Nanchun, Sanba) 1-4 | Sichuan | 4x1200 | Hualong One | CGN
+Pengze 1-4 | Jiangxi | 4x1250 | CAP1000 | SPIC
+Taohuajiang 1-4 | Hunan (inland) | 4x1250 | CAP1000 | CNNC
+Bailong 3-6 | Guangxi | 4x1400 | CAP1400 | SPIC
+Pingnan/Baisha 1&2 | Guangxi | 2x1250 | CAP1000 | SPIC
+Pingnan/Baisha 3&4 | Guangxi | 2x1250 | CAP1000 | SPIC
+Xudabao 5&6 | Liaoning | 2x1250 | CAP1000 | CNNC with Datang
+Yingtan 1-4 | Jiangxi | 4x1250 | CAP1000 | Huaneng
+Nanyang 1-6 | Henan | 6x1250 | CAP1000 (if CPI) | CNNC (or CPI)
+Changde (Chenzhou, Hengyang) | Hunan | 4x1200 | Hualong One | CNNC & Guodian?, CGN
+Zhangzhou 5&6 | Fujian | 2x1200 | Hualong One | CNNC & Guodian
+Jiyang/Chizhou 1&2 | Anhui | 2x1250 | CAP1000 | CNNC
+Fuling 1&2 | Chongqing | 2x1250 | CAP1000 | SPIC
+Jingyu 1&2 | Jilin | 2x1250 | CAP1000 | SPIC & Guodian
+Donggang 1&2 | Liaoning | 2x1200 | Hualong One? | Huadian
+Wuhu 1&2 | Anhui | 2x1250 | CAP1000 | CGN
+Ningdu 1&2 | Jiangxi | 2x125 | ACP100 | CNNC & Guodian
+Yanjiashan/Wanan/Ji'an 1&2 | Jiangxi | 2x1250 | CAP1000 | CNNC
+Shaoguan 1-4 | Guangdong (inland) | 4x1250 | CAP1000 | CGN
+Zhaoyuan 3-6 | Shandong | 4x1200 | Hualong One | CGN
+Haixing 3-6 | Hebei | 4x1250 | CAP1000 | CNNC & Huadian
+Jiyang/Chizhou 3&4 | Anhui | 2x1250? | CAP1000? | CNNC
+Longyou/Zhexi 1-4 | Zhejiang | 4x1250 | CAP1000 | CNNC
+Haijia/Haifeng 1&2 | Guangdong | 2x1250 | CAP1000 | CGN
+Fuling 3&4 | Chongqing | 2x1250 | CAP1000 | SPIC
+Jingyu 3&4 | Jilin | 2x1250 | CAP1000 | SPIC & Guodian
+Songjiang 1&2 | Shanghai | 2x1250? | CAP1000 | CGN & Guodian
+Wuhu 3&4 | Anhui | 2x1250 | CAP1000 | CGN
+Heyuan/Jieyang 1-4 | Guangdong | 4x1250 | CAP1000 | CNNC? CPI?
+Haiyang 7&8 | Shandong | 2x1250 | CAP1000 | SPIC
+Hengren 1-4 | Liaoning | 4x1250 | CAP1000 | SPIC
+Lianjiang 3-6 | Guangdong | 4x1400 | CAP1400 | SPIC
+Xiangtan | Hunan | 4x1250 | CAP1000 | Huadian?
+Donggang 3&4 | Liaoning | 2x1200 | Hulaong One | Huadian?
+Pulandian 1-4 | Liaoning | 4x1250 | CAP1000 | Huaneng
+Shizu | Chongqing | 2x | | CNNC
+Qiaofushan | Hebei | 2x | | CNNC
+Guangshui | Hubei | 4x1250 | CAP1000 | CGN
+Zhongxiang | Hubei | 4x1250 | CAP1000 | CNNC, Datang
+Hebaodao | Guangdong | 2x | | CNNC?
+Yibin | Sichuan | 2x1250 | CAP1000 | CNNC
+Gulei 1&2 | Fujian | 2x125 | ACP100 | CNNC-CNEC
+Hengfeng 1&2 | Jiangxi | 2x125 | ACP100 | CNNC & Guodian
+Tongren | Guizhou | 2x1250 | CAP1000 | CGN
+Jiamusi | Heilongjiang | 2x1200 | Hualong One | Huaneng & CNNC, or CGN
+Xuwei 3&4 | Jiangsu | 2x1200 | Hualong One | CNNC
+Xuwei HTR 2 | Jiangsu | 1x600 | HTR-PM600 | CNNC
+Xin'an 3&4 | Shandong | 2x1200 | Hualong One | CNNC
+Xin'an HTR 1&2 | Shandong | 2x600 | HTR-PM600 | CNNC
+Laiyang 3-6 | Shandong | 4x1500 | CAP1400 | SPIC
+Xiangshan Jinqimen 5&6 | Zhejiang | 2x1200 | Hualong One | CNNC
+Jiaodong Shipyard FNPP | Shandong | 1x125 | ACP100S | CNNC
+Total: 142 units | | | |
+### countries-a-f/czech-republic
+# Updated Tuesday, 3 November 2026
+## Nuclear power industry
+Reactor name | Model | Reactor type | Net capacity (MWe) | Construction start | Grid connection
+Dukovany 1 | VVER V-213 | PWR | 479 | 01/01/1979 | 24/02/1985
+Dukovany 2 | VVER V-213 | PWR | 479 | 01/01/1979 | 30/01/1986
+Dukovany 3 | VVER V-213 | PWR | 479 | 01/03/1979 | 14/11/1986
+Dukovany 4 | VVER V-213 | PWR | 479 | 01/03/1979 | 11/06/1987
+Temelin 1 | VVER V-320 | PWR | 1027 | 01/02/1987 | 21/12/2000
+Temelin 2 | VVER V-320 | PWR | 1029 | 01/02/1987 | 29/12/2002
+## New nuclear capacity: Temelin 3&4, Dukovany 5&6
+Reactor | Model | MWe | Construction start | First power
+Dukovany 5&6 | APR-1000 | 1050 each | 2029 | by 2036
+Temelin SMR | Rolls-Royce SMR | 470 | |
+Total planned (3) | | 2570 | |
+Temelin 3&4 | EPR, APR-1000 or AP1000 | 1200 approx each | |
+Tušimice SMR | Rolls-Royce SMR | 470 | |
+Dětmarovice SMR | Rolls-Royce SMR | 470 | |
+Prunerov SMR | Rolls-Royce SMR | 470 | |
+Total proposed (5) | | 3810 | |
+### countries-a-f/egypt
+# Updated Friday, 4 September 2026
+## Reactors under construction in Egypt
+Reactor name | Model | Reactor type | Net capacity (MWe) | Construction start
+El Dabaa 1 | VVER-1200/V-529 | PWR | 1100 | 20/07/2022
+El Dabaa 2 | VVER-1200/V-529 | PWR | 1100 | 19/11/2022
+El Dabaa 3 | VVER-1200/V-529 | PWR | 1100 | 03/05/2023
+El Dabaa 4 | VVER-1200/V-529 | PWR | 1100 | 23/01/2024
+### countries-a-f/finland
+# Updated Friday, 23 October 2026
+## Nuclear power industry
+Reactor name | Model | Reactor type | Net capacity (MWe) | Construction start | Grid connection
+Loviisa 1 | VVER V-213 | PWR | 507 | 01/05/1971 | 08/02/1977
+Loviisa 2 | VVER V-213 | PWR | 507 | 01/08/1972 | 04/11/1980
+Olkiluoto 1 | ABB-III, BWR-2500 | BWR | 890 | 01/02/1974 | 02/09/1978
+Olkiluoto 2 | ABB-III, BWR-2500 | BWR | 890 | 01/11/1975 | 18/02/1980
+Olkiluoto 3 | EPR | PWR | 1575 | 12/08/2005 | 12/03/2022
+## Sixth and seventh units
+Reactor | Type | MWe gross | Construction start | Commercial operation
+Hanhikivi 1 | VVER-1200/V-491 | 1170 | Cancelled |
+Olkiluoto 4 | EPR, ABWR, ESBWR, EU-APWR or APR1400 | 1550-1830 | Cancelled |
+### countries-a-f/france
+# Updated Wednesday, 1 April 2026
+## Stress corrosion and outages
+Reactor | Reactor class | Findings | Restart date
+Belleville 1 | P'4 | SC found; repairs completed | Dec 2023
+Belleville 2 | P'4 | SC found; repairs completed | Sep 2023
+Cattenom 1 | P'4 | SC found; repairs completed | Aug 2023
+Cattenom 2 | P'4 | SC found; repairs completed | July 2023
+Cattenom 3 | P'4 | SC found; repairs completed | April 2023
+Cattenom 4 | P'4 | SC found; repairs completed | Dec 2022
+Golfech 1 | P'4 | SC found; repairs completed | Jan 2024
+Golfech 2 | P'4 | SC found; repairs completed | Sep 2023
+Nogent 2 | P'4 | SC found; repairs completed | July 2023
+Penly 1 | P'4 | SC found; repairs completed | July 2023
+Penly 2 | P'4 | SC found; repairs completed | June 2023
+Chooz B1 | N4 | SC found; repairs completed | May 2023
+Chooz B2 | N4 | SC found; repairs completed | Feb 2023
+Civaux 1 | N4 | SC found; repairs completed | Jan 2023
+Civaux 2 | N4 | SC found; repairs completed | Apr 2023
+## Other proposals
+| Type | MWe gross | Construction start
+Penly | EPR2 | 2x1650 | 2027?
+Gravelines | EPR2 | 2x1650 | -
+Bugey | EPR2 | 2x1650 | -
+### countries-g-n/hungary
+# Updated Friday, 23 October 2026
+## Nuclear power industry
+Reactor name | Model | Reactor type | Net capacity (MWe) | Construction start | Grid connection
+Paks 1 | VVER V-213 | PWR | 479 | 01/08/1974 | 28/12/1982
+Paks 2 | VVER V-213 | PWR | 479 | 01/08/1974 | 06/09/1984
+Paks 3 | VVER V-213 | PWR | 479 | 01/10/1979 | 28/09/1986
+Paks 4 | VVER V-213 | PWR | 479 | 01/10/1979 | 16/08/1987
+## Nuclear power industry
+Reactor name | Model | Reactor type | Net capacity (MWe) | Construction start
+Paks II-1 | VVER-1200/V-529 | PWR | 1100 | 05/02/2026
+## Small modular reactors
+Reactor | Type | MWe gross | Start construction | First power
+Paks II-2 | VVER-1200/V-527 | 1200 | 2026 | 2032

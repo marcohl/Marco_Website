@@ -1,0 +1,17 @@
+# source: https://pris-stats.iaea.org/ (redirected from https://pris.iaea.org/PRIS/WorldStatistics/OperationalReactorsByCountry.aspx)
+# read: 2026-11-11 in Chrome, page text; country breakdowns sit in Power BI panels and were not read
+Under Construction
+80 909
+MW(e) Net Capacity
+77 reactors
+16 countries
+In Operation
+380 051
+MW(e) Net Capacity
+418 reactors
+31 countries
+Suspended Operation
+19 387
+MW(e) Net Capacity
+21 reactors
+2 countries

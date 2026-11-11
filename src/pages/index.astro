@@ -1,36 +1,22 @@
 ---
 import Base from "../layouts/Base.astro";
-import sprint from "../data/olympic-freestyle-sprint/events.json";
-import waffles from "../data/uranium-enrichment/waffles.json";
 
 // Every MDX file in src/pages/projects/ with status "published" is listed (all of them in dev).
 const modules = import.meta.glob("./projects/*.mdx", { eager: true }) as Record<string, any>;
 const projects = Object.entries(modules)
-  .map(([path, mod]) => ({ ...mod.frontmatter, href: "/projects/" + path.split("/").pop()!.replace(".mdx", "/") }))
+  .map(([path, mod]) => {
+    const slug = path.split("/").pop()!.replace(".mdx", "");
+    return { ...mod.frontmatter, slug, href: `/projects/${slug}/` };
+  })
   .filter((p) => p.status === "published" || import.meta.env.DEV)
   .sort((a, b) => String(b.date).localeCompare(String(a.date)));
 const ym = (d: unknown) => new Date(d as string).toISOString().slice(0, 7);
-const featured = projects.filter((p) => p.thumb).slice(0, 2);
 
-// Thumbnail of the uranium sheet: 1,000 atoms, the U-235 ones in the story color (data from the project).
-const natural = waffles.cases.find((c) => c.id === "natural")!;
-const COLS = 40, CELL = 12, GAP = 2, P = CELL + GAP;
-const ROWS = Math.ceil(waffles.sample_size / COLS);
-const cellPath = (from: number, to: number) =>
-  Array.from({ length: to - from }, (_, k) => { const i = from + k; return `M${(i % COLS) * P},${Math.floor(i / COLS) * P}h${CELL}v${CELL}h-${CELL}z`; }).join("");
-const wafW = COLS * P - GAP, wafH = ROWS * P - GAP;
-const shown = natural.u235_atoms_shown;
-
-// Thumbnail of the Olympic sprint sheet: the two 100 m champion lines, drawn from the project data.
-const sp100 = sprint.events.filter((s) => s.id === "M100FR" || s.id === "W100FR");
-const tAll = sp100.flatMap((s) => s.editions.map((e) => e.champions[0].time_s));
-const [tMin, tMax] = [Math.min(...tAll), Math.max(...tAll)];
-const tx = (yr: number) => 12 + ((yr - 1906) / 120) * 296;
-const ty = (v: number) => 146 - ((v - tMin) / (tMax - tMin)) * 130;
-const thumbPath = (id: string) => {
-  const eds = sp100.find((s) => s.id === id)!.editions;
-  return eds.map((e, i) => `${i === 0 || e.plot_year - eds[i - 1].plot_year > 5 ? "M" : "L"}${tx(e.plot_year).toFixed(1)},${ty(e.champions[0].time_s).toFixed(1)}`).join("");
-};
+// Featured sheets: the two newest projects that set `thumb` in their frontmatter and have a
+// src/components/viz/<slug>/Thumb.astro. Adding a sheet needs no change here.
+const thumbs = import.meta.glob("../components/viz/*/Thumb.astro", { eager: true }) as Record<string, any>;
+const thumbOf = (slug: string) => thumbs[`../components/viz/${slug}/Thumb.astro`]?.default;
+const featured = projects.filter((p) => p.thumb && thumbOf(p.slug)).slice(0, 2).map((p) => ({ ...p, Thumb: thumbOf(p.slug) }));
 ---
 <Base title="Marco Herbas Lopez" description="Energy, data and everything else: interactive charts and small data-analysis projects by Marco Herbas Lopez.">
   <section class="wrap hero">
@@ -45,19 +31,7 @@ const thumbPath = (id: string) => {
       {featured.map((p) => (
         <a class="sheet" href={p.href}>
           <div class="fig">
-            {p.thumb === "waffle" && (
-              <svg viewBox={`0 0 ${wafW} ${wafH}`} role="img" aria-label={`${p.title}: ${shown} of every ${waffles.sample_size.toLocaleString("en-US")} natural uranium atoms are U-235`}>
-                <path class="ctx" d={cellPath(shown, waffles.sample_size)} />
-                <path class="story" d={cellPath(0, shown)} />
-              </svg>
-            )}
-            {p.thumb === "sprint" && (
-              <svg viewBox="0 0 320 160" role="img" aria-label={`${p.title}: winning times in the Olympic 100 m freestyle, men and women`}>
-                <line class="base" x1="12" y1="150" x2="308" y2="150" />
-                <path class="w" d={thumbPath("W100FR")} />
-                <path class="m" d={thumbPath("M100FR")} />
-              </svg>
-            )}
+            <p.Thumb title={p.title} />
           </div>
           <div class="tblock"><div><b>{p.code}</b></div><div><b>Rev. {p.rev ?? "A"}</b></div><div><b>{ym(p.date)}</b></div><div><b>{p.tags?.[0]}</b></div></div>
         </a>
@@ -112,17 +86,11 @@ const thumbPath = (id: string) => {
   .hero-sheets { display: grid; gap: 20px; grid-template-columns: minmax(0, 1fr); min-width: 0; }
   .sheet { container-type: inline-size; display: flex; flex-direction: column; border: 1px solid var(--ink); background: var(--panel); text-decoration: none; color: inherit; min-width: 0; }
   .sheet .fig { flex: 1; display: flex; align-items: center; justify-content: center; padding: 20px; min-height: 160px; }
-  .sheet .fig svg { width: 100%; height: auto; display: block; }
+  .sheet .fig :global(svg) { width: 100%; height: auto; display: block; }
   .sheet .tblock { border: 0; border-top: 1px solid var(--ink); background: none; }
   .sheet .tblock b { font-size: 16px; }
   .sheet:hover .tblock { background: var(--marker); }
   .sheet:hover .tblock b { color: var(--on-marker); }
-  .sheet .ctx { fill: var(--cat-1); }
-  .sheet .story { fill: var(--cat-2); }
-  .sheet path.m, .sheet path.w { fill: none; stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; }
-  .sheet .m { stroke: var(--cat-1); }
-  .sheet .w { stroke: var(--cat-2); }
-  .sheet .base { stroke: var(--ink-3); stroke-width: 1; }
   /* Narrow sheets (phone, or two side by side on a tablet) get a 2 x 2 title block. */
   @container (max-width: 459px) {
     .sheet .tblock { grid-template-columns: repeat(2, minmax(0, 1fr)); }

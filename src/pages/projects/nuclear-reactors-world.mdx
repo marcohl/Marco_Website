@@ -1,0 +1,102 @@
+---
+layout: ../../layouts/Project.astro
+title: Where Reactors Are Being Built
+description: Nuclear power reactors operating, under construction and planned, site by site, and the country building half of the new ones.
+date: 2026-11-11
+tags: [Nuclear, Energy]
+eyebrow: Nuclear power reactors, November 2026
+status: published
+code: MHL-003
+rev: A
+thumb: map
+---
+import ReactorMap from "../../components/viz/nuclear-reactors-world/ReactorMap.astro";
+import c from "../../data/nuclear-reactors-world/countries.json";
+import s from "../../data/nuclear-reactors-world/sites.json";
+export const by = Object.fromEntries(c.countries.map((x) => [x.country, x]));
+export const china = by["China"];
+export const building = c.countries.filter((x) => x.construction > 0);
+export const chinaSites = s.sites.filter((x) => x.country === "China" && x.units.construction > 0).length;
+export const firsts = ["Egypt", "Turkey", "Bangladesh"].map((n) => by[n]);
+export const approx = s.sites.filter((x) => x.location === "approximate").length;
+
+<div class="rw-intro">
+<div class="prose">
+
+# Half of the reactors under construction today are in China: <em>{china.construction}</em> of {c.world.construction}
+
+The world has {c.world.operating} nuclear power reactors connected to the grid, and {c.world.construction} more are being built. A reactor counts as under construction once the first concrete for it has been poured.
+
+China is building {china.construction} of those {c.world.construction}, at {chinaSites} sites, all of them in coastal provinces. The other {c.world.construction - china.construction} are spread over {building.length - 1} countries. India is building {by["India"].construction} and Russia {by["Russia"].construction}. The United States runs the largest fleet, {by["United States"].operating} reactors, and is building none.
+
+The map shows every site. Blue dots are reactors in operation, red dots are reactors under construction, and rings are the {c.world.planned} planned ones, which have approval, funding or a firm commitment but no construction yet.
+
+</div>
+<div class="tblock rw-kf">
+  <div><small>Operating</small><b>{c.world.operating}</b></div>
+  <div><small>Under construction</small><b>{c.world.construction}</b></div>
+  <div><small>Planned</small><b>{c.world.planned}</b></div>
+  <div><small>Building in China</small><b>{china.construction} of {c.world.construction}</b></div>
+</div>
+</div>
+
+<ReactorMap>
+<ol class="rw-ins" slot="insights">
+  <li><span>Switch the map to <strong>East Asia</strong>. China's {china.construction} units sit at {chinaSites} sites, and every one of them is in a coastal province.</span></li>
+  <li><span><strong>Egypt, Turkey and Bangladesh</strong> have no reactor running yet. Together they are building {firsts.reduce((a, x) => a + x.construction, 0)}, all of them Russian VVER designs.</span></li>
+  <li><span><strong>China, Russia and India</strong> hold {china.planned + by["Russia"].planned + by["India"].planned} of the {c.world.planned} planned units. China alone has {china.planned}.</span></li>
+</ol>
+</ReactorMap>
+
+<section class="method">
+
+## Notes and method
+
+<div class="method-grid">
+<div>
+
+### What is counted
+
+Reactor units, not plant capacity. Counts come from the World Nuclear Association table dated 11 November 2026. **Operable** means connected to the grid. **Under construction** means the first concrete for the reactor has been poured. **Planned** means approvals, funding or a commitment are in place, with most units expected to operate within 15 years. The {c.world.proposed} proposed units, with very uncertain timing, are left out.
+
+</div>
+<div>
+
+### Suspended construction
+
+Six of the {c.world.construction} units under construction have their construction suspended: Carem25 in Argentina, Angra 3 in Brazil, Ohma 1 and Shimane 3 in Japan, and Khmelnitski 3 and 4 in Ukraine. All six are outside China. Without them, China would be building {china.construction} of {c.world.construction - 6}.
+
+</div>
+<div>
+
+### Sites on the map
+
+Each unit is assigned to a site from the Global Energy Monitor tracker by plant name, and the dot sits at the median position of that site's units. {approx} of the {s.sites.length} sites only have an approximate location in the tracker; the reading card says so. Three planned units are counted but not drawn: Reftinskaya 1 in Russia, which has no location in the tracker, and the two French units the World Nuclear Association counts without naming a site. Dot area is proportional to the number of units.
+
+</div>
+<div>
+
+### Where the sources disagree
+
+The World Nuclear Association country profiles do not list France's and the United States' operating units, or Pakistan's unit under construction. Those come from the tracker, whose counts match the table ({by["France"].operating}, {by["United States"].operating} and {by["Pakistan"].construction}). The China profile lists San'ao 4 and Xuwei HTR-PM 600-1 as both planned and under construction; they are counted once, as under construction. Japan has {by["Japan"].operating} operable units in this count, while the tracker lists 15 as operating.
+
+</div>
+<div>
+
+### Cross-check
+
+The IAEA Power Reactor Information System, read on 11 November 2026, lists 418 reactors in operation and 21 in suspended operation, 439 in all, against {c.world.operating} operable here. It lists 77 under construction, against {c.world.construction}.
+
+</div>
+<div>
+
+### Sources
+
+[World Nuclear Association, World Nuclear Power Reactors & Uranium Requirements](https://world-nuclear.org/information-library/facts-and-figures/world-nuclear-power-reactors-and-uranium-requireme) and [country profiles](https://world-nuclear.org/information-library/country-profiles), accessed 11 November 2026. [Global Energy Monitor, Global Nuclear Power Tracker](https://globalenergymonitor.org/projects/global-nuclear-power-tracker/), August 2026 release, [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). [IAEA PRIS](https://pris-stats.iaea.org/), accessed 11 November 2026. Coastlines from Natural Earth via [world-atlas](https://github.com/topojson/world-atlas).
+
+Numbers computed in `analysis/nuclear-reactors-world/build_data.py`.
+
+</div>
+</div>
+
+</section>

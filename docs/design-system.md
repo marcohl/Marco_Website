@@ -205,8 +205,11 @@ These complement the visualization rules in `CLAUDE.md`.
    `description` (one sentence, used in the register and link previews),
    `date`, `tags` (first tag is the Topic column), `eyebrow` (Subject in the
    cartouche), `status`, `code: MHL-00N`, `rev: A`, `thumb` (only if it should
-   be a featured sheet on the home page; a new thumbnail type also needs its
-   drawing added in `src/pages/index.astro`, built from the project data).
+   be a featured sheet on the home page). A featured sheet also needs
+   `src/components/viz/<slug>/Thumb.astro`: a small SVG built from the project
+   data at build time, tokens only, with an `aria-label` that states the
+   finding. The home page finds it by slug and shows the two newest projects
+   that have both; `src/pages/index.astro` does not change.
 2. Intro block: headline `h1` stating the finding with a number, 2-4 short
    paragraphs in `.prose`, and something on the right on desktop (illustration,
    title block of key figures) so the band is full.

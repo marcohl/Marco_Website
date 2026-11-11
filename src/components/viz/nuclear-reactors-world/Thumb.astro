@@ -1,0 +1,29 @@
+---
+// Home-page sheet thumbnail: every reactor site on an Equal Earth outline. Operating sites in the
+// context color, sites with units under construction in the story color. No land, so it stays light.
+import { geoEqualEarth, geoPath } from "d3";
+import sitesData from "../../../data/nuclear-reactors-world/sites.json";
+import countriesData from "../../../data/nuclear-reactors-world/countries.json";
+const { title } = Astro.props;
+const W = 320, H = 160;
+const proj = geoEqualEarth().fitExtent([[4, 4], [W - 4, H - 4]], { type: "Sphere" } as any);
+const outline = geoPath(proj)({ type: "Sphere" } as any) ?? "";
+const dot = (s: (typeof sitesData.sites)[number], r: number) => {
+  const p = proj([s.lon, s.lat])!;
+  return `M${(p[0] - r).toFixed(1)},${p[1].toFixed(1)}a${r},${r} 0 1,0 ${2 * r},0a${r},${r} 0 1,0 ${-2 * r},0`;
+};
+const ops = sitesData.sites.filter((s) => s.units.operating > 0 && s.units.construction === 0).map((s) => dot(s, 1.6)).join("");
+const ucs = sitesData.sites.filter((s) => s.units.construction > 0).map((s) => dot(s, 2.1)).join("");
+const china = countriesData.countries.find((c) => c.country === "China")!;
+---
+<svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${title}: nuclear power sites worldwide; ${china.construction} of ${countriesData.world.construction} reactor units under construction are in China`}>
+  <path class="sph" d={outline} />
+  <path class="op" d={ops} />
+  <path class="uc" d={ucs} />
+</svg>
+
+<style>
+  .sph { fill: none; stroke: var(--rule); stroke-width: 1; }
+  .op { fill: var(--cat-1); fill-opacity: .6; }
+  .uc { fill: var(--cat-2); }
+</style>

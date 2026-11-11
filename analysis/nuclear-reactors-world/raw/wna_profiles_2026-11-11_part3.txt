@@ -1,0 +1,246 @@
+### countries-g-n/india
+# Updated Tuesday, 3 November 2026
+## Nuclear power industry
+Reactor name | Model | Reactor type | Net capacity (MWe) | Grid connection
+Kaiga 1 | Horizontal Pressure Tube type | PHWR | 202 | 12/10/2000
+Kaiga 2 | Horizontal Pressure Tube type | PHWR | 202 | 02/12/1999
+Kaiga 3 | Horizontal Pressure Tube type | PHWR | 202 | 11/04/2007
+Kaiga 4 | Horizontal Pressure Tube type | PHWR | 202 | 19/01/2011
+Kakrapar 1 | Horizontal Pressure Tube type | PHWR | 202 | 24/11/1992
+Kakrapar 2 | Horizontal Pressure Tube type | PHWR | 202 | 04/03/1995
+Kakrapar 3 | PHWR-700 | PHWR | 630 | 10/01/2021
+Kakrapar 4 | PHWR-700 | PHWR | 630 | 20/02/2024
+Kudankulam 1 | VVER V-412 | PWR | 932 | 22/10/2013
+Kudankulam 2 | VVER V-412 | PWR | 932 | 29/08/2016
+Madras 1 | Horizontal Pressure Tube type | PHWR | 205 | 23/07/1983
+Madras 2 | Horizontal Pressure Tube type | PHWR | 205 | 20/09/1985
+Narora 1 | Horizontal Pressure Tube type | PHWR | 202 | 29/07/1989
+Narora 2 | Horizontal Pressure Tube type | PHWR | 202 | 05/01/1992
+Rajasthan 2 | Horizontal Pressure Tube type | PHWR | 187 | 01/11/1980
+Rajasthan 3 | Horizontal Pressure Tube type | PHWR | 202 | 10/03/2000
+Rajasthan 4 | Horizontal Pressure Tube type | PHWR | 202 | 17/11/2000
+Rajasthan 5 | Horizontal Pressure Tube type | PHWR | 202 | 22/12/2009
+Rajasthan 6 | Horizontal Pressure Tube type | PHWR | 202 | 28/03/2010
+Rajasthan 7 | Horizontal Pressure Tube type | PHWR | 630 | 17/03/2025
+Tarapur 1 | BWR-1 (Mark 2) | BWR | 150 | 01/04/1969
+Tarapur 2 | BWR-1 (Mark 2) | BWR | 150 | 05/05/1969
+Tarapur 3 | Horizontal Pressure Tube Type | PHWR | 482 | 15/06/2006
+Tarapur 4 | Horizontal Pressure Tube Type | PHWR | 378 | 04/06/2005
+## Nuclear power industry
+Reactor name | Model | Reactor type | Gross capacity (MWe) | Construction start
+Kaiga 5 | Horizontal Pressure Tube type | PHWR | 700 | 01/03/2026
+Kaiga 6 | Horizontal Pressure Tube type | PHWR | 700 | 01/03/2026
+Kudankulam 3 | VVER V-412 | PWR | 1000 | 29/06/2017
+Kudankulam 4 | VVER V-412 | PWR | 1000 | 23/10/2017
+Kudankulam 5 | VVER V-412 | PWR | 1000 | 29/06/2021
+Kudankulam 6 | VVER V-412 | PWR | 1000 | 20/12/2021
+PFBR | Prototype | FBR | 500 | 23/10/2004
+Rajasthan 8 | Horizontal Pressure Tube type | PHWR | 700 | 30/09/2011
+##
+Reactor | State | Type | MWe gross
+Chutka 1&2 | Madhya Pradesh (Mandla) | PHWR x 2 | 700 x 2
+Gorakhpur 1&2 | Haryana (Fatehabad district) | PHWR x 2 | 700 x 2
+Gorakhpur 3&4 | Haryana (Fatehabad district) | PHWR x 2 | 700 x 2
+Kalpakkam 1&2 | Tamil Nadu | FBR x 2 | 500 x 2
+Mahi Banswara 1&2 | Rajasthan | PHWR x 2 | 700 x 2
+Mahi Banswara 3&4 | Rajasthan | PHWR x 2 | 700 x 2
+Tarapur BSMR | Maharashtra | PHWR | 220
+Tarapur SMR-55 | Maharashtra | PWR? | 55
+Subtotal planned | | 14 units | 8275 MWe
+##
+Reactor | State | Type | MWe gross (each) | Project control
+Tarapur? | Maharashtra? | AHWR | 300 | NPCIL
+"Haripur 1&2" another site | West Bengal (but likely to be relocated, maybe to Kavali in Andhra Pradesh) | AES-2006 | 1200 | NPCIL
+Kudankulam 7&8 | Tamil Nadu | AES-2006 | 1200 | NPCIL
+"Kudankulam 9-12" | Andhra Pradesh | AES-2006 | 1200 | NPCIL
+Bhimpur 1-4 | Madhya Pradesh | PHWR | 700 | NPCIL
+Chutka 3&4 | Madhya Pradesh | PHWR | 700 | BHEL-NPCIL-GE?
+Rajouli, Nawada 1&2 | Bihar | PHWR | 700 | NPCIL
+? | | PWR x 2 | 1000 | NPCIL/NTPC
+Jaitapur 1&2 | Ratnagiri, Maharashtra | PWR – EPR | 1700 | NPCIL
+Jaitapur 3&4 | Ratnagiri, Maharashtra | PWR – EPR | 1700 | NPCIL
+? | ? | FBR x 4 | 500 | Bhavini
+Jaitapur 5&6 | Ratnagiri, Maharashtra | PWR – EPR | 1700 | NPCIL
+Markandi (Pati Sonapur) | Orissa | PWR 6000 MWe | | NPCIL
+Kovvada 1&2 | Srikakulam, Andhra Pradesh | AP1000 | 1250 | NPCIL
+Kovvada 3&4 | Srikakulam, Andhra Pradesh | AP1000 | 1250 | NPCIL
+Earlier: "Kovvada 1-6" | Originally Srikakulam, Andhra Pradesh | Originally ESBWR | 1600 | NPCIL
+Nizampatnam 1-6 | Guntur, Andhra Pradesh | 6x? | 1200 | NPCIL
+"Haripur 3-6" another site | West Bengal, Orissa or Kavali in Andhra Pradesh | AES-2006? | 1200 | NPCIL
+Pulivendula | Kadapa, Andhra Pradesh | PWR? PHWR? | 1000? 700? | NPCIL 51%, AP Genco 49%
+Kovvada 5&6 | Srikakulam, Andhra Pradesh | AP1000 | 1250 | NPCIL
+Chhaya-Mithi Virdi 1-6 | Bhavnagar, Gujarat | AP1000 | 1250 | NPCIL
+### countries-g-n/iran
+# Updated Friday, 23 October 2026
+## Nuclear power industry
+Reactor name | Model | Reactor type | Net capacity (MWe) | Construction start | Grid connection
+Bushehr 1 | VVER V-446 | PWR | 915 | 01/05/1975 | 03/09/2011
+## Nuclear power reactors under construction
+| Type | MWe gross | Construction start | Commercial operation
+Bushehr 2 | AES-92, VVER-1000/V-466B | 1057 | November 2019 | 2029
+## Other proposed developments
+| Type | MWe gross | Construction start | Commercial operation
+Bushehr 3 | VVER-1000/V-466B | 1057 | |
+Darkhovin | IR-360 | 360 | |
+Total (2) | | 1417 | |
+Makran coast | ACP100 | 2 x 100 | |
+Hormoz/Sirik 1-4 | VVER-1200 | 4 x 1250 | |
+Proposed (6) | | 5200 | |
+### countries-g-n/japan-nuclear-power
+# Updated Tuesday, 22 September 2026
+## Nuclear power industry
+Reactor name | Model | Reactor type | Net capacity (MWe) | Grid connection
+Genkai 3 | M (4-loop) | PWR | 1127 | 15/06/1993
+Genkai 4 | M (4-loop) | PWR | 1127 | 12/11/1996
+Hamaoka 3 | BWR-5 | BWR | 1056 | 20/01/1987
+Hamaoka 4 | BWR-5 | BWR | 1092 | 27/01/1993
+Hamaoka 5 | ABWR | BWR | 1325 | 30/04/2004
+Higashi Dori 1 (Tohoku) | BWR-5 | BWR | 1067 | 09/03/2005
+Ikata 3 | M (3-loop) | PWR | 846 | 29/03/1994
+Kashiwazaki Kariwa 1 | BWR-5 | BWR | 1067 | 13/02/1985
+Kashiwazaki Kariwa 2 | BWR-5 | BWR | 1067 | 08/02/1990
+Kashiwazaki Kariwa 3 | BWR-5 | BWR | 1067 | 08/12/1992
+Kashiwazaki Kariwa 4 | BWR-5 | BWR | 1067 | 21/12/1993
+Kashiwazaki Kariwa 5 | BWR-5 | BWR | 1067 | 12/09/1989
+Kashiwazaki Kariwa 6 | ABWR | BWR | 1315 | 29/01/1996
+Kashiwazaki Kariwa 7 | ABWR | BWR | 1315 | 17/12/1996
+Mihama 3 | M (3-loop) | PWR | 780 | 19/02/1976
+Ohi 3 | M (4-loop) | PWR | 1127 | 07/06/1991
+Ohi 4 | M (4-loop) | PWR | 1127 | 19/06/1992
+Onagawa 2 | BWR-5 | BWR | 796 | 23/12/1994
+Onagawa 3 | BWR-5 | BWR | 796 | 30/05/2001
+Sendai 1 | M (3-loop) | PWR | 846 | 16/09/1983
+Sendai 2 | M (3-loop) | PWR | 846 | 05/04/1985
+Shika 1 | BWR-5 | BWR | 505 | 12/01/1993
+Shika 2 | ABWR | BWR | 1108 | 04/07/2005
+Shimane 2 | BWR-5 | BWR | 789 | 11/07/1988
+Takahama 1 | M (3-loop) | PWR | 780 | 27/03/1974
+Takahama 2 | M (3-loop) | PWR | 780 | 17/01/1975
+Takahama 3 | M (3-loop) | PWR | 830 | 09/05/1984
+Takahama 4 | M (3-loop) | PWR | 830 | 01/11/1984
+Tokai 2 | BWR-5 | BWR | 1060 | 13/03/1978
+Tomari 1 | M (2-loop) | PWR | 550 | 06/12/1988
+Tomari 2 | M (2-loop) | PWR | 550 | 27/08/1990
+Tomari 3 | M (3-loop) | PWR | 866 | 20/03/2009
+Tsuruga 2 | M (4-loop) | PWR | 1108 | 19/06/1986
+## Next-generation LWR
+Reactor | Type | Gross capacity | Utility | Construction start | Operation*
+Shimane 3 | ABWR | 1373 MWe | Chugoku | December 2005, suspended 2011 | Applied to NRA for safety checks August 2018
+Ohma 1 | ABWR | 1383 MWe | EPDC/J-Power | May 2010, suspended 3/11 to 10/12 | NRA review continuing; operation date undecided
+Total: 2 | | 2756 MWe | | |
+## Next-generation LWR
+Reactor | Type | MWe gross (each) | Utility | Start * construction
+Higashidori 1 Tepco | ABWR | 1385 | Tepco | deferred
+Total Planned: 1 | | 1385 MWe | |
+Tsuruga 3 | APWR | 1538 | JAPC | deferred
+Tsuruga 4 | APWR | 1538 | JAPC | deferred
+Kaminoseki 1 | ABWR | 1373 | Chugoku | 6/2012 (deferred 3/11)
+Sendai 3 | APWR | 1590 | Kyushu | 3/2014 (deferred 4/11)
+Higashidori 2 Tepco | ABWR | 1385 | Tepco | deferred
+Hamaoka 6 | ABWR | 1380 | Chubu | deferred
+Higashidori 2 Tohoku | ABWR | 1385 | Tohoku | deferred
+Kaminoseki 2 | ABWR | 1373 | Chugoku | 2018 (deferred 6/11)
+Total Proposed: 8 | | 11,562 MWe | |
+### countries-g-n/kazakhstan
+# Updated Friday, 23 October 2026
+## Strategy to 2050
+Location | Type | MWe gross
+Ulken | VVER-1200 | 2 x 1200
+## Strategy to 2050
+Location | Type | MWe gross
+Zhambyl district, Almaty region | HPR1000 | 2 x 1200
+Third site | Not yet specified | Not yet specified
+### countries-o-s/south-korea
+# Updated Monday, 2 November 2026
+## Nuclear power industry
+Reactor name | Model | Reactor type | Net capacity (MWe) | Construction start | Grid connection
+Hanbit 1 | WH F | PWR | 965 | 04/06/1981 | 05/03/1986
+Hanbit 2 | WH F | PWR | 952 | 01/12/1981 | 11/11/1986
+Hanbit 3 | OPR-1000 | PWR | 983 | 23/12/1989 | 30/10/1994
+Hanbit 4 | OPR-1000 | PWR | 961 | 26/05/1990 | 18/07/1995
+Hanbit 5 | OPR-1000 | PWR | 974 | 29/06/1997 | 19/12/2001
+Hanbit 6 | OPR-1000 | PWR | 978 | 20/11/1997 | 16/09/2002
+Hanul 1 | France CPI | PWR | 953 | 26/01/1983 | 07/04/1988
+Hanul 2 | France CPI | PWR | 957 | 05/07/1983 | 14/04/1989
+Hanul 3 | OPR-1000 | PWR | 991 | 21/07/1993 | 06/01/1998
+Hanul 4 | OPR-1000 | PWR | 994 | 01/11/1993 | 28/12/1998
+Hanul 5 | OPR-1000 | PWR | 989 | 01/10/1999 | 18/12/2003
+Hanul 6 | OPR-1000 | PWR | 987 | 29/09/2000 | 07/01/2005
+Kori 2 | WH F | PWR | 640 | 23/12/1977 | 22/04/1983
+Kori 3 | WH F | PWR | 996 | 01/10/1979 | 22/01/1985
+Kori 4 | WH F | PWR | 1001 | 01/04/1980 | 31/12/1985
+Saeul 1 | APR-1400 | PWR | 1392 | 16/10/2008 | 15/01/2016
+Saeul 2 | APR-1400 | PWR | 1392 | 19/08/2009 | 22/04/2019
+Shin Hanul 1 | APR-1400 | PWR | 1429 | 10/07/2012 | 09/06/2022
+Shin Hanul 2 | APR-1400 | PWR | 1416 | 19/06/2013 | 21/12/2023
+Shin Kori 1 | OPR-1000 | PWR | 986 | 16/06/2006 | 04/08/2010
+Shin Kori 2 | OPR-1000 | PWR | 982 | 05/06/2007 | 28/01/2012
+Shin Wolsong 1 | OPR-1000 | PWR | 980 | 20/11/2007 | 27/01/2012
+Shin Wolsong 2 | OPR-1000 | PWR | 976 | 23/09/2008 | 26/02/2015
+Wolsong 2 | CANDU 6 | PHWR | 571 | 25/09/1992 | 01/04/1997
+Wolsong 3 | CANDU 6 | PHWR | 595 | 17/03/1994 | 25/03/1998
+Wolsong 4 | CANDU 6 | PHWR | 569 | 22/07/1994 | 21/05/1999
+## Nuclear power industry
+Reactor name | Model | Reactor type | Gross capacity (MWe) | Construction start
+Saeul 3 | APR-1400 | PWR | 1400 | 01/04/2017
+Saeul 4 | APR-1400 | PWR | 1400 | 20/09/2018
+Shin-Hanul-3 | APR-1400 | PWR | 1455 | 20/05/2025
+Shin-Hanul-4 | APR-1400 | PWR | 1455 | 29/05/2026
+## Nuclear power industry
+Reactor | Type | Gross capacity | Start construction | Commercial operation
+Cheonji 1 | APR+ | 1500 MWe | 2022 (cancelled) |
+Cheonji 2 | APR+ | 1500 MWe | 2023 (cancelled) |
+Cheonji 3 or Daejin 1 | APR+ | 1500 MWe | 2025 (cancelled) |
+Cheonji 4 or Daejin 2 | APR+ | 1500 MWe | 2026 (cancelled) |
+### countries-g-n/mexico
+# Updated Wednesday, 8 July 2026
+## Nuclear power industry
+Reactor name | Model | Reactor type | Net capacity (MWe) | Construction start | Grid connection
+Laguna Verde 1 | BWR-5 | BWR | 777 | 27/09/1976 | 09/04/1989
+Laguna Verde 2 | BWR-5 | BWR | 775 | 31/05/1977 | 10/11/1994
+### countries-g-n/netherlands
+# Updated Friday, 23 October 2026
+## Nuclear power industry
+Reactor name | Model | Reactor type | Net capacity (MWe) | Construction start | Grid connection
+Borssele | 2-loops KWU | PWR | 482 | 01/07/1969 | 04/07/1973
+## October 2025 strategy
+Reactors | Location | Type | Gross MWe | Start construction
+? | Borssele? | PWR x 2 | 1000-1650 | ?
+### countries-o-s/pakistan
+# Updated Monday, 6 July 2026
+## Nuclear Power Industry
+Alternate name | Reactor name | Model | Reactor type | Net capacity (MWe) | Construction start | Grid connection
+Chashma Nuclear Power Plant Unit 1 | Chashma Nuclear Power Plant 1 | CNP-300 | PWR | 300 | 01/08/1993 | 13/06/2000
+Chashma Nuclear Power Plant Unit 2 | Chashma Nuclear Power Plant 2 | CNP-300 | PWR | 300 | 28/12/2005 | 14/03/2011
+Chashma Nuclear Power Plant Unit 3 | Chashma Nuclear Power Plant 3 | CNP-300 | PWR | 315 | 28/05/2011 | 15/10/2016
+Chashma Nuclear Power Plant Unit 4 | Chashma Nuclear Power Plant 4 | CNP-300 | PWR | 313 | 18/12/2011 | 25/06/2017
+K-2 | Karachi 2 | HPR1000 | PWR | 1017 | 20/08/2015 | 18/03/2021
+K-3 | Karachi 3 | HPR1000 | PWR | 1017 | 31/05/2016 | 04/03/2022
+### countries-o-s/poland
+# Updated Tuesday, 27 October 2026
+## Reactors planned in Poland
+Location / site | Type | Gross capacity (MWe) | Construction start
+Lubiatowo-Kopalino | AP1000 | 3x1250 | 2028
+Włocławek | BWRX-300 | 4x300 | 2028
+Subtotal planned: 3 large (3750 MWe) 4 small (1200 MWe)
+## Reactors proposed in Poland
+Location / site | Type | Gross capacity (MWe)
+Belchatow or Konin | ? | 2x large reactor
+Dąbrowa Górnicza | BWRX-300 | 4x300
+Nowa Huta | BWRX-300 | 4x300
+Ostrołęka | BWRX-300 | 4x300
+Stawy Monowskie | BWRX-300 | 4x300
+Tarnobrzeg Special Economic Zone | BWRX-300 | 4x300
+Kostrzyn-Słubicka Special Economic Zone | Rolls-Royce SMR | 1x490 (est.)
+### countries-o-s/romania
+# Updated Monday, 2 November 2026
+## Operable reactors
+Reactor name | Model | Reactor type | Net capacity (MWe) | Construction start | Grid connection
+Cernavoda 1 | CANDU 6 | PHWR | 650 | 31/03/1983 | 11/07/1996
+Cernavoda 2 | CANDU 6 | PHWR | 650 | 01/07/1983 | 07/08/2007
+## Operable reactors
+Reactor | Type | MWe gross | Planned commercial operation
+Cernavoda 3 | Candu 6 | 720 | 2030
+Cernavoda 4 | Candu 6 | 720 | 2031
+Doicești 1-6 | NuScale Power Module | 6x77 | 2033
+Total (8) | | 1902 |

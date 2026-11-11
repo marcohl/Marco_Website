@@ -1,0 +1,384 @@
+---
+// Where the world's power reactors are: units under construction by country (squares, server-rendered)
+// and a map of sites by state (d3). Data: src/data/nuclear-reactors-world/*.json
+// (built by analysis/nuclear-reactors-world/build_data.py).
+import sitesData from "../../../data/nuclear-reactors-world/sites.json";
+import countriesData from "../../../data/nuclear-reactors-world/countries.json";
+
+const world = countriesData.world;
+const fmt = (n: number) => n.toLocaleString("en-US");
+
+// Squares: one per unit under construction. Countries with 2+ units get their own group; the rest share one.
+const uc = countriesData.countries.filter((c) => c.construction > 0).sort((a, b) => b.construction - a.construction);
+const groups = uc.filter((c) => c.construction >= 2).map((c) => ({ label: c.country, n: c.construction, countries: [c.country] }));
+const singles = uc.filter((c) => c.construction === 1);
+if (singles.length) groups.push({ label: `${singles.length} more, 1 each`, n: singles.length, countries: singles.map((c) => c.country) });
+const top = uc[0];
+const rows = [...countriesData.countries].filter((c) => c.operating + c.construction + c.planned > 0)
+  .sort((a, b) => b.construction - a.construction || b.operating - a.operating || b.planned - a.planned);
+const noLoc = sitesData.meta.no_location;
+---
+<div class="rw" data-viz="nuclear-reactors-world">
+  <figure class="rw-sq" aria-label={`${world.construction} reactor units under construction, grouped by country. ${top.country}: ${top.construction}.`}>
+    <figcaption><span class="rw-n">{top.construction}</span> of {world.construction} reactor units under construction are in {top.country}</figcaption>
+    <div class="rw-groups">
+      {groups.map((g, gi) => (
+        <div class={`rw-g${gi === 0 ? " rw-g1" : ""}`} data-countries={g.countries.join("|")} tabindex="0"
+             aria-label={`${g.label}: ${g.n} ${g.n === 1 ? "unit" : "units"} under construction`}>
+          <div class="rw-cells">
+            {gi === groups.length - 1 && singles.length && g.countries.length > 1
+              ? g.countries.map((c) => <i title={c} data-country={c}></i>)
+              : Array.from({ length: g.n }, () => <i></i>)}
+          </div>
+          <span class="rw-gl">{g.countries.length > 1 ? g.label : <>{g.label} <b>{g.n}</b></>}</span>
+        </div>
+      ))}
+    </div>
+  </figure>
+
+  <div class="rw-ctl">
+    <span class="sp-seg rw-seg" role="group" aria-label="Reactor state">
+      <button type="button" data-state="all" aria-pressed="true">All</button>
+      <button type="button" data-state="operating" aria-pressed="false">Operating</button>
+      <button type="button" data-state="construction" aria-pressed="false">Building</button>
+      <button type="button" data-state="planned" aria-pressed="false">Planned</button>
+    </span>
+    <span class="sp-seg rw-seg" role="group" aria-label="Map region">
+      <button type="button" data-region="world" aria-pressed="true">World</button>
+      <button type="button" data-region="asia" aria-pressed="false">East Asia</button>
+      <button type="button" data-region="europe" aria-pressed="false">Europe</button>
+      <button type="button" data-region="americas" aria-pressed="false">Americas</button>
+    </span>
+  </div>
+
+  <div class="rw-fig">
+    <ul class="rw-legend">
+      <li><span class="sw sw-op"></span>Operating</li>
+      <li><span class="sw sw-uc"></span>Under construction</li>
+      <li><span class="sw sw-pl"></span>Planned</li>
+      <li class="rw-size"><svg width="40" height="20" aria-hidden="true"><circle class="s1"></circle><circle class="s6"></circle></svg>1 and 6 units at a site</li>
+    </ul>
+    <svg class="rw-map" tabindex="0" role="img" aria-label="World map of nuclear power sites by state. Use the arrow keys to step through sites."></svg>
+    <p class="rw-status" aria-live="polite"></p>
+    <div class="rw-card" aria-live="polite"><span class="rw-hint">Hover or tap a site to read it.</span></div>
+  </div>
+
+  <slot name="insights" />
+
+  <details>
+    <summary>Show the data: reactor units by country</summary>
+    <div class="tbl"><table>
+      <caption>Reactor units, World Nuclear Association, table dated 2026-11-11. Planned excludes proposed units.</caption>
+      <thead><tr><th>Country</th><th class="num">Operating</th><th class="num">Under construction</th><th class="num">Planned</th></tr></thead>
+      <tbody>{rows.map((c) => (
+        <tr><td>{c.country}</td><td class="num">{c.operating}</td><td class="num">{c.construction}</td><td class="num">{c.planned}</td></tr>
+      ))}</tbody>
+      <tfoot><tr><th>World</th><td class="num">{fmt(world.operating)}</td><td class="num">{world.construction}</td><td class="num">{world.planned}</td></tr></tfoot>
+    </table></div>
+  </details>
+  <script type="application/json" data-noloc set:html={JSON.stringify(noLoc)}></script>
+</div>
+
+<script>
+  import * as d3 from "d3";
+  import { feature, mesh } from "topojson-client";
+  import topo from "world-atlas/countries-110m.json";
+  import data from "../../../data/nuclear-reactors-world/sites.json";
+
+  type State = "operating" | "construction" | "planned";
+  type Site = (typeof data.sites)[number] & { x: number; y: number };
+  const STATES: State[] = ["operating", "construction", "planned"];
+  const LABEL: Record<State, string> = { operating: "operating", construction: "under construction", planned: "planned" };
+  // Regions as lon/lat boxes; the projection is refitted to the box.
+  const REGIONS: Record<string, [number, number, number, number]> = {
+    world: [-165, -46, 178, 72], asia: [98, 16, 146, 46], europe: [-11, 35, 44, 66], americas: [-128, -42, -34, 58],
+  };
+
+  const t = topo as any;
+  const land = feature(t, t.objects.land) as any;
+  const borders = mesh(t, t.objects.countries, (a: any, b: any) => a !== b) as any;
+  const sphere = { type: "Sphere" } as any;
+  const graticule = d3.geoGraticule10();
+
+  const boxPoints = ([w, s, e, n]: number[]) => ({
+    type: "MultiPoint",
+    coordinates: d3.range(0, 1.0001, 0.125).flatMap((f) => [[w + (e - w) * f, s], [w + (e - w) * f, n], [w, s + (n - s) * f], [e, s + (n - s) * f]]),
+  }) as any;
+
+  document.querySelectorAll<HTMLElement>('[data-viz="nuclear-reactors-world"]').forEach((root) => {
+    root.classList.add("js");
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const q = <T extends Element>(s: string) => root.querySelector<T>(s)!;
+    const svgEl = q<SVGSVGElement>("svg.rw-map"), card = q<HTMLElement>(".rw-card"), status = q<HTMLElement>(".rw-status");
+    const noLoc: { country: string; site: string; state: State; units: number }[] = JSON.parse(q("[data-noloc]").textContent!);
+
+    const sites = data.sites.map((s) => ({ ...s, x: 0, y: 0 })) as Site[];
+    let state: "all" | State = "all";
+    let region = matchMedia("(min-width: 700px)").matches ? "world" : "asia";
+    let focusCountries: string[] | null = null;
+    let selected: Site | null = null;
+
+    const svg = d3.select(svgEl);
+    const gBase = svg.append("g").attr("class", "base");
+    const sphereP = gBase.append("path").attr("class", "sphere");
+    const gratP = gBase.append("path").attr("class", "grat");
+    const landP = gBase.append("path").attr("class", "land");
+    const bordP = gBase.append("path").attr("class", "bord");
+    const gMarks = svg.append("g").attr("class", "marks");
+    const selRing = svg.append("circle").attr("class", "sel").attr("r", 0);
+    const sizeSvg = d3.select(q<SVGSVGElement>(".rw-size svg"));
+
+    let W = 0, H = 0;
+    const proj = d3.geoEqualEarth();
+    const path = d3.geoPath(proj);
+    const fit = (r: string, p = d3.geoEqualEarth()) => p.fitExtent([[8, 8], [W - 8, H - 8]], boxPoints(REGIONS[r]));
+
+    // Marker size: area proportional to units; larger when zoomed into a region.
+    const rMax = () => (region === "world" ? (W < 600 ? 7 : 10) : W < 600 ? 11 : 15);
+    const rOf = (n: number) => (n ? Math.sqrt(n / 8) * rMax() : 0);
+
+    function drawBase() {
+      sphereP.attr("d", path(sphere));
+      gratP.attr("d", path(graticule));
+      landP.attr("d", path(land));
+      bordP.attr("d", path(borders));
+    }
+
+    function place() {
+      for (const s of sites) { const p = proj([s.lon, s.lat]); s.x = p ? p[0] : -99; s.y = p ? p[1] : -99; }
+      // One <g> per site, marks inside it. Bigger sites first so small ones stay on top.
+      const order = [...sites].sort((a, b) => total(b) - total(a));
+      const g = gMarks.selectAll<SVGGElement, Site>("g.site").data(order, (d) => d.site + d.country)
+        .join((e) => {
+          const gg = e.append("g").attr("class", "site");
+          gg.append("circle").attr("class", "m op");
+          gg.append("circle").attr("class", "m pl");
+          gg.append("circle").attr("class", "m uc");
+          return gg;
+        })
+        .attr("transform", (d) => `translate(${d.x},${d.y})`);
+      g.order();
+      g.select(".op").attr("r", (d) => rOf(d.units.operating));
+      g.select(".pl").attr("r", (d) => rOf(d.units.planned));
+      g.select(".uc").attr("r", (d) => rOf(d.units.construction));
+      if (selected) selRing.attr("cx", selected.x).attr("cy", selected.y);
+      // Size legend drawn with the same scale as the map, so it stays true at every zoom.
+      const r1 = rOf(1), r6 = rOf(6), lh = Math.ceil(2 * r6 + 4);
+      sizeSvg.attr("width", Math.ceil(2 * r1 + 2 * r6 + 12)).attr("height", lh);
+      sizeSvg.select(".s1").attr("r", r1).attr("cx", r1 + 1).attr("cy", lh - r1 - 2);
+      sizeSvg.select(".s6").attr("r", r6).attr("cx", 2 * r1 + 9 + r6).attr("cy", lh - r6 - 2);
+      paint();
+    }
+
+    const total = (s: Site) => STATES.reduce((a, k) => a + s.units[k], 0);
+    const shows = (s: Site) => (state === "all" ? total(s) > 0 : s.units[state] > 0);
+    const inView = (s: Site) => shows(s) && s.x >= 0 && s.x <= W && s.y >= 0 && s.y <= H;
+
+    function paint() {
+      gMarks.classed("only-op", state === "operating").classed("only-uc", state === "construction").classed("only-pl", state === "planned");
+      gMarks.selectAll<SVGGElement, Site>("g.site")
+        .classed("off", (d) => !shows(d))
+        .classed("dim", (d) => !!focusCountries && !focusCountries.includes(d.country));
+      const vis = sites.filter(inView);
+      const sum = (k: State) => d3.sum(vis, (s) => s.units[k]);
+      const parts = (state === "all" ? STATES : [state]).map((k) => `${sum(k)} ${LABEL[k]}`);
+      status.textContent = `${vis.length} ${vis.length === 1 ? "site" : "sites"} in view: ${parts.join(", ")} units.`;
+    }
+
+    function resize() {
+      const w = Math.round(svgEl.getBoundingClientRect().width) || 320;
+      if (w === W) return;
+      W = w; H = Math.round(W * (W < 600 ? 0.95 : region === "world" ? 0.5 : 0.56));
+      svg.attr("viewBox", `0 0 ${W} ${H}`).attr("height", H);
+      const p = fit(region);
+      proj.scale(p.scale()).translate(p.translate());
+      drawBase(); place();
+    }
+
+    function setRegion(r: string) {
+      if (r === region) return;
+      const from = { s: proj.scale(), t: proj.translate() };
+      region = r;
+      H = Math.round(W * (W < 600 ? 0.95 : region === "world" ? 0.5 : 0.56));
+      svg.attr("viewBox", `0 0 ${W} ${H}`).attr("height", H);
+      const to = fit(r);
+      const iS = d3.interpolate(from.s, to.scale()), iT = d3.interpolate(from.t, to.translate());
+      svg.interrupt().transition().duration(reduce ? 0 : 650).ease(d3.easeCubicOut).tween("zoom", () => (k: number) => {
+        proj.scale(iS(k)).translate(iT(k) as [number, number]);
+        drawBase(); place();
+      });
+      root.querySelectorAll<HTMLButtonElement>("[data-region]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.region === r)));
+    }
+
+    function show(s: Site | null) {
+      selected = s;
+      selRing.attr("r", s ? Math.max(rOf(total(s)), 4) + 3 : 0).attr("cx", s?.x ?? 0).attr("cy", s?.y ?? 0);
+      if (!s) { card.innerHTML = '<span class="rw-hint">Hover or tap a site to read it.</span>'; return; }
+      const lines = STATES.filter((k) => s.units[k]).map((k) =>
+        `<li><span class="sw sw-${k === "operating" ? "op" : k === "construction" ? "uc" : "pl"}"></span><b>${s.units[k]}</b> ${LABEL[k]}<small>${s.names[k].join(", ")}</small></li>`).join("");
+      const approx = s.location === "approximate" ? '<p class="rw-note">Location approximate.</p>' : "";
+      card.innerHTML = `<div class="rw-card-h"><strong>${s.site}</strong><span>${s.country}</span></div><ul>${lines}</ul>${approx}`;
+    }
+
+    // Nearest visible site within reach of the pointer.
+    function nearest(px: number, py: number, reach = 22) {
+      let best: Site | null = null, bd = reach * reach;
+      for (const s of sites) {
+        if (!inView(s)) continue;
+        const d = (s.x - px) ** 2 + (s.y - py) ** 2;
+        if (d < bd) { bd = d; best = s; }
+      }
+      return best;
+    }
+    svg.on("pointermove pointerdown", (ev: PointerEvent) => {
+      const [x, y] = d3.pointer(ev, svgEl);
+      const s = nearest(x, y);
+      if (s || ev.type === "pointerdown") show(s);
+    });
+
+    svgEl.addEventListener("keydown", (ev) => {
+      if (!["ArrowRight", "ArrowLeft", "ArrowDown", "ArrowUp", "Escape"].includes(ev.key)) return;
+      ev.preventDefault();
+      if (ev.key === "Escape") return show(null);
+      const vis = sites.filter(inView).sort((a, b) => a.x - b.x || a.y - b.y);
+      if (!vis.length) return;
+      const i = selected ? vis.indexOf(selected) : -1;
+      const step = ev.key === "ArrowRight" || ev.key === "ArrowDown" ? 1 : -1;
+      show(vis[(i + step + vis.length) % vis.length]);
+    });
+
+    root.querySelectorAll<HTMLButtonElement>("[data-state]").forEach((b) => b.addEventListener("click", () => {
+      state = b.dataset.state as typeof state;
+      root.querySelectorAll<HTMLButtonElement>("[data-state]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+      if (selected && !shows(selected)) show(null);
+      paint();
+    }));
+    root.querySelectorAll<HTMLButtonElement>("[data-region]").forEach((b) => b.addEventListener("click", () => setRegion(b.dataset.region!)));
+
+    // Squares: hovering or focusing a country group highlights its sites on the map.
+    root.querySelectorAll<HTMLElement>(".rw-g").forEach((g) => {
+      const on = () => {
+        focusCountries = g.dataset.countries!.split("|");
+        root.querySelectorAll(".rw-g").forEach((x) => x.classList.toggle("is-dim", x !== g));
+        paint();
+      };
+      const off = () => { focusCountries = null; root.querySelectorAll(".rw-g").forEach((x) => x.classList.remove("is-dim")); paint(); };
+      g.addEventListener("pointerenter", on); g.addEventListener("focus", on);
+      g.addEventListener("pointerleave", off); g.addEventListener("blur", off);
+    });
+
+    root.querySelectorAll<HTMLButtonElement>("[data-region]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.region === region)));
+    if (noLoc.length) root.querySelector(".rw-fig")!.insertAdjacentHTML("beforeend",
+      `<p class="rw-note">Not on the map: ${noLoc.map((n) => n.site === "site not named"
+        ? `${n.country}, ${n.units} ${LABEL[n.state]} (no site named in the source)`
+        : `${n.site}, ${n.country}, ${n.units} ${LABEL[n.state]} (no location in the source)`).join("; ")}.</p>`);
+    new ResizeObserver(() => resize()).observe(svgEl);
+    resize();
+  });
+</script>
+
+<style is:global>
+  [data-viz="nuclear-reactors-world"] { margin-block: 24px; }
+
+  /* Page intro: headline and text, key figures on the right from 900px (no empty band). */
+  .rw-intro { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; align-items: end; }
+  .tblock.rw-kf { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tblock.rw-kf > :nth-child(odd) { border-left: 0; }
+  .tblock.rw-kf > :nth-child(n+3) { border-top: 1px solid var(--ink); }
+  .tblock.rw-kf b { font-size: 28px; font-weight: 700; }
+  @media (min-width: 900px) {
+    .rw-intro { grid-template-columns: minmax(0, 1fr) minmax(280px, 360px); gap: 48px; }
+  }
+
+  /* Squares (server-rendered, work without JavaScript) */
+  .rw-sq { margin: 0 0 20px; padding: 12px; background: var(--panel); border: 1px solid var(--rule); }
+  .rw-sq figcaption { font: 600 17px/1.3 var(--f-display); color: var(--ink); margin-bottom: 12px; }
+  .rw-n { font: 700 30px/1 var(--f-display); color: var(--on-marker); background: var(--marker); padding: 2px 6px 0; margin-right: 4px; font-variant-numeric: tabular-nums; }
+  /* Phone: one row per group, label left, squares in rows of 13. From 700px: columns of 5, label under. */
+  .rw-groups { display: grid; gap: 8px; }
+  .rw-g { display: grid; grid-template-columns: 6em minmax(0, 1fr); gap: 10px; align-items: start; outline-offset: 3px; transition: opacity .15s; }
+  .rw-g .rw-gl { order: -1; white-space: normal; padding-top: 1px; }
+  .rw-g.is-dim { opacity: .3; }
+  .rw-g:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+  .rw-cells { --c: 11px; display: grid; grid-template-columns: repeat(13, var(--c)); grid-auto-rows: var(--c); gap: 3px; }
+  .rw-cells i { display: block; background: var(--cat-2); }
+  .rw-gl { font: 400 13px/1.2 var(--f-data); color: var(--ink-3); white-space: nowrap; }
+  .rw-gl b { font-weight: 600; color: var(--ink); }
+  .rw-g1 .rw-gl { color: var(--ink); font-weight: 600; }
+
+  /* Controls */
+  .rw-ctl { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-bottom: 10px; }
+  .rw-seg { display: inline-flex; border: 1px solid var(--rule); background: var(--bg); width: 100%; }
+  .rw-seg button { flex: 1; font: 600 13.5px/1 var(--f-data); color: var(--ink-2); background: none; border: 0; padding: 14px 6px; min-height: 44px; cursor: pointer; }
+  .rw-seg button + button { border-left: 1px solid var(--rule); }
+  .rw-seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+  .rw-seg button:focus-visible { outline: 2px solid var(--ink); outline-offset: 1px; }
+
+  /* Map figure */
+  .rw-fig { padding: 10px; background: var(--panel); border: 1px solid var(--rule); }
+  .rw-legend { list-style: none; margin: 0 0 8px; padding: 0 0 8px; border-bottom: 1px solid var(--rule); display: flex; flex-wrap: wrap; gap: 6px 18px; font: 400 13px/1.3 var(--f-data); color: var(--ink-2); }
+  .rw-legend li { display: inline-flex; align-items: center; gap: 7px; }
+  .rw .sw { display: inline-block; width: 12px; height: 12px; border-radius: 50%; flex: none; }
+  .rw .sw-op { background: var(--cat-1); opacity: .6; }
+  .rw .sw-uc { background: var(--cat-2); }
+  .rw .sw-pl { border: 1.6px solid var(--cat-1); }
+  .rw-size svg circle { fill: none; stroke: var(--ink-3); stroke-width: 1; }
+  .rw-map { display: block; width: 100%; height: auto; touch-action: manipulation; }
+  .rw-map:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+  .rw-map .sphere { fill: var(--bg); stroke: var(--rule); stroke-width: 1; }
+  .rw-map .grat { fill: none; stroke: var(--grid); stroke-width: .6; stroke-dasharray: 2 3; }
+  .rw-map .land { fill: var(--grid); stroke: var(--rule); stroke-width: .7; }
+  .rw-map .bord { fill: none; stroke: var(--rule); stroke-width: .5; }
+  .rw-map .m { transition: opacity .15s; }
+  .rw-map .op { fill: var(--cat-1); fill-opacity: .55; }
+  .rw-map .uc { fill: var(--cat-2); stroke: var(--panel); stroke-width: .8; }
+  .rw-map .pl { fill: none; stroke: var(--cat-1); stroke-width: 1.5; }
+  .rw-map .site.off, .rw-map .only-op .uc, .rw-map .only-op .pl, .rw-map .only-uc .op, .rw-map .only-uc .pl,
+  .rw-map .only-pl .op, .rw-map .only-pl .uc { display: none; }
+  .rw-map .site.dim { opacity: .18; }
+  .rw-map .sel { fill: none; stroke: var(--ink); stroke-width: 1.5; pointer-events: none; }
+  .rw-status { margin: 8px 0 0; font: 400 13px/1.35 var(--f-data); color: var(--ink-3); }
+  .rw-card { margin-top: 10px; padding: 10px 12px; border: 1px solid var(--rule); background: var(--bg); font: 400 14px/1.35 var(--f-data); color: var(--ink); min-height: 5.2em; }
+  .rw-card-h { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 6px; }
+  .rw-card-h strong { font: 700 17px/1.2 var(--f-display); }
+  .rw-card-h span { color: var(--ink-3); }
+  .rw-card ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 5px; }
+  .rw-card li { display: grid; grid-template-columns: 12px auto 1fr; column-gap: 7px; align-items: center; }
+  .rw-card li small { grid-column: 2 / -1; color: var(--ink-3); font-size: 12.5px; }
+  .rw-hint { color: var(--ink-3); }
+  .rw-note { margin: 8px 0 0; font: 400 12.5px/1.35 var(--f-data); color: var(--ink-3); }
+
+  /* Numbered insights ("what to look at") */
+  .rw-ins { list-style: none; counter-reset: ins; margin: 20px 0 0; padding: 0; display: grid; gap: 14px; max-width: var(--measure); }
+  .rw-ins li { counter-increment: ins; display: grid; grid-template-columns: 24px minmax(0, 1fr); column-gap: 12px; color: var(--ink-2); font-size: 16px; line-height: 1.5; }
+  .rw-ins li::before { content: counter(ins); width: 24px; height: 24px; border-radius: 50%; border: 1.3px solid var(--ink); background: var(--panel); color: var(--ink); font: 600 12px/21px var(--f-data); text-align: center; margin-top: 2px; }
+  .rw-ins strong { color: var(--ink); }
+
+  /* No JavaScript: squares and table carry the story. */
+  .rw:not(.js) .rw-ctl, .rw:not(.js) .rw-fig { display: none; }
+
+  .rw details { margin-top: 20px; font-size: 14px; }
+  .rw summary { cursor: pointer; font-weight: 600; padding-block: 6px; }
+  .rw .tbl { overflow-x: auto; margin-top: 10px; }
+  .rw table { border-collapse: collapse; min-width: 420px; font-family: var(--f-data); }
+  .rw caption { caption-side: bottom; text-align: left; font-size: 12px; color: var(--ink-3); padding-top: 8px; }
+  .rw th, .rw td { text-align: left; padding: 6px 14px 6px 0; border-bottom: 1px solid var(--rule); }
+  .rw tfoot th, .rw tfoot td { font-weight: 600; color: var(--ink); border-bottom: 0; }
+  .rw .num { text-align: right; font-variant-numeric: tabular-nums; }
+
+  @media (min-width: 700px) {
+    .rw-groups { display: flex; flex-wrap: wrap; gap: 14px 16px; align-items: flex-end; }
+    .rw-g { grid-template-columns: auto; gap: 6px; justify-items: start; }
+    .rw-g .rw-gl { order: 0; white-space: nowrap; padding-top: 0; }
+    .rw-cells { grid-template-columns: none; grid-template-rows: repeat(5, var(--c)); grid-auto-flow: column; grid-auto-columns: var(--c); grid-auto-rows: auto; }
+    .rw-seg { width: auto; }
+    .rw-seg button { flex: none; font-size: 14px; padding: 11px 14px; min-height: 40px; }
+  }
+  @media (min-width: 900px) {
+    [data-viz="nuclear-reactors-world"] { margin-block: 32px; }
+    .rw-ins { max-width: none; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+    .rw-sq, .rw-fig { padding: 18px 20px; }
+    .rw-cells { --c: 14px; }
+    .rw-groups { gap: 16px 22px; }
+  }
+</style>

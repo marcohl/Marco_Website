@@ -1,0 +1,103 @@
+### countries-a-f/argentina
+# Updated Friday, 23 October 2026
+## Nuclear power plants
+Reactor name | Model | Reactor type | Net capacity (MWe) | Construction start | Grid connection
+Atucha 1 | PHWR KWU | PHWR | 335 | 31/05/1968 | 19/03/1974
+Atucha 2 | PHWR KWU | PHWR | 688 | 13/07/1981 | 27/06/2014
+Embalse | CANDU 6 | PHWR | 608 | 31/03/1974 | 25/04/1983
+## Nuclear power plants
+Reactor name | Model | Reactor type | Gross capacity (MWe) | Construction start
+Carem25 | CAREM Prototype (Integrated-PWR) | PWR | 29 | 25/08/2015
+## New nuclear capacity
+Reactor name | Location / site | Type | Gross capacity (MWe)
+Atucha 3-6 | Atucha, Lima, Buenos Aires province | ACR300 | 4 x 300
+### countries-a-f/armenia
+# Updated Friday, 10 July 2026
+## Operable reactors in Armenia
+Reactor name | Model | Reactor type | Net capacity (MWe) | Construction start | Grid connection
+Armenian 2 | VVER V-270 | PWR | 416 | 01/07/1975 | 05/01/1980
+## New nuclear capacity
+Reactor name | Type | Gross capacity (MWe)
+Armenia 3 | ? | Up to 300
+### countries-a-f/bangladesh
+# Updated Monday, 2 November 2026
+## Nuclear power plants
+Reactor name | Model | Reactor type | Gross capacity (MWe) | Construction start
+Rooppur 1 | VVER V-523 | PWR | 1200 | 30/11/2017
+Rooppur 2 | VVER V-523 | PWR | 1200 | 14/07/2018
+### countries-a-f/belarus
+# Updated Monday, 24 August 2026
+## Nuclear power plants
+Reactor name | Model | Reactor type | Net capacity (MWe) | Construction start | Grid connection
+Ostrovets 1 | VVER V-491 | PWR | 1110 | 08/11/2013 | 03/11/2020
+Ostrovets 2 | VVER V-491 | PWR | 1110 | 27/04/2014 | 13/05/2023
+## Nuclear power plants
+Reactor | Model | MWe | Construction start | First power
+Ostrovets 3 | VVER V-491 | 1194 | | 2035-2038
+## Nuclear power plants
+Reactor | Model | MWe | Construction start | First power
+Second site, Mogilev Oblast | | | |
+### countries-a-f/belgium
+# Updated Friday, 23 October 2026
+## Nuclear power plants
+Reactor name | Model | Reactor type | Net capacity (MWe) | Construction start | Grid connection
+Doel 4 | W (3-loop) | PWR | 1000 | 01/12/1978 | 08/04/1985
+Tihange 3 | W (3-loop) | PWR | 1020 | 01/11/1978 | 15/06/1985
+### countries-a-f/brazil
+# Updated Friday, 23 October 2026
+## Nuclear power plants
+Reactor name | Model | Reactor type | Net capacity (MWe) | Construction start | Grid connection
+Angra 1 | 2-loop WE | PWR | 609 | 01/05/1971 | 01/04/1982
+Angra 2 | PRE KONVOI | PWR | 1275 | 01/01/1976 | 21/07/2000
+## Angra 3
+Reactor | Model | Gross capacity | Construction start | Commercial operation
+Angra 3 | PWR | 1405 MWe (1340 MWe net) | June 2010 (suspended)* |
+### countries-a-f/bulgaria
+# Updated Tuesday, 17 February 2026
+## Nuclear power industry
+Reactor name | Model | Reactor type | Net capacity (MWe) | Construction start | Grid connection
+Kozloduy 5 | VVER V-320 | PWR | 1003 | 09/07/1980 | 29/11/1987
+Kozloduy 6 | VVER V-320 | PWR | 1003 | 01/04/1982 | 02/08/1991
+## Kozloduy 5&6
+Reactor | Model | Type | Gross MWe
+Kozloduy 7&8 | AP1000 | PWR | 2x1250
+### countries-a-f/canada-nuclear-power
+# Updated Wednesday, 4 November 2026
+## Nuclear power industry
+Reactor name | Model | Reactor type | Net capacity (MWe) | Construction start | Grid connection
+Bruce 1 | CANDU 791 | PHWR | 816 | 01/06/1971 | 14/01/1977
+Bruce 2 | CANDU 791 | PHWR | 817 | 01/12/1970 | 04/09/1976
+Bruce 3 | CANDU 750A | PHWR | 770 | 01/07/1972 | 12/12/1977
+Bruce 4 | CANDU 750A | PHWR | 807 | 01/09/1972 | 21/12/1978
+Bruce 5 | CANDU 750B | PHWR | 817 | 31/05/1978 | 01/12/1984
+Bruce 6 | CANDU 750B | PHWR | 817 | 01/01/1978 | 26/06/1984
+Bruce 7 | CANDU 750B | PHWR | 817 | 01/05/1979 | 22/02/1986
+Bruce 8 | CANDU 750B | PHWR | 817 | 30/07/1979 | 07/03/1987
+Darlington 1 | CANDU 850 | PHWR | 878 | 01/04/1982 | 19/12/1990
+Darlington 2 | CANDU 850 | PHWR | 878 | 01/09/1981 | 15/01/1990
+Darlington 3 | CANDU 850 | PHWR | 878 | 01/09/1984 | 07/12/1992
+Darlington 4 | CANDU 850 | PHWR | 878 | 01/07/1985 | 17/04/1993
+Pickering 5 | CANDU 500B | PHWR | 516 | 01/11/1974 | 19/12/1982
+Pickering 6 | CANDU 500B | PHWR | 516 | 01/10/1975 | 08/11/1983
+Pickering 7 | CANDU 500B | PHWR | 516 | 01/03/1976 | 17/11/1984
+Pickering 8 | CANDU 500B | PHWR | 516 | 01/09/1976 | 21/01/1986
+Point Lepreau | CANDU 6 | PHWR | 660 | 01/05/1975 | 11/09/1982
+## New nuclear capacity
+Reactor name | Model | Reactor type | Gross capacity (MWe) | Construction start
+Darlington SMR-1 | BWRX-300 | BWR | 316 | 26/06/2026
+## Other plans and proposals
+Utility | Site | MWe gross | Reactor | Operation
+NB Power | Point Lepreau | 1x100 | ARC-100 |
+Total planned: 1 unit, 100 MWe
+## Other plans and proposals
+Utility | Site | MWe gross | Reactor | Operation
+Bruce | Bruce C | 6x800 | CANDU |
+OPG | Darlington | 3x316 | BWRX-300 |
+OPG | Wesleyville, Port Hope, Ontario | 8x1250 | AP1000 |
+SaskPower | Estevan, Saskatchewan | 1x316 | BWRX-300 |
+Energy Alberta | Peace River, Alberta | 2x1200 | Candu Monark or AP1000 |
+Total proposed: 20 units, 18,464 MWe
+## Other plans and proposals
+Utility | Site | MWe gross | Reactor | Operation
+New Brunswick Power | Point Lepreau, New Brunswick | 1x1100 | Atmea1 or Kerena | plans lapsed
+Bruce Power Alberta | Peace River, Alberta | 3200-4400 | AP1000, EPR | plans lapsed

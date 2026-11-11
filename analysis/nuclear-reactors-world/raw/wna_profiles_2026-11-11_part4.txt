@@ -1,0 +1,309 @@
+### countries-o-s/russia-nuclear-power
+# Updated Wednesday, 28 October 2026
+## Nuclear power plants
+Reactor name | Model | Reactor type | Net capacity (MWe) | Construction start | Grid connection
+Akademik Lomonosov 1 | KLT-40S 'Floating' | PWR | 32 | 15/04/2007 | 19/12/2019
+Akademik Lomonosov 2 | KLT-40S 'Floating' | PWR | 32 | 15/04/2007 | 19/12/2019
+Balakovo 1 | VVER V-320 | PWR | 950 | 01/12/1980 | 28/12/1985
+Balakovo 2 | VVER V-320 | PWR | 950 | 01/08/1981 | 08/10/1987
+Balakovo 3 | VVER V-320 | PWR | 950 | 01/11/1982 | 25/12/1988
+Balakovo 4 | VVER V-320 | PWR | 950 | 01/04/1984 | 11/04/1993
+Beloyarsk 3 | BN-600 | FBR | 560 | 01/01/1969 | 08/04/1980
+Beloyarsk 4 | BN-800 | FBR | 820 | 18/07/2006 | 10/12/2015
+Kalinin 1 | VVER V-338 | PWR | 950 | 01/02/1977 | 09/05/1984
+Kalinin 2 | VVER V-338 | PWR | 950 | 01/02/1982 | 03/12/1986
+Kalinin 3 | VVER V-320 | PWR | 950 | 01/10/1985 | 16/12/2004
+Kalinin 4 | VVER V-320 | PWR | 950 | 01/08/1986 | 24/11/2011
+Kola 1 | VVER V-230 | PWR | 411 | 01/05/1970 | 29/06/1973
+Kola 2 | VVER V-230 | PWR | 411 | 01/05/1970 | 09/12/1974
+Kola 3 | VVER V-213 | PWR | 411 | 01/04/1977 | 24/03/1981
+Kola 4 | VVER V-213 | PWR | 411 | 01/08/1976 | 11/10/1984
+Kursk 2-1 | VVER-TOI | PWR | 1200 | 28/04/2018 | 31/12/2025
+Kursk 3 | RBMK-1000 | LWGR | 925 | 01/04/1978 | 17/10/1983
+Kursk 4 | RBMK-1000 | LWGR | 925 | 01/05/1981 | 02/12/1985
+Leningrad 2 1 | VVER V-491 | PWR | 1101 | 25/10/2008 | 09/03/2018
+Leningrad 2 2 | VVER V-491 | PWR | 1101 | 15/04/2010 | 22/10/2020
+Leningrad 3 | RBMK-1000 | LWGR | 925 | 01/12/1973 | 07/12/1979
+Leningrad 4 | RBMK-1000 | LWGR | 925 | 01/02/1975 | 09/02/1981
+Novovoronezh 2 1 | VVER V-392M | PWR | 1100 | 24/06/2008 | 05/08/2016
+Novovoronezh 2 2 | VVER V-392M | PWR | 1101 | 12/07/2009 | 01/05/2019
+Novovoronezh 4 | VVER V-179 | PWR | 385 | 01/07/1967 | 28/12/1972
+Novovoronezh 5 | VVER V-187 | PWR | 950 | 01/03/1974 | 31/05/1980
+Rostov 1 | VVER V-320 | PWR | 989 | 01/09/1981 | 30/03/2001
+Rostov 2 | VVER V-320 | PWR | 950 | 01/05/1983 | 18/03/2010
+Rostov 3 | VVER V-320 | PWR | 950 | 15/09/2009 | 27/12/2014
+Rostov 4 | VVER V-320 | PWR | 979 | 16/06/2010 | 02/02/2018
+Smolensk 1 | RBMK-1000 | LWGR | 925 | 01/10/1975 | 09/12/1982
+Smolensk 2 | RBMK-1000 | LWGR | 925 | 01/06/1976 | 31/05/1985
+Smolensk 3 | RBMK-1000 | LWGR | 925 | 01/05/1984 | 17/01/1990
+## New nuclear capacity
+Reactor name | Model | Reactor type | Net capacity (MWe) | Construction start
+Cape Nagloynyn-1 | RITM 200S | PWR | 50 | 31/08/2022
+Cape Nagloynyn-2 | RITM 200S | PWR | 50 | 31/08/2022
+Kursk 2-2 | VVER-TOI | PWR | 1200 | 15/04/2019
+Kursk 2-3 | VVER-TOI | PWR | 1200 | 31/01/2026
+Leningrad 2-3 | VVER V-491 | PWR | 1101 | 14/03/2024
+Leningrad 2-4 | VVER V-491 | PWR | 1101 | 20/03/2025
+Seversk BREST-OD-300 | BREST-OD-300 | FBR | 300 | 08/06/2021
+## New nuclear capacity
+Reactor | Reactor type | MWe gross | Deployment
+Beloyarsk 5 | BN-1200 | 1220 | 2035
+Khabarovsk 1&2 | VVER-600/V-498 | 2 x 600 | 2036
+Kola II 1-4 | VVER-600/V-498 | 4 x 600 | 2035
+Krasnoyarsk 1-4 | VVER-1200/V-510 | 4 x 1255 | 2037
+Kursk II-4 | VVER-TOI | 1255 | 2032
+Novocherkassk 1&2 | VVER-1200/V-510 | 2 x 1200 | 2036
+Primorsk 1&2 | VVER-600/V-498 | 2 x 600 | 2039
+Reftinskaya 1 | VVER-1200/V-510 | 1255 | 2036
+Smolensk II 1&2 | VVER-1200/V-510 | 2 x 1250 | 2033
+South Urals 1&2 | BN-1200 | 2 x 1220 | 2038
+Ust-Kuyga, Yakutia 1&2 | RITM-200N | 2 x 55 | 2030
+Total of 23 planned | | 21,000 MWe |
+## New nuclear capacity
+Reactor | Reactor type | MWe gross
+Cape Nagloynyn, Chukotka | Shelf-M | 10
+MPEB Baimsky Chukchi 1-4 | RITM-200S | 4 x 106
+Norilsk ASMM 1-4 | RITM-400 | 4 x 80
+## Federal Target Programme: Advanced Nuclear Power Technologies 2010-2020
+Cooling | Demonstration reactor | Construction (RUR billion) | R&D (RUR billion) | Total (RUR billion)
+Pb-Bi cooled | SVBR 100 MWe | 10.153 | 3.075 | 13.228
+Na cooled | (BN-600, BN-800) | 0 | 5.366 | 5.366
+Pb cooled | BREST 300 MWe | 15.555 | 10.143 | 25.698
+multiple | MBIR 150 MWt | 11.390 | 5.042 | 16.432
+| Total: | 37.1 | | 60.7
+## Pressurized water reactors
+Generic reactor type | Reactor plant model | Whole power plant
+VBER-300 | | (under development) OKBM, 325 MWe gross, based on KLT-40
+VVER-210 | V-1 | prototype VVER, Novovoronezh 1
+VVER-365 | V-3M | Novovoronezh 2
+VVER-440 | V-179 | Novovoronezh 3-4, prototype VVER-440
+V-230 | Kola 1-2, EU units closed down
+V-270 | Armenia 1-2, based on V-230
+V-213 | Kola 3-4, Rovno 1-2, Loviisa, Paks, Dukovany, Bohunice V2, Mochovce
+V-318 | Cuba, based on V-213, full containment & ECCS
+VVER-640 | V-407 | (under development), Gen III+, Gidropress
+VVER-300 | V-478 | (under development, based on V-407), Gen III+, Gidropress
+VVER-600 | V-498 | (under development by Gidropress, based on V-491), Gen III+, proposed for Kola
+VVER-1000 | V-187 | Novovoronezh 5, prototype VVER-1000
+V-302 | South Ukraine 1
+V-320 | most Russian & Ukraine plants, Kozloduy 5-6, Temelin 1-2
+V-338 | Kalinin 1-2, South Ukraine 2
+V-446 | based on V-392, adapted to previous Siemens work, Bushehr 1
+V-413 | AES-91
+V-428 | AES-91 Tianwan and Vietnam proposal, based on V-392, Gen III
+V-428M | Tianwan 3&4, later version
+V-412 | AES-92 Kudankulam, based on V-392, Gen III
+V-392 | AES-92 – meets EUR standards, Armenia, Khmelnitsky 3-4, Gen III
+V-392B | AES-92
+V-466 | AES-91/99 Olkiluoto bid, also Sanmen, developed from V-428, Gen III
+V-466B | AES-92 Belene/Kozloduy 7, Jordan?, developed from V-412 & V-466, 60-year lifetime, 1060 MWe gross, Gen III, Gidropress
+| V-528 | Bushehr 2&3 version of V-466B
+VVER-1200 | V-392M | AES-2006 by Moscow AEP and Gidropress, Novovoronezh; Developed from V-392 and V-412, Gen III+, 1170 MWe gross, more passive safety than V-491, developed to VVER-TOI
+V-491 | AES-2006 Leningrad, Baltic, Belarus, Tianwan 7&8, Ninh Thuan 1 bid; developed from AES-91 V-428 by Atomproekt and Gidropress, Gen III+, 1170 MWe gross, developed to MIR-1200 for EUR
+| V-508 | MIR-1200 from V-491 for EUR, Temelin bid
+| V-509 | Akkuyu version, based on Novovoronezh V-392M
+| V-522 | Hanhikivi version of V-491 AES-2006E
+| V-523 | Rooppur version of V-392M, Novovoronezh reference, AES-2006M
+| V-527 | Paks II version of V-491 AES-2006E
+| V-529 | El Dabaa version of V-491 AES-2006E
+VVER-1200A | V-501 | Concept proposal AES-2006, but two-loop, shelved in 2011
+VVER-1300 | V-488 | AES-2006M, developmental model, Gen III+, Gidropress
+| V-510 | AES-2010, Generation III+ VVER-TOI, 1250 MWe gross, developed by Moscow AEP from V-392M, Nizhny Novgorod, Kursk II, Smolensk II, Central, Tatar
+| V-513 | Upgraded V-392M, VVER-TOI
+VVER-1300A | ? | Cheaper variant of VVER-TOI
+VVER-1500 | V-448 | Gidropress, Gen III+, shelved in 2006
+VVER-1800 | ? | (concept proposal) three loops, based on 1300A and 1500
+VVER-SCP | V-393 | being developed, Supercritical, Gen IV
+## Export of nuclear reactors
+Country | Plant | Type | Status
+Iran | Bushehr 1 | VVER-1000/V-446 | operable
+China | Tianwan 1&2 | AES-91 | operable
+| Tianwan 3&4 | AES-91 | operable
+India | Kudankulam 1&2 | AES-92 | operable
+Belarus | Ostrovets 1&2 | AES-2006/V-491 | operable, loan for 25 years to finance 90% of the contract.
+Operable: 9
+## Export of nuclear reactors
+Country | Plant | Type | Status, financing
+India | Kudankulam 3-6 | AES-92 | Construction start June 2017 and Oct 2017, and June 2021 and December 2021
+Bangladesh | Rooppur 1&2 | VVER-1200/V-392M | Construction start Nov 2017 and July 2018, loan organized for 90%. Unit 1 first criticality October 2026
+Turkey | Akkuyu 1-4 | VVER-1200/V-509 | Construction start April 2018, April 2020, March 2021, July 2022, BOO
+Iran | Bushehr 2 | AES-92/V-466B | Construction start Nov 2019. Phase II (including work on unit 3) 18% complete. Work disrupted by military conflict from March 2026; Rosatom specialists began returning in August 2026
+China | Tianwan 7&8 | VVER-1200/V-491 | Construction start May 2021 and February 2022. Unit 7 grid connected October 2026
+China | Xudabao 3&4 | VVER-1200/V-491 | Construction start May 2021 and May 2022
+Egypt | El Dabaa 1-4 | VVER-1200/V-529 | Construction start July 2022, Nov 2022, May 2023, Jan 2024
+Hungary | Paks II-1 | VVER-1200/V-527 | Construction start Feb 2026
+Construction: 20
+## Export of nuclear reactors
+Country | Plant | Type | Status, financing
+Armenia | Metsamor 3 | AES-92 | Superseded: in October 2025 Armenia decided its next unit would be an SMR; proposals from Russia, USA, France, China and South Korea under evaluation; Rosatom also proposed a VVER-1000 unit in September 2026
+Hungary | Paks II-2 | VVER-1200/V-527 | Finance provided to cover 80% of cost
+Uzbekistan | Farish (Jizzakh) | VVER-1000 + RITM-200N | Construction of first RITM-200N unit officially started June 2026
+Kazakhstan | Balkhash (Ulken) | 2 x VVER-1200 | Intergovernmental and export loan agreements signed May 2026; EPC contract signed September 2026; construction targeted for 2027
+India | Kudankulam 7&8 | AES-2006 |
+Bulgaria | Belene/Kozloduy 7 | AES-92 | Cancelled
+Ukraine | Khmelnitski | completion of 2 x V-392B reactors | Was due to commence construction 2015, 85% financed by loan, but contract rescinded by Ukraine in 2015
+South Africa | Thyspunt | up to 8 x AES-2006 | Broad agreement signed, no specifics, Russia offers finance, prefers BOO. On hold
+Nigeria | | AES-2006? | Broad agreement signed, no specifics, Russia offers finance, BOO
+Argentina | Atucha 5? | AES-2006 | Broad agreement signed, no specifics, Russia offers finance
+Indonesia | Serpong | 10 MWe HTR | Concept design by OKBM Afrikantov
+Algeria | ? | ? | Agreement signed, no specifics
+Jordan | Al Amra | 2 x AES-92 | Cancelled in 2018
+Finland | Hanhikivi | AES-2006 | Cancelled
+Vietnam | Ninh Thuan 1 | 2 x VVER-1200 | Intergovernmental construction agreement signed March 2026
+### countries-o-s/slovakia
+# Updated Wednesday, 21 October 2026
+## Nuclear power industry
+Reactor name | Model | Reactor type | Net capacity (MWe) | Construction start | Grid connection
+Bohunice 3 | VVER V-213 | PWR | 408 | 01/12/1976 | 20/08/1984
+Bohunice 4 | VVER V-213 | PWR | 408 | 01/12/1976 | 09/08/1985
+Mochovce 1 | VVER V-213 | PWR | 408 | 13/10/1983 | 04/07/1998
+Mochovce 2 | VVER V-213 | PWR | 408 | 13/10/1983 | 20/12/1999
+Mochovce 3 | VVER V-213 | PWR | 440 | 27/01/1987 | 31/01/2023
+Mochovce 4 | VVER V-213 | PWR | 440 | 27/01/1987 | 15/10/2026
+## Reactors proposed in Slovakia
+Site | Technology | MWe gross | Planned commercial operation
+Bohunice New Block | AP1000 | 1250 | 2040 targeted
+Total (1) | | 1250 |
+### countries-o-s/slovenia
+# Updated Wednesday, 28 October 2026
+## Reactors operating in Slovenia
+Reactor name | Model | Reactor type | Net capacity (MWe) | Construction start | Grid connection
+Krsko | WE 212 | PWR | 696 | 30/03/1975 | 02/10/1981
+## Reactors proposed in Slovenia
+Site | Technology | MWe gross | Planned commercial operation
+JEK 2 | ? | 1 x 1200 |
+### countries-o-s/south-africa
+# Updated Monday, 26 October 2026
+## Nuclear power industry
+Reactor name | Model | Reactor type | Net capacity (MWe) | Construction start | Grid connection
+Koeberg 1 | CP1 | PWR | 924 | 01/07/1976 | 04/04/1984
+Koeberg 2 | CP1 | PWR | 930 | 01/07/1976 | 25/07/1985
+### countries-o-s/spain
+# Updated Tuesday, 24 March 2026
+## Nuclear power industry
+Reactor name | Model | Reactor type | Net capacity (MWe) | Construction start | Grid connection
+Almaraz 1 | W (3-loop) | PWR | 1011 | 03/07/1973 | 01/05/1981
+Almaraz 2 | W (3-loop) | PWR | 1006 | 03/07/1973 | 08/10/1983
+Asco 1 | W (3-loop) | PWR | 995 | 16/05/1974 | 13/08/1983
+Asco 2 | W (3-loop) | PWR | 997 | 07/03/1975 | 23/10/1985
+Cofrentes | BWR-6 | BWR | 1064 | 09/09/1975 | 14/10/1984
+Trillo 1 | PWR 3 loops | PWR | 1003 | 17/08/1979 | 23/05/1988
+Vandellos 2 | W (3-loop) | PWR | 1047 | 29/12/1980 | 12/12/1987
+### countries-o-s/sweden
+# Updated Friday, 23 October 2026
+## Reactors operating in Sweden
+Reactor name | Model | Reactor type | Net capacity (MWe) | Construction start | Grid connection
+Forsmark 1 | ABB-III, BWR-2500 | BWR | 1103 | 01/06/1973 | 06/06/1980
+Forsmark 2 | ABB-III, BWR-2500 | BWR | 1121 | 01/01/1975 | 26/01/1981
+Forsmark 3 | ABB-III, BWR-3000 | BWR | 1172 | 01/01/1979 | 05/03/1985
+Oskarshamn 3 | ABB-III, BWR-3000 | BWR | 1400 | 01/05/1980 | 03/03/1985
+Ringhals 3 | W (3-loops) | PWR | 1083 | 01/09/1972 | 07/09/1980
+Ringhals 4 | W (3-loops) | PWR | 1134 | 01/11/1973 | 23/06/1982
+## Kärnfull Next / Studsvik
+Site | Type | Capacity (MWe) | First power
+Värö Peninsula | Rolls-Royce SMR | 3x470 (net) | Mid-2030s
+## Kärnfull Next / Studsvik
+Site | Type | Gross MWe | First power
+Norrsundet | SEALER | 6x55 | Early 2030s
+Nyköping or Valdemarsvik | BWRX-300 | 4x316 | Mid-2030s
+Untra | SEALER | 6x55 | Early 2030s
+## Swedish reactors being decommissioned
+Reactor | Type | Net capacity MWe | Commercial operation
+Ågesta | Prot HWR | 10 | 1964 - 1974
+Barsebäck 1 | BWR | 600 | 1975 - 1999
+Barsebäck 2 | BWR | 600 | 1977 - 2005
+Oskarshamn 2 | BWR | 638 | 1974 - 2013
+Oskarshamn 1 | BWR | 473 | 1972 - 2017
+Ringhals 2 | PWR | 852 | 1974 - 2019
+Ringhals 1 | BWR | 881 | 1976 - 2020
+### countries-o-s/switzerland
+# Updated Friday, 23 October 2026
+## Nuclear power plants
+Reactor name | Model | Reactor type | Net capacity (MWe) | Grid connection
+Beznau 1 | W (2-loop) | PWR | 365 | 17/07/1969
+Beznau 2 | W (2-loop) | PWR | 365 | 23/10/1971
+Goesgen | PWR 3 Loop | PWR | 1010 | 02/02/1979
+Leibstadt | BWR-6 | BWR | 1233 | 24/05/1984
+### countries-t-z/turkey
+# Updated Wednesday, 4 November 2026
+## Nuclear power industry
+Reactor name | Model | Reactor type | Gross capacity (MWe) | Construction start
+Akkuyu 1 | VVER V-509 | PWR | 1200 | 03/04/2018
+Akkuyu 2 | VVER V-509 | PWR | 1200 | 08/04/2020
+Akkuyu 3 | VVER V-509 | PWR | 1200 | 10/03/2021
+Akkuyu 4 | VVER V-509 | PWR | 1200 | 21/07/2022
+## Nuclear power industry
+Site | Type | MWe gross | Locality | Proponent/utility | Construction start
+Sinop 1-4 | APR-1400? VVER-1200? | c. 5200 | Sinop province | |
+Igneada/Kıyıköy 1-4 | HPR1000? | c. 4800 | Kırklareli province | |
+### countries-t-z/ukraine
+# Updated Friday, 23 October 2026
+## Nuclear power industry
+Reactor name | Model | Reactor type | Net capacity (MWe) | Grid connection
+Khmelnitski 1 | VVER V-320 | PWR | 950 | 31/12/1987
+Khmelnitski 2 | VVER V-320 | PWR | 950 | 07/08/2004
+Rivne 1 | VVER V-213 | PWR | 381 | 22/12/1980
+Rivne 2 | VVER V-213 | PWR | 376 | 22/12/1981
+Rivne 3 | VVER V-320 | PWR | 950 | 21/12/1986
+Rivne 4 | VVER V-320 | PWR | 950 | 10/10/2004
+South Ukraine 1 | VVER V-302 | PWR | 950 | 31/12/1982
+South Ukraine 2 | VVER V-338 | PWR | 950 | 06/01/1985
+South Ukraine 3 | VVER V-320 | PWR | 950 | 20/09/1989
+Zaporizhzhia 1 | VVER V-320 | PWR | 950 | 10/12/1984
+Zaporizhzhia 2 | VVER V-320 | PWR | 950 | 22/07/1985
+Zaporizhzhia 3 | VVER V-320 | PWR | 950 | 10/12/1986
+Zaporizhzhia 4 | VVER V-320 | PWR | 950 | 18/12/1987
+Zaporizhzhia 5 | VVER V-320 | PWR | 950 | 14/08/1989
+Zaporizhzhia 6 | VVER V-320 | PWR | 950 | 19/10/1995
+## Building further nuclear power capacity
+Reactor name | Model | Gross capacity (MWe) | Construction start
+Khmelnitski 3 | VVER V-392B | 1089 | 01/03/1986
+Khmelnitski 4 | VVER V-392B | 1089 | 01/02/1987
+## Building further nuclear power capacity
+Location | Reactor | Gross capacity (MWe) | Start construction | Commercial operation
+Khmelnitski 5&6 | AP1000 | 2 x 1250 | |
+Total planned: 2 | | 2500 | |
+Current sites, plus new at Chyhyryn* and in western Ukraine | AP1000 | 7 x 1250 | |
+Total proposed | | 8750 | |
+### countries-t-z/united-arab-emirates
+# Updated Thursday, 16 July 2026
+## Nuclear power industry
+Reactor name | Model | Reactor type | Net capacity (MWe) | Construction start | Grid connection
+Barakah 1 | APR-1400 | PWR | 1337 | 19/07/2012 | 19/08/2020
+Barakah 2 | APR-1400 | PWR | 1337 | 15/04/2013 | 14/09/2021
+Barakah 3 | APR-1400 | PWR | 1337 | 24/09/2014 | 08/10/2022
+Barakah 4 | APR-1400 | PWR | 1337 | 30/07/2015 | 23/03/2024
+### countries-t-z/united-kingdom
+# Updated Monday, 21 September 2026
+## Nuclear power industry
+Reactor name | Model | Reactor type | Net capacity (MWe) | Construction start | Grid connection
+Hartlepool A 1 | AGR | GCR | 590 | 01/10/1968 | 01/08/1983
+Hartlepool A 2 | AGR | GCR | 595 | 01/10/1968 | 31/10/1984
+Heysham A 1 | AGR | GCR | 485 | 01/12/1970 | 09/07/1983
+Heysham A 2 | AGR | GCR | 575 | 01/12/1970 | 11/10/1984
+Heysham B 1 | AGR | GCR | 620 | 01/08/1980 | 12/07/1988
+Heysham B 2 | AGR | GCR | 620 | 01/08/1980 | 11/11/1988
+Sizewell B | SNUPPS | PWR | 1198 | 18/07/1988 | 14/02/1995
+Torness 1 | AGR | GCR | 595 | 01/08/1980 | 25/05/1988
+Torness 2 | AGR | GCR | 605 | 01/08/1980 | 03/02/1989
+## Hinkley Point C
+Reactor name | Model | Reactor type | Gross capacity (MWe) | Construction start
+Hinkley Point C 1 | EPR-1750 | PWR | 1720 | 11/12/2018
+Hinkley Point C 2 | EPR-1750 | PWR | 1720 | 12/12/2019
+## SGE
+Proponent | Reactor/site | Locality | Type | Capacity (MWe gross) | Construction start
+EDF Energyn | Sizewell C1 | Suffolk | EPR | 1670 |
+| Sizewell C2 | Suffolk | EPR | 1670 |
+Rolls-Royce SMR | Wylfa SMR-1 | Anglesey, Wales | Rolls-Royce SMR | 490 (est.) |
+Total planned | 3 units | | | 3830 MWe |
+EDF Energy | Cottam | Nottinghamshire | SMR-300 | 2 x 360 |
+Centrica | Hartlepool | County Durham | Xe-100 | 12 x 90 |
+Rolls-Royce SMR | Wylfa SMR-2&3 | Anglesey, Wales | Rolls-Royce SMR | 2 x 490 (est.) |
+Total proposed | 16 units | | | 2780 MWe |
+| | | | |
+China General Nuclear | Bradwell B1&B2 | Essex | Hualong One | 2 x 1150 | Cancelled
+Horizon | Wylfa Newydd 1&2 | Anglesey, Wales | ABWR | 2760 | Cancelled
+Horizon | Oldbury B1&B2 | Gloucestershire | ABWR | 2760 | Cancelled
+GE Hitachi | Sellafield | Cumbria | 2 x PRISM | 2 x 311 | Cancelled
+Candu Energy | Sellafield | Cumbria | 2 x Candu EC6 | 2 x 740 | Cancelled
+NuGeneration | Moorside 1-3 | Cumbria | 3x AP1000 | 3 x 1135 | Cancelled

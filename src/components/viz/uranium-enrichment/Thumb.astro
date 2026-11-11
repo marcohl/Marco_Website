@@ -1,0 +1,21 @@
+---
+// Home-page sheet thumbnail: 1,000 atoms, the U-235 ones in the story color (data from the project).
+import waffles from "../../../data/uranium-enrichment/waffles.json";
+const { title } = Astro.props;
+const natural = waffles.cases.find((c) => c.id === "natural")!;
+const COLS = 40, CELL = 12, GAP = 2, P = CELL + GAP;
+const ROWS = Math.ceil(waffles.sample_size / COLS);
+const cellPath = (from: number, to: number) =>
+  Array.from({ length: to - from }, (_, k) => { const i = from + k; return `M${(i % COLS) * P},${Math.floor(i / COLS) * P}h${CELL}v${CELL}h-${CELL}z`; }).join("");
+const wafW = COLS * P - GAP, wafH = ROWS * P - GAP;
+const shown = natural.u235_atoms_shown;
+---
+<svg viewBox={`0 0 ${wafW} ${wafH}`} role="img" aria-label={`${title}: ${shown} of every ${waffles.sample_size.toLocaleString("en-US")} natural uranium atoms are U-235`}>
+  <path class="ctx" d={cellPath(shown, waffles.sample_size)} />
+  <path class="story" d={cellPath(0, shown)} />
+</svg>
+
+<style>
+  .ctx { fill: var(--cat-1); }
+  .story { fill: var(--cat-2); }
+</style>
