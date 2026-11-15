@@ -18,6 +18,15 @@
   --cat-1: #5A68B0;
   --cat-2: #C8372D;
 
+  /* technology palette (exception to the two-color rule, approved for bolivia-power-plants):
+     one soft color per generation technology. Validated with check_palette.py on --bg and --panel.
+     Low-contrast fills (gas, wind, solar) always get an --ink outline and a text label or table. */
+  --tech-hydro: #3C89BF;
+  --tech-gas: #E58C74;
+  --tech-wind: #AFACF6;
+  --tech-solar: #F4CC9B;
+  --tech-biomass: #5A6B45;
+
   /* Three roles. Display: headings, nav, buttons. Body: running text (serif). Data: tables, charts and
      their controls (Atkinson Hyperlegible Next, tabular figures, slashed zero). */
   --f-display: "Barlow Semi Condensed", "Arial Narrow", system-ui, sans-serif;
@@ -32,6 +41,7 @@
   --bg: #0E1740; --panel: #162257; --ink: #EAF0FF; --ink-2: #B9C4F2; --ink-3: #98A5DC; --rule: #2C3A7A; --grid: #1B2766;
   --marker: #FFD84D; --on-marker: #0E1740;
   --cat-1: #8FA2F0; --cat-2: #FF7A66;
+  --tech-hydro: #4A95BB; --tech-gas: #EF8D76; --tech-wind: #C7A6FD; --tech-solar: #FDD597; --tech-biomass: #657B4A;
   color-scheme: dark;
 }
 

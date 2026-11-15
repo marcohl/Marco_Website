@@ -65,6 +65,14 @@ Rules:
   `#FAFAF8`, then the dark values on `#0E1740` and `#162257`). Add it here
   when it lands. The current pair passes: contrast 4.7-5.0:1 light,
   5.9-7.1:1 dark; worst colour-blind distance 19.7 (protan).
+- **Technology palette (exception, `bolivia-power-plants`).** When a chart
+  must tell generation technologies apart, use `--tech-gas`, `--tech-hydro`,
+  `--tech-solar`, `--tech-wind`, `--tech-biomass` (soft tones, approved by
+  Marco on 2026-11-15). They pass `check:palette` on all four surfaces (worst
+  CVD distance 13.8 light, 11.7 dark), but gas, wind and solar are below 3:1 on
+  the light surfaces, so their marks always carry a 1px `--ink` outline at .55
+  opacity and every series has a text label and a table view. Do not mix them
+  with `--cat-1` / `--cat-2` in the same chart.
 - **Sequential and diverging scales** are not defined yet. The first project
   that needs one defines `--seq-*` or `--div-*` tokens (one hue light to dark;
   two hues with a neutral midpoint), validates them, and documents them here.

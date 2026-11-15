@@ -1,0 +1,72 @@
+@type|@id|@lat|@lon|name|plant:source|plant:output:electricity|operator
+node|4269793597|-17.0131190|-64.0714605|Campo Yapacani|||YPFB
+way|168175576|-16.4124764|-67.7726313|Chojlla Hydroelectric Power Plant Bolivia|hydro||
+way|208077836|-16.5656583|-68.1822020|Planta Termoeléctrica El Kenko|gas|17.5 MW|Empresa Eléctrica Valle Hermoso
+way|208238608|-17.4291793|-66.1168721|Central Termoeléctrica Valle Hermoso|gas|60 MW|ENDE Valle Hermoso
+way|208680224|-17.7870244|-63.1528763|Planta Termoeléctrica Guarachi|gas|345.95 MW|ENDE Guaracachi
+way|297984791|-16.9255883|-67.3247939|Hidroelectrica Miguillas|hydro|yes|COBEE
+way|316447126|-17.2427359|-64.5411163|Termoeléctrica Central Bulo Bulo|gas|90 MW|
+way|316447128|-17.2135419|-64.5272539|Central Termoeléctrica Carrasco|gas|133.4 MW|ENDE Valle Hermoso
+way|316535966|-19.7822081|-66.3482061|Central Hidroeléctrica Kilpani|hydro|yes|ENDE
+way|316535967|-19.8168623|-66.3213327|Central Hidroeléctrica Landara|hydro|yes|Empresa Eléctrica Valle Hermoso S.A
+way|327789923|-17.0041115|-65.6286590||||
+way|399121869|-18.0474223|-60.1842926||||CRE
+way|400435424|-18.1060381|-64.2068742|Sistemas Valles Cruceños|||CRE
+way|490450458|-21.6940896|-63.5609376|Planta Termoeléctrica del Sur|gas|480 MW|ENDE ANDINA SAM
+way|522803086|-17.3147876|-66.2616545|Central Hidroeléctrica Misicuni|hydro|588 MW|ENDE Corani
+way|689315702|-11.0825718|-68.7694994|Planta Solar Fotovoltáica Cobija|solar|5 MW|ENDE Guaracachi
+way|761887640|-17.6313734|-65.2180716|Estación Generadora Totora|||
+way|764096367|-22.4274823|-67.7562245|Planta Geotérmica Laguna Colorada|geothermal|100 MW|ENDE
+way|776154904|-17.1922983|-65.8233746|Hidroeléctrica Santa Isabel|hydro|54 MW|Empresa Eléctrica Corani
+way|777819672|-17.1687667|-65.7859827|Central Hidroeléctrica San José 1|hydro|55 MW|ENDE
+way|777819685|-17.1032489|-65.7852126|Central Hidroeléctrica San Jose 2|hydro|69 MW|ENDE
+way|843740945|-17.5347699|-63.1467002|Planta Termoeléctrica de Warnes|gas|200 MW|ENDE
+way|848760161|-20.5767846|-66.7693373|Planta Solar Fotovoltáica Uyuni|solar|60 MW|ENDE Guaracachi
+way|866780634|-21.1665561|-66.1450203|Estación Generadora (Ruinas)|||
+way|886778582|-16.1316347|-68.1088178|Hidroeléctrica Santa Rosa I|hydro|300 MW|ENDE Corani
+way|906023958|-17.7705309|-67.4327355|Planta Solar Fotovoltaica Oruro|solar|100 MW|Empresa Nacional de Electricidad
+way|948865501|-17.1966639|-64.5150596|Planta Termoeléctrica de Ciclo Combinado Entre Ríos|gas|yes|
+way|987818392|-18.3758458|-63.1211667|Parque Eólico El Dorado|wind|54 MW|ENDE Corani
+way|1015728740|-16.4403580|-67.5209575|Generador de Energía PELTON|hydro|yes|
+way|1189693627|-16.5379338|-68.0616499||solar||Ingeniería Eléctrica
+way|1189693628|-16.5384010|-68.0625533|Campo de Entrenamiento Solar|solar||Ingeniería Eléctrica IIIE
+way|1189693629|-16.5386116|-68.0625488|Seguidor Solar Fotovoltaico|solar||Ingeniería Eléctrica
+way|1213169766|-16.5652593|-68.1813854||gas|yes|
+way|1214924247|-17.7549825|-63.1400989|Planta Termoeléctrica Santa Cruz|gas|41.95 MW|ENDE Guaracachi
+way|1227090085|-13.6115869|-62.0938340|Planta Solar Híbrida Cerro San Simon|solar|yes|
+way|1231263244|-20.5778910|-67.3641775|Planta de Generación de Energía Eléctrica|gas|yes|Yacimientos de Litio Bolivianos
+way|1234243541|-19.1436830|-57.8900031|Central Eléctrica Mutún|gas|yes|Empresa Siderúrgica del Mutún
+way|1262709983|-16.8936842|-67.3153851|Hidroelectrica Angostura|hydro||COBEE
+way|1262709989|-19.9773539|-66.1910053|Visigza|hydro|yes|Ende - Sistema El Condor
+way|1262709992|-16.9255910|-67.3255568||hydro|yes|
+way|1263873837|-19.3860042|-65.8980576||hydro|yes|
+way|1292947931|-13.4955480|-61.8880920||solar|156.42 KW|ENDE Beni
+way|1292949729|-13.5278413|-61.8814033||solar|167.7 KW|ENDE Beni
+way|1304812350|-20.0460560|-66.1357910|CHE Punutuma|hydro|yes|
+way|1304900509|-16.9976181|-67.2562255|CHE Pongo|hydro|yes|
+way|1310863587|-19.5520371|-65.8889621|CHE Cayara|hydro|yes|
+way|1312184011|-19.0143056|-65.4262140||hydro|yes|
+way|1322950852|-11.4920469|-67.2474817|Planta Solar Fotovoltaica El Sena|solar|0.4 MW|ENDE Guaracachi
+way|1323229796|-21.6017120|-64.7184860|Planta Hidroeléctrica San Jacinto|hydro|7.6 MW|ENDE Guaracachi
+way|1323522943|-13.5279308|-61.8813712|Planta Híbrida Solar Remanso|solar|167.7 KW|ENDE Beni
+way|1323522948|-13.4956451|-61.8880777|Planta Híbrida Solar Puerto Villazón|solar|156.42 KW|ENDE Beni
+way|1330898772|-21.5266395|-64.7297822|SETAR|||
+way|1333849498|-16.2564307|-68.2168209||hydro|yes|
+way|1337105194|-17.4092147|-65.2631476|Central Hidroeléctrica Sehuencas|hydro|188.62 MW|ENDE Valle Hermoso
+way|1366981160|-17.3833223|-65.2580614|Central Hidroelectrica Juntas|hydro|91.26 MW|ENDE Valle Hermoso
+way|1376125031|-16.5381973|-68.1384745|Sistema de Regulación Municipal (Siremu)|waste|yes|
+way|1391218348|-17.6635430|-63.1573632|Plata Solar Fotovoltáica Viru Viru|solar|320 kW|
+way|1430562226|-16.3498890|-60.9588540||solar||
+way|1430562227|-21.8379379|-65.1016438|Planta Solar Fotovoltáica Yunchará|||ENDE Guaracachi
+way|1430857803|-17.3165051|-66.2220984||hydro||
+way|1464186388|-16.3878622|-67.7376062|Yanacachi Norte Hydroelectric Power Plant Bolivia|hydro||
+way|1464224452|-16.0414119|-67.9772296||hydro|yes|
+way|1464224453|-16.8149886|-67.3252112||hydro||
+way|1510846407|-16.1850249|-68.1391583|Subestación Electrica Tiquimani|||
+way|1532369598|-17.5336060|-63.1590236||gas|yes|
+way|1552712277|-17.5234089|-63.1303200|Parque Eólico Warnes|wind|14.4 MW|ENDE Guaracachi
+way|1568122852|-17.4016821|-66.1449443||solar|yes|Gobierno Autónomo Municipal de Cochabamba
+way|1568122857|-17.4019998|-66.1407646||solar|yes|Gobierno Autónomo Municipal de Cochabamba
+relation|7372001|-17.2131677|-65.8736655|Central Hidroeléctrica Corani|hydro|64 MW|ENDE Corani
+relation|9855315|-17.6315403|-65.2785823|Parque Eólico Qollpana|wind|27.9 MW|ENDE Corani
+relation|15689925|-17.8154714|-62.8403125|Parque Eólico San Julián|wind|39600 kW|

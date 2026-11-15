@@ -1,0 +1,94 @@
+plant,agent,unit,n_units,tech_cndc,capacity_mw
+Corani,ENDE CORANI,,5,hydro,65.25
+Santa Isabel,ENDE CORANI,,5,hydro,91.11
+San José 1,ENDE CORANI,,2,hydro,55.00
+San José 2,ENDE CORANI,,2,hydro,69.00
+Zongo,COBEE,,1,hydro,11.04
+Tiquimani,COBEE,,1,hydro,9.72
+Botijlaca,COBEE,,3,hydro,6.81
+Cuticucho,COBEE,,5,hydro,22.97
+Santa Rosa,COBEE,Santa Rosa BC,1,hydro,6.90
+Santa Rosa,COBEE,Santa Rosa AC,1,hydro,10.69
+Sainani,COBEE,,1,hydro,10.50
+Chururaqui,COBEE,,2,hydro,25.39
+Harca,COBEE,,2,hydro,25.85
+Cahua,COBEE,,2,hydro,28.02
+Huaji,COBEE,,2,hydro,30.15
+Miguilla,COBEE,,2,hydro,2.55
+Angostura,COBEE,,3,hydro,6.23
+Choquetanga,COBEE,,3,hydro,6.20
+Carabuco,COBEE,,1,hydro,6.13
+Chojlla,HB,,1,hydro,38.40
+Yanacachi,HB,,1,hydro,50.79
+Kanata,SYNERGIA,,1,hydro,7.54
+Quehata,SDB,,2,hydro,1.97
+San Jacinto,ENDE GUARACACHI,,2,hydro,7.60
+Misicuni,ENDE,,3,hydro,120.00
+Qollpana,ENDE CORANI,,10,wind,27.00
+Warnes (wind),ENDE,,4,wind,14.40
+San Julián,ENDE,,11,wind,39.60
+El Dorado,ENDE,,15,wind,54.00
+Yunchará,ENDE GUARACACHI,,2,solar,5.00
+Uyuni,ENDE GUARACACHI,Uyuni,21,solar,60.06
+Uyuni,ENDE GUARACACHI,Uyuni II,1,solar,2.50
+Oruro,ENDE,,38,solar,100.02
+Guaracachi,ENDE GUARACACHI,GCH01,1,gas_oc,18.62
+Guaracachi,ENDE GUARACACHI,GCH02,1,gas_oc,17.62
+Guaracachi,ENDE GUARACACHI,GCH04,1,gas_oc,19.95
+Guaracachi,ENDE GUARACACHI,GCH06,1,gas_oc,20.71
+Guaracachi,ENDE GUARACACHI,GCH09,1,gas_cc,61.26
+Guaracachi,ENDE GUARACACHI,GCH10,1,gas_cc,60.00
+Guaracachi,ENDE GUARACACHI,GCH11,1,gas_oc,62.22
+Guaracachi,ENDE GUARACACHI,GCH12,1,gas_cc,85.57
+Santa Cruz,ENDE GUARACACHI,SCZ01,1,gas_oc,20.76
+Santa Cruz,ENDE GUARACACHI,SCZ02,1,gas_oc,21.19
+Unagro,ENDE GUARACACHI,UNA01,1,biomass,35.00
+San Buenaventura,ENDE GUARACACHI,SBU01,1,biomass,5.00
+Aranjuez,ENDE GUARACACHI,ARJ01,1,dual_fuel,2.70
+Aranjuez,ENDE GUARACACHI,ARJ02,1,dual_fuel,2.24
+Aranjuez,ENDE GUARACACHI,ARJ03,1,dual_fuel,2.62
+Aranjuez,ENDE GUARACACHI,ARJ08,1,gas_oc,18.39
+Aranjuez,ENDE GUARACACHI,ARJ09,1,gas_oc,1.49
+Aranjuez,ENDE GUARACACHI,ARJ11,1,gas_oc,1.49
+Aranjuez,ENDE GUARACACHI,ARJ12,1,gas_oc,1.60
+Aranjuez,ENDE GUARACACHI,ARJ13,1,gas_oc,1.55
+Aranjuez,ENDE GUARACACHI,ARJ14,1,gas_oc,1.51
+Aranjuez,ENDE GUARACACHI,ARJ15,1,gas_oc,1.60
+Valle Hermoso,ENDE VALLE HERMOSO,VHE02,1,gas_oc,18.81
+Valle Hermoso,ENDE VALLE HERMOSO,VHE03,1,gas_oc,18.32
+Valle Hermoso,ENDE VALLE HERMOSO,VHE05,1,gas_oc,10.58
+Valle Hermoso,ENDE VALLE HERMOSO,VHE06,1,gas_oc,10.58
+Valle Hermoso,ENDE VALLE HERMOSO,VHE07,1,gas_oc,10.58
+Valle Hermoso,ENDE VALLE HERMOSO,VHE08,1,gas_oc,10.58
+Carrasco,ENDE VALLE HERMOSO,CAR01,1,gas_oc,53.65
+Carrasco,ENDE VALLE HERMOSO,CAR02,1,gas_oc,55.39
+Carrasco,ENDE VALLE HERMOSO,CAR03,1,gas_oc,24.32
+El Alto,ENDE VALLE HERMOSO,ALT01,1,gas_oc,18.33
+El Alto,ENDE VALLE HERMOSO,ALT02,1,gas_oc,31.62
+Bulo Bulo,CECBB,BUL01,1,gas_oc,43.97
+Bulo Bulo,CECBB,BUL03,1,gas_oc,48.82
+Moxos,ENDE,MOA02,1,diesel,1.28
+Moxos,ENDE,MOA05,1,diesel,1.10
+Moxos,ENDE,MOA06,1,diesel,1.12
+Moxos,ENDE,MOA07,1,diesel,1.10
+Moxos,ENDE,MOA08,1,diesel,1.10
+Entre Ríos,ENDE ANDINA,ERI01,1,gas_oc,28.72
+Entre Ríos,ENDE ANDINA,ERI02,1,gas_oc,28.04
+Entre Ríos,ENDE ANDINA,ERI03,1,gas_oc,29.13
+Entre Ríos,ENDE ANDINA,ERI04,1,gas_oc,28.44
+Entre Ríos,ENDE ANDINA,CCERI30,3,gas_cc,137.42
+Entre Ríos,ENDE ANDINA,CCERI40,3,gas_cc,137.56
+Entre Ríos,ENDE ANDINA,CCERI50,3,gas_cc,137.46
+Del Sur,ENDE ANDINA,CCSUR10,3,gas_cc,122.84
+Del Sur,ENDE ANDINA,CCSUR20,3,gas_cc,122.44
+Del Sur,ENDE ANDINA,CCSUR30,3,gas_cc,129.05
+Del Sur,ENDE ANDINA,CCSUR40,3,gas_cc,131.50
+Warnes,ENDE ANDINA,WAR05,1,gas_oc,44.33
+Warnes,ENDE ANDINA,CCWAR10,3,gas_cc,128.35
+Warnes,ENDE ANDINA,CCWAR20,3,gas_cc,127.50
+Warnes,ENDE ANDINA,CCWAR30,3,gas_cc,135.36
+Warnes,ENDE ANDINA,CCWAR40,3,gas_cc,135.03
+Aguaí,AGUAÍ ENERGÍA,AGU01,1,biomass,4.00
+Aguaí,AGUAÍ ENERGÍA,AGU02,1,biomass,55.00
+Guabirá,GUABIRÁ,GBE01,1,biomass,21.00
+IAGSA,GUABIRÁ,IAG01,1,biomass,5.00

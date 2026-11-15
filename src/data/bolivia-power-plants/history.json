@@ -1,0 +1,279 @@
+{
+ "meta": {
+  "units": "GWh, gross generation of the SIN",
+  "source": "CNDC, Memoria y Resultados 2025, 'Producción bruta (GWh) periodo 1996-2025', pp. 103-106",
+  "note": "thermal = natural gas, plus diesel and dual-fuel engines (below 0.2 GWh a year since 2016)"
+ },
+ "series": [
+  {
+   "year": 1996,
+   "hydro": 1425.1,
+   "thermal": 1464.0,
+   "wind": 0.0,
+   "solar": 0.0,
+   "biomass": 0.0,
+   "total": 2889.1
+  },
+  {
+   "year": 1997,
+   "hydro": 1571.6,
+   "thermal": 1557.8,
+   "wind": 0.0,
+   "solar": 0.0,
+   "biomass": 0.0,
+   "total": 3129.3
+  },
+  {
+   "year": 1998,
+   "hydro": 1498.1,
+   "thermal": 1839.5,
+   "wind": 0.0,
+   "solar": 0.0,
+   "biomass": 0.0,
+   "total": 3337.6
+  },
+  {
+   "year": 1999,
+   "hydro": 1669.1,
+   "thermal": 1763.5,
+   "wind": 0.0,
+   "solar": 0.0,
+   "biomass": 0.0,
+   "total": 3432.6
+  },
+  {
+   "year": 2000,
+   "hydro": 1855.6,
+   "thermal": 1611.4,
+   "wind": 0.0,
+   "solar": 0.0,
+   "biomass": 0.0,
+   "total": 3467.0
+  },
+  {
+   "year": 2001,
+   "hydro": 2106.2,
+   "thermal": 1422.9,
+   "wind": 0.0,
+   "solar": 0.0,
+   "biomass": 0.0,
+   "total": 3529.1
+  },
+  {
+   "year": 2002,
+   "hydro": 2182.3,
+   "thermal": 1513.3,
+   "wind": 0.0,
+   "solar": 0.0,
+   "biomass": 0.0,
+   "total": 3695.6
+  },
+  {
+   "year": 2003,
+   "hydro": 1969.2,
+   "thermal": 1821.2,
+   "wind": 0.0,
+   "solar": 0.0,
+   "biomass": 0.0,
+   "total": 3790.4
+  },
+  {
+   "year": 2004,
+   "hydro": 2129.4,
+   "thermal": 1829.7,
+   "wind": 0.0,
+   "solar": 0.0,
+   "biomass": 0.0,
+   "total": 3959.0
+  },
+  {
+   "year": 2005,
+   "hydro": 1941.1,
+   "thermal": 2247.7,
+   "wind": 0.0,
+   "solar": 0.0,
+   "biomass": 0.0,
+   "total": 4188.8
+  },
+  {
+   "year": 2006,
+   "hydro": 2131.4,
+   "thermal": 2375.0,
+   "wind": 0.0,
+   "solar": 0.0,
+   "biomass": 0.0,
+   "total": 4506.3
+  },
+  {
+   "year": 2007,
+   "hydro": 2294.2,
+   "thermal": 2592.8,
+   "wind": 0.0,
+   "solar": 0.0,
+   "biomass": 14.2,
+   "total": 4901.3
+  },
+  {
+   "year": 2008,
+   "hydro": 2280.5,
+   "thermal": 3052.2,
+   "wind": 0.0,
+   "solar": 0.0,
+   "biomass": 39.3,
+   "total": 5372.0
+  },
+  {
+   "year": 2009,
+   "hydro": 2264.3,
+   "thermal": 3308.7,
+   "wind": 0.0,
+   "solar": 0.0,
+   "biomass": 59.7,
+   "total": 5632.7
+  },
+  {
+   "year": 2010,
+   "hydro": 2151.4,
+   "thermal": 3875.9,
+   "wind": 0.0,
+   "solar": 0.0,
+   "biomass": 58.2,
+   "total": 6085.5
+  },
+  {
+   "year": 2011,
+   "hydro": 2324.2,
+   "thermal": 4223.2,
+   "wind": 0.0,
+   "solar": 0.0,
+   "biomass": 64.0,
+   "total": 6611.4
+  },
+  {
+   "year": 2012,
+   "hydro": 2322.4,
+   "thermal": 4553.5,
+   "wind": 0.0,
+   "solar": 0.0,
+   "biomass": 64.5,
+   "total": 6940.4
+  },
+  {
+   "year": 2013,
+   "hydro": 2514.9,
+   "thermal": 4753.4,
+   "wind": 0.0,
+   "solar": 0.0,
+   "biomass": 79.5,
+   "total": 7347.7
+  },
+  {
+   "year": 2014,
+   "hydro": 2233.0,
+   "thermal": 5519.0,
+   "wind": 8.2,
+   "solar": 0.0,
+   "biomass": 76.3,
+   "total": 7836.4
+  },
+  {
+   "year": 2015,
+   "hydro": 2439.6,
+   "thermal": 5804.7,
+   "wind": 11.5,
+   "solar": 0.0,
+   "biomass": 79.1,
+   "total": 8334.8
+  },
+  {
+   "year": 2016,
+   "hydro": 1715.6,
+   "thermal": 6946.8,
+   "wind": 34.9,
+   "solar": 0.0,
+   "biomass": 61.9,
+   "total": 8759.3
+  },
+  {
+   "year": 2017,
+   "hydro": 2229.9,
+   "thermal": 6645.2,
+   "wind": 60.4,
+   "solar": 1.1,
+   "biomass": 44.8,
+   "total": 8981.3
+  },
+  {
+   "year": 2018,
+   "hydro": 2605.8,
+   "thermal": 6366.3,
+   "wind": 58.8,
+   "solar": 122.1,
+   "biomass": 77.2,
+   "total": 9230.2
+  },
+  {
+   "year": 2019,
+   "hydro": 3244.8,
+   "thermal": 5884.3,
+   "wind": 70.2,
+   "solar": 181.2,
+   "biomass": 150.3,
+   "total": 9530.8
+  },
+  {
+   "year": 2020,
+   "hydro": 2939.3,
+   "thermal": 5831.4,
+   "wind": 64.2,
+   "solar": 244.0,
+   "biomass": 133.4,
+   "total": 9212.4
+  },
+  {
+   "year": 2021,
+   "hydro": 3232.9,
+   "thermal": 6084.8,
+   "wind": 119.6,
+   "solar": 346.0,
+   "biomass": 182.9,
+   "total": 9966.2
+  },
+  {
+   "year": 2022,
+   "hydro": 2847.7,
+   "thermal": 6675.2,
+   "wind": 440.5,
+   "solar": 346.8,
+   "biomass": 289.3,
+   "total": 10599.5
+  },
+  {
+   "year": 2023,
+   "hydro": 2318.6,
+   "thermal": 7817.0,
+   "wind": 482.8,
+   "solar": 363.1,
+   "biomass": 283.3,
+   "total": 11264.9
+  },
+  {
+   "year": 2024,
+   "hydro": 2852.6,
+   "thermal": 7720.5,
+   "wind": 496.4,
+   "solar": 348.9,
+   "biomass": 287.0,
+   "total": 11705.4
+  },
+  {
+   "year": 2025,
+   "hydro": 3354.2,
+   "thermal": 7451.1,
+   "wind": 289.9,
+   "solar": 355.5,
+   "biomass": 345.1,
+   "total": 11795.7
+  }
+ ]
+}

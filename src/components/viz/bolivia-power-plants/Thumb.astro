@@ -1,0 +1,30 @@
+---
+// Home-page sheet thumbnail: Bolivia's departments and every SIN power plant, area by capacity,
+// colored by technology (same tokens as the project map).
+import { geoMercator, geoPath } from "d3";
+import depts from "../../../data/bolivia-power-plants/plants.json";
+import geo from "../../../data/bolivia-power-plants/departments.json";
+const { title } = Astro.props;
+const W = 320, H = 160;
+const proj = geoMercator().fitExtent([[90, 4], [W - 90, H - 4]], geo as any);
+const path = geoPath(proj);
+const max = Math.max(...depts.plants.map((p) => p.capacity_mw));
+const group = (t: string) => (["gas_cc", "gas_oc", "diesel", "dual_fuel"].includes(t) ? "gas" : t);
+const dots = [...depts.plants].sort((a, b) => b.capacity_mw - a.capacity_mw).map((p) => {
+  const [x, y] = proj([p.lon, p.lat])!;
+  return { x, y, r: Math.max(1, Math.sqrt(p.capacity_mw / max) * 12), g: group(p.tech) };
+});
+const top3 = depts.departments.slice(0, 3);
+const share = Math.round((top3.reduce((a, d) => a + d.capacity_mw, 0) / depts.meta.totals.capacity_mw) * 100);
+---
+<svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${title}: map of Bolivia's ${depts.meta.totals.plants} grid power plants; ${share} % of the capacity is in ${top3.map((d) => d.department).join(", ")}`}>
+  {(geo as any).features.map((f: any) => <path class="dp" d={path(f) ?? ""} />)}
+  {dots.map((d) => <circle class={`m t-${d.g}`} cx={d.x.toFixed(1)} cy={d.y.toFixed(1)} r={d.r.toFixed(1)} />)}
+</svg>
+
+<style>
+  .dp { fill: none; stroke: var(--rule); stroke-width: .8; }
+  .m { stroke: var(--ink); stroke-opacity: .5; stroke-width: .5; }
+  .t-gas { fill: var(--tech-gas); } .t-hydro { fill: var(--tech-hydro); } .t-solar { fill: var(--tech-solar); }
+  .t-wind { fill: var(--tech-wind); } .t-biomass { fill: var(--tech-biomass); }
+</style>

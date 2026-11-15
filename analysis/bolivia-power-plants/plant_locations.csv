@@ -1,0 +1,48 @@
+plant,lat,lon,precision,source,source_ref,note
+Corani,-17.2117,-65.8744,exact,GEM GIPT 2026-09,Corani hydroelectric plant (Bolivia),
+Santa Isabel,-17.1916,-65.8232,exact,GEM GIPT 2026-09,Santa Isabel hydroelectric plant,
+San José 1,-17.1687667,-65.7859827,exact,OpenStreetMap,way/777819672,GEM gives one point for San José 1 and 2; OSM maps each powerhouse
+San José 2,-17.1032489,-65.7852126,exact,OpenStreetMap,way/777819685,
+Zongo,-16.2718814,-68.1226272,exact,OpenStreetMap,way/212822357,power=generator 'Planta Zongo'
+Tiquimani,-16.2072409,-68.1234624,exact,OpenStreetMap,way/216166583,power=generator
+Botijlaca,-16.1924864,-68.1405764,exact,OpenStreetMap,way/216166576,power=generator
+Cuticucho,-16.17318,-68.13852,approximate,OpenStreetMap (Nominatim),node/2255963354,Position of the hamlet of Cuticucho in the Zongo valley; exact powerhouse location not available
+Santa Rosa,-16.1316347,-68.1088178,exact,OpenStreetMap,way/886778582,'Hidroeléctrica Santa Rosa I'; CNDC lists Santa Rosa BC and AC as two plants at this site
+Sainani,-16.1240103,-68.0900648,exact,OpenStreetMap,way/216166578,'Hidroelectrica Saynani'
+Chururaqui,-16.105,-68.067,exact,GEM GIPT 2026-09,Chururaqui hydroelectric plant,
+Harca,-16.0784,-68.0336,exact,GEM GIPT 2026-09,Harca hydroelectric plant,
+Cahua,-16.0456,-67.9939,exact,GEM GIPT 2026-09,Cahua hydroelectric plant,
+Huaji,-16.0416,-67.9566,exact,GEM GIPT 2026-09,Huaji hydroelectric plant,
+Miguilla,-16.9255883,-67.3247939,exact,OpenStreetMap,way/297984791,'Hidroelectrica Miguillas'
+Angostura,-16.8936842,-67.3153851,exact,OpenStreetMap,way/1262709983,
+Choquetanga,-16.83916,-67.31729,approximate,OpenStreetMap (Nominatim),node/4340655377,Position of the village of Choquetanga (Quime); exact powerhouse location not available
+Carabuco,-16.81656,-67.32534,approximate,OpenStreetMap (Nominatim),node/4399963505,Position of the hamlet of Carabuco (Quime); exact powerhouse location not available
+Chojlla,-16.4124,-67.7725,exact,GEM GIPT 2026-09,Chojlla hydroelectric plant,
+Yanacachi,-16.3887,-67.7373,exact,GEM GIPT 2026-09,Yanacachi Norte hydroelectric plant,
+Kanata,-17.33817,-66.21889,approximate,OpenStreetMap (Nominatim),relation/4505699,Centre of Tiquipaya (location confirmed by Marco); exact powerhouse location not available
+Quehata,-17.3918064,-66.8318356,approximate,OpenStreetMap,node/1615414238,Village of Patiño Alto (Cochabamba); nearest Cochabamba village to Coriri (La Paz); the water concession names Cantón Coriri and CNDC books Quehata's output in Cochabamba; exact location not available
+San Jacinto,-21.601712,-64.718486,exact,OpenStreetMap,way/1323229796,
+Misicuni,-17.3138,-66.2625,exact,GEM GIPT 2026-09,Misicuni hydroelectric plant,
+Qollpana,-17.6315403,-65.2785823,exact,OpenStreetMap,relation/9855315,GEM point (-17.6501 -65.3659) is about 9 km away; OSM relation maps the turbines
+Warnes (wind),-17.5256,-63.1289,exact,GEM GIPT 2026-09,Warnes wind farm,
+San Julián,-17.8124,-62.832,exact,GEM GIPT 2026-09,San Julián wind farm,
+El Dorado,-18.369,-63.1006,exact,GEM GIPT 2026-09,El Dorado wind farm,
+Yunchará,-21.8375,-65.1001,exact,GEM GIPT 2026-09,Yunchará solar farm,
+Uyuni,-20.5766,-66.7696,exact,GEM GIPT 2026-09,Uyuni PV Solar Plant,
+Oruro,-17.7717,-67.4383,exact,GEM GIPT 2026-09,Oruru Photovoltaic Solar Plant,
+Guaracachi,-17.7875,-63.1521,exact,GEM GIPT 2026-09,Guaracachi power station,
+Santa Cruz,-17.7549825,-63.1400989,exact,OpenStreetMap,way/1214924247,
+Unagro,-17.11756,-63.23327,approximate,OpenStreetMap (Nominatim),relation/4511510,Centre of the municipality of Mineros; exact location of the Unagro sugar mill not available
+San Buenaventura,-14.3370396,-67.6132105,exact,GEM GIPT 2026-09,San Buenaventura Sugar power station,
+Aranjuez,-19.05471,-65.27114,approximate,OpenStreetMap (Nominatim),node/8171750532,Bajo Aranjuez neighbourhood of Sucre; exact location not available
+Valle Hermoso,-17.4291793,-66.1168721,exact,OpenStreetMap,way/208238608,
+Carrasco,-17.2125,-64.5275,exact,GEM GIPT 2026-09,Carrasco power station,
+El Alto,-16.5653,-68.1811,exact,GEM GIPT 2026-09,El Alto power station,
+Bulo Bulo,-17.2424,-64.5409,exact,GEM GIPT 2026-09,Bulo Bulo power station,
+Moxos,-14.83494,-64.90449,approximate,OpenStreetMap (Nominatim),node/415165872,Centre of Trinidad; exact location not available
+Entre Ríos,-17.196321,-64.514506,exact,GEM GIPT 2026-09,Entre Ríos power station,
+Del Sur,-21.694171,-63.561432,exact,GEM GIPT 2026-09,Del Sur power station,
+Warnes,-17.53523,-63.146784,exact,GEM GIPT 2026-09,Warnes power station,
+Aguaí,-16.8546234,-63.2824523,approximate,OpenStreetMap,way/1366672673,Substation of the Aguaí sugar and ethanol mill; plant sits at the mill
+Guabirá,-17.317015,-63.2609556,approximate,OpenStreetMap,way/276694004,Industrial area of the Guabirá sugar mill (landuse=industrial); plant sits at the mill
+IAGSA,-17.34202,-63.25577,approximate,OpenStreetMap (Nominatim),node/415165546,Placed in Montero (location confirmed by Marco); exact coordinates not available

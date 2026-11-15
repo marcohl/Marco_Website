@@ -1,0 +1,11 @@
+@type|@id|@lat|@lon|name|power|generator:source|plant:source|operator
+way|212822357|-16.2718814|-68.1226272|Planta Zongo|generator|hydro||Cobee
+way|216166576|-16.1924864|-68.1405764|Planta Hidroelectrica de Botijlaca|generator|hydro||
+way|216166578|-16.1240103|-68.0900648|Hidroelectrica Saynani|generator|hydro||
+way|216166583|-16.2072409|-68.1234624|Planta Hidroelectrica de Tiquimani|generator|hydro||
+way|216166595|-16.1849857|-68.1391416|Sub Estación Tiquimani|substation|||Cobee
+way|541081225|-14.9258495|-66.2004166|San Borja-San Ignacio de Moxos|line|||ENDE Transmisión
+way|541081226|-14.9305977|-65.2617834|San Ignacio de Moxos-Trinidad|line|||ENDE Transmisión
+way|541081227|-15.0006105|-65.6305828|Subestación San Ignacio de Moxos|substation|||ENDE Transmisión
+way|1366672673|-16.8546234|-63.2824523|Subestación Aguaí|substation|||Ingenio Sucroalcoholero Aguaí
+way|1510846407|-16.1850249|-68.1391583|Subestación Electrica Tiquimani|plant|||

@@ -1,0 +1,983 @@
+{
+ "meta": {
+  "reference_year": 2025,
+  "units": {
+   "capacity_mw": "MW, CNDC capacity at the end of 2025 (effective capacity; thermal units at mean site temperature)",
+   "generation_2025_gwh": "GWh, gross generation in 2025",
+   "capacity_factor_2025": "generation / (capacity x 8,760 h); capacity at year end"
+  },
+  "sources": [
+   "CNDC, Memoria y Resultados 2025, https://www.cndc.bo/wp-content/uploads/memorias/memyres_2025.pdf",
+   "CNDC, Generación bruta 2025 (genbruta_2025.xlsx), https://www.cndc.bo/estadisticas/",
+   "Global Energy Monitor, Global Integrated Power Tracker, September 2026 release (CC BY 4.0)",
+   "OpenStreetMap contributors (ODbL)",
+   "Natural Earth, admin-1 boundaries (public domain)"
+  ],
+  "generation_2025_gwh_by_type": {
+   "biomass": 345.06,
+   "diesel": 0.01,
+   "dual_fuel": 0.0,
+   "gas_cc": 7210.69,
+   "gas_oc": 240.38,
+   "hydro": 3354.21,
+   "solar": 355.48,
+   "wind": 289.89
+  },
+  "capacity_mw_by_type": {
+   "biomass": 125.0,
+   "diesel": 5.7,
+   "dual_fuel": 7.56,
+   "gas_cc": 1651.34,
+   "gas_oc": 722.91,
+   "hydro": 715.81,
+   "solar": 167.58,
+   "wind": 135.0
+  },
+  "totals": {
+   "capacity_mw": 3530.9,
+   "generation_2025_gwh": 11795.7,
+   "plants": 47
+  }
+ },
+ "departments": [
+  {
+   "department": "Cochabamba",
+   "capacity_mw": 1269.24,
+   "generation_2025_gwh": 4039.3
+  },
+  {
+   "department": "Santa Cruz",
+   "capacity_mw": 1186.47,
+   "generation_2025_gwh": 4204.0
+  },
+  {
+   "department": "Tarija",
+   "capacity_mw": 518.43,
+   "generation_2025_gwh": 1702.1
+  },
+  {
+   "department": "La Paz",
+   "capacity_mw": 353.29,
+   "generation_2025_gwh": 1475.2
+  },
+  {
+   "department": "Oruro",
+   "capacity_mw": 100.02,
+   "generation_2025_gwh": 202.2
+  },
+  {
+   "department": "Potosí",
+   "capacity_mw": 62.56,
+   "generation_2025_gwh": 141.7
+  },
+  {
+   "department": "Chuquisaca",
+   "capacity_mw": 35.19,
+   "generation_2025_gwh": 31.2
+  },
+  {
+   "department": "Beni",
+   "capacity_mw": 5.7,
+   "generation_2025_gwh": 0.0
+  }
+ ],
+ "plants": [
+  {
+   "id": "warnes",
+   "name": "Warnes",
+   "operator": "ENDE ANDINA",
+   "tech": "gas_cc",
+   "capacity_mw": 570.57,
+   "capacity_by_tech_mw": {
+    "gas_cc": 526.24,
+    "gas_oc": 44.33
+   },
+   "units": 13,
+   "generation_2025_gwh": 2350.69,
+   "capacity_factor_2025": 0.47,
+   "department": "Santa Cruz",
+   "lat": -17.53523,
+   "lon": -63.146784,
+   "location_precision": "exact",
+   "location_source": "GEM GIPT 2026-09 Warnes power station",
+   "location_note": null
+  },
+  {
+   "id": "entre-rios",
+   "name": "Entre Ríos",
+   "operator": "ENDE ANDINA",
+   "tech": "gas_cc",
+   "capacity_mw": 526.77,
+   "capacity_by_tech_mw": {
+    "gas_cc": 412.44,
+    "gas_oc": 114.33
+   },
+   "units": 13,
+   "generation_2025_gwh": 2012.82,
+   "capacity_factor_2025": 0.436,
+   "department": "Cochabamba",
+   "lat": -17.196321,
+   "lon": -64.514506,
+   "location_precision": "exact",
+   "location_source": "GEM GIPT 2026-09 Entre Ríos power station",
+   "location_note": null
+  },
+  {
+   "id": "del-sur",
+   "name": "Del Sur",
+   "operator": "ENDE ANDINA",
+   "tech": "gas_cc",
+   "capacity_mw": 505.83,
+   "capacity_by_tech_mw": {
+    "gas_cc": 505.83
+   },
+   "units": 12,
+   "generation_2025_gwh": 1667.69,
+   "capacity_factor_2025": 0.376,
+   "department": "Tarija",
+   "lat": -21.694171,
+   "lon": -63.561432,
+   "location_precision": "exact",
+   "location_source": "GEM GIPT 2026-09 Del Sur power station",
+   "location_note": null
+  },
+  {
+   "id": "guaracachi",
+   "name": "Guaracachi",
+   "operator": "ENDE GUARACACHI",
+   "tech": "gas_cc",
+   "capacity_mw": 345.95,
+   "capacity_by_tech_mw": {
+    "gas_cc": 206.83,
+    "gas_oc": 139.12
+   },
+   "units": 8,
+   "generation_2025_gwh": 1270.27,
+   "capacity_factor_2025": 0.419,
+   "department": "Santa Cruz",
+   "lat": -17.7875,
+   "lon": -63.1521,
+   "location_precision": "exact",
+   "location_source": "GEM GIPT 2026-09 Guaracachi power station",
+   "location_note": null
+  },
+  {
+   "id": "carrasco",
+   "name": "Carrasco",
+   "operator": "ENDE VALLE HERMOSO",
+   "tech": "gas_oc",
+   "capacity_mw": 133.36,
+   "capacity_by_tech_mw": {
+    "gas_oc": 133.36
+   },
+   "units": 3,
+   "generation_2025_gwh": 0.58,
+   "capacity_factor_2025": 0.0,
+   "department": "Cochabamba",
+   "lat": -17.2125,
+   "lon": -64.5275,
+   "location_precision": "exact",
+   "location_source": "GEM GIPT 2026-09 Carrasco power station",
+   "location_note": null
+  },
+  {
+   "id": "misicuni",
+   "name": "Misicuni",
+   "operator": "ENDE",
+   "tech": "hydro",
+   "capacity_mw": 120.0,
+   "capacity_by_tech_mw": {
+    "hydro": 120.0
+   },
+   "units": 3,
+   "generation_2025_gwh": 139.16,
+   "capacity_factor_2025": 0.132,
+   "department": "Cochabamba",
+   "lat": -17.3138,
+   "lon": -66.2625,
+   "location_precision": "exact",
+   "location_source": "GEM GIPT 2026-09 Misicuni hydroelectric plant",
+   "location_note": null
+  },
+  {
+   "id": "oruro",
+   "name": "Oruro",
+   "operator": "ENDE",
+   "tech": "solar",
+   "capacity_mw": 100.02,
+   "capacity_by_tech_mw": {
+    "solar": 100.02
+   },
+   "units": 38,
+   "generation_2025_gwh": 202.22,
+   "capacity_factor_2025": 0.231,
+   "department": "Oruro",
+   "lat": -17.7717,
+   "lon": -67.4383,
+   "location_precision": "exact",
+   "location_source": "GEM GIPT 2026-09 Oruru Photovoltaic Solar Plant",
+   "location_note": null
+  },
+  {
+   "id": "bulo-bulo",
+   "name": "Bulo Bulo",
+   "operator": "CECBB",
+   "tech": "gas_oc",
+   "capacity_mw": 92.79,
+   "capacity_by_tech_mw": {
+    "gas_oc": 92.79
+   },
+   "units": 2,
+   "generation_2025_gwh": 54.32,
+   "capacity_factor_2025": 0.067,
+   "department": "Cochabamba",
+   "lat": -17.2424,
+   "lon": -64.5409,
+   "location_precision": "exact",
+   "location_source": "GEM GIPT 2026-09 Bulo Bulo power station",
+   "location_note": null
+  },
+  {
+   "id": "santa-isabel",
+   "name": "Santa Isabel",
+   "operator": "ENDE CORANI",
+   "tech": "hydro",
+   "capacity_mw": 91.11,
+   "capacity_by_tech_mw": {
+    "hydro": 91.11
+   },
+   "units": 5,
+   "generation_2025_gwh": 572.42,
+   "capacity_factor_2025": 0.717,
+   "department": "Cochabamba",
+   "lat": -17.1916,
+   "lon": -65.8232,
+   "location_precision": "exact",
+   "location_source": "GEM GIPT 2026-09 Santa Isabel hydroelectric plant",
+   "location_note": null
+  },
+  {
+   "id": "valle-hermoso",
+   "name": "Valle Hermoso",
+   "operator": "ENDE VALLE HERMOSO",
+   "tech": "gas_oc",
+   "capacity_mw": 79.45,
+   "capacity_by_tech_mw": {
+    "gas_oc": 79.45
+   },
+   "units": 6,
+   "generation_2025_gwh": 48.69,
+   "capacity_factor_2025": 0.07,
+   "department": "Cochabamba",
+   "lat": -17.4291793,
+   "lon": -66.1168721,
+   "location_precision": "exact",
+   "location_source": "OpenStreetMap way/208238608",
+   "location_note": null
+  },
+  {
+   "id": "san-jose-2",
+   "name": "San José 2",
+   "operator": "ENDE CORANI",
+   "tech": "hydro",
+   "capacity_mw": 69.0,
+   "capacity_by_tech_mw": {
+    "hydro": 69.0
+   },
+   "units": 2,
+   "generation_2025_gwh": 394.78,
+   "capacity_factor_2025": 0.653,
+   "department": "Cochabamba",
+   "lat": -17.1032489,
+   "lon": -65.7852126,
+   "location_precision": "exact",
+   "location_source": "OpenStreetMap way/777819685",
+   "location_note": null
+  },
+  {
+   "id": "corani",
+   "name": "Corani",
+   "operator": "ENDE CORANI",
+   "tech": "hydro",
+   "capacity_mw": 65.25,
+   "capacity_by_tech_mw": {
+    "hydro": 65.25
+   },
+   "units": 5,
+   "generation_2025_gwh": 375.98,
+   "capacity_factor_2025": 0.658,
+   "department": "Cochabamba",
+   "lat": -17.2117,
+   "lon": -65.8744,
+   "location_precision": "exact",
+   "location_source": "GEM GIPT 2026-09 Corani hydroelectric plant (Bolivia)",
+   "location_note": null
+  },
+  {
+   "id": "uyuni",
+   "name": "Uyuni",
+   "operator": "ENDE GUARACACHI",
+   "tech": "solar",
+   "capacity_mw": 62.56,
+   "capacity_by_tech_mw": {
+    "solar": 62.56
+   },
+   "units": 22,
+   "generation_2025_gwh": 141.69,
+   "capacity_factor_2025": 0.259,
+   "department": "Potosí",
+   "lat": -20.5766,
+   "lon": -66.7696,
+   "location_precision": "exact",
+   "location_source": "GEM GIPT 2026-09 Uyuni PV Solar Plant",
+   "location_note": null
+  },
+  {
+   "id": "aguai",
+   "name": "Aguaí",
+   "operator": "AGUAÍ ENERGÍA",
+   "tech": "biomass",
+   "capacity_mw": 59.0,
+   "capacity_by_tech_mw": {
+    "biomass": 59.0
+   },
+   "units": 2,
+   "generation_2025_gwh": 238.7,
+   "capacity_factor_2025": 0.462,
+   "department": "Santa Cruz",
+   "lat": -16.8546234,
+   "lon": -63.2824523,
+   "location_precision": "approximate",
+   "location_source": "OpenStreetMap way/1366672673",
+   "location_note": "Substation of the Aguaí sugar and ethanol mill; plant sits at the mill"
+  },
+  {
+   "id": "san-jose-1",
+   "name": "San José 1",
+   "operator": "ENDE CORANI",
+   "tech": "hydro",
+   "capacity_mw": 55.0,
+   "capacity_by_tech_mw": {
+    "hydro": 55.0
+   },
+   "units": 2,
+   "generation_2025_gwh": 344.8,
+   "capacity_factor_2025": 0.716,
+   "department": "Cochabamba",
+   "lat": -17.1687667,
+   "lon": -65.7859827,
+   "location_precision": "exact",
+   "location_source": "OpenStreetMap way/777819672",
+   "location_note": "GEM gives one point for San José 1 and 2; OSM maps each powerhouse"
+  },
+  {
+   "id": "el-dorado",
+   "name": "El Dorado",
+   "operator": "ENDE",
+   "tech": "wind",
+   "capacity_mw": 54.0,
+   "capacity_by_tech_mw": {
+    "wind": 54.0
+   },
+   "units": 15,
+   "generation_2025_gwh": 125.24,
+   "capacity_factor_2025": 0.265,
+   "department": "Santa Cruz",
+   "lat": -18.369,
+   "lon": -63.1006,
+   "location_precision": "exact",
+   "location_source": "GEM GIPT 2026-09 El Dorado wind farm",
+   "location_note": null
+  },
+  {
+   "id": "yanacachi",
+   "name": "Yanacachi",
+   "operator": "HB",
+   "tech": "hydro",
+   "capacity_mw": 50.79,
+   "capacity_by_tech_mw": {
+    "hydro": 50.79
+   },
+   "units": 1,
+   "generation_2025_gwh": 250.67,
+   "capacity_factor_2025": 0.563,
+   "department": "La Paz",
+   "lat": -16.3887,
+   "lon": -67.7373,
+   "location_precision": "exact",
+   "location_source": "GEM GIPT 2026-09 Yanacachi Norte hydroelectric plant",
+   "location_note": null
+  },
+  {
+   "id": "el-alto",
+   "name": "El Alto",
+   "operator": "ENDE VALLE HERMOSO",
+   "tech": "gas_oc",
+   "capacity_mw": 49.95,
+   "capacity_by_tech_mw": {
+    "gas_oc": 49.95
+   },
+   "units": 2,
+   "generation_2025_gwh": 4.47,
+   "capacity_factor_2025": 0.01,
+   "department": "La Paz",
+   "lat": -16.5653,
+   "lon": -68.1811,
+   "location_precision": "exact",
+   "location_source": "GEM GIPT 2026-09 El Alto power station",
+   "location_note": null
+  },
+  {
+   "id": "santa-cruz",
+   "name": "Santa Cruz",
+   "operator": "ENDE GUARACACHI",
+   "tech": "gas_oc",
+   "capacity_mw": 41.95,
+   "capacity_by_tech_mw": {
+    "gas_oc": 41.95
+   },
+   "units": 2,
+   "generation_2025_gwh": 10.35,
+   "capacity_factor_2025": 0.028,
+   "department": "Santa Cruz",
+   "lat": -17.7549825,
+   "lon": -63.1400989,
+   "location_precision": "exact",
+   "location_source": "OpenStreetMap way/1214924247",
+   "location_note": null
+  },
+  {
+   "id": "san-julian",
+   "name": "San Julián",
+   "operator": "ENDE",
+   "tech": "wind",
+   "capacity_mw": 39.6,
+   "capacity_by_tech_mw": {
+    "wind": 39.6
+   },
+   "units": 11,
+   "generation_2025_gwh": 64.43,
+   "capacity_factor_2025": 0.186,
+   "department": "Santa Cruz",
+   "lat": -17.8124,
+   "lon": -62.832,
+   "location_precision": "exact",
+   "location_source": "GEM GIPT 2026-09 San Julián wind farm",
+   "location_note": null
+  },
+  {
+   "id": "chojlla",
+   "name": "Chojlla",
+   "operator": "HB",
+   "tech": "hydro",
+   "capacity_mw": 38.4,
+   "capacity_by_tech_mw": {
+    "hydro": 38.4
+   },
+   "units": 1,
+   "generation_2025_gwh": 147.68,
+   "capacity_factor_2025": 0.439,
+   "department": "La Paz",
+   "lat": -16.4124,
+   "lon": -67.7725,
+   "location_precision": "exact",
+   "location_source": "GEM GIPT 2026-09 Chojlla hydroelectric plant",
+   "location_note": null
+  },
+  {
+   "id": "aranjuez",
+   "name": "Aranjuez",
+   "operator": "ENDE GUARACACHI",
+   "tech": "gas_oc",
+   "capacity_mw": 35.19,
+   "capacity_by_tech_mw": {
+    "dual_fuel": 7.56,
+    "gas_oc": 27.63
+   },
+   "units": 10,
+   "generation_2025_gwh": 31.2,
+   "capacity_factor_2025": 0.101,
+   "department": "Chuquisaca",
+   "lat": -19.05471,
+   "lon": -65.27114,
+   "location_precision": "approximate",
+   "location_source": "OpenStreetMap (Nominatim) node/8171750532",
+   "location_note": "Bajo Aranjuez neighbourhood of Sucre; exact location not available"
+  },
+  {
+   "id": "unagro",
+   "name": "Unagro",
+   "operator": "ENDE GUARACACHI",
+   "tech": "biomass",
+   "capacity_mw": 35.0,
+   "capacity_by_tech_mw": {
+    "biomass": 35.0
+   },
+   "units": 1,
+   "generation_2025_gwh": 30.76,
+   "capacity_factor_2025": 0.1,
+   "department": "Santa Cruz",
+   "lat": -17.11756,
+   "lon": -63.23327,
+   "location_precision": "approximate",
+   "location_source": "OpenStreetMap (Nominatim) relation/4511510",
+   "location_note": "Centre of the municipality of Mineros; exact location of the Unagro sugar mill not available"
+  },
+  {
+   "id": "huaji",
+   "name": "Huaji",
+   "operator": "COBEE",
+   "tech": "hydro",
+   "capacity_mw": 30.15,
+   "capacity_by_tech_mw": {
+    "hydro": 30.15
+   },
+   "units": 2,
+   "generation_2025_gwh": 211.83,
+   "capacity_factor_2025": 0.802,
+   "department": "La Paz",
+   "lat": -16.0416,
+   "lon": -67.9566,
+   "location_precision": "exact",
+   "location_source": "GEM GIPT 2026-09 Huaji hydroelectric plant",
+   "location_note": null
+  },
+  {
+   "id": "cahua",
+   "name": "Cahua",
+   "operator": "COBEE",
+   "tech": "hydro",
+   "capacity_mw": 28.02,
+   "capacity_by_tech_mw": {
+    "hydro": 28.02
+   },
+   "units": 2,
+   "generation_2025_gwh": 164.92,
+   "capacity_factor_2025": 0.672,
+   "department": "La Paz",
+   "lat": -16.0456,
+   "lon": -67.9939,
+   "location_precision": "exact",
+   "location_source": "GEM GIPT 2026-09 Cahua hydroelectric plant",
+   "location_note": null
+  },
+  {
+   "id": "qollpana",
+   "name": "Qollpana",
+   "operator": "ENDE CORANI",
+   "tech": "wind",
+   "capacity_mw": 27.0,
+   "capacity_by_tech_mw": {
+    "wind": 27.0
+   },
+   "units": 10,
+   "generation_2025_gwh": 56.22,
+   "capacity_factor_2025": 0.238,
+   "department": "Cochabamba",
+   "lat": -17.6315403,
+   "lon": -65.2785823,
+   "location_precision": "exact",
+   "location_source": "OpenStreetMap relation/9855315",
+   "location_note": "GEM point (-17.6501 -65.3659) is about 9 km away; OSM relation maps the turbines"
+  },
+  {
+   "id": "harca",
+   "name": "Harca",
+   "operator": "COBEE",
+   "tech": "hydro",
+   "capacity_mw": 25.85,
+   "capacity_by_tech_mw": {
+    "hydro": 25.85
+   },
+   "units": 2,
+   "generation_2025_gwh": 106.56,
+   "capacity_factor_2025": 0.471,
+   "department": "La Paz",
+   "lat": -16.0784,
+   "lon": -68.0336,
+   "location_precision": "exact",
+   "location_source": "GEM GIPT 2026-09 Harca hydroelectric plant",
+   "location_note": null
+  },
+  {
+   "id": "chururaqui",
+   "name": "Chururaqui",
+   "operator": "COBEE",
+   "tech": "hydro",
+   "capacity_mw": 25.39,
+   "capacity_by_tech_mw": {
+    "hydro": 25.39
+   },
+   "units": 2,
+   "generation_2025_gwh": 128.32,
+   "capacity_factor_2025": 0.577,
+   "department": "La Paz",
+   "lat": -16.105,
+   "lon": -68.067,
+   "location_precision": "exact",
+   "location_source": "GEM GIPT 2026-09 Chururaqui hydroelectric plant",
+   "location_note": null
+  },
+  {
+   "id": "cuticucho",
+   "name": "Cuticucho",
+   "operator": "COBEE",
+   "tech": "hydro",
+   "capacity_mw": 22.97,
+   "capacity_by_tech_mw": {
+    "hydro": 22.97
+   },
+   "units": 5,
+   "generation_2025_gwh": 121.03,
+   "capacity_factor_2025": 0.601,
+   "department": "La Paz",
+   "lat": -16.17318,
+   "lon": -68.13852,
+   "location_precision": "approximate",
+   "location_source": "OpenStreetMap (Nominatim) node/2255963354",
+   "location_note": "Position of the hamlet of Cuticucho in the Zongo valley; exact powerhouse location not available"
+  },
+  {
+   "id": "guabira",
+   "name": "Guabirá",
+   "operator": "GUABIRÁ",
+   "tech": "biomass",
+   "capacity_mw": 21.0,
+   "capacity_by_tech_mw": {
+    "biomass": 21.0
+   },
+   "units": 1,
+   "generation_2025_gwh": 69.58,
+   "capacity_factor_2025": 0.378,
+   "department": "Santa Cruz",
+   "lat": -17.317015,
+   "lon": -63.2609556,
+   "location_precision": "approximate",
+   "location_source": "OpenStreetMap way/276694004",
+   "location_note": "Industrial area of the Guabirá sugar mill (landuse=industrial); plant sits at the mill"
+  },
+  {
+   "id": "santa-rosa",
+   "name": "Santa Rosa",
+   "operator": "COBEE",
+   "tech": "hydro",
+   "capacity_mw": 17.59,
+   "capacity_by_tech_mw": {
+    "hydro": 17.59
+   },
+   "units": 2,
+   "generation_2025_gwh": 80.85,
+   "capacity_factor_2025": 0.525,
+   "department": "La Paz",
+   "lat": -16.1316347,
+   "lon": -68.1088178,
+   "location_precision": "exact",
+   "location_source": "OpenStreetMap way/886778582",
+   "location_note": "'Hidroeléctrica Santa Rosa I'; CNDC lists Santa Rosa BC and AC as two plants at this site"
+  },
+  {
+   "id": "warnes-wind",
+   "name": "Warnes (wind)",
+   "operator": "ENDE",
+   "tech": "wind",
+   "capacity_mw": 14.4,
+   "capacity_by_tech_mw": {
+    "wind": 14.4
+   },
+   "units": 4,
+   "generation_2025_gwh": 43.99,
+   "capacity_factor_2025": 0.349,
+   "department": "Santa Cruz",
+   "lat": -17.5256,
+   "lon": -63.1289,
+   "location_precision": "exact",
+   "location_source": "GEM GIPT 2026-09 Warnes wind farm",
+   "location_note": null
+  },
+  {
+   "id": "zongo",
+   "name": "Zongo",
+   "operator": "COBEE",
+   "tech": "hydro",
+   "capacity_mw": 11.04,
+   "capacity_by_tech_mw": {
+    "hydro": 11.04
+   },
+   "units": 1,
+   "generation_2025_gwh": 10.04,
+   "capacity_factor_2025": 0.104,
+   "department": "La Paz",
+   "lat": -16.2718814,
+   "lon": -68.1226272,
+   "location_precision": "exact",
+   "location_source": "OpenStreetMap way/212822357",
+   "location_note": "power=generator 'Planta Zongo'"
+  },
+  {
+   "id": "sainani",
+   "name": "Sainani",
+   "operator": "COBEE",
+   "tech": "hydro",
+   "capacity_mw": 10.5,
+   "capacity_by_tech_mw": {
+    "hydro": 10.5
+   },
+   "units": 1,
+   "generation_2025_gwh": 70.29,
+   "capacity_factor_2025": 0.764,
+   "department": "La Paz",
+   "lat": -16.1240103,
+   "lon": -68.0900648,
+   "location_precision": "exact",
+   "location_source": "OpenStreetMap way/216166578",
+   "location_note": "'Hidroelectrica Saynani'"
+  },
+  {
+   "id": "tiquimani",
+   "name": "Tiquimani",
+   "operator": "COBEE",
+   "tech": "hydro",
+   "capacity_mw": 9.72,
+   "capacity_by_tech_mw": {
+    "hydro": 9.72
+   },
+   "units": 1,
+   "generation_2025_gwh": 13.16,
+   "capacity_factor_2025": 0.155,
+   "department": "La Paz",
+   "lat": -16.2072409,
+   "lon": -68.1234624,
+   "location_precision": "exact",
+   "location_source": "OpenStreetMap way/216166583",
+   "location_note": "power=generator"
+  },
+  {
+   "id": "san-jacinto",
+   "name": "San Jacinto",
+   "operator": "ENDE GUARACACHI",
+   "tech": "hydro",
+   "capacity_mw": 7.6,
+   "capacity_by_tech_mw": {
+    "hydro": 7.6
+   },
+   "units": 2,
+   "generation_2025_gwh": 22.85,
+   "capacity_factor_2025": 0.343,
+   "department": "Tarija",
+   "lat": -21.601712,
+   "lon": -64.718486,
+   "location_precision": "exact",
+   "location_source": "OpenStreetMap way/1323229796",
+   "location_note": null
+  },
+  {
+   "id": "kanata",
+   "name": "Kanata",
+   "operator": "SYNERGIA",
+   "tech": "hydro",
+   "capacity_mw": 7.54,
+   "capacity_by_tech_mw": {
+    "hydro": 7.54
+   },
+   "units": 1,
+   "generation_2025_gwh": 29.94,
+   "capacity_factor_2025": 0.453,
+   "department": "Cochabamba",
+   "lat": -17.33817,
+   "lon": -66.21889,
+   "location_precision": "approximate",
+   "location_source": "OpenStreetMap (Nominatim) relation/4505699",
+   "location_note": "Centre of Tiquipaya (location confirmed by Marco); exact powerhouse location not available"
+  },
+  {
+   "id": "botijlaca",
+   "name": "Botijlaca",
+   "operator": "COBEE",
+   "tech": "hydro",
+   "capacity_mw": 6.81,
+   "capacity_by_tech_mw": {
+    "hydro": 6.81
+   },
+   "units": 3,
+   "generation_2025_gwh": 35.88,
+   "capacity_factor_2025": 0.601,
+   "department": "La Paz",
+   "lat": -16.1924864,
+   "lon": -68.1405764,
+   "location_precision": "exact",
+   "location_source": "OpenStreetMap way/216166576",
+   "location_note": "power=generator"
+  },
+  {
+   "id": "angostura",
+   "name": "Angostura",
+   "operator": "COBEE",
+   "tech": "hydro",
+   "capacity_mw": 6.23,
+   "capacity_by_tech_mw": {
+    "hydro": 6.23
+   },
+   "units": 3,
+   "generation_2025_gwh": 23.98,
+   "capacity_factor_2025": 0.439,
+   "department": "La Paz",
+   "lat": -16.8936842,
+   "lon": -67.3153851,
+   "location_precision": "exact",
+   "location_source": "OpenStreetMap way/1262709983",
+   "location_note": null
+  },
+  {
+   "id": "choquetanga",
+   "name": "Choquetanga",
+   "operator": "COBEE",
+   "tech": "hydro",
+   "capacity_mw": 6.2,
+   "capacity_by_tech_mw": {
+    "hydro": 6.2
+   },
+   "units": 3,
+   "generation_2025_gwh": 43.08,
+   "capacity_factor_2025": 0.793,
+   "department": "La Paz",
+   "lat": -16.83916,
+   "lon": -67.31729,
+   "location_precision": "approximate",
+   "location_source": "OpenStreetMap (Nominatim) node/4340655377",
+   "location_note": "Position of the village of Choquetanga (Quime); exact powerhouse location not available"
+  },
+  {
+   "id": "carabuco",
+   "name": "Carabuco",
+   "operator": "COBEE",
+   "tech": "hydro",
+   "capacity_mw": 6.13,
+   "capacity_by_tech_mw": {
+    "hydro": 6.13
+   },
+   "units": 1,
+   "generation_2025_gwh": 46.37,
+   "capacity_factor_2025": 0.864,
+   "department": "La Paz",
+   "lat": -16.81656,
+   "lon": -67.32534,
+   "location_precision": "approximate",
+   "location_source": "OpenStreetMap (Nominatim) node/4399963505",
+   "location_note": "Position of the hamlet of Carabuco (Quime); exact powerhouse location not available"
+  },
+  {
+   "id": "moxos",
+   "name": "Moxos",
+   "operator": "ENDE",
+   "tech": "diesel",
+   "capacity_mw": 5.7,
+   "capacity_by_tech_mw": {
+    "diesel": 5.7
+   },
+   "units": 5,
+   "generation_2025_gwh": 0.01,
+   "capacity_factor_2025": 0.0,
+   "department": "Beni",
+   "lat": -14.83494,
+   "lon": -64.90449,
+   "location_precision": "approximate",
+   "location_source": "OpenStreetMap (Nominatim) node/415165872",
+   "location_note": "Centre of Trinidad; exact location not available"
+  },
+  {
+   "id": "iagsa",
+   "name": "IAGSA",
+   "operator": "GUABIRÁ",
+   "tech": "biomass",
+   "capacity_mw": 5.0,
+   "capacity_by_tech_mw": {
+    "biomass": 5.0
+   },
+   "units": 1,
+   "generation_2025_gwh": 0.0,
+   "capacity_factor_2025": 0.0,
+   "department": "Santa Cruz",
+   "lat": -17.34202,
+   "lon": -63.25577,
+   "location_precision": "approximate",
+   "location_source": "OpenStreetMap (Nominatim) node/415165546",
+   "location_note": "Placed in Montero (location confirmed by Marco); exact coordinates not available"
+  },
+  {
+   "id": "san-buenaventura",
+   "name": "San Buenaventura",
+   "operator": "ENDE GUARACACHI",
+   "tech": "biomass",
+   "capacity_mw": 5.0,
+   "capacity_by_tech_mw": {
+    "biomass": 5.0
+   },
+   "units": 1,
+   "generation_2025_gwh": 6.02,
+   "capacity_factor_2025": 0.137,
+   "department": "La Paz",
+   "lat": -14.3370396,
+   "lon": -67.6132105,
+   "location_precision": "exact",
+   "location_source": "GEM GIPT 2026-09 San Buenaventura Sugar power station",
+   "location_note": null
+  },
+  {
+   "id": "yunchara",
+   "name": "Yunchará",
+   "operator": "ENDE GUARACACHI",
+   "tech": "solar",
+   "capacity_mw": 5.0,
+   "capacity_by_tech_mw": {
+    "solar": 5.0
+   },
+   "units": 2,
+   "generation_2025_gwh": 11.57,
+   "capacity_factor_2025": 0.264,
+   "department": "Tarija",
+   "lat": -21.8375,
+   "lon": -65.1001,
+   "location_precision": "exact",
+   "location_source": "GEM GIPT 2026-09 Yunchará solar farm",
+   "location_note": null
+  },
+  {
+   "id": "miguilla",
+   "name": "Miguilla",
+   "operator": "COBEE",
+   "tech": "hydro",
+   "capacity_mw": 2.55,
+   "capacity_by_tech_mw": {
+    "hydro": 2.55
+   },
+   "units": 2,
+   "generation_2025_gwh": 10.07,
+   "capacity_factor_2025": 0.451,
+   "department": "La Paz",
+   "lat": -16.9255883,
+   "lon": -67.3247939,
+   "location_precision": "exact",
+   "location_source": "OpenStreetMap way/297984791",
+   "location_note": "'Hidroelectrica Miguillas'"
+  },
+  {
+   "id": "quehata",
+   "name": "Quehata",
+   "operator": "SDB",
+   "tech": "hydro",
+   "capacity_mw": 1.97,
+   "capacity_by_tech_mw": {
+    "hydro": 1.97
+   },
+   "units": 2,
+   "generation_2025_gwh": 9.54,
+   "capacity_factor_2025": 0.553,
+   "department": "Cochabamba",
+   "lat": -17.3918064,
+   "lon": -66.8318356,
+   "location_precision": "approximate",
+   "location_source": "OpenStreetMap node/1615414238",
+   "location_note": "Village of Patiño Alto (Cochabamba); nearest Cochabamba village to Coriri (La Paz); the water concession names Cantón Coriri and CNDC books Quehata's output in Cochabamba; exact location not available"
+  }
+ ]
+}

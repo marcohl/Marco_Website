@@ -1,0 +1,365 @@
+---
+// Bolivia's SIN power plants at the end of 2025: one circle per plant on a department map, area by
+// capacity (MW) or by 2025 generation (GWh), plus a bar per department. Data:
+// src/data/bolivia-power-plants/plants.json (built by analysis/bolivia-power-plants/build_data.py).
+import data from "../../../data/bolivia-power-plants/plants.json";
+
+const TECH_LABEL: Record<string, string> = {
+  gas_cc: "Gas, combined cycle", gas_oc: "Gas turbines", diesel: "Diesel", dual_fuel: "Dual fuel",
+  hydro: "Hydro", wind: "Wind", solar: "Solar", biomass: "Biomass",
+};
+const f0 = (n: number) => n.toLocaleString("en-US", { maximumFractionDigits: 0 });
+const f1 = (n: number) => n.toLocaleString("en-US", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+const rows = [...data.plants].sort((a, b) => b.capacity_mw - a.capacity_mw);
+const t = data.meta.totals;
+---
+<div class="bp" data-viz="bolivia-power-plants">
+  <div class="bp-ctl">
+    <span class="sp-seg bp-seg" role="group" aria-label="Circle size">
+      <button type="button" data-mode="mw" aria-pressed="true">Capacity (MW)</button>
+      <button type="button" data-mode="gwh" aria-pressed="false">Generation 2025 (GWh)</button>
+    </span>
+  </div>
+
+  <div class="bp-fig">
+    <ul class="bp-legend" aria-label="Technology. Select one to highlight it.">
+      <li><button type="button" data-t="gas" aria-pressed="false"><span class="sw sw-gas"></span>Natural gas</button></li>
+      <li><button type="button" data-t="hydro" aria-pressed="false"><span class="sw sw-hydro"></span>Hydro</button></li>
+      <li><button type="button" data-t="solar" aria-pressed="false"><span class="sw sw-solar"></span>Solar</button></li>
+      <li><button type="button" data-t="wind" aria-pressed="false"><span class="sw sw-wind"></span>Wind</button></li>
+      <li><button type="button" data-t="biomass" aria-pressed="false"><span class="sw sw-biomass"></span>Biomass</button></li>
+      <li class="bp-approx"><span class="sw sw-ring"></span>Approximate location</li>
+      <li class="bp-size" aria-hidden="true"><svg></svg><span></span></li>
+    </ul>
+    <div class="bp-grid">
+      <div class="bp-mapbox">
+        <svg class="bp-map" tabindex="0" role="img"
+          aria-label={`Map of Bolivia with ${t.plants} power plants of the national grid. Use the arrow keys to step through plants.`}></svg>
+      </div>
+      <div class="bp-side">
+        <div class="bp-card" aria-live="polite"><span class="bp-hint">Hover or tap a plant to read it.</span></div>
+        <figure class="bp-bars">
+          <figcaption></figcaption>
+          <svg role="img" aria-label="Capacity or 2025 generation by department, split by technology."></svg>
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <slot name="insights" />
+
+  <details>
+    <summary>Show the data: the {t.plants} plants</summary>
+    <div class="tbl"><table>
+      <caption>CNDC, Memoria y Resultados 2025 (capacity at the end of 2025) and generación bruta 2025. Capacity factor = generation / (capacity x 8,760 h). * Location approximate.</caption>
+      <thead><tr><th>Plant</th><th>Technology</th><th>Department</th><th class="num">MW</th><th class="num">GWh 2025</th><th class="num">Capacity factor</th></tr></thead>
+      <tbody>{rows.map((p) => (
+        <tr>
+          <td>{p.name}{p.location_precision === "approximate" ? " *" : ""}</td>
+          <td>{TECH_LABEL[p.tech]}</td>
+          <td>{p.department}</td>
+          <td class="num">{f1(p.capacity_mw)}</td>
+          <td class="num">{f1(p.generation_2025_gwh)}</td>
+          <td class="num">{Math.round((p.capacity_factor_2025 ?? 0) * 100)} %</td>
+        </tr>
+      ))}</tbody>
+      <tfoot><tr><th>SIN</th><td></td><td></td><td class="num">{f0(t.capacity_mw)}</td><td class="num">{f0(t.generation_2025_gwh)}</td><td class="num">{Math.round((t.generation_2025_gwh * 1000) / (t.capacity_mw * 8760) * 100)} %</td></tr></tfoot>
+    </table></div>
+  </details>
+</div>
+
+<script>
+  import * as d3 from "d3";
+  import data from "../../../data/bolivia-power-plants/plants.json";
+  import depts from "../../../data/bolivia-power-plants/departments.json";
+
+  type Mode = "mw" | "gwh";
+  type Group = "gas" | "hydro" | "solar" | "wind" | "biomass";
+  type Plant = (typeof data.plants)[number] & { g: Group; x: number; y: number };
+  const GROUPS: Group[] = ["gas", "hydro", "solar", "wind", "biomass"];
+  const GROUP_LABEL: Record<Group, string> = { gas: "natural gas", hydro: "hydro", solar: "solar", wind: "wind", biomass: "biomass" };
+  const TECH_LABEL: Record<string, string> = {
+    gas_cc: "gas, combined cycle", gas_oc: "gas turbines", diesel: "diesel engines", dual_fuel: "dual-fuel engines",
+    hydro: "hydro", wind: "wind", solar: "solar", biomass: "biomass",
+  };
+  const groupOf = (t: string): Group => (["gas_cc", "gas_oc", "diesel", "dual_fuel"].includes(t) ? "gas" : (t as Group));
+  const val = (p: Plant, m: Mode) => (m === "mw" ? p.capacity_mw : p.generation_2025_gwh);
+  const fmt = (n: number, d = 1) => n.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
+  const UNIT: Record<Mode, string> = { mw: "MW", gwh: "GWh" };
+  // Zongo valley (COBEE): the cluster north of La Paz city, labelled on the map
+  const ZONGO = ["Zongo", "Tiquimani", "Botijlaca", "Cuticucho", "Santa Rosa", "Sainani", "Chururaqui", "Harca", "Cahua", "Huaji"];
+
+  document.querySelectorAll<HTMLElement>('[data-viz="bolivia-power-plants"]').forEach((root) => {
+    root.classList.add("js");
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const q = <T extends Element>(s: string) => root.querySelector<T>(s)!;
+    const svgEl = q<SVGSVGElement>("svg.bp-map"), card = q<HTMLElement>(".bp-card");
+    const barsEl = q<SVGSVGElement>(".bp-bars svg"), barsCap = q<HTMLElement>(".bp-bars figcaption");
+    const sizeSvg = d3.select(q<SVGSVGElement>(".bp-size svg")), sizeTxt = q<HTMLElement>(".bp-size span");
+
+    const plants: Plant[] = data.plants.map((p) => ({ ...p, g: groupOf(p.tech), x: 0, y: 0 }));
+    let mode: Mode = "mw";
+    let selected: Plant | null = null;
+    const maxOf: Record<Mode, number> = { mw: d3.max(plants, (p) => p.capacity_mw)!, gwh: d3.max(plants, (p) => p.generation_2025_gwh)! };
+
+    const svg = d3.select(svgEl);
+    const gDept = svg.append("g").attr("class", "dept");
+    const gLab = svg.append("g").attr("class", "dlab");
+    const gAnn = svg.append("g").attr("class", "ann");
+    const gMarks = svg.append("g").attr("class", "marks");
+    const selRing = svg.append("circle").attr("class", "sel").attr("r", 0);
+
+    let W = 0, H = 0, rMax = 24;
+    const proj = d3.geoMercator();
+    const path = d3.geoPath(proj);
+    const r = (v: number, m: Mode = mode) => (v > 0 ? Math.max(1.4, Math.sqrt(v / maxOf[m]) * rMax) : 0);
+
+    function drawBase() {
+      gDept.selectAll("path").data((depts as any).features).join("path").attr("d", path as any);
+      gLab.selectAll("text").data((depts as any).features).join("text")
+        .attr("transform", (d: any) => {
+          const [x, y] = path.centroid(d);
+          // Labels shifted off the dense clusters
+          const k = W / 600;
+          const off: Record<string, [number, number]> = {
+            Cochabamba: [0, 46], "La Paz": [0, -60], "Santa Cruz": [40, -40], Tarija: [-6, 46], "Potosí": [-10, 34], Oruro: [-6, 18],
+          };
+          const [dx, dy] = off[d.properties.name] ?? [0, 0];
+          return `translate(${x + dx * k},${y + dy * k})`;
+        })
+        .text((d: any) => d.properties.name);
+      // Zongo valley annotation: leader from the cluster to a label west of it
+      const z = plants.filter((p) => ZONGO.includes(p.name));
+      const c = proj([d3.mean(z, (p) => p.lon)!, d3.mean(z, (p) => p.lat)!])!;
+      const small = W < 560;
+      const lx = Math.max(4, c[0] - (small ? 70 : 95)), ly = small ? c[1] - 28 : c[1] + 56;
+      gAnn.selectAll("*").remove();
+      gAnn.append("path").attr("d", small ? `M${c[0] - 4},${c[1] - 4}L${lx + 30},${ly + 4}` : `M${c[0] - 3},${c[1] + 5}L${lx + 20},${ly - 13}`);
+      gAnn.append("text").attr("x", lx).attr("y", ly).text("Zongo valley");
+      if (!small) gAnn.append("text").attr("class", "sub").attr("x", lx).attr("y", ly + 15)
+        .text(`${z.length} hydro plants, ${fmt(d3.sum(z, (p) => val(p, mode)), 0)} ${UNIT[mode]}`);
+    }
+
+    function place(animate = false) {
+      for (const p of plants) { const xy = proj([p.lon, p.lat])!; p.x = xy[0]; p.y = xy[1]; }
+      const order = [...plants].sort((a, b) => val(b, mode) - val(a, mode));
+      const c = gMarks.selectAll<SVGCircleElement, Plant>("circle").data(order, (d) => d.id)
+        .join("circle")
+        .attr("class", (d) => `m t-${d.g}${d.location_precision === "approximate" ? " approx" : ""}`)
+        .attr("data-t", (d) => d.g)
+        .attr("cx", (d) => d.x).attr("cy", (d) => d.y);
+      c.order();
+      (animate && !reduce ? c.transition().duration(600).ease(d3.easeCubicOut) : c).attr("r", (d) => r(val(d, mode)));
+      if (selected) selRing.attr("cx", selected.x).attr("cy", selected.y).attr("r", r(val(selected, mode)) + 3);
+      drawSize();
+    }
+
+    function drawSize() {
+      const ref = mode === "mw" ? [100, 500] : [500, 2000];
+      const rs = ref.map((v) => r(v)), h = Math.ceil(2 * rs[1] + 4);
+      sizeSvg.attr("width", Math.ceil(2 * rs[0] + 2 * rs[1] + 12)).attr("height", h);
+      sizeSvg.selectAll("circle").data(rs).join("circle")
+        .attr("r", (d) => d).attr("cy", (d) => h - d - 2).attr("cx", (d, i) => (i ? 2 * rs[0] + 9 + d : d + 1));
+      sizeTxt.textContent = `${ref[0].toLocaleString("en-US")} and ${ref[1].toLocaleString("en-US")} ${UNIT[mode]}`;
+    }
+
+    // Department bars, stacked by technology group, sorted by the current measure
+    function drawBars(animate = false) {
+      const by = d3.rollups(plants, (v) => Object.fromEntries(GROUPS.map((g) => [g, d3.sum(v.filter((p) => p.g === g), (p) => val(p, mode))])), (p) => p.department)
+        .map(([dep, o]) => ({ dep, ...o, total: d3.sum(GROUPS, (g) => (o as any)[g]) }))
+        .sort((a, b) => b.total - a.total);
+      const total = d3.sum(by, (d) => d.total);
+      const top3 = d3.sum(by.slice(0, 3), (d) => d.total);
+      barsCap.textContent = mode === "mw"
+        ? `Capacity by department: ${by.slice(0, 3).map((d) => d.dep).join(", ")} hold ${Math.round((top3 / total) * 100)} %`
+        : `Generation 2025 by department: ${by.slice(0, 3).map((d) => d.dep).join(", ")} made ${Math.round((top3 / total) * 100)} %`;
+      const bw = Math.round(barsEl.getBoundingClientRect().width) || 300;
+      const rowH = 26, lab = 86, right = 64, bh = by.length * rowH + 4;
+      const bsvg = d3.select(barsEl).attr("viewBox", `0 0 ${bw} ${bh}`).attr("height", bh);
+      const x = d3.scaleLinear().domain([0, mode === "mw" ? 1400 : 4400]).range([lab, bw - right]);
+      const stack = d3.stack<any>().keys(GROUPS)(by);
+      const rowsSel = bsvg.selectAll<SVGGElement, any>("g.row").data(by, (d) => d.dep).join((e) => {
+        const g = e.append("g").attr("class", "row");
+        g.append("text").attr("class", "dl").attr("x", 0).attr("dy", "0.32em");
+        g.append("text").attr("class", "dv").attr("dy", "0.32em");
+        return g;
+      });
+      (animate && !reduce ? rowsSel.transition().duration(600).ease(d3.easeCubicOut) : rowsSel)
+        .attr("transform", (d, i) => `translate(0,${i * rowH + rowH / 2 + 2})`);
+      rowsSel.select(".dl").text((d) => d.dep);
+      rowsSel.select(".dv").text((d) => `${fmt(d.total, 0)} ${UNIT[mode]}`);
+      (animate && !reduce ? rowsSel.select(".dv").transition().duration(600) : rowsSel.select(".dv")).attr("x", (d) => x(d.total) + 6);
+      rowsSel.each(function (d) {
+        const segs = GROUPS.map((g) => { const s = stack.find((k) => k.key === g)!.find((v) => v.data.dep === d.dep)!; return { g, x0: s[0], x1: s[1] }; });
+        const rs = d3.select(this).selectAll<SVGRectElement, any>("rect").data(segs, (s: any) => s.g)
+          .join("rect").attr("class", (s) => `t-${s.g}`).attr("data-t", (s) => s.g).attr("y", -8).attr("height", 16);
+        (animate && !reduce ? rs.transition().duration(600).ease(d3.easeCubicOut) : rs)
+          .attr("x", (s) => x(s.x0)).attr("width", (s) => Math.max(0, x(s.x1) - x(s.x0)));
+      });
+    }
+
+    function resize() {
+      const w = Math.round(svgEl.getBoundingClientRect().width) || 320;
+      if (w === W) return;
+      W = w; H = Math.round(W * 1.02);
+      rMax = W < 560 ? 18 : 26;
+      svg.attr("viewBox", `0 0 ${W} ${H}`).attr("height", H);
+      proj.fitExtent([[6, 6], [W - 6, H - 6]], depts as any);
+      drawBase(); place(); drawBars();
+    }
+
+    function show(p: Plant | null) {
+      selected = p;
+      selRing.attr("r", p ? r(val(p, mode)) + 3 : 0).attr("cx", p?.x ?? 0).attr("cy", p?.y ?? 0);
+      if (!p) { card.innerHTML = '<span class="bp-hint">Hover or tap a plant to read it.</span>'; return; }
+      const techs = Object.entries(p.capacity_by_tech_mw).map(([k, v]) => `${TECH_LABEL[k]} ${fmt(v as number)} MW`).join(", ");
+      const cf = p.capacity_factor_2025 ?? 0;
+      const line = cf < 0.05 ? "Barely ran in 2025."
+        : cf > 0.6 ? `Ran at ${Math.round(cf * 100)} % of its capacity over the year.`
+        : `Produced ${Math.round(cf * 100)} % of what it could at full power all year.`;
+      const approx = p.location_precision === "approximate" ? `<p class="bp-note">Location approximate: ${p.location_note}</p>` : "";
+      card.innerHTML = `<div class="bp-card-h"><strong>${p.name}</strong><span>${p.department}</span></div>
+        <dl>
+          <div><dt>Capacity</dt><dd>${fmt(p.capacity_mw)} MW</dd></div>
+          <div><dt>Generation 2025</dt><dd>${fmt(p.generation_2025_gwh)} GWh</dd></div>
+          <div><dt>Capacity factor</dt><dd>${Math.round(cf * 100)} %</dd></div>
+        </dl>
+        <p class="bp-line">${line}</p>
+        <p class="bp-meta">${techs}. ${p.units} ${p.units === 1 ? "unit" : "units"}. Operator: ${p.operator}.</p>${approx}`;
+    }
+
+    function nearest(px: number, py: number, reach = 22) {
+      let best: Plant | null = null, bd = reach * reach;
+      for (const p of plants) {
+        const d = (p.x - px) ** 2 + (p.y - py) ** 2 - r(val(p, mode)) ** 2 * 0.5;
+        if (d < bd) { bd = d; best = p; }
+      }
+      return best;
+    }
+    svg.on("pointermove pointerdown", (ev: PointerEvent) => {
+      const [x, y] = d3.pointer(ev, svgEl);
+      const p = nearest(x, y);
+      if (p || ev.type === "pointerdown") show(p);
+    });
+    svgEl.addEventListener("keydown", (ev) => {
+      if (!["ArrowRight", "ArrowLeft", "ArrowDown", "ArrowUp", "Escape"].includes(ev.key)) return;
+      ev.preventDefault();
+      if (ev.key === "Escape") return show(null);
+      const list = [...plants].sort((a, b) => val(b, mode) - val(a, mode));
+      const i = selected ? list.indexOf(selected) : -1;
+      const step = ev.key === "ArrowRight" || ev.key === "ArrowDown" ? 1 : -1;
+      show(list[(i + step + list.length) % list.length]);
+    });
+
+    root.querySelectorAll<HTMLButtonElement>("[data-mode]").forEach((b) => b.addEventListener("click", () => {
+      mode = b.dataset.mode as Mode;
+      root.querySelectorAll<HTMLButtonElement>("[data-mode]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+      root.dataset.mode = mode;
+      drawBase(); place(true); drawBars(true);
+      if (selected) show(selected);
+    }));
+    root.querySelectorAll<HTMLButtonElement>(".bp-legend [data-t]").forEach((b) => b.addEventListener("click", () => {
+      const on = root.dataset.focus !== b.dataset.t;
+      if (on) root.dataset.focus = b.dataset.t!; else delete root.dataset.focus;
+      root.querySelectorAll<HTMLButtonElement>(".bp-legend [data-t]").forEach((x) => x.setAttribute("aria-pressed", String(on && x === b)));
+    }));
+
+    root.dataset.mode = mode;
+    new ResizeObserver(() => resize()).observe(svgEl);
+    resize();
+  });
+</script>
+
+<style is:global>
+  [data-viz="bolivia-power-plants"] { margin-block: 24px; }
+  .bp .t-gas { fill: var(--tech-gas); background: var(--tech-gas); }
+  .bp .t-hydro { fill: var(--tech-hydro); background: var(--tech-hydro); }
+  .bp .t-solar { fill: var(--tech-solar); background: var(--tech-solar); }
+  .bp .t-wind { fill: var(--tech-wind); background: var(--tech-wind); }
+  .bp .t-biomass { fill: var(--tech-biomass); background: var(--tech-biomass); }
+
+  .bp-ctl { margin-bottom: 10px; }
+  .bp-seg { display: inline-flex; border: 1px solid var(--rule); background: var(--bg); width: 100%; }
+  .bp-seg button { flex: 1; font: 600 13.5px/1 var(--f-data); color: var(--ink-2); background: none; border: 0; padding: 14px 6px; min-height: 44px; cursor: pointer; }
+  .bp-seg button + button { border-left: 1px solid var(--rule); }
+  .bp-seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+  .bp-seg button:focus-visible { outline: 2px solid var(--ink); outline-offset: 1px; }
+
+  .bp-fig { padding: 10px; background: var(--panel); border: 1px solid var(--rule); }
+  .bp-legend { list-style: none; margin: 0 0 8px; padding: 0 0 8px; border-bottom: 1px solid var(--rule); display: flex; flex-wrap: wrap; gap: 0 6px; font: 400 13px/1.3 var(--f-data); color: var(--ink-2); }
+  .bp-legend li { display: inline-flex; align-items: center; }
+  .bp-legend button { display: inline-flex; align-items: center; gap: 7px; font: inherit; color: inherit; background: none; border: 1px solid transparent; padding: 0 8px; min-height: 44px; cursor: pointer; }
+  .bp-legend button[aria-pressed="true"] { border-color: var(--ink); color: var(--ink); font-weight: 600; }
+  .bp-legend button:focus-visible { outline: 2px solid var(--ink); outline-offset: 1px; }
+  .bp-approx { padding: 0 8px; gap: 7px; min-height: 44px; }
+  .bp .sw { display: inline-block; width: 13px; height: 13px; border-radius: 50%; flex: none; border: 1px solid color-mix(in srgb, var(--ink) 55%, transparent); }
+  .bp .sw-gas { background: var(--tech-gas); } .bp .sw-hydro { background: var(--tech-hydro); }
+  .bp .sw-solar { background: var(--tech-solar); } .bp .sw-wind { background: var(--tech-wind); }
+  .bp .sw-biomass { background: var(--tech-biomass); }
+  .bp .sw-ring { background: none; border: 1.5px dashed var(--ink-2); }
+
+  .bp-grid { display: grid; gap: 12px; }
+  .bp-mapbox { position: relative; width: 100%; max-width: 560px; margin-inline: auto; }
+  .bp-map { display: block; width: 100%; height: auto; touch-action: manipulation; }
+  .bp-map:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+  .bp-map .dept path { fill: var(--bg); stroke: var(--rule); stroke-width: 1; }
+  .bp-map .dlab text { font: 400 12px var(--f-data); fill: var(--ink-3); text-anchor: middle; pointer-events: none; paint-order: stroke; stroke: var(--bg); stroke-width: 3px; stroke-linejoin: round; }
+  .bp-map .ann path { fill: none; stroke: var(--ink-2); stroke-width: 1; }
+  .bp-map .ann text { font: 600 12px var(--f-data); fill: var(--ink); paint-order: stroke; stroke: var(--bg); stroke-width: 3px; stroke-linejoin: round; }
+  .bp-map .ann text.sub { font-weight: 400; fill: var(--ink-3); }
+  .bp-map .m { stroke: var(--ink); stroke-opacity: .55; stroke-width: .8; fill-opacity: .92; transition: opacity .15s; }
+  .bp-map .m.approx { stroke-dasharray: 2 1.5; stroke-opacity: .9; }
+  .bp-map .sel { fill: none; stroke: var(--ink); stroke-width: 1.5; pointer-events: none; }
+  .bp-size { display: inline-flex; align-items: center; gap: 6px; padding: 0 8px; min-height: 44px; color: var(--ink-3); }
+  .bp-size circle { fill: none; stroke: var(--ink-3); stroke-width: 1; }
+
+  .bp[data-focus] [data-t] { opacity: .18; }
+  .bp[data-focus="gas"] [data-t="gas"], .bp[data-focus="hydro"] [data-t="hydro"], .bp[data-focus="solar"] [data-t="solar"],
+  .bp[data-focus="wind"] [data-t="wind"], .bp[data-focus="biomass"] [data-t="biomass"] { opacity: 1; }
+  .bp .bp-legend [data-t] { opacity: 1; }
+
+  .bp-card { padding: 10px 12px; border: 1px solid var(--rule); background: var(--bg); font: 400 14px/1.35 var(--f-data); color: var(--ink); min-height: 9.5em; }
+  .bp-card-h { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 8px; }
+  .bp-card-h strong { font: 700 18px/1.2 var(--f-display); }
+  .bp-card-h span { color: var(--ink-3); }
+  .bp-card dl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 0; }
+  .bp-card dt { font-size: 12px; color: var(--ink-3); }
+  .bp-card dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .bp-line { margin: 8px 0 0; color: var(--ink-2); }
+  .bp-meta, .bp-note { margin: 6px 0 0; font-size: 12.5px; color: var(--ink-3); }
+  .bp-hint { color: var(--ink-3); }
+
+  .bp-bars { margin: 0; }
+  .bp-bars figcaption { font: 600 14px/1.3 var(--f-data); color: var(--ink); margin: 4px 0 8px; }
+  .bp-bars svg { display: block; width: 100%; }
+  .bp-bars rect { stroke: var(--panel); stroke-width: .8; transition: opacity .15s; }
+  .bp-bars .dl { font: 400 13px var(--f-data); fill: var(--ink-2); }
+  .bp-bars .dv { font: 400 12px var(--f-data); fill: var(--ink-3); }
+
+  .bp-ins { list-style: none; counter-reset: ins; margin: 20px 0 0; padding: 0; display: grid; gap: 14px; max-width: var(--measure); }
+  .bp-ins li { counter-increment: ins; display: grid; grid-template-columns: 24px minmax(0, 1fr); column-gap: 12px; color: var(--ink-2); font-size: 16px; line-height: 1.5; }
+  .bp-ins li::before { content: counter(ins); width: 24px; height: 24px; border-radius: 50%; border: 1.3px solid var(--ink); background: var(--panel); color: var(--ink); font: 600 12px/21px var(--f-data); text-align: center; margin-top: 2px; }
+  .bp-ins strong { color: var(--ink); }
+
+  .bp:not(.js) .bp-ctl, .bp:not(.js) .bp-fig { display: none; }
+
+  .bp details { margin-top: 20px; font-size: 14px; }
+  .bp summary { cursor: pointer; font-weight: 600; padding-block: 6px; }
+  .bp .tbl { overflow-x: auto; margin-top: 10px; }
+  .bp table { border-collapse: collapse; min-width: 560px; font-family: var(--f-data); }
+  .bp caption { caption-side: bottom; text-align: left; font-size: 12px; color: var(--ink-3); padding-top: 8px; }
+  .bp th, .bp td { text-align: left; padding: 6px 14px 6px 0; border-bottom: 1px solid var(--rule); }
+  .bp tfoot th, .bp tfoot td { font-weight: 600; color: var(--ink); border-bottom: 0; }
+  .bp .num { text-align: right; font-variant-numeric: tabular-nums; }
+
+  @media (min-width: 700px) {
+    .bp-seg { width: auto; }
+    .bp-seg button { flex: none; font-size: 14px; padding: 11px 14px; min-height: 40px; }
+  }
+  @media (min-width: 900px) {
+    [data-viz="bolivia-power-plants"] { margin-block: 32px; }
+    .bp-fig { padding: 18px 20px; }
+    .bp-grid { grid-template-columns: minmax(0, 1.25fr) minmax(300px, 1fr); gap: 24px; align-items: start; }
+    .bp-ins { max-width: none; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+  }
+</style>
