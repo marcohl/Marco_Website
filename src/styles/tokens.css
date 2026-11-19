@@ -100,6 +100,8 @@ h1 em { font-style: normal; }
 /* Title block: the cartouche of a drawing sheet. Cells hold a small label and a value. */
 .tblock { --cols: 4; display: grid; grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); border: 1px solid var(--ink); background: var(--panel); }
 .tblock > * { padding: 8px 12px; border-left: 1px solid var(--ink); min-width: 0; overflow-wrap: anywhere; }
+/* Labels can wrap to different line counts; the figures stay on one shared line at the bottom. */
+.tblock > * { display: flex; flex-direction: column; justify-content: space-between; }
 .tblock > :first-child { border-left: 0; }
 .tblock small { display: block; font: 400 13px/1.2 var(--f-data); color: var(--ink-3); margin-bottom: 3px; }
 .tblock b { display: block; font: 600 17px/1.2 var(--f-display); color: var(--ink); }
