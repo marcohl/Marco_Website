@@ -12,6 +12,8 @@ const f0 = (n: number) => n.toLocaleString("en-US", { maximumFractionDigits: 0 }
 const f1 = (n: number) => n.toLocaleString("en-US", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 const rows = [...data.plants].sort((a, b) => b.capacity_mw - a.capacity_mw);
 const t = data.meta.totals;
+const deps = [...new Set(data.plants.map((p) => p.department))].sort((a, b) => a.localeCompare(b, "es"))
+  .map((d) => ({ name: d, n: data.plants.filter((p) => p.department === d).length }));
 ---
 <div class="bp" data-viz="bolivia-power-plants">
   <div class="bp-ctl">
@@ -19,6 +21,12 @@ const t = data.meta.totals;
       <button type="button" data-mode="mw" aria-pressed="true">Capacity (MW)</button>
       <button type="button" data-mode="gwh" aria-pressed="false">Generation 2025 (GWh)</button>
     </span>
+    <label class="bp-dep"><span>Department</span>
+      <select aria-label="Department">
+        <option value="">All of Bolivia</option>
+        {deps.map((d) => <option value={d.name}>{d.name} ({d.n})</option>)}
+      </select>
+    </label>
   </div>
 
   <div class="bp-fig">
@@ -33,11 +41,13 @@ const t = data.meta.totals;
     </ul>
     <div class="bp-grid">
       <div class="bp-mapbox">
+        <button type="button" class="bp-back" hidden>Show all of Bolivia</button>
         <svg class="bp-map" tabindex="0" role="img"
-          aria-label={`Map of Bolivia with ${t.plants} power plants of the national grid. Use the arrow keys to step through plants.`}></svg>
+          aria-label={`Map of Bolivia with ${t.plants} power plants of the national grid. Select a department to zoom in. Use the arrow keys to step through plants.`}></svg>
       </div>
       <div class="bp-side">
-        <div class="bp-card" aria-live="polite"><span class="bp-hint">Hover or tap a plant to read it.</span></div>
+        <div class="bp-card" aria-live="polite"><span class="bp-hint">Tap a department to zoom in. Hover or tap a plant to read it.</span></div>
+        <div class="bp-list" hidden><p class="bp-list-h"></p><ul></ul></div>
         <figure class="bp-bars">
           <figcaption></figcaption>
           <svg role="img" aria-label="Capacity or 2025 generation by department, split by technology."></svg>
@@ -103,11 +113,25 @@ const t = data.meta.totals;
     const maxOf: Record<Mode, number> = { mw: d3.max(plants, (p) => p.capacity_mw)!, gwh: d3.max(plants, (p) => p.generation_2025_gwh)! };
 
     const svg = d3.select(svgEl);
-    const gDept = svg.append("g").attr("class", "dept");
+    // The map and the marks sit in two "zoom" groups that share one transform; labels stay outside.
+    const gDept = svg.append("g").attr("class", "zoom").append("g").attr("class", "dept");
     const gLab = svg.append("g").attr("class", "dlab");
     const gAnn = svg.append("g").attr("class", "ann");
-    const gMarks = svg.append("g").attr("class", "marks");
-    const selRing = svg.append("circle").attr("class", "sel").attr("r", 0);
+    const gTop = svg.append("g").attr("class", "zoom");
+    const gMarks = gTop.append("g").attr("class", "marks");
+    const selRing = gTop.append("circle").attr("class", "sel").attr("r", 0);
+    const zoomGs = svg.selectAll<SVGGElement, unknown>("g.zoom");
+    const features = (depts as any).features as any[];
+    const depSel = q<HTMLSelectElement>(".bp-dep select"), backBtn = q<HTMLButtonElement>(".bp-back");
+    const listBox = q<HTMLElement>(".bp-list"), listH = q<HTMLElement>(".bp-list-h"), listUl = q<HTMLUListElement>(".bp-list ul");
+    const hasPlants = new Set(plants.map((p) => p.department));
+    // Department zoom: dep is the department shown (null = all of Bolivia), k the zoom factor.
+    // Circles are divided by k so they keep their size on screen and the size key stays true.
+    let dep: string | null = null, k = 1;
+    const inDep = (p: Plant) => !dep || p.department === dep;
+    const hint = () => dep
+      ? `<span class="bp-hint">${dep}: ${plants.filter(inDep).length} plants. Tap one on the map or in the list below.</span>`
+      : '<span class="bp-hint">Tap a department to zoom in. Hover or tap a plant to read it.</span>';
 
     let W = 0, H = 0, rMax = 24;
     const proj = d3.geoMercator();
@@ -115,7 +139,9 @@ const t = data.meta.totals;
     const r = (v: number, m: Mode = mode) => (v > 0 ? Math.max(1.4, Math.sqrt(v / maxOf[m]) * rMax) : 0);
 
     function drawBase() {
-      gDept.selectAll("path").data((depts as any).features).join("path").attr("d", path as any);
+      gDept.selectAll<SVGPathElement, any>("path").data(features).join("path").attr("d", path as any)
+        .classed("has", (d) => hasPlants.has(d.properties.name))
+        .classed("off", (d) => !!dep && d.properties.name !== dep);
       gLab.selectAll("text").data((depts as any).features).join("text")
         .attr("transform", (d: any) => {
           const [x, y] = path.centroid(d);
@@ -145,12 +171,12 @@ const t = data.meta.totals;
       const order = [...plants].sort((a, b) => val(b, mode) - val(a, mode));
       const c = gMarks.selectAll<SVGCircleElement, Plant>("circle").data(order, (d) => d.id)
         .join("circle")
-        .attr("class", (d) => `m t-${d.g}${d.location_precision === "approximate" ? " approx" : ""}`)
+        .attr("class", (d) => `m t-${d.g}${d.location_precision === "approximate" ? " approx" : ""}${inDep(d) ? "" : " out"}`)
         .attr("data-t", (d) => d.g)
         .attr("cx", (d) => d.x).attr("cy", (d) => d.y);
       c.order();
-      (animate && !reduce ? c.transition().duration(600).ease(d3.easeCubicOut) : c).attr("r", (d) => r(val(d, mode)));
-      if (selected) selRing.attr("cx", selected.x).attr("cy", selected.y).attr("r", r(val(selected, mode)) + 3);
+      (animate && !reduce ? c.transition().duration(600).ease(d3.easeCubicOut) : c).attr("r", (d) => r(val(d, mode)) / k);
+      if (selected) selRing.attr("cx", selected.x).attr("cy", selected.y).attr("r", (r(val(selected, mode)) + 3) / k);
       drawSize();
     }
 
@@ -186,6 +212,7 @@ const t = data.meta.totals;
       });
       (animate && !reduce ? rowsSel.transition().duration(600).ease(d3.easeCubicOut) : rowsSel)
         .attr("transform", (d, i) => `translate(0,${i * rowH + rowH / 2 + 2})`);
+      rowsSel.classed("off", (d) => !!dep && d.dep !== dep);
       rowsSel.select(".dl").text((d) => d.dep);
       rowsSel.select(".dv").text((d) => `${fmt(d.total, 0)} ${UNIT[mode]}`);
       (animate && !reduce ? rowsSel.select(".dv").transition().duration(600) : rowsSel.select(".dv")).attr("x", (d) => x(d.total) + 6);
@@ -205,13 +232,57 @@ const t = data.meta.totals;
       rMax = W < 560 ? 18 : 26;
       svg.attr("viewBox", `0 0 ${W} ${H}`).attr("height", H);
       proj.fitExtent([[6, 6], [W - 6, H - 6]], depts as any);
-      drawBase(); place(); drawBars();
+      drawBase(); zoomTo(dep, false); drawBars();
     }
+
+    function zoomTo(name: string | null, animate = true) {
+      dep = name && hasPlants.has(name) ? name : null;
+      let x = 0, y = 0;
+      k = 1;
+      if (dep) {
+        // Fit the department's plants, not its outline, so clusters spread as far as possible.
+        // A minimum box keeps a one-plant department from zooming in without limit.
+        for (const p of plants) { const xy = proj([p.lon, p.lat])!; p.x = xy[0]; p.y = xy[1]; }
+        const ps = plants.filter(inDep), pad = rMax;
+        const cx = (d3.min(ps, (p) => p.x)! + d3.max(ps, (p) => p.x)!) / 2, cy = (d3.min(ps, (p) => p.y)! + d3.max(ps, (p) => p.y)!) / 2;
+        const bw = Math.max(W * 0.25, d3.max(ps, (p) => p.x)! - d3.min(ps, (p) => p.x)! + 2 * pad);
+        const bh = Math.max(H * 0.25, d3.max(ps, (p) => p.y)! - d3.min(ps, (p) => p.y)! + 2 * pad);
+        k = Math.min(8, W / bw, H / bh);
+        x = W / 2 - k * cx; y = H / 2 - k * cy;
+      }
+      const go = animate && !reduce;
+      (go ? zoomGs.transition().duration(650).ease(d3.easeCubicInOut) : zoomGs).attr("transform", `translate(${x},${y}) scale(${k})`);
+      gDept.selectAll<SVGPathElement, any>("path").classed("off", (d) => !!dep && d.properties.name !== dep);
+      gLab.attr("display", dep ? "none" : null); gAnn.attr("display", dep ? "none" : null);
+      backBtn.hidden = !dep; depSel.value = dep ?? ""; root.dataset.dep = dep ?? "";
+      if (selected && !inDep(selected)) selected = null;
+      place(go);
+      drawBars();
+      drawList();
+      if (selected) show(selected); else card.innerHTML = hint();
+    }
+
+    // With a department chosen, its plants as a list: the way to reach plants that overlap on the map.
+    function drawList() {
+      listBox.hidden = !dep;
+      if (!dep) { listUl.innerHTML = ""; return; }
+      const ps = plants.filter(inDep).sort((a, b) => val(b, mode) - val(a, mode));
+      listH.textContent = `Plants in ${dep}, by ${mode === "mw" ? "capacity" : "2025 generation"}`;
+      listUl.innerHTML = ps.map((p) => {
+        const v = val(p, mode);
+        return `<li><button type="button" data-id="${p.id}" aria-pressed="${p === selected}"><span class="sw sw-${p.g}"></span><span class="tx"><span class="nm">${p.name}${p.location_precision === "approximate" ? " *" : ""}</span><span class="v">${fmt(v, v < 10 ? 1 : 0)} ${UNIT[mode]}</span></span></button></li>`;
+      }).join("");
+    }
+    listUl.addEventListener("click", (ev) => {
+      const b = (ev.target as Element).closest<HTMLButtonElement>("button[data-id]");
+      if (b) show(plants.find((p) => String(p.id) === b.dataset.id) ?? null);
+    });
 
     function show(p: Plant | null) {
       selected = p;
-      selRing.attr("r", p ? r(val(p, mode)) + 3 : 0).attr("cx", p?.x ?? 0).attr("cy", p?.y ?? 0);
-      if (!p) { card.innerHTML = '<span class="bp-hint">Hover or tap a plant to read it.</span>'; return; }
+      selRing.attr("r", p ? (r(val(p, mode)) + 3) / k : 0).attr("cx", p?.x ?? 0).attr("cy", p?.y ?? 0);
+      listUl.querySelectorAll<HTMLButtonElement>("button[data-id]").forEach((b) => b.setAttribute("aria-pressed", String(!!p && b.dataset.id === String(p.id))));
+      if (!p) { card.innerHTML = hint(); return; }
       const techs = Object.entries(p.capacity_by_tech_mw).map(([k, v]) => `${TECH_LABEL[k]} ${fmt(v as number)} MW`).join(", ");
       const cf = p.capacity_factor_2025 ?? 0;
       const line = cf < 0.05 ? "Barely ran in 2025."
@@ -229,23 +300,35 @@ const t = data.meta.totals;
     }
 
     function nearest(px: number, py: number, reach = 22) {
+      reach /= k;
       let best: Plant | null = null, bd = reach * reach;
       for (const p of plants) {
-        const d = (p.x - px) ** 2 + (p.y - py) ** 2 - r(val(p, mode)) ** 2 * 0.5;
+        if (!inDep(p)) continue;
+        const d = (p.x - px) ** 2 + (p.y - py) ** 2 - (r(val(p, mode)) / k) ** 2 * 0.5;
         if (d < bd) { bd = d; best = p; }
       }
       return best;
     }
     svg.on("pointermove pointerdown", (ev: PointerEvent) => {
-      const [x, y] = d3.pointer(ev, svgEl);
+      const [x, y] = d3.pointer(ev, gTop.node());
       const p = nearest(x, y);
       if (p || ev.type === "pointerdown") show(p);
     });
+    // A click (not a scroll gesture) on a department with no plant under the pointer zooms to it.
+    svg.on("click", (ev: MouseEvent) => {
+      const [x, y] = d3.pointer(ev, gTop.node());
+      if (nearest(x, y)) return;
+      const f = features.find((f) => d3.geoContains(f, proj.invert!([x, y])!));
+      const name = f?.properties.name ?? null;
+      if (name !== dep && (name === null || hasPlants.has(name))) zoomTo(name);
+    });
+    depSel.addEventListener("change", () => zoomTo(depSel.value || null));
+    backBtn.addEventListener("click", () => { zoomTo(null); svgEl.focus(); });
     svgEl.addEventListener("keydown", (ev) => {
       if (!["ArrowRight", "ArrowLeft", "ArrowDown", "ArrowUp", "Escape"].includes(ev.key)) return;
       ev.preventDefault();
-      if (ev.key === "Escape") return show(null);
-      const list = [...plants].sort((a, b) => val(b, mode) - val(a, mode));
+      if (ev.key === "Escape") return selected || !dep ? show(null) : zoomTo(null);
+      const list = plants.filter(inDep).sort((a, b) => val(b, mode) - val(a, mode));
       const i = selected ? list.indexOf(selected) : -1;
       const step = ev.key === "ArrowRight" || ev.key === "ArrowDown" ? 1 : -1;
       show(list[(i + step + list.length) % list.length]);
@@ -255,7 +338,7 @@ const t = data.meta.totals;
       mode = b.dataset.mode as Mode;
       root.querySelectorAll<HTMLButtonElement>("[data-mode]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
       root.dataset.mode = mode;
-      drawBase(); place(true); drawBars(true);
+      drawBase(); place(true); drawBars(true); drawList();
       if (selected) show(selected);
     }));
     root.querySelectorAll<HTMLButtonElement>(".bp-legend [data-t]").forEach((b) => b.addEventListener("click", () => {
@@ -278,7 +361,14 @@ const t = data.meta.totals;
   .bp .t-wind { fill: var(--tech-wind); background: var(--tech-wind); }
   .bp .t-biomass { fill: var(--tech-biomass); background: var(--tech-biomass); }
 
-  .bp-ctl { margin-bottom: 10px; }
+  .bp-ctl { margin-bottom: 10px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .bp-dep { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--rule); background: var(--bg); padding-left: 10px; color: var(--ink-3); font: 600 12px/1 var(--f-data); }
+  .bp-dep select { font: 600 13.5px/1 var(--f-data); color: var(--ink); background: none; border: 0; min-height: 44px; padding: 0 6px 0 2px; cursor: pointer; }
+  .bp-dep:focus-within { outline: 2px solid var(--ink); outline-offset: 1px; }
+  .bp-back { position: absolute; top: 4px; left: 4px; z-index: 1; font: 600 13.5px/1 var(--f-data); color: var(--bg); background: var(--ink); border: 0; border-radius: 999px; min-height: 44px; padding: 0 16px; cursor: pointer; }
+  .bp-back[hidden] { display: none; }
+  .bp-back:hover { background: var(--ink-2); }
+  .bp-back:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
   .bp-seg { display: inline-flex; border: 1px solid var(--rule); background: var(--bg); width: 100%; }
   .bp-seg button { flex: 1; font: 600 13.5px/1 var(--f-data); color: var(--ink-2); background: none; border: 0; padding: 14px 6px; min-height: 44px; cursor: pointer; }
   .bp-seg button + button { border-left: 1px solid var(--rule); }
@@ -302,14 +392,18 @@ const t = data.meta.totals;
   .bp-mapbox { position: relative; width: 100%; max-width: 560px; margin-inline: auto; }
   .bp-map { display: block; width: 100%; height: auto; touch-action: manipulation; }
   .bp-map:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
-  .bp-map .dept path { fill: var(--bg); stroke: var(--rule); stroke-width: 1; }
+  .bp-map .dept path { fill: var(--bg); stroke: var(--rule); stroke-width: 1; vector-effect: non-scaling-stroke; transition: fill-opacity .3s, stroke-opacity .3s; }
+  .bp-map .dept path.has { cursor: pointer; }
+  .bp-map .dept path.has:hover { stroke: var(--ink-3); }
+  .bp-map .dept path.off { fill-opacity: .35; stroke-opacity: .5; }
   .bp-map .dlab text { font: 400 12px var(--f-data); fill: var(--ink-3); text-anchor: middle; pointer-events: none; paint-order: stroke; stroke: var(--bg); stroke-width: 3px; stroke-linejoin: round; }
   .bp-map .ann path { fill: none; stroke: var(--ink-2); stroke-width: 1; }
   .bp-map .ann text { font: 600 12px var(--f-data); fill: var(--ink); paint-order: stroke; stroke: var(--bg); stroke-width: 3px; stroke-linejoin: round; }
   .bp-map .ann text.sub { font-weight: 400; fill: var(--ink-3); }
-  .bp-map .m { stroke: var(--ink); stroke-opacity: .55; stroke-width: .8; fill-opacity: .92; transition: opacity .15s; }
+  .bp-map .m { stroke: var(--ink); stroke-opacity: .55; stroke-width: .8; vector-effect: non-scaling-stroke; fill-opacity: .92; transition: opacity .15s; }
+  .bp .bp-map .m.out { opacity: 0; pointer-events: none; }
   .bp-map .m.approx { stroke-dasharray: 2 1.5; stroke-opacity: .9; }
-  .bp-map .sel { fill: none; stroke: var(--ink); stroke-width: 1.5; pointer-events: none; }
+  .bp-map .sel { fill: none; stroke: var(--ink); stroke-width: 1.5; vector-effect: non-scaling-stroke; pointer-events: none; }
   .bp-size { display: inline-flex; align-items: center; gap: 6px; padding: 0 8px; min-height: 44px; color: var(--ink-3); }
   .bp-size circle { fill: none; stroke: var(--ink-3); stroke-width: 1; }
 
@@ -329,10 +423,24 @@ const t = data.meta.totals;
   .bp-meta, .bp-note { margin: 6px 0 0; font-size: 12.5px; color: var(--ink-3); }
   .bp-hint { color: var(--ink-3); }
 
+  .bp-list-h { margin: 0 0 6px; font: 600 14px/1.3 var(--f-data); color: var(--ink); }
+  .bp-list ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; }
+  .bp-list button { width: 100%; display: flex; align-items: center; gap: 7px; min-height: 44px; padding: 0 8px; font: 400 13px/1.2 var(--f-data); color: var(--ink); background: var(--bg); border: 1px solid var(--rule); cursor: pointer; text-align: left; }
+  .bp-list button:hover { border-color: var(--ink-3); }
+  .bp-list button[aria-pressed="true"] { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); font-weight: 600; }
+  .bp-list button:focus-visible { outline: 2px solid var(--ink); outline-offset: 1px; }
+  .bp-list .tx { flex: 1; min-width: 0; display: flex; align-items: baseline; gap: 6px; }
+  .bp-list .nm { flex: 1; min-width: 0; }
+  .bp-list .v { color: var(--ink-3); font-size: 12px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  @media (max-width: 559px) {
+    .bp-list .tx { flex-direction: column; gap: 1px; padding-block: 5px; }
+  }
   .bp-bars { margin: 0; }
   .bp-bars figcaption { font: 600 14px/1.3 var(--f-data); color: var(--ink); margin: 4px 0 8px; }
   .bp-bars svg { display: block; width: 100%; }
   .bp-bars rect { stroke: var(--panel); stroke-width: .8; transition: opacity .15s; }
+  .bp-bars .row { transition: opacity .3s; }
+  .bp-bars .row.off { opacity: .3; }
   .bp-bars .dl { font: 400 13px var(--f-data); fill: var(--ink-2); }
   .bp-bars .dv { font: 400 12px var(--f-data); fill: var(--ink-3); }
 
