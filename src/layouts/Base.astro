@@ -6,9 +6,10 @@ import "@fontsource-variable/atkinson-hyperlegible-next/wght.css";
 import "@fontsource-variable/literata/wght.css";
 import "../styles/tokens.css";
 import Nucleus from "../components/Nucleus.astro";
-interface Props { title: string; description?: string; image?: string; type?: "website" | "article"; noindex?: boolean; }
+interface Props { title: string; description?: string; image?: string; type?: "website" | "article"; noindex?: boolean; world?: "iso"; }
 const {
   title,
+  world,
   description = "Data analysis and science, one chart at a time.",
   image = "/og/default.png",
   type = "website",
@@ -42,10 +43,16 @@ const linkedin = "https://www.linkedin.com/in/marco-herbas-l%C3%B3pez-315530bb";
     <meta name="twitter:description" content={description} />
     {ogImage && <meta name="twitter:image" content={ogImage} />}
     <script is:inline>
-      try { if (localStorage.getItem("theme") === "dark") document.documentElement.dataset.theme = "dark"; } catch (e) {}
+      (function () {
+        var t = null;
+        try { t = localStorage.getItem("theme"); } catch (e) {}
+        if (!t && window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches) t = "dark";
+        if (t === "dark") document.documentElement.dataset.theme = "dark";
+      })();
     </script>
   </head>
-  <body>
+  <body class={world}>
+    <a class="skip" href="#main">Skip to content</a>
     <header class="wrap site">
       <div class="bar">
         <a class="brand" href="/">
@@ -57,11 +64,11 @@ const linkedin = "https://www.linkedin.com/in/marco-herbas-l%C3%B3pez-315530bb";
           <a href="/#about">About</a>
           <a href="#contact">Contact</a>
         </nav>
-        <button id="theme-toggle" type="button" aria-pressed="false">Dark</button>
+        <button id="theme-toggle" type="button">Dark theme</button>
       </div>
     </header>
 
-    <main><slot /></main>
+    <main id="main" tabindex="-1"><slot /></main>
 
     <footer id="contact" class="foot-outer"><div class="wrap foot">
       <div class="contact">
@@ -77,7 +84,7 @@ const linkedin = "https://www.linkedin.com/in/marco-herbas-l%C3%B3pez-315530bb";
     <script is:inline>
       (function () {
         var b = document.getElementById("theme-toggle"), root = document.documentElement;
-        function sync() { var d = root.dataset.theme === "dark"; b.textContent = d ? "Light" : "Dark"; b.setAttribute("aria-pressed", String(d)); }
+        function sync() { b.textContent = root.dataset.theme === "dark" ? "Light theme" : "Dark theme"; }
         b.addEventListener("click", function () {
           var d = root.dataset.theme === "dark";
           if (d) delete root.dataset.theme; else root.dataset.theme = "dark";
@@ -91,6 +98,9 @@ const linkedin = "https://www.linkedin.com/in/marco-herbas-l%C3%B3pez-315530bb";
 </html>
 <style>
   /* Mobile first: brand and toggle on row 1, links on row 2. One row from 700px. */
+  .skip { position: absolute; left: 8px; top: -60px; z-index: 10; padding: 10px 16px; background: var(--ink); color: var(--bg); font: 600 16px/1 var(--f-display); text-decoration: none; }
+  .skip:focus { top: 8px; }
+  main:focus { outline: none; }
   .site { padding-block: 10px 0; }
   .lbl { font: 600 18px/1.2 var(--f-display); color: var(--ink); }
   .bar { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 0 12px; border-bottom: 2px solid var(--ink); padding-block: 8px 0; }
@@ -103,6 +113,13 @@ const linkedin = "https://www.linkedin.com/in/marco-herbas-l%C3%B3pez-315530bb";
   .links a:hover { text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 2px; }
   #theme-toggle { font: 600 16px/1 var(--f-display); color: var(--ink); background: none; border: 1px solid var(--ink); border-radius: 0; padding: 0 14px; min-height: 40px; cursor: pointer; }
   #theme-toggle:hover { background: var(--marker); color: var(--on-marker); border-color: var(--on-marker); }
+
+  /* Isotype world: softer chrome, no ink rules. */
+  :global(body.iso) .bar { border-bottom: 1px solid var(--rule); }
+  :global(body.iso) #theme-toggle { border-color: var(--rule); border-radius: 999px; font-weight: 600; }
+  @media (max-width: 559px) { :global(body.iso) .disc { display: none; } }
+  :global(body.iso) .name { font-weight: 800; letter-spacing: -.01em; }
+  :global(body.iso) .foot-outer { border-top: 1px solid var(--rule); }
 
   .foot-outer { margin-top: 64px; border-top: 2px solid var(--ink); }
   .foot { padding-block: 28px 40px; display: grid; gap: 24px; }

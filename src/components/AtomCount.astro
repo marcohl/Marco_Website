@@ -1,0 +1,92 @@
+---
+// Home-page picture statistic: 1,000 uranium atoms in rows of 40, grouped in tens so they can be counted.
+// The U-235 share comes from the uranium-enrichment project data. Without JS it shows natural uranium.
+import waffles from "../data/uranium-enrichment/waffles.json";
+const N = waffles.sample_size, COLS = 40, CELL = 12, GAP = 8;
+const LABELS: Record<string, string> = { natural: "As mined", leu: "Reactor fuel", heu: "Weapons-grade" };
+const cases = waffles.cases.map((c) => ({ id: c.id, n: c.u235_atoms_shown, pct: c.u235_mass_pct, label: LABELS[c.id] ?? c.title }));
+const first = cases[0];
+const cx = (i: number) => { const c = i % COLS; return c * CELL + Math.floor(c / 10) * GAP + CELL / 2; };
+const cy = (i: number) => { const r = Math.floor(i / COLS); return r * CELL + Math.floor(r / 5) * GAP + CELL / 2; };
+const rows = Math.ceil(N / COLS);
+const W = COLS * CELL + 3 * GAP, H = rows * CELL + Math.floor((rows - 1) / 5) * GAP;
+const fmt = (n: number) => n.toLocaleString("en-US");
+---
+<figure class="ac" data-cases={JSON.stringify(cases)}>
+  <div class="ac-top">
+    <p class="ac-count"><b>{first.n}</b> <span>of {fmt(N)} atoms a reactor can split</span></p>
+    <p class="ac-sr" aria-live="polite">{first.label}: {first.n} of {fmt(N)} atoms a reactor can split</p>
+    <p class="ac-try" id="ac-try">Pick a stage to recount the red atoms.</p>
+    <div class="ac-steps" role="group" aria-labelledby="ac-try">
+      {cases.map((c, i) => (
+        <button type="button" data-i={i} aria-pressed={i === 0 ? "true" : "false"}>{c.label} <span class="pct">{c.pct}%</span></button>
+      ))}
+    </div>
+  </div>
+  <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${first.label}: ${first.n} of ${fmt(N)} atoms are uranium-235`}>
+    <!-- One pictogram unit: a nucleus with one orbit, drawn in currentColor. -->
+    <symbol id="ac-atom" viewBox="0 0 12 12"><circle cx="6" cy="6" r="2.4" /><ellipse cx="6" cy="6" rx="4.9" ry="2.3" transform="rotate(-30 6 6)" fill="none" stroke="currentColor" stroke-width="1.5" /></symbol>
+    {Array.from({ length: N }, (_, i) => <use href="#ac-atom" x={cx(i) - 5.5} y={cy(i) - 5.5} width="11" height="11" class={i < first.n ? "on" : undefined} />)}
+  </svg>
+  <figcaption>
+    <span class="key"><svg class="dot on" viewBox="0 0 12 12" aria-hidden="true"><use href="#ac-atom" /></svg>Uranium-235, the atom a reactor splits</span>
+    <span class="key"><svg class="dot" viewBox="0 0 12 12" aria-hidden="true"><use href="#ac-atom" /></svg>Uranium-238, three neutrons heavier</span>
+    <a href="/projects/uranium-enrichment/">How enrichment works</a>
+  </figcaption>
+</figure>
+
+<script>
+  document.querySelectorAll<HTMLElement>(".ac").forEach((root) => {
+    root.classList.add("js");
+    const cases = JSON.parse(root.dataset.cases!) as { n: number; label: string }[];
+    const dots = [...root.querySelectorAll<SVGUseElement>("svg use")];
+    const svg = root.querySelector("svg")!;
+    const count = root.querySelector(".ac-count b")!;
+    const sr = root.querySelector(".ac-sr")!;
+    const btns = [...root.querySelectorAll<HTMLButtonElement>(".ac-steps button")];
+    let now = cases[0].n;
+    function show(k: number) {
+      const next = cases[k].n, lo = Math.min(now, next), hi = Math.max(now, next), span = Math.max(1, hi - lo);
+      // Atoms change in reading order, so the count visibly fills or empties row by row.
+      for (let i = lo; i < hi; i++) {
+        const d = dots[i];
+        d.style.transitionDelay = `${Math.round(((next > now ? i - lo : hi - 1 - i) / span) * 700)}ms`;
+        d.classList.toggle("on", i < next);
+      }
+      now = next;
+      count.textContent = next.toLocaleString("en-US");
+      svg.setAttribute("aria-label", `${cases[k].label}: ${next} of 1,000 atoms are uranium-235`);
+      sr.textContent = `${cases[k].label}: ${next} of 1,000 atoms a reactor can split`;
+      btns.forEach((b, i) => b.setAttribute("aria-pressed", String(i === k)));
+    }
+    btns.forEach((b, i) => b.addEventListener("click", () => show(i)));
+  });
+</script>
+
+<style>
+  .ac { margin: 0; padding: 20px; background: var(--panel); border-radius: var(--radius, 6px); display: grid; gap: 16px; min-width: 0; }
+  .ac-top { display: grid; gap: 14px; }
+  .ac-count { margin: 0; display: flex; align-items: last baseline; gap: 12px; flex-wrap: wrap; color: var(--ink-2); font-size: 17px; line-height: 1.3; }
+  .ac-count b { font: 800 56px/1 var(--f-display); color: var(--cat-2); font-variant-numeric: tabular-nums; }
+  .ac-steps { display: none; flex-wrap: wrap; gap: 6px; }
+  .ac-try { display: none; margin: 0 0 -6px; font-size: 16px; font-weight: 600; color: var(--ink); }
+  .ac.js .ac-try { display: block; }
+  .ac-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; margin: 0; }
+  @media (max-width: 559px) { .ac { padding: 14px; gap: 12px; } .ac-steps button { font-size: 15px; padding: 0 12px; } .ac-steps button .pct { display: none; } }
+  .ac.js .ac-steps { display: flex; }
+  .ac-steps button { font: 600 16px/1 var(--f-display); color: var(--ink); background: transparent; border: 1.5px solid var(--rule); border-radius: 999px; min-height: 44px; padding: 0 16px; cursor: pointer; }
+  .ac-steps button .pct { color: var(--ink-3); font-weight: 400; margin-left: 4px; font-variant-numeric: tabular-nums; }
+  .ac-steps button:hover { border-color: var(--ink); }
+  .ac-steps button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+  .ac-steps button[aria-pressed="true"] .pct { color: var(--bg); opacity: .8; }
+  .ac svg { width: 100%; height: auto; display: block; }
+  .ac use { color: var(--cat-1); fill: currentColor; transition: color .25s ease-out; }
+  .ac use.on { color: var(--cat-2); }
+  figcaption { display: flex; flex-wrap: wrap; gap: 6px 20px; align-items: center; font-size: 15px; color: var(--ink-2); }
+  .key { display: inline-flex; align-items: center; gap: 8px; }
+  .ac figcaption .dot { width: 16px; height: 16px; color: var(--cat-1); fill: currentColor; flex: none; }
+  .ac figcaption .dot.on { color: var(--cat-2); }
+  .ac figcaption .dot use { color: inherit; }
+  figcaption a { margin-left: auto; font-weight: 600; color: var(--ink); text-decoration-color: var(--cat-2); text-decoration-thickness: 2px; min-height: 44px; display: inline-flex; align-items: center; }
+  @media (min-width: 560px) { .ac { padding: 28px; } .ac-count b { font-size: 72px; } }
+</style>

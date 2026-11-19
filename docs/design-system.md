@@ -1,29 +1,37 @@
-# Design system: Blueline
+# Design system: Isotype
 
 The visual rules for every page and every project on the site. `CLAUDE.md` says
 how to work; this file says how things must look. Read it before phase 3 (Form)
-of any new project and check against it in phase 6 (QA).
+of any new project and check against it in phase 6 (QA). `DESIGN.md` at the repo
+root is the full record of the system; this file is the working checklist.
 
-The values below are copied from `src/styles/tokens.css`. If the two ever
-disagree, the CSS wins and this file must be updated in the same commit.
+The values below are copied from the `body.iso` block in
+`src/styles/tokens.css`. If the two ever disagree, the CSS wins and this file
+must be updated in the same commit. (The `:root` block above it is the old
+Blueline set, kept only as a fallback; do not design against it.)
 
 ## 1. The idea
 
-The site looks like a set of engineering drawings. Blue ink on white paper, as
-in a diazo (blueline) print; the dark theme is the cyanotype, white lines on
-deep blue. Each project is a **drawing sheet** with a number (`MHL-00N`), a
-revision letter and a title block. The home page is the **register of
-drawings**.
+The site counts things with you, in the spirit of Isotype picture statistics
+(Neurath, Arntz): rows of identical little symbols, one group coloured
+differently. Flat cut-paper shapes in saturated poster colours on a cool
+off-white ground, black text, one friendly humanist sans. The tone is relaxed
+but credible: no blueprint jargon, no drawing numbers, no revisions, no title
+blocks.
+
+Every page uses `<Base world="iso">` (project pages get it from
+`Project.astro`).
 
 Three consequences for anything new:
 
-- **Lines, not shadows.** Structure comes from 1-2 px ink rules and boxes. No
-  drop shadows, no gradients (except the highlighter band), no glassmorphism.
-- **Square corners.** `border-radius: 0` everywhere. The only round shapes are
-  data marks (dots, rings) and numbered markers.
-- **It must not look generated.** No rounded cards with soft shadows, no
-  pastel gradient blobs, no emoji, no centered hero with a big blurred
-  illustration. If a layout looks like a SaaS landing page template, redo it.
+- **Flat colour, no shadows.** Structure comes from colour fields, soft panels
+  and 1px `--rule` lines. No drop shadows, no gradients (except the
+  highlighter band), no glassmorphism, no textures.
+- **Soft corners.** `--radius` (6px) on panels, tiles and buttons (buttons and
+  segmented pills are fully round). Data marks stay geometric.
+- **Count, don't decorate.** Where a number can be shown as countable units,
+  show the units (the 1,000-atom grid on the home, the language row in About).
+  Never invent numbers to fill a pictogram row.
 
 ## 2. Color
 
@@ -31,212 +39,143 @@ Components never use literal colors. Use these tokens only.
 
 | Token | Light | Dark | Use |
 |---|---|---|---|
-| `--bg` | `#F2F3F0` | `#0E1740` | Page background (the paper) |
-| `--panel` | `#FAFAF8` | `#162257` | Boxes that hold a chart, title blocks, sheets |
-| `--ink` | `#1B2A6B` | `#EAF0FF` | Headings, strong text, rules, borders of boxes |
-| `--ink-2` | `#4B5688` | `#B9C4F2` | Body text, axis labels on the category axis |
-| `--ink-3` | `#5F6993` | `#98A5DC` | Secondary labels, metadata, tick labels, captions |
-| `--rule` | `#C9CDE0` | `#2C3A7A` | Light separators inside a figure, control borders |
-| `--grid` | `#DDE0EE` | `#1B2766` | Chart gridlines only |
-| `--marker` | `#FFE14D` | `#FFD84D` | Highlighter (see below) |
-| `--on-marker` | `#1B2A6B` | `#0E1740` | Text on top of the highlighter |
-| `--cat-1` | `#5A68B0` | `#8FA2F0` | Data: context series |
-| `--cat-2` | `#C8372D` | `#FF7A66` | Data: the story (accent) |
+| `--bg` | `#EDF0F1` | `#11151B` | Page ground |
+| `--panel` | `#FFFFFF` | `#1A2029` | Chart boxes, key-figure panels |
+| `--ink` | `#15181C` | `#EDF0F1` | Headings, strong text, focus rings |
+| `--ink-2` | `#3C424A` | `#C4CAD2` | Body text |
+| `--ink-3` | `#565D67` | `#9CA5B0` | Secondary labels, ticks, captions |
+| `--rule` | `#C5CCD2` | `#2E3743` | Separators, control borders |
+| `--grid` | `#DDE2E6` | `#222A34` | Chart gridlines only |
+| `--marker` | `#F0B429` | `#F5C04A` | Highlighter, text selection |
+| `--cat-1` | `#2F5D9E` | `#7EA2DA` | Data: context (Neurath blue) |
+| `--cat-2` | `#D63B26` | `#FF6A50` | Data: the story (signal red) |
+| `--cat-3` | `#286B4A` | `#5FBF8F` | Data: a second group that is not the story (e.g. women vs men) |
+| `--field-blue / -red / -green / -ochre` | `#2F5D9E` / `#B8321F` / `#286B4A` / `#F0B429` | same | Colour fields: gallery tiles, home closing band, Next project tile |
+| `--on-field` / `--on-ochre` | `#FFFFFF` / `#15181C` | same | Text on a colour field |
 
 Rules:
 
-- **Two data colors, fixed roles.** `--cat-2` (red) is the one thing the
-  reader must notice; `--cat-1` (blue) is everything it is compared with.
-  Additional series that are not the story use `--ink-3` at reduced opacity
-  (see the grey context lines in `SprintChart`).
-- **Red means the story, on every page.** Do not use `--cat-2` for decoration,
-  links, warnings or UI state.
-- **The highlighter is yellow and rare.** `--marker` is used in two ways only:
-  1. the `.mk` band behind one key figure in text, or the big number in a
-     chart's stage (`UraniumWaffles .n`): at most one per screen;
-  2. hover state of interactive blocks: links in the register, sheets, the
-     primary button, the theme toggle.
-  Never as a data series color, never as text color.
-- **Text is never in a series color.** Labels and numbers use ink tokens; the
-  series is identified by a swatch or by position.
-- **A third data color** needs a new token pair in `tokens.css`, validated in
-  both themes on `--bg` and `--panel`:
-  `npm run check:palette -- "#cat1,#cat2,#new" --surface "#F2F3F0"` (and
-  `#FAFAF8`, then the dark values on `#0E1740` and `#162257`). Add it here
-  when it lands. The current pair passes: contrast 4.7-5.0:1 light,
-  5.9-7.1:1 dark; worst colour-blind distance 19.7 (protan).
-- **Technology palette (exception, `bolivia-power-plants`).** When a chart
-  must tell generation technologies apart, use `--tech-gas`, `--tech-hydro`,
-  `--tech-solar`, `--tech-wind`, `--tech-biomass` (soft tones, approved by
-  Marco on 2026-11-15). They pass `check:palette` on all four surfaces (worst
-  CVD distance 13.8 light, 11.7 dark), but gas, wind and solar are below 3:1 on
-  the light surfaces, so their marks always carry a 1px `--ink` outline at .55
-  opacity and every series has a text label and a table view. Do not mix them
-  with `--cat-1` / `--cat-2` in the same chart.
-- **Sequential and diverging scales** are not defined yet. The first project
-  that needs one defines `--seq-*` or `--div-*` tokens (one hue light to dark;
-  two hues with a neutral midpoint), validates them, and documents them here.
+- **Red means the story, on every page.** `--cat-2` is the one thing the
+  reader must notice. Not for decoration, links, warnings or a neutral group.
+  The primary button is ink, never red, because it shares the screen with red
+  marks. `--field-red` (a darker field shade) fills the red tile and the home
+  closing band.
+- **Blue is context, green is a second group.** When two groups are compared
+  and neither is the story, use `--cat-1` and `--cat-3`.
+- **Fields carry text only in their `--on-*` colour.** White on blue, red and
+  green; dark ink on ochre.
+- **Technology palette (exception, `bolivia-power-plants`).** `--tech-*`
+  tokens, approved 2026-11-15, with an ink outline, a text label and a table
+  for every series. Do not mix them with `--cat-*` in the same chart.
+- A new data colour needs a token pair validated with `npm run check:palette`
+  on `--bg` and `--panel`, light and dark, and a row in this table.
 
 ## 3. Typography
 
-Three families, three jobs. Do not add a fourth.
-
-| Role | Token | Family | Where |
-|---|---|---|---|
-| Display | `--f-display` | Barlow Semi Condensed 400/600/700 | Headings, nav, buttons, title blocks, register, big numbers |
-| Body | `--f-body` | Literata (variable, serif) | Running text, paragraphs, lists |
-| Data | `--f-data` | Atkinson Hyperlegible Next (variable) | Everything inside a chart: axis and tick labels, direct labels, legends, tooltips, controls, tables, numbers in stats |
-
-Scale in use:
+One family: **Atkinson Hyperlegible Next** (variable, self-hosted), mapped to
+`--f-display`, `--f-body` and `--f-data` under `body.iso`. Chunky weights for
+headings, regular for reading.
 
 | Element | Spec |
 |---|---|
-| Page `h1` (project headline) | 700, `clamp(40px, 6vw, 72px)`, line-height 1, letter-spacing -.01em |
-| Home hero `h1` | 700, `clamp(42px, 10.5vw, 88px)` |
-| Section `h2` | 600, 28px (project) / 30px (home), line-height 1.1 |
-| `h3` in method / steps | 600, 18px (method) / 30-34px (scrolly step titles) |
-| Eyebrow | 600, 16px, `--ink-2`, sentence case |
-| Body | 400, 17px, line-height 1.6; `--ink-2` in `.prose` |
-| Lead (home) | as body, max 60ch |
-| Method notes | 15px, `--ink-2` |
-| Chart text | `--f-data` 12px ticks, 13px direct labels (600 for the story series), 13-14px legends and cards |
-| Title-block label / value | `small` 13px `--f-data` `--ink-3` / `b` 600 17px `--f-display` `--ink` |
+| Home hero `h1` | 800, `clamp(44px, 9vw, 80px)`, line-height 1.02, -.025em |
+| Project `h1` | 800, `clamp(40px, 6vw, 72px)`, line-height 1, -.02em |
+| Section `h2` | 800, 28-32px, line-height 1.1 |
+| Tile / Next project title | 800, 26px (36px for the newest tile on desktop) |
+| Body | 400, 17px, line-height 1.6; lead 19px (17px under 560px) |
+| Meta line (date, subject) | 600, 15-16px, `--ink-2` |
+| Chart text | 12px ticks, 13px direct labels, 13-14px legends and cards |
 
 Rules:
 
-- **Sentence case everywhere.** No uppercase with letter-spacing (the old
-  monospace eyebrows are gone; do not bring them back).
-- **Numbers are tabular.** `font-variant-numeric: tabular-nums` is set
-  globally on `svg text`, `table` and `.num`. Right-align numeric table cells.
-- **Bold in prose** (`strong`) is 700, `--ink`, no wrapping. Use it for the
-  terms the reader needs to carry, not for emphasis of whole sentences.
-- `h1 em` is upright: it marks the key number in the headline. To make that
-  number stand out, wrap it in `.mk` (highlighter) only if no other highlighter
-  is on the first screen.
-- Line length: prose is capped at `--measure` (64ch).
-- Code (method section only): system monospace, `.88em`.
+- **Sentence case everywhere**, including project titles. No tracked
+  uppercase. No kicker or eyebrow above a heading: dates and topics go in a
+  meta line after the text or above the page as a breadcrumb.
+- **Numbers are tabular** (`tabular-nums` on `svg text`, `table`, `.num`).
+- **Percent without a space:** `84%`, never `84 %`.
+- `text-wrap: balance` on headings, `pretty` on prose.
+- Prose is capped at `--measure` (64ch).
 
 ## 4. Layout and structure
 
-- **Container:** `.wrap`, max 1180px, 20px side gutter, 40px top / 64px bottom.
-- **Mobile first.** Base CSS is the phone layout; desktop is added with
-  `min-width` queries. Breakpoints in use: 560, 640, 700, 900, 1000px.
-- **Three widths must work:** 360, 768, 1280px. No horizontal page scroll;
-  wide tables scroll inside their own `overflow-x: auto` box.
-- **No empty bands.** Every horizontal band of the page is filled across its
-  width on desktop. If the text column leaves the right half empty, put an
-  illustration, a key-figure block or a title block there (the atom next to
-  the uranium headline, the pool next to the swimming one). On phones the
-  side illustration may be dropped if it pushes the chart down.
-- **Rules:**
-  - 2px `--ink`: major section breaks (header bar, footer, method section,
-    top of the register).
-  - 1px `--ink`: borders of title blocks, sheets, register rows.
-  - 1px `--rule`: separators inside a figure (legend top, card, controls).
-- **Spacing:** sections 48-64px apart; inside a figure 8-12px (phone) to
-  12-20px (desktop). Charts get `margin-block: 24px` (32px from 900-1000px).
-- **Touch targets** at least 44px high (40px allowed on desktop controls).
+- **Container:** `.wrap`, max 1180px, 20px side gutter.
+- **Mobile first**; breakpoints in use 560, 640, 700, 900, 960, 1000px. Check
+  360/375, 768 and 1280px. No horizontal page scroll.
+- **First viewport shows the work.** On the home, the live chart starts in the
+  first phone screen.
+- **No empty bands on desktop.** A text column gets an illustration or a
+  key-figure panel beside it, top-aligned with the headline.
+- **Lines:** 1px `--rule` only. No ink rules under the header or above the
+  method section.
+- **Touch targets** at least 44px.
 
 ## 5. Components
 
-Reuse these before inventing new ones.
-
-- **Title block** (`.tblock`, global in `tokens.css`): grid of cells, 1px ink
-  border, `--panel` fill, each cell a `small` label over a `b` value. Collapses
-  to 2 columns under 560px. Used for the project cartouche (automatic, from
-  frontmatter), the home sheets and the About facts. Use it for any set of
-  3-6 key facts or figures on a project page.
-- **Cartouche:** rendered by `Project.astro` from frontmatter (Drawing no.,
-  Subject = `eyebrow` or tags, Revision, Date). Do not rebuild it by hand.
-- **Primary button** (`.btn`, home): `--ink` fill, `--bg` text, display 600
-  19px, 48px high, square; hover turns to the highlighter.
-- **Segmented control** (`.seg` / `.sp-seg`): 1px `--rule` box on `--bg`,
-  buttons in `--f-data` 600 13-14px; the pressed one is `--ink` fill with
-  `--bg` text and `aria-pressed="true"`.
-- **Select** (`.sp-sel`): same box, small label in `--ink-3` before it; label
-  visually hidden under 700px.
-- **Figure box:** the chart sits on `--panel` with a 1px `--rule` border,
-  padding 12px (18-20px desktop).
-- **Legend:** swatch + label, `--f-data` 13-14px. Swatches are squares
-  (14px) for areas/cells, short bars (10x3px) for lines. Clicking a legend
-  item may highlight its series (dim the rest to ~.18 opacity).
-- **Tooltip:** `--ink` fill, `--bg` text, `--f-data` 13px, square, max 220px.
-  Shows value with unit and one plain-language line. On charts where a tooltip
-  would cover the data, use a **reading card** under the chart instead
-  (`.sp-card`), which also works on touch.
-- **Numbered insights:** list with a circled number (24px, 1.3px ink ring,
-  `--panel` fill, `--f-data` 600 12px). Use for "what to look at" next to a
-  chart.
-- **Data table:** inside `<details>` under the chart ("Show the data"),
-  1px `--rule` row lines, `--f-data` for numbers and row headers, caption in
-  `--ink-3` 12px.
-- **Notes and method:** `<section class="method">` at the end of every
-  project, `h2` "Notes and method", `.method-grid` with `h3` cards (1 column,
-  2 from 640px, 4 from 1000px). Last card is always "Sources" and ends with
-  the path of the analysis script.
-- **Illustrations** (atom, pool, nucleus logo): flat shapes, ink outlines,
-  data colors only where they mean something (protons red, neutrons blue). No
-  realistic rendering, no textures, no gradients.
+- **Primary button** (`.btn`): `--ink`, paper text, 700 18px, 48px high,
+  pill. Hover turns to `--ink-2`.
+- **Gallery tile** (home): a colour field (blue, red, green, ochre in turn)
+  holding a white panel with the project thumbnail, then title, description
+  and the meta line. Newest tile spans full width. One gallery, never a
+  thumbnail strip plus a list.
+- **Atom count** (`AtomCount.astro`): 1,000 atom pictograms (`<symbol>` plus
+  one `<use>` each), three pill buttons, a big count and an `sr-only` live
+  sentence announcing the full reading.
+- **Key-figure panel** (`.tblock`): white panel with `--radius`, cells split by
+  `--rule` lines, `small` label over a bold value.
+- **Project meta line** (`Project.astro`): "Projects / subject · Mon YYYY",
+  from frontmatter. Do not rebuild it by hand.
+- **Next project tile** (`Project.astro`): blue field linking to the next
+  older project, wrapping to the newest.
+- **Segmented control / select, legend, tooltip, reading card, numbered
+  insights, data table in `<details>`, Notes and method section:** unchanged
+  in structure; they take their colours from the tokens above.
+- **Theme toggle:** the label names the theme it switches to ("Dark theme" /
+  "Light theme"). The default follows `prefers-color-scheme`.
+- **Skip link** to `#main` on every page.
 
 ## 6. Charts
 
 These complement the visualization rules in `CLAUDE.md`.
 
-- **Marks:** lines 2px (`stroke-linejoin/linecap: round`); context lines
-  1.5px at .55 opacity. Dots filled with the series color; hollow dots
-  (`--panel` fill) for a different state (e.g. not held, estimated). Bands at
-  .17 opacity. Cells and bars with no stroke, or a `--bg` hairline when they
-  touch.
-- **Axes:** no domain line. Gridlines `--grid`, horizontal only unless the x
-  values need reading. Tick labels `--ink-3`; category or time axis labels
-  `--ink-2`. One baseline in `--ink-3` 1px. Axis titles 12px, only when the
-  unit is not obvious from the tick labels.
-- **Direct labels** at the end of a line or next to a group, `--f-data` 13px,
-  600 and `--ink` for the story, 400 and `--ink-3` for context.
-- **Annotations:** 1px `--ink-2` leader, small `--panel` circle with ink ring,
-  `--f-data` 600 12px label. At most two or three per view.
-- **Reference lines** (a limit, a threshold, a gap): dashed `3 4` in
-  `--ink-3`.
-- **Selection:** 1.5px `--ink` ring around the selected mark; dimming others
-  to .18-.3.
-- **Big number** (one headline value): display 700, 36px phone / 44px
-  desktop, on the highlighter.
-- **Motion:** only to show a change of state, 300-900 ms, `easeCubicOut`;
-  scroll-driven steps fade at .3s. Everything checks
-  `prefers-reduced-motion: reduce` and jumps to the end state.
-- **No JavaScript:** the headline, text and data table still tell the story;
-  controls and the SVG stage are hidden (`:not(.js)`).
+- **Marks:** lines 2px round; context lines 1.5px at .55 opacity; bands at
+  .17. Hollow marks for a different state.
+- **Axes:** no domain line, horizontal `--grid` lines, ticks in `--ink-3`.
+- **Direct labels** at line ends: 600 `--ink` for the story, 400 `--ink-3`
+  for context.
+- **Annotations:** at most two or three per view.
+- **Dimming:** unselected series .18-.3; inactive scroll steps no lower than
+  .6 opacity so the text stays readable.
+- **Motion:** only to show a change of state, 300-900 ms; everything respects
+  `prefers-reduced-motion`.
+- **No JavaScript:** headline, text and data table still tell the story.
 
 ## 7. A new project page, step by step
 
-1. Frontmatter: `layout`, `title` (short, a name for the sheet),
-   `description` (one sentence, used in the register and link previews),
-   `date`, `tags` (first tag is the Topic column), `eyebrow` (Subject in the
-   cartouche), `status`, `code: MHL-00N`, `rev: A`, `thumb` (only if it should
-   be a featured sheet on the home page). A featured sheet also needs
-   `src/components/viz/<slug>/Thumb.astro`: a small SVG built from the project
-   data at build time, tokens only, with an `aria-label` that states the
-   finding. The home page finds it by slug and shows the two newest projects
-   that have both; `src/pages/index.astro` does not change.
-2. Intro block: headline `h1` stating the finding with a number, 2-4 short
-   paragraphs in `.prose`, and something on the right on desktop (illustration,
-   title block of key figures) so the band is full.
-3. The chart component(s), styled only with tokens and the components above.
-4. Optional numbered insights beside or under the chart.
+1. Frontmatter: `layout`, `title` (sentence case), `description` (one
+   sentence, used in the gallery and link previews), `date`, `tags` (first tag
+   shows on the gallery tile), `eyebrow` (subject in the meta line), `status`.
+   Add `src/components/viz/<slug>/Thumb.astro` (small SVG from the project
+   data, tokens only, `aria-label` stating the finding) so the gallery tile
+   has a picture. `code` and `rev` are no longer shown.
+2. Intro block: `h1` stating the finding with a number, 2-4 short paragraphs
+   in `.prose`, and an illustration or key-figure panel beside it on desktop.
+3. The chart component(s), tokens only.
+4. Optional numbered insights.
 5. Data table in `<details>`.
-6. Notes and method section.
-7. Open Graph images in the same style: `public/og/<slug>.png` (1200x630) and
+6. Notes and method section; last card "Sources" ends with the analysis
+   script path.
+7. Open Graph images: `public/og/<slug>.png` (1200x630) and
    `public/og/<slug>-square.png` (1200x1200).
 
 ## 8. Design checklist (add to phase 6 QA)
 
-- [ ] No literal colors or font names in the new component; only tokens.
+- [ ] `world="iso"`; no literal colours or font names; only tokens.
 - [ ] Red (`--cat-2`) marks the story and nothing else.
-- [ ] At most one highlighter band per screen; no yellow data.
-- [ ] Display / body / data fonts each in their role; sentence case; no
-      tracked uppercase.
-- [ ] Square corners, no shadows, no gradients.
-- [ ] No empty half-width bands on desktop.
-- [ ] Light and dark both checked; new data colors validated with
-      `check:palette` on all four surfaces.
-- [ ] Touch targets 44px; focus outline 2px `--ink` visible.
+- [ ] Sentence case; no kicker above headings; `84%` without a space.
+- [ ] Soft corners, flat colour, no shadows or gradients.
+- [ ] No empty half-width bands on desktop; the chart is reachable in the
+      first phone screen.
+- [ ] Heading levels do not skip.
+- [ ] Light and dark both checked; new data colours validated with
+      `check:palette`.
+- [ ] Touch targets 44px; focus outline visible in both themes.

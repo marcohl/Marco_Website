@@ -1,18 +1,17 @@
 ---
-// Home-page sheet thumbnail: 1,000 atoms, the U-235 ones in the story color (data from the project).
+// Home-page thumbnail: three bars of uranium, one per stage, with the U-235 share by mass in the story color.
+// Bars rather than atoms, so it does not repeat the home hero (data from the project).
 import waffles from "../../../data/uranium-enrichment/waffles.json";
 const { title } = Astro.props;
-const natural = waffles.cases.find((c) => c.id === "natural")!;
-const COLS = 40, CELL = 12, GAP = 2, P = CELL + GAP;
-const ROWS = Math.ceil(waffles.sample_size / COLS);
-const cellPath = (from: number, to: number) =>
-  Array.from({ length: to - from }, (_, k) => { const i = from + k; return `M${(i % COLS) * P},${Math.floor(i / COLS) * P}h${CELL}v${CELL}h-${CELL}z`; }).join("");
-const wafW = COLS * P - GAP, wafH = ROWS * P - GAP;
-const shown = natural.u235_atoms_shown;
+const W = 320, BAR = 34, GAP = 22;
+const H = waffles.cases.length * BAR + (waffles.cases.length - 1) * GAP;
+const bars = waffles.cases.map((c, i) => ({ y: i * (BAR + GAP), w: Math.max(2, (c.u235_mass_pct / 100) * W) }));
 ---
-<svg viewBox={`0 0 ${wafW} ${wafH}`} role="img" aria-label={`${title}: ${shown} of every ${waffles.sample_size.toLocaleString("en-US")} natural uranium atoms are U-235`}>
-  <path class="ctx" d={cellPath(shown, waffles.sample_size)} />
-  <path class="story" d={cellPath(0, shown)} />
+<svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${title}: U-235 is ${waffles.cases.map((c) => `${c.u235_mass_pct}%`).join(", ")} of the uranium as mined, as reactor fuel and as weapons-grade`}>
+  {bars.map((b) => <>
+    <rect class="ctx" x="0" y={b.y} width={W} height={BAR} rx="3" />
+    <rect class="story" x="0" y={b.y} width={b.w} height={BAR} rx="3" />
+  </>)}
 </svg>
 
 <style>

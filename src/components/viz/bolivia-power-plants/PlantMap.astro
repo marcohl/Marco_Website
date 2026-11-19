@@ -60,10 +60,10 @@ const t = data.meta.totals;
           <td>{p.department}</td>
           <td class="num">{f1(p.capacity_mw)}</td>
           <td class="num">{f1(p.generation_2025_gwh)}</td>
-          <td class="num">{Math.round((p.capacity_factor_2025 ?? 0) * 100)} %</td>
+          <td class="num">{Math.round((p.capacity_factor_2025 ?? 0) * 100)}%</td>
         </tr>
       ))}</tbody>
-      <tfoot><tr><th>SIN</th><td></td><td></td><td class="num">{f0(t.capacity_mw)}</td><td class="num">{f0(t.generation_2025_gwh)}</td><td class="num">{Math.round((t.generation_2025_gwh * 1000) / (t.capacity_mw * 8760) * 100)} %</td></tr></tfoot>
+      <tfoot><tr><th>SIN</th><td></td><td></td><td class="num">{f0(t.capacity_mw)}</td><td class="num">{f0(t.generation_2025_gwh)}</td><td class="num">{Math.round((t.generation_2025_gwh * 1000) / (t.capacity_mw * 8760) * 100)}%</td></tr></tfoot>
     </table></div>
   </details>
 </div>
@@ -171,8 +171,8 @@ const t = data.meta.totals;
       const total = d3.sum(by, (d) => d.total);
       const top3 = d3.sum(by.slice(0, 3), (d) => d.total);
       barsCap.textContent = mode === "mw"
-        ? `Capacity by department: ${by.slice(0, 3).map((d) => d.dep).join(", ")} hold ${Math.round((top3 / total) * 100)} %`
-        : `Generation 2025 by department: ${by.slice(0, 3).map((d) => d.dep).join(", ")} made ${Math.round((top3 / total) * 100)} %`;
+        ? `Capacity by department: ${by.slice(0, 3).map((d) => d.dep).join(", ")} hold ${Math.round((top3 / total) * 100)}%`
+        : `Generation 2025 by department: ${by.slice(0, 3).map((d) => d.dep).join(", ")} made ${Math.round((top3 / total) * 100)}%`;
       const bw = Math.round(barsEl.getBoundingClientRect().width) || 300;
       const rowH = 26, lab = 86, right = 64, bh = by.length * rowH + 4;
       const bsvg = d3.select(barsEl).attr("viewBox", `0 0 ${bw} ${bh}`).attr("height", bh);
@@ -215,14 +215,14 @@ const t = data.meta.totals;
       const techs = Object.entries(p.capacity_by_tech_mw).map(([k, v]) => `${TECH_LABEL[k]} ${fmt(v as number)} MW`).join(", ");
       const cf = p.capacity_factor_2025 ?? 0;
       const line = cf < 0.05 ? "Barely ran in 2025."
-        : cf > 0.6 ? `Ran at ${Math.round(cf * 100)} % of its capacity over the year.`
-        : `Produced ${Math.round(cf * 100)} % of what it could at full power all year.`;
+        : cf > 0.6 ? `Ran at ${Math.round(cf * 100)}% of its capacity over the year.`
+        : `Produced ${Math.round(cf * 100)}% of what it could at full power all year.`;
       const approx = p.location_precision === "approximate" ? `<p class="bp-note">Location approximate: ${p.location_note}</p>` : "";
       card.innerHTML = `<div class="bp-card-h"><strong>${p.name}</strong><span>${p.department}</span></div>
         <dl>
           <div><dt>Capacity</dt><dd>${fmt(p.capacity_mw)} MW</dd></div>
           <div><dt>Generation 2025</dt><dd>${fmt(p.generation_2025_gwh)} GWh</dd></div>
-          <div><dt>Capacity factor</dt><dd>${Math.round(cf * 100)} %</dd></div>
+          <div><dt>Capacity factor</dt><dd>${Math.round(cf * 100)}%</dd></div>
         </dl>
         <p class="bp-line">${line}</p>
         <p class="bp-meta">${techs}. ${p.units} ${p.units === 1 ? "unit" : "units"}. Operator: ${p.operator}.</p>${approx}`;

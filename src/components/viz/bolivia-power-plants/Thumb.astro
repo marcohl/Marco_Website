@@ -17,7 +17,7 @@ const dots = [...depts.plants].sort((a, b) => b.capacity_mw - a.capacity_mw).map
 const top3 = depts.departments.slice(0, 3);
 const share = Math.round((top3.reduce((a, d) => a + d.capacity_mw, 0) / depts.meta.totals.capacity_mw) * 100);
 ---
-<svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${title}: map of Bolivia's ${depts.meta.totals.plants} grid power plants; ${share} % of the capacity is in ${top3.map((d) => d.department).join(", ")}`}>
+<svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${title}: map of Bolivia's ${depts.meta.totals.plants} grid power plants; ${share}% of the capacity is in ${top3.map((d) => d.department).join(", ")}`}>
   {(geo as any).features.map((f: any) => <path class="dp" d={path(f) ?? ""} />)}
   {dots.map((d) => <circle class={`m t-${d.g}`} cx={d.x.toFixed(1)} cy={d.y.toFixed(1)} r={d.r.toFixed(1)} />)}
 </svg>

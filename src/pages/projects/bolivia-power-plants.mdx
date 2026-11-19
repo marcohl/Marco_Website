@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/Project.astro
-title: Where Bolivia Makes Its Electricity
+title: Where Bolivia makes its electricity
 description: Every power plant on Bolivia's national grid, how big it is, how much it produced in 2025, and how the mix changed since 1996.
 date: 2026-11-15
 tags: [Energy, Bolivia]
@@ -40,13 +40,9 @@ export const approx = d.plants.filter((x) => x.location_precision === "approxima
 <div class="bp-intro">
 <div class="prose">
 
-# <em>{share("capacity_mw")} %</em> of Bolivia's power capacity sits in three departments
+# <em>{share("capacity_mw")}%</em> of Bolivia's power capacity sits in three departments
 
-At the end of 2025, Bolivia's national grid had {t.plants} power plants with {fmt(t.capacity_mw)} MW of capacity. That year they produced {fmt(t.generation_2025_gwh)} GWh. Cochabamba, Santa Cruz and Tarija hold {share("capacity_mw")} % of the capacity and made {share("generation_2025_gwh")} % of the electricity.
-
-Most of that capacity burns natural gas: {fmt(gasMW)} MW, or {pct(gasMW, t.capacity_mw)} %. The large gas plants sit in the eastern lowlands. Guaracachi is in Santa Cruz city and Warnes just north of it. Entre Ríos, Bulo Bulo and Carrasco are in the tropical lowlands of Cochabamba, and Del Sur is near Yacuiba, in the Chaco of Tarija.
-
-Hydro holds most of the rest, {fmt(hydroMW)} MW, in the Andean valleys of Cochabamba and La Paz. La Paz has the most plants, {lpz.length}, but they are small: together {fmt(dep["La Paz"].capacity_mw)} MW.
+At the end of 2025, Bolivia's national grid had {t.plants} power plants with {fmt(t.capacity_mw)} MW of capacity. That year they produced {fmt(t.generation_2025_gwh)} GWh. Cochabamba, Santa Cruz and Tarija hold {share("capacity_mw")}% of the capacity and made {share("generation_2025_gwh")}% of the electricity.
 
 Each circle on the map is one plant. Switch it from capacity to generation and some of the biggest gas plants shrink to a dot.
 
@@ -55,30 +51,38 @@ Each circle on the map is one plant. Switch it from capacity to generation and s
   <div><small>Capacity, end of 2025</small><b>{fmt(t.capacity_mw)} MW</b></div>
   <div><small>Generation 2025</small><b>{fmt(t.generation_2025_gwh)} GWh</b></div>
   <div><small>Plants on the grid</small><b>{t.plants}</b></div>
-  <div><small>Cochabamba, Santa Cruz, Tarija</small><b>{share("capacity_mw")} %</b></div>
+  <div><small>Cochabamba, Santa Cruz, Tarija</small><b>{share("capacity_mw")}%</b></div>
 </div>
 </div>
 
 <PlantMap>
 <ol class="bp-ins" slot="insights">
-  <li><span><strong>Gas turbines barely ran.</strong> The open-cycle turbines add up to {fmt(capBy("gas_oc"))} MW and ran at {pct(d.meta.generation_2025_gwh_by_type.gas_oc * 1000, capBy("gas_oc") * 8760)} % of their capacity in 2025. Carrasco, with {fmt(p["Carrasco"].capacity_mw)} MW, produced {p["Carrasco"].generation_2025_gwh.toFixed(1)} GWh. The combined cycles did the work.</span></li>
-  <li><span><strong>The Zongo valley</strong>, north of La Paz, has {zongo.length} hydro plants and {fmt(zMW)} MW. They ran at {pct(zGWh * 1000, zMW * 8760)} % of their capacity, against {Math.round(gasCF * 100)} % for the gas fleet.</span></li>
+  <li><span><strong>Gas turbines barely ran.</strong> The open-cycle turbines add up to {fmt(capBy("gas_oc"))} MW and ran at {pct(d.meta.generation_2025_gwh_by_type.gas_oc * 1000, capBy("gas_oc") * 8760)}% of their capacity in 2025. Carrasco, with {fmt(p["Carrasco"].capacity_mw)} MW, produced {p["Carrasco"].generation_2025_gwh.toFixed(1)} GWh. The combined cycles did the work.</span></li>
+  <li><span><strong>The Zongo valley</strong>, north of La Paz, has {zongo.length} hydro plants and {fmt(zMW)} MW. They ran at {pct(zGWh * 1000, zMW * 8760)}% of their capacity, against {Math.round(gasCF * 100)}% for the gas fleet.</span></li>
   <li><span><strong>Cochabamba has the most capacity, Santa Cruz makes the most electricity:</strong> {fmt(dep["Santa Cruz"].generation_2025_gwh)} GWh against {fmt(dep["Cochabamba"].generation_2025_gwh)} GWh in 2025. Switch the bars to generation to see the swap.</span></li>
 </ol>
 </PlantMap>
 
+<div class="prose after-chart">
+
+Most of that capacity burns natural gas: {fmt(gasMW)} MW, or {pct(gasMW, t.capacity_mw)}%. The large gas plants sit in the eastern lowlands. Guaracachi is in Santa Cruz city and Warnes just north of it. Entre Ríos, Bulo Bulo and Carrasco are in the tropical lowlands of Cochabamba, and Del Sur is near Yacuiba, in the Chaco of Tarija.
+
+Hydro holds most of the rest, {fmt(hydroMW)} MW, in the Andean valleys of Cochabamba and La Paz. La Paz has the most plants, {lpz.length}, but they are small: together {fmt(dep["La Paz"].capacity_mw)} MW.
+
+</div>
+
 <div class="bp-intro bp-hist">
 <div class="prose">
 
-## Gas made {pct(h0.thermal, h0.total)} % of the electricity in {h0.year}, {pct(peak.thermal, peak.total)} % in {peak.year} and {pct(h1.thermal, h1.total)} % in {h1.year}
+## Gas made {pct(h0.thermal, h0.total)}% of the electricity in {h0.year}, {pct(peak.thermal, peak.total)}% in {peak.year} and {pct(h1.thermal, h1.total)}% in {h1.year}
 
 The grid produced {fmt(h1.total)} GWh in {h1.year}, {(h1.total / h0.total).toFixed(1)} times the {fmt(h0.total)} GWh of {h0.year}. Gas plants covered most of that growth. Their share peaked in {peak.year}. It fell as Misicuni, the San José hydro plants and the large solar and wind farms came online between 2017 and 2021.
 
 </div>
 <div class="tblock bp-kf bp-kf3">
-  <div><small>Gas share, {h0.year}</small><b>{pct(h0.thermal, h0.total)} %</b></div>
-  <div><small>Peak, {peak.year}</small><b>{pct(peak.thermal, peak.total)} %</b></div>
-  <div><small>{h1.year}</small><b>{pct(h1.thermal, h1.total)} %</b></div>
+  <div><small>Gas share, {h0.year}</small><b>{pct(h0.thermal, h0.total)}%</b></div>
+  <div><small>Peak, {peak.year}</small><b>{pct(peak.thermal, peak.total)}%</b></div>
+  <div><small>{h1.year}</small><b>{pct(h1.thermal, h1.total)}%</b></div>
 </div>
 </div>
 
@@ -131,7 +135,7 @@ Numbers computed in `analysis/bolivia-power-plants/build_data.py`.
 </section>
 
 <style>{`
-  .bp-intro { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; align-items: end; }
+  .bp-intro { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; align-items: start; }
   .tblock.bp-kf { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .tblock.bp-kf > :nth-child(odd) { border-left: 0; }
   .tblock.bp-kf > :nth-child(n+3) { border-top: 1px solid var(--ink); }
@@ -140,5 +144,5 @@ Numbers computed in `analysis/bolivia-power-plants/build_data.py`.
   .tblock.bp-kf3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .tblock.bp-kf.bp-kf3 > * { border-top: 0; }
   .tblock.bp-kf.bp-kf3 > :nth-child(n+2) { border-left: 1px solid var(--ink); }
-  @media (min-width: 900px) { .bp-intro { grid-template-columns: minmax(0, 1fr) minmax(280px, 360px); gap: 48px; } }
+  @media (min-width: 900px) { .bp-intro { grid-template-columns: minmax(0, 1fr) minmax(280px, 360px); gap: 48px; } .bp-intro > .tblock { margin-top: 14px; } }
 `}</style>

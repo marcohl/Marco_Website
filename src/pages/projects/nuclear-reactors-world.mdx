@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/Project.astro
-title: Where Reactors Are Being Built
+title: Where reactors are being built
 description: Nuclear power reactors operating, under construction and planned, site by site, and the country building half of the new ones.
 date: 2026-11-11
 tags: [Nuclear, Energy]
@@ -27,8 +27,6 @@ export const approx = s.sites.filter((x) => x.location === "approximate").length
 
 The world has {c.world.operating} nuclear power reactors connected to the grid, and {c.world.construction} more are being built. A reactor counts as under construction once the first concrete for it has been poured.
 
-China is building {china.construction} of those {c.world.construction}, at {chinaSites} sites, all of them in coastal provinces. The other {c.world.construction - china.construction} are spread over {building.length - 1} countries. India is building {by["India"].construction} and Russia {by["Russia"].construction}. The United States runs the largest fleet, {by["United States"].operating} reactors, and is building none.
-
 The map shows every site. Blue dots are reactors in operation, red dots are reactors under construction, and rings are the {c.world.planned} planned ones, which have approval, funding or a firm commitment but no construction yet.
 
 </div>
@@ -47,6 +45,12 @@ The map shows every site. Blue dots are reactors in operation, red dots are reac
   <li><span><strong>China, Russia and India</strong> hold {china.planned + by["Russia"].planned + by["India"].planned} of the {c.world.planned} planned units. China alone has {china.planned}.</span></li>
 </ol>
 </ReactorMap>
+
+<div class="prose after-chart">
+
+China is building {china.construction} of those {c.world.construction}, at {chinaSites} sites, all of them in coastal provinces. The other {c.world.construction - china.construction} are spread over {building.length - 1} countries. India is building {by["India"].construction} and Russia {by["Russia"].construction}. The United States runs the largest fleet, {by["United States"].operating} reactors, and is building none.
+
+</div>
 
 <section class="method">
 

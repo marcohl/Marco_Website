@@ -45,6 +45,38 @@
   color-scheme: dark;
 }
 
+/* Isotype world (picture statistics). Applied with <Base world="iso">; replaces Blueline page by page.
+   Cool paper ground, black ink, Neurath blue for context, signal red for the story, ochre and green as fields. */
+body.iso {
+  --bg: #EDF0F1; --panel: #FFFFFF; --ink: #15181C; --ink-2: #3C424A; --ink-3: #565D67; --rule: #C5CCD2; --grid: #DDE2E6;
+  --marker: #F0B429; --on-marker: #15181C;
+  --cat-1: #2F5D9E; --cat-2: #D63B26;
+  --field-blue: #2F5D9E; --field-red: #B8321F; --field-green: #286B4A; --field-ochre: #F0B429;
+  --on-field: #FFFFFF; --on-ochre: #15181C;
+  --f-display: var(--f-data); --f-body: var(--f-data);
+  --radius: 6px;
+}
+:root[data-theme="dark"] body.iso {
+  --bg: #11151B; --panel: #1A2029; --ink: #EDF0F1; --ink-2: #C4CAD2; --ink-3: #9CA5B0; --rule: #2E3743; --grid: #222A34;
+  --marker: #F5C04A; --on-marker: #11151B;
+  --cat-1: #7EA2DA; --cat-2: #FF6A50;
+}
+body.iso ::selection { background: var(--marker); color: var(--on-marker); }
+/* Third categorical slot for a second group that is not the story (e.g. women vs men). */
+body.iso { --cat-3: #286B4A; }
+:root[data-theme="dark"] body.iso { --cat-3: #5FBF8F; }
+/* Iso: key-figure boxes are soft panels, not drawing title blocks. !important beats the per-page ink rules. */
+body.iso .tblock { border: 0; border-radius: var(--radius); }
+body.iso .tblock > * { border-color: var(--rule) !important; }
+body.iso .tblock small { font-size: 14px; color: var(--ink-2); }
+body.iso .tblock b { font-weight: 800; }
+body.iso h1 { font-weight: 800; letter-spacing: -.02em; }
+body.iso .prose h2, body.iso .method h2 { font-weight: 800; }
+body.iso .method { border-top: 1px solid var(--rule); }
+body.iso .prose, body.iso .prose p { text-wrap: pretty; }
+/* The longer intro prose that follows the chart on project pages. */
+.after-chart { margin-top: 40px; }
+
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
 body { margin: 0; background: var(--bg); color: var(--ink); font: 400 17px/1.6 var(--f-body); }

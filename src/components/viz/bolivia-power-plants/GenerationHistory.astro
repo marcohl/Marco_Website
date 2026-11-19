@@ -92,8 +92,8 @@ const f1 = (n: number) => n.toLocaleString("en-US", { minimumFractionDigits: 1, 
       const gas = sel.thermal / sel.total;
       card.innerHTML = `<div class="bh-card-h"><strong>${sel.year}</strong><span>${fmt(sel.total)} GWh</span></div>
         <ul>${KEYS.filter((k) => sel[k] > 0).map((k) =>
-          `<li><span class="sw t-${GROUP[k]}"></span>${LABEL[k]}<b>${fmt(sel[k])} GWh</b><small>${Math.round((sel[k] / sel.total) * 100)} %</small></li>`).join("")}</ul>
-        <p class="bh-line">Natural gas made ${Math.round(gas * 100)} % of the electricity this year.</p>`;
+          `<li><span class="sw t-${GROUP[k]}"></span>${LABEL[k]}<b>${fmt(sel[k])} GWh</b><small>${Math.round((sel[k] / sel.total) * 100)}%</small></li>`).join("")}</ul>
+        <p class="bh-line">Natural gas made ${Math.round(gas * 100)}% of the electricity this year.</p>`;
     }
 
     root.querySelectorAll<HTMLButtonElement>(".bh-legend [data-t]").forEach((b) => b.addEventListener("click", () => {

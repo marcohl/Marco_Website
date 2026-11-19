@@ -55,8 +55,8 @@ const first = data.cases[0];
       {data.cases.map((c) => (
         <article class="step" data-n={c.u235_atoms_shown} data-title={c.title} data-mass={`${c.u235_mass_pct}%`}
                  data-ratio={ratio(c.u235_atoms_shown)} data-vs={vs(c)}>
+          <h2>{c.title}</h2>
           <span class="kicker">{c.kicker}</span>
-          <h3>{c.title}</h3>
           {copy[c.id].map((p) => <p>{p}</p>)}
         </article>
       ))}
@@ -216,10 +216,11 @@ const first = data.cases[0];
   .uw .steps { min-width: 0; }
   .uw .step { min-height: 70vh; display: flex; flex-direction: column; justify-content: flex-start; padding-top: 28px; gap: 12px; max-width: 46ch; }
   .uw .step:last-child { margin-bottom: 12vh; }
-  .uw .step h3 { font: 600 30px/1.05 var(--f-display); margin: 0; }
+  .uw .step h2 { font: 600 30px/1.05 var(--f-display); margin: 0; }
   .uw .step p { margin: 0; color: var(--ink-2); }
-  .uw.js .step { opacity: .3; transition: opacity .3s; }
-  .uw.js .step.active { opacity: 1; }
+  /* Inactive steps fade by colour, not opacity, so every line keeps AA contrast. */
+  .uw.js .step :is(h2, p) { transition: color .3s; }
+  .uw.js .step:not(.active) :is(h2, p) { color: var(--ink-3); }
 
   .uw details { margin-top: 24px; font-size: 14px; }
   .uw summary { cursor: pointer; font-weight: 600; padding-block: 6px; }
@@ -239,6 +240,6 @@ const first = data.cases[0];
     .uw .chip small { display: inline; }
     .uw .stats { display: grid; }
     .uw .step { min-height: 62vh; justify-content: center; padding-top: 0; }
-    .uw .step h3 { font-size: 34px; }
+    .uw .step h2 { font-size: 34px; }
   }
 </style>

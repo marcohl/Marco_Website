@@ -60,15 +60,21 @@ const payload = {
         <label class="sp-sel"><span>Distance</span>
           <select data-ctl="dist" aria-label="Distance"><option value="100" selected>100 m</option></select>
         </label>
-        <div class="sp-seg" role="group" aria-label="Swimmers">
-          <button type="button" data-ctl="sex" data-val="women" aria-pressed="false">Women</button>
-          <button type="button" data-ctl="sex" data-val="men" aria-pressed="false">Men</button>
-          <button type="button" data-ctl="sex" data-val="both" aria-pressed="true">Both</button>
-        </div>
-        <div class="sp-seg" role="group" aria-label="Time window" data-for="event">
-          <button type="button" data-ctl="win" data-val="full" aria-pressed="true">1908–2024</button>
-          <button type="button" data-ctl="win" data-val="since" aria-pressed="false">Since 1988</button>
-        </div>
+        <!-- Secondary filters stay one tap away so the first view has four decisions, not nine. -->
+        <details class="sp-more">
+          <summary>More options</summary>
+          <div class="sp-more-in">
+            <div class="sp-seg" role="group" aria-label="Swimmers">
+              <button type="button" data-ctl="sex" data-val="women" aria-pressed="false">Women</button>
+              <button type="button" data-ctl="sex" data-val="men" aria-pressed="false">Men</button>
+              <button type="button" data-ctl="sex" data-val="both" aria-pressed="true">Both</button>
+            </div>
+            <div class="sp-seg" role="group" aria-label="Time window" data-for="event">
+              <button type="button" data-ctl="win" data-val="full" aria-pressed="true">1908–2024</button>
+              <button type="button" data-ctl="win" data-val="since" aria-pressed="false">Since 1988</button>
+            </div>
+          </div>
+        </details>
       </div>
 
       <div class="sp-stage">
@@ -573,8 +579,16 @@ const payload = {
   .sp-seg button + button { border-left: 1px solid var(--rule); }
   .sp-seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
   .sp-sel { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--rule); border-radius: 0; background: var(--bg); padding-left: 10px; color: var(--ink-3); font: 600 12px/1 var(--f-data); }
-  .sp-sel select { font: 600 13.5px/1 var(--f-data); color: var(--ink); background: none; border: 0; min-height: 42px; padding: 0 6px 0 2px; cursor: pointer; text-transform: none; }
+  .sp-sel select { font: 600 13.5px/1 var(--f-data); color: var(--ink); background: none; border: 0; min-height: 44px; padding: 0 6px 0 2px; cursor: pointer; text-transform: none; }
   .sp-sel:focus-within, .sp-seg button:focus-visible { outline: 2px solid var(--ink); outline-offset: 1px; }
+  .sp-more { display: block; }
+  .sp-more summary { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 14px; border: 1px solid var(--rule); border-radius: 999px; font: 600 14px/1 var(--f-data); color: var(--ink); cursor: pointer; list-style: none; }
+  .sp-more summary::-webkit-details-marker { display: none; }
+  .sp-more summary::after { content: ""; width: 7px; height: 7px; border: solid currentColor; border-width: 0 2px 2px 0; transform: translateY(-2px) rotate(45deg); transition: transform .2s ease-out; }
+  .sp-more[open] summary::after { transform: translateY(2px) rotate(-135deg); }
+  .sp-more summary:hover { border-color: var(--ink); }
+  .sp-more summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+  .sp-more-in { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 8px; }
 
   .sp-stage { position: relative; }
   .sp-svg { display: block; width: 100%; height: auto; overflow: visible; }
@@ -593,7 +607,7 @@ const payload = {
   .sp-nh-x { stroke: var(--ink-2); stroke-width: 1.6; fill: none; stroke-linecap: round; }
 
   .sp-s.s-men { --c: var(--cat-1); }
-  .sp-s.s-women { --c: var(--cat-2); }
+  .sp-s.s-women { --c: var(--cat-3, var(--cat-2)); }
   .sp-s.ctx { --c: var(--ink-3); }
   .sp-line { fill: none; stroke: var(--c); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
   .sp-s.ctx .sp-line { stroke-width: 1.5; opacity: .55; }
@@ -623,7 +637,7 @@ const payload = {
   .sp-blk h4 { margin: 0 0 3px; font: 600 12px/1.2 var(--f-data); color: var(--ink-3); display: flex; align-items: center; gap: 6px; }
   .sp-blk .sw { width: 10px; height: 3px; border-radius: 1px; background: var(--c); flex: none; }
   .sp-blk.s-men { --c: var(--cat-1); }
-  .sp-blk.s-women { --c: var(--cat-2); }
+  .sp-blk.s-women { --c: var(--cat-3, var(--cat-2)); }
   .sp-blk ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
   .sp-blk li { display: grid; grid-template-columns: 3.4em minmax(0, 1fr) auto; gap: 8px; align-items: baseline; }
   .sp-blk .m { font: 400 12px var(--f-data); color: var(--ink-3); }
@@ -677,8 +691,8 @@ const payload = {
   @media (min-width: 700px) {
     .sp-fig { padding: 18px; }
     .sp-controls { gap: 8px 12px; }
-    .sp-seg button { font-size: 14px; padding: 11px 14px; min-height: 40px; }
-    .sp-sel select { font-size: 14px; min-height: 38px; }
+    .sp-seg button { font-size: 14px; padding: 11px 14px; }
+    .sp-sel select { font-size: 14px; }
     .sp-legend { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
   @media (min-width: 560px) {

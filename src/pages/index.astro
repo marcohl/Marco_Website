@@ -1,141 +1,140 @@
 ---
 import Base from "../layouts/Base.astro";
+import AtomCount from "../components/AtomCount.astro";
 
 // Every MDX file in src/pages/projects/ with status "published" is listed (all of them in dev).
 const modules = import.meta.glob("./projects/*.mdx", { eager: true }) as Record<string, any>;
+const thumbs = import.meta.glob("../components/viz/*/Thumb.astro", { eager: true }) as Record<string, any>;
+const FIELDS = ["blue", "red", "green", "ochre"];
 const projects = Object.entries(modules)
   .map(([path, mod]) => {
     const slug = path.split("/").pop()!.replace(".mdx", "");
-    return { ...mod.frontmatter, slug, href: `/projects/${slug}/` };
+    return { ...mod.frontmatter, slug, href: `/projects/${slug}/`, Thumb: thumbs[`../components/viz/${slug}/Thumb.astro`]?.default };
   })
   .filter((p) => p.status === "published" || import.meta.env.DEV)
   .sort((a, b) => String(b.date).localeCompare(String(a.date)));
-const ym = (d: unknown) => new Date(d as string).toISOString().slice(0, 7);
-
-// Featured sheets: the two newest projects that set `thumb` in their frontmatter and have a
-// src/components/viz/<slug>/Thumb.astro. Adding a sheet needs no change here.
-const thumbs = import.meta.glob("../components/viz/*/Thumb.astro", { eager: true }) as Record<string, any>;
-const thumbOf = (slug: string) => thumbs[`../components/viz/${slug}/Thumb.astro`]?.default;
-const featured = projects.filter((p) => p.thumb && thumbOf(p.slug)).slice(0, 2).map((p) => ({ ...p, Thumb: thumbOf(p.slug) }));
+const month = (d: unknown) => new Date(d as string).toLocaleDateString("en-US", { month: "short", year: "numeric", timeZone: "UTC" });
+const email = "marcoherbas8@gmail.com";
 ---
-<Base title="Marco Herbas Lopez" description="Energy, data and everything else: interactive charts and small data-analysis projects by Marco Herbas Lopez.">
+<Base world="iso" title="Marco Herbas Lopez" description="Energy and science data turned into finished, source-checked charts you can explore, by engineer Marco Herbas Lopez.">
   <section class="wrap hero">
     <div class="hero-text">
-      <h1>I turn data about things I like into charts you can explore.</h1>
-      <p class="lead">I'm Marco, an electrical and nuclear engineer from Bolivia, now living in Milan. I work in energy. I like finding out how things work, and I've found that data is one of the best ways to do it.</p>
-      <p class="lead">This site is where I practice. Each project starts with a question I'm curious about, finds the data that answers it and ends in one chart you can explore. I build them with help from AI.</p>
-      <p class="lead">Outside of work I like good coffee and AI. I hope you learn something new from these projects.</p>
-      <a class="btn" href="#work">See the projects</a>
+      <h1>Energy data you can count.</h1>
+      <p class="lead">I'm Marco Herbas Lopez, an electrical and nuclear engineer in Milan. I turn energy and science data into finished, source-checked charts you can explore.</p>
+      <div class="actions">
+        <a class="btn" href={`mailto:${email}`}>Write to me</a>
+        <a class="more" href="#work">See the projects</a>
+      </div>
     </div>
-    <div class="hero-sheets">
-      {featured.map((p) => (
-        <a class="sheet" href={p.href}>
-          <div class="fig">
-            <p.Thumb title={p.title} />
-          </div>
-          <div class="tblock"><div><b>{p.code}</b></div><div><b>Rev. {p.rev ?? "A"}</b></div><div><b>{ym(p.date)}</b></div><div><b>{p.tags?.[0]}</b></div></div>
-        </a>
-      ))}
-    </div>
+    <AtomCount />
   </section>
 
-  <section id="work" class="wrap work">
-    <h2>Projects</h2>
-    <div class="reg-head" aria-hidden="true"><span>No.</span><span>Title</span><span>Rev.</span><span>Date</span><span>Topic</span></div>
-    <ul class="register">
-      {projects.map((p) => (
-        <li>
-          <a class="row" href={p.href}>
-            <span class="no">{p.code}</span>
-            <span class="what"><span class="ttl">{p.title}</span><span class="desc">{p.description}</span></span>
-            <span class="rev">Rev. {p.rev ?? "A"}</span>
-            <span class="date">{ym(p.date)}</span>
-            <span class="topic">{p.tags?.[0]}</span>
+  <section id="work" class="wrap work" aria-labelledby="work-h">
+    <h2 id="work-h">Projects</h2>
+    <ul class="gallery">
+      {projects.map((p, i) => (
+        <li class:list={["tile", `f-${FIELDS[i % FIELDS.length]}`, { newest: i === 0, wide: i > 0 && i === projects.length - 1 && i % 2 === 1 }]}>
+          <a href={p.href}>
+            {p.Thumb && <div class="fig"><p.Thumb title={p.title} /></div>}
+            <div class="band">
+              <h3>{p.title}</h3>
+              <p>{p.description}</p>
+              <span class="meta">{month(p.date)} · {p.tags?.[0]}</span>
+            </div>
           </a>
         </li>
       ))}
     </ul>
   </section>
 
-  <section id="about" class="wrap about">
-    <div class="about-text">
-      <h2>About</h2>
-      <p>I'm an electrical and nuclear engineer based in Milan, with over ten years of experience in high-voltage electrical systems, nuclear engineering and renewable energy. I hold an MSc in Nuclear Engineering from Politecnico di Milano and work professionally in Spanish, Italian, English and French.</p>
-    </div>
-    <div class="tblock author">
-      <div><small>Based in</small><b>Milan</b></div>
-      <div><small>Experience</small><b>10+ years: high-voltage electrical systems, nuclear engineering, renewable energy</b></div>
-      <div><small>Degree</small><b>MSc in Nuclear Engineering, Politecnico di Milano</b></div>
-      <div><small>Working languages</small><b>Spanish, Italian, English, French</b></div>
+  <section id="about" class="wrap about" aria-labelledby="about-h">
+    <h2 id="about-h">About</h2>
+    <p class="about-lead">I've spent over ten years in high-voltage electrical systems, nuclear engineering and renewable energy. Each project here starts with a question, finds the data that answers it, checks it against the sources and ends in one chart you can explore.</p>
+    <dl class="facts">
+      <div><dt>Based in</dt><dd>Milan, from Bolivia</dd></div>
+      <div><dt>Degree</dt><dd>MSc in Nuclear Engineering, Politecnico di Milano</dd></div>
+      <div><dt>Works in</dt><dd>Spanish, Italian, English, French<span class="langs" aria-hidden="true">{FIELDS.map((f) => <svg class={`f-${f}`} viewBox="0 0 20 18"><path d="M3 1h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H9l-5 4v-4H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2z" /></svg>)}</span></dd></div>
+    </dl>
+  </section>
+
+  <section class="close" aria-label="Contact">
+    <div class="wrap close-in">
+      <a class="close-cta" href={`mailto:${email}`}>Write to me</a>
     </div>
   </section>
 </Base>
 
 <style>
-  /* Mobile first. Columns start at 700px / 900px. No band of the page is left empty:
-     the hero pairs text with two real sheets, the register uses the full width, About pairs text with a facts block. */
-  h2 { font: 600 30px/1.1 var(--f-display); margin: 0 0 16px; }
+  h2 { font: 800 32px/1.1 var(--f-display); letter-spacing: -.01em; margin: 0 0 20px; }
 
-  .hero { padding-block: 32px 48px; display: grid; gap: 32px; align-items: stretch; }
-  .hero-text { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; min-width: 0; }
-  .hero h1 { margin: 0 0 4px; font-size: clamp(42px, 10.5vw, 88px); }
-  .lead { margin: 0; max-width: 60ch; color: var(--ink-2); }
-  .btn { display: inline-flex; align-items: center; min-height: 48px; padding: 0 22px; margin-top: 8px; background: var(--ink); color: var(--bg); font: 600 19px/1 var(--f-display); text-decoration: none; border: 1px solid var(--ink); }
-  .btn:hover { background: var(--marker); color: var(--on-marker); }
+  /* Hero: the claim and the action, then the live picture statistic (first on mobile after the line). */
+  .hero { padding-block: 28px 40px; display: grid; gap: 28px; align-items: center; }
+  .hero-text { display: grid; gap: 18px; justify-items: start; min-width: 0; }
+  .hero h1 { margin: 0; font: 800 clamp(44px, 9vw, 80px)/1.02 var(--f-display); letter-spacing: -.025em; text-wrap: balance; }
+  .lead { margin: 0; max-width: 46ch; font-size: 19px; line-height: 1.5; color: var(--ink-2); text-wrap: pretty; }
+  .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; }
+  .btn { display: inline-flex; align-items: center; min-height: 48px; padding: 0 24px; border-radius: 999px; background: var(--ink); color: var(--bg); font: 700 18px/1 var(--f-display); text-decoration: none; transition: background .2s ease-out; }
+  .btn:hover { background: var(--ink-2); color: var(--bg); }
+  .more { font-weight: 600; font-size: 18px; text-decoration-color: var(--cat-1); text-decoration-thickness: 2px; text-underline-offset: 4px; min-height: 44px; display: inline-flex; align-items: center; }
 
-  .hero-sheets { display: grid; gap: 20px; grid-template-columns: minmax(0, 1fr); min-width: 0; }
-  .sheet { container-type: inline-size; display: flex; flex-direction: column; border: 1px solid var(--ink); background: var(--panel); text-decoration: none; color: inherit; min-width: 0; }
-  .sheet .fig { flex: 1; display: flex; align-items: center; justify-content: center; padding: 20px; min-height: 160px; }
-  .sheet .fig :global(svg) { width: 100%; height: auto; display: block; }
-  .sheet .tblock { border: 0; border-top: 1px solid var(--ink); background: none; }
-  .sheet .tblock b { font-size: 16px; }
-  .sheet:hover .tblock { background: var(--marker); }
-  .sheet:hover .tblock b { color: var(--on-marker); }
-  /* Narrow sheets (phone, or two side by side on a tablet) get a 2 x 2 title block. */
-  @container (max-width: 459px) {
-    .sheet .tblock { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .sheet .tblock > :nth-child(odd) { border-left: 0; }
-    .sheet .tblock > :nth-child(n+3) { border-top: 1px solid var(--ink); }
-  }
+  /* Gallery: every project once, each on its own colour field; the newest gets double width. */
+  .work { padding-block: 32px 24px; }
+  .gallery { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); }
+  .tile { --field: var(--field-blue); --on: var(--on-field); border-radius: var(--radius); overflow: hidden; background: var(--field); min-width: 0; }
+  .f-red { --field: var(--field-red); }
+  .f-green { --field: var(--field-green); }
+  .f-ochre { --field: var(--field-ochre); --on: var(--on-ochre); }
+  .tile a { display: flex; flex-direction: column; height: 100%; color: var(--on); text-decoration: none; }
+  .fig { background: var(--panel); margin: 10px 10px 0; border-radius: 4px; padding: 18px; display: flex; align-items: center; justify-content: center; aspect-ratio: 16 / 10; min-width: 0; }
+  .fig :global(svg) { width: 100%; height: 100%; display: block; }
+  .band { padding: 18px 20px 22px; display: grid; gap: 8px; align-content: start; }
+  .meta { margin-top: 4px; font-size: 15px; font-weight: 600; opacity: .9; font-variant-numeric: tabular-nums; }
+  .band h3 { margin: 0; font: 800 26px/1.1 var(--f-display); letter-spacing: -.01em; text-wrap: balance; }
+  .band p { margin: 0; font-size: 16px; line-height: 1.45; text-wrap: pretty; }
+  .tile a:hover h3, .tile a:focus-visible h3 { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 5px; }
+  .tile a { border-radius: var(--radius); }
+  .tile a:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+  .tile:has(a:focus-visible) { overflow: visible; }
 
-  .work { padding-block: 24px 16px; }
-  .reg-head { display: none; }
-  .register { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--ink); }
-  .register li { border-bottom: 1px solid var(--ink); }
-  .row { display: grid; grid-template-columns: auto auto auto 1fr; grid-template-areas: "no rev date topic" "what what what what"; gap: 6px 16px; padding: 16px 8px; text-decoration: none; color: var(--ink); }
-  a.row:hover { background: var(--marker); color: var(--on-marker); }
-  a.row:hover .desc, a.row:hover .rev, a.row:hover .date, a.row:hover .topic { color: var(--on-marker); }
-  .no { grid-area: no; }
-  .rev { grid-area: rev; } .date { grid-area: date; } .topic { grid-area: topic; }
-  .no, .rev, .date, .topic { font: 400 17px/1.3 var(--f-display); color: var(--ink-3); font-variant-numeric: tabular-nums; }
-  .no { color: var(--ink); font-weight: 600; }
-  a.row:hover .no { color: var(--on-marker); }
-  .what { grid-area: what; display: grid; gap: 4px; }
-  .ttl { font: 700 30px/1.05 var(--f-display); }
-  .desc { font-size: 16px; color: var(--ink-2); max-width: 62ch; }
+  /* About: credentials in plain words and the one action again. */
+  .about { padding-block: 40px 0; display: grid; gap: 20px; justify-items: start; }
+  .about-lead { margin: 0; max-width: 60ch; font-size: 19px; line-height: 1.5; color: var(--ink-2); }
+  .facts { margin: 0; display: grid; gap: 12px; width: 100%; }
+  .facts div { display: grid; gap: 2px; }
+  .facts dt { font-size: 15px; color: var(--ink-3); }
+  .facts dd { margin: 0; font-weight: 700; font-size: 18px; }
+  .langs { display: flex; gap: 6px; margin-top: 10px; }
+  .langs svg { width: 22px; height: 20px; }
+  .langs .f-blue { fill: var(--field-blue); }
+  .langs .f-red { fill: var(--field-red); }
+  .langs .f-green { fill: var(--field-green); }
+  .langs .f-ochre { fill: var(--field-ochre); }
 
-  .about { padding-block: 40px 0; display: grid; gap: 28px; align-items: start; }
-  .about-text p { margin: 0; font-size: 19px; line-height: 1.55; color: var(--ink-2); max-width: 60ch; }
-  .author { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .author > :nth-child(odd) { border-left: 0; }
-  .author > :nth-child(even) { border-left: 1px solid var(--ink); }
-  .author > :nth-child(n+3) { border-top: 1px solid var(--ink); }
-  .author b { font-size: 16px; line-height: 1.25; }
+  /* Closing band: the page ends on one red field with the one action. */
+  .close { margin-top: 56px; margin-bottom: -64px; background: var(--field-red); color: var(--on-field); }
+  .close-in { padding-block: 40px 44px; display: grid; justify-items: start; }
+  .close-cta { color: inherit; font: 800 clamp(40px, 8vw, 72px)/1.05 var(--f-display); letter-spacing: -.02em; text-decoration: underline; text-decoration-thickness: 4px; text-underline-offset: 8px; }
+  .close-cta:hover { text-decoration-thickness: 7px; }
+  .close-cta:focus-visible { outline: 3px solid var(--on-field); outline-offset: 6px; border-radius: 4px; }
 
   @media (max-width: 559px) {
-    .author { grid-template-columns: minmax(0, 1fr); }
-    .author > :nth-child(even) { border-left: 0; }
-    .author > :nth-child(n+2) { border-top: 1px solid var(--ink); }
+    .hero { gap: 16px; padding-block-start: 16px; }
+    .hero-text { gap: 14px; }
+    .lead { font-size: 17px; }
   }
+
   @media (min-width: 700px) {
-    .hero { padding-block: 48px 64px; }
-    .row { grid-template-columns: 110px minmax(0, 1fr) 64px 84px 96px; grid-template-areas: "no what rev date topic"; gap: 0 20px; align-items: baseline; padding: 20px 8px; }
-    .reg-head { display: grid; grid-template-columns: 110px minmax(0, 1fr) 64px 84px 96px; gap: 0 20px; padding: 0 8px 8px; font: 400 15px/1.3 var(--f-display); color: var(--ink-3); }
-    .reg-head span:nth-child(n) { margin: 0; }
+    .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+    .tile.newest, .tile.wide { grid-column: 1 / -1; }
+    .facts { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
   }
-  @media (min-width: 560px) and (max-width: 899px) { .hero-sheets { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (min-width: 900px) {
-    .hero { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 56px; }
-    .about { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; }
+  @media (min-width: 960px) {
+    .hero { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 56px; padding-block: 48px 56px; }
+    .tile.newest a, .tile.wide a { flex-direction: row; }
+    .tile.wide .fig { flex: 1.4; margin: 10px 0 10px 10px; aspect-ratio: auto; min-height: 260px; }
+    .tile.wide .band { flex: 1; align-content: center; padding: 28px 32px; }
+    .tile.newest .fig { flex: 1.4; margin: 10px 0 10px 10px; aspect-ratio: auto; min-height: 320px; }
+    .tile.newest .band { flex: 1; align-content: center; padding: 28px 32px; }
+    .tile.newest h3 { font-size: 36px; }
   }
 </style>
