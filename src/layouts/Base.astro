@@ -6,7 +6,7 @@ import "@fontsource-variable/atkinson-hyperlegible-next/wght.css";
 import "@fontsource-variable/literata/wght.css";
 import "../styles/tokens.css";
 import Nucleus from "../components/Nucleus.astro";
-interface Props { title: string; description?: string; image?: string; type?: "website" | "article"; noindex?: boolean; world?: "iso"; }
+interface Props { title: string; description?: string; image?: string; type?: "website" | "article"; noindex?: boolean; world?: "iso"; contact?: boolean; }
 const {
   title,
   world,
@@ -14,6 +14,7 @@ const {
   image = "/og/default.png",
   type = "website",
   noindex = false,
+  contact = true, // false when the page ends on its own contact band
 } = Astro.props;
 // Canonical and og:image must be absolute URLs; they are emitted only once `site` is set in astro.config.mjs.
 const canonical = Astro.site && !noindex ? new URL(Astro.url.pathname, Astro.site).href : undefined;
@@ -57,7 +58,7 @@ const linkedin = "https://www.linkedin.com/in/marco-herbas-l%C3%B3pez-315530bb";
       <div class="bar">
         <a class="brand" href="/">
           <Nucleus size={44} />
-          <span class="who"><span class="name">Marco Herbas Lopez</span><span class="disc">Energy, data and everything else</span></span>
+          <span class="who"><span class="name">Marco Herbas Lopez</span><span class="disc">Things worth counting</span></span>
         </a>
         <nav class="links" aria-label="Main">
           <a href="/#work">Projects</a>
@@ -70,14 +71,14 @@ const linkedin = "https://www.linkedin.com/in/marco-herbas-l%C3%B3pez-315530bb";
 
     <main id="main" tabindex="-1"><slot /></main>
 
-    <footer id="contact" class="foot-outer"><div class="wrap foot">
-      <div class="contact">
+    <footer id={contact ? "contact" : undefined} class="foot-outer"><div class="wrap foot">
+      {contact && <div class="contact">
         <span class="lbl">Contact</span>
         <ul>
           <li><a href="mailto:marcoherbas8@gmail.com">marcoherbas8@gmail.com</a></li>
           <li><a href={linkedin} target="_blank" rel="noopener">LinkedIn</a></li>
         </ul>
-      </div>
+      </div>}
       <div class="legal"><span>© 2026 Marco Herbas Lopez</span><span>Built with Astro and d3.js</span></div>
     </div></footer>
 

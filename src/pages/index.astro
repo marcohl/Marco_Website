@@ -15,8 +15,9 @@ const projects = Object.entries(modules)
   .sort((a, b) => String(b.date).localeCompare(String(a.date)));
 const month = (d: unknown) => new Date(d as string).toLocaleDateString("en-US", { month: "short", year: "numeric", timeZone: "UTC" });
 const email = "marcoherbas8@gmail.com";
+const linkedin = "https://www.linkedin.com/in/marco-herbas-l%C3%B3pez-315530bb";
 ---
-<Base world="iso" title="Marco Herbas Lopez" description="Energy and science data turned into finished, source-checked charts you can explore, by engineer Marco Herbas Lopez.">
+<Base world="iso" contact={false} title="Marco Herbas Lopez" description="Energy and science data turned into finished, source-checked charts you can explore, by engineer Marco Herbas Lopez.">
   <section class="wrap hero">
     <div class="hero-text">
       <h1>Energy data you can count.</h1>
@@ -57,9 +58,10 @@ const email = "marcoherbas8@gmail.com";
     </dl>
   </section>
 
-  <section class="close" aria-label="Contact">
+  <section id="contact" class="close" aria-label="Contact">
     <div class="wrap close-in">
       <a class="close-cta" href={`mailto:${email}`}>Write to me</a>
+      <a class="close-alt" href={linkedin} target="_blank" rel="noopener">or find me on LinkedIn</a>
     </div>
   </section>
 </Base>
@@ -115,6 +117,8 @@ const email = "marcoherbas8@gmail.com";
   .close-in { padding-block: 40px 44px; display: grid; justify-items: start; }
   .close-cta { color: inherit; font: 800 clamp(40px, 8vw, 72px)/1.05 var(--f-display); letter-spacing: -.02em; text-decoration: underline; text-decoration-thickness: 4px; text-underline-offset: 8px; }
   .close-cta:hover { text-decoration-thickness: 7px; }
+  .close-alt { color: inherit; font: 600 18px/1.3 var(--f-display); text-underline-offset: 4px; display: inline-flex; align-items: center; min-height: 44px; margin-top: 8px; }
+  .close-alt:focus-visible { outline: 2px solid var(--on-field); outline-offset: 3px; border-radius: 2px; }
   .close-cta:focus-visible { outline: 3px solid var(--on-field); outline-offset: 6px; border-radius: 4px; }
 
   @media (max-width: 559px) {

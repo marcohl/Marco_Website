@@ -162,8 +162,11 @@ const deps = [...new Set(data.plants.map((p) => p.department))].sort((a, b) => a
       gAnn.selectAll("*").remove();
       gAnn.append("path").attr("d", small ? `M${c[0] - 4},${c[1] - 4}L${lx + 30},${ly + 4}` : `M${c[0] - 3},${c[1] + 5}L${lx + 20},${ly - 13}`);
       gAnn.append("text").attr("x", lx).attr("y", ly).text("Zongo valley");
-      if (!small) gAnn.append("text").attr("class", "sub").attr("x", lx).attr("y", ly + 15)
-        .text(`${z.length} hydro plants, ${fmt(d3.sum(z, (p) => val(p, mode)), 0)} ${UNIT[mode]}`);
+      // Two short lines so the total stays clear of the Cochabamba circles to the east
+      if (!small) {
+        gAnn.append("text").attr("class", "sub").attr("x", lx).attr("y", ly + 15).text(`${z.length} hydro plants`);
+        gAnn.append("text").attr("class", "sub").attr("x", lx).attr("y", ly + 29).text(`${fmt(d3.sum(z, (p) => val(p, mode)), 0)} ${UNIT[mode]}`);
+      }
     }
 
     function place(animate = false) {
