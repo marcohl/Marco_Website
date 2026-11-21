@@ -6,11 +6,13 @@ import "@fontsource-variable/atkinson-hyperlegible-next/wght.css";
 import "@fontsource-variable/literata/wght.css";
 import "../styles/tokens.css";
 import Nucleus from "../components/Nucleus.astro";
+import { content } from "../lib/content";
+const S = content("site").labels("site");
 interface Props { title: string; description?: string; image?: string; type?: "website" | "article"; noindex?: boolean; world?: "iso"; contact?: boolean; }
 const {
   title,
   world,
-  description = "Data analysis and science, one chart at a time.",
+  description = S.default_description,
   image = "/og/default.png",
   type = "website",
   noindex = false,
@@ -19,7 +21,6 @@ const {
 // Canonical and og:image must be absolute URLs; they are emitted only once `site` is set in astro.config.mjs.
 const canonical = Astro.site && !noindex ? new URL(Astro.url.pathname, Astro.site).href : undefined;
 const ogImage = Astro.site ? new URL(image, Astro.site).href : undefined;
-const linkedin = "https://www.linkedin.com/in/marco-herbas-l%C3%B3pez-315530bb";
 ---
 <!doctype html>
 <html lang="en">
@@ -31,7 +32,7 @@ const linkedin = "https://www.linkedin.com/in/marco-herbas-l%C3%B3pez-315530bb";
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     {canonical && <link rel="canonical" href={canonical} />}
-    <meta property="og:site_name" content="Marco Herbas Lopez" />
+    <meta property="og:site_name" content={S.name} />
     <meta property="og:type" content={type} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -53,19 +54,19 @@ const linkedin = "https://www.linkedin.com/in/marco-herbas-l%C3%B3pez-315530bb";
     </script>
   </head>
   <body class={world}>
-    <a class="skip" href="#main">Skip to content</a>
+    <a class="skip" href="#main">{S.skip_link}</a>
     <header class="wrap site">
       <div class="bar">
         <a class="brand" href="/">
           <Nucleus size={44} />
-          <span class="who"><span class="name">Marco Herbas Lopez</span><span class="disc">Things worth counting</span></span>
+          <span class="who"><span class="name">{S.name}</span><span class="disc">{S.tagline}</span></span>
         </a>
         <nav class="links" aria-label="Main">
-          <a href="/#work">Projects</a>
-          <a href="/#about">About</a>
-          <a href="#contact">Contact</a>
+          <a href="/#work">{S.nav_projects}</a>
+          <a href="/#about">{S.nav_about}</a>
+          <a href="#contact">{S.nav_contact}</a>
         </nav>
-        <button id="theme-toggle" type="button">Dark theme</button>
+        <button id="theme-toggle" type="button" data-dark={S.theme_dark} data-light={S.theme_light}>{S.theme_dark}</button>
       </div>
     </header>
 
@@ -73,19 +74,19 @@ const linkedin = "https://www.linkedin.com/in/marco-herbas-l%C3%B3pez-315530bb";
 
     <footer id={contact ? "contact" : undefined} class="foot-outer"><div class="wrap foot">
       {contact && <div class="contact">
-        <span class="lbl">Contact</span>
+        <span class="lbl">{S.contact_label}</span>
         <ul>
-          <li><a href="mailto:marcoherbas8@gmail.com">marcoherbas8@gmail.com</a></li>
-          <li><a href={linkedin} target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href={`mailto:${S.email}`}>{S.email}</a></li>
+          <li><a href={S.linkedin_url} target="_blank" rel="noopener">{S.linkedin_label}</a></li>
         </ul>
       </div>}
-      <div class="legal"><span>© 2026 Marco Herbas Lopez</span><span>Built with Astro and d3.js</span></div>
+      <div class="legal"><span>{S.copyright}</span><span>{S.built_with}</span></div>
     </div></footer>
 
     <script is:inline>
       (function () {
         var b = document.getElementById("theme-toggle"), root = document.documentElement;
-        function sync() { b.textContent = root.dataset.theme === "dark" ? "Light theme" : "Dark theme"; }
+        function sync() { b.textContent = root.dataset.theme === "dark" ? b.dataset.light : b.dataset.dark; }
         b.addEventListener("click", function () {
           var d = root.dataset.theme === "dark";
           if (d) delete root.dataset.theme; else root.dataset.theme = "dark";

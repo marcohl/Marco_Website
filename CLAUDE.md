@@ -62,7 +62,9 @@ analysis/<slug>/raw/                  # original downloads, never edited by hand
 analysis/<slug>/build_data.py         # raw -> processed; prints checks
 src/data/<slug>/*.json                # processed data the chart imports
 src/components/viz/<slug>/*.astro     # the d3 component(s) for this project
-src/pages/projects/<slug>.mdx         # the published page (text + components)
+content/projects/<slug>.md            # ALL visible text of the page and its charts (see content/README.md)
+content/site.md, home.md, 404.md      # text of the site frame, home and 404
+src/pages/projects/<slug>.mdx         # frontmatter, computes {placeholders}, places text + components
 src/styles/tokens.css                 # site-wide design tokens (colors, type)
 src/layouts/                          # Base and Project layouts
 docs/brief-template.md                # template for briefs/<slug>.md
@@ -132,7 +134,10 @@ Gate: Marco agrees on form and interaction.
 Gate: renders with real data, desktop and 360 px wide, light and dark.
 
 ### 5. Words
-Write the page in `src/pages/projects/<slug>.mdx`:
+Write the text in `content/projects/<slug>.md` (format in `content/README.md`);
+the `.mdx` only computes the `{placeholders}` from the data and places the sections.
+Numbers from the data go in as `{placeholders}`, never typed by hand. No visible
+text literals in components: chart labels go in a `[[...-chart]]` section.
 - Headline that states the finding (a sentence with a number), not a topic label.
 - 2-4 short paragraphs of context, then the chart, then what to look at.
 - A "Notes and method" section: data sources with links and access dates,
@@ -191,3 +196,8 @@ Gate: Marco approves the text.
 
 - `/new-project <topic>`: start phase 1 for a new project.
 - `/qa <slug>`: run the phase 6 checklist on a project.
+
+## Skills not used in this project
+
+Never invoke the `d3` or `new-dataviz-project` skills here. They assume React/Next.js;
+this site is Astro with vanilla d3. Follow `docs/design-system.md` instead.

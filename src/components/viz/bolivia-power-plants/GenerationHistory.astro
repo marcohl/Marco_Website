@@ -1,29 +1,31 @@
 ---
 // Gross generation of Bolivia's national grid (SIN) by source, 1996-2025, as stacked columns.
 // Data: src/data/bolivia-power-plants/history.json (CNDC Memoria y Resultados 2025).
+// Text: content/projects/bolivia-power-plants.md, sections [[history-chart]] and [[technologies]].
 import hist from "../../../data/bolivia-power-plants/history.json";
+import { content } from "../../../lib/content";
+import { fill } from "../../../lib/fill";
+const txt = content("projects/bolivia-power-plants");
+const L = txt.labels("history-chart"), TECH = txt.labels("technologies");
 const s = hist.series;
 const first = s[0], last = s[s.length - 1];
 const f1 = (n: number) => n.toLocaleString("en-US", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+const v = { first: first.year, last: last.year, first_gwh: f1(first.total), last_gwh: f1(last.total) };
 ---
-<div class="bh" data-viz="bolivia-power-plants-history">
+<div class="bh" data-viz="bolivia-power-plants-history" data-text={JSON.stringify({ ...L, tech: TECH })}>
   <div class="bh-fig">
-    <ul class="bh-legend" aria-label="Source. Select one to highlight it.">
-      <li><button type="button" data-t="gas" aria-pressed="false"><span class="sw t-gas"></span>Natural gas</button></li>
-      <li><button type="button" data-t="hydro" aria-pressed="false"><span class="sw t-hydro"></span>Hydro</button></li>
-      <li><button type="button" data-t="solar" aria-pressed="false"><span class="sw t-solar"></span>Solar</button></li>
-      <li><button type="button" data-t="wind" aria-pressed="false"><span class="sw t-wind"></span>Wind</button></li>
-      <li><button type="button" data-t="biomass" aria-pressed="false"><span class="sw t-biomass"></span>Biomass</button></li>
+    <ul class="bh-legend" aria-label={L.legend_label}>
+      {["gas", "hydro", "solar", "wind", "biomass"].map((g) => <li><button type="button" data-t={g} aria-pressed="false"><span class={`sw t-${g}`}></span>{TECH[g]}</button></li>)}
     </ul>
     <svg class="bh-svg" tabindex="0" role="img"
-      aria-label={`Stacked columns of yearly gross generation by source, ${first.year} to ${last.year}. Total grew from ${f1(first.total)} to ${f1(last.total)} GWh. Use the arrow keys to read each year.`}></svg>
+      aria-label={fill(L.chart_description, v)}></svg>
     <div class="bh-card" aria-live="polite"></div>
   </div>
   <details>
-    <summary>Show the data: generation by source, {first.year}-{last.year}</summary>
+    <summary>{fill(L.table_summary, v)}</summary>
     <div class="tbl"><table>
-      <caption>GWh. CNDC, Memoria y Resultados 2025, "Producción bruta (GWh) periodo 1996-2025". Natural gas includes small diesel and dual-fuel output.</caption>
-      <thead><tr><th>Year</th><th class="num">Natural gas</th><th class="num">Hydro</th><th class="num">Solar</th><th class="num">Wind</th><th class="num">Biomass</th><th class="num">Total</th></tr></thead>
+      <caption>{L.table_caption}</caption>
+      <thead><tr><th>{L.col_year}</th>{["gas", "hydro", "solar", "wind", "biomass"].map((g) => <th class="num">{TECH[g]}</th>)}<th class="num">{L.col_total}</th></tr></thead>
       <tbody>{s.map((r) => (
         <tr><td>{r.year}</td><td class="num">{f1(r.thermal)}</td><td class="num">{f1(r.hydro)}</td><td class="num">{f1(r.solar)}</td><td class="num">{f1(r.wind)}</td><td class="num">{f1(r.biomass)}</td><td class="num">{f1(r.total)}</td></tr>
       ))}</tbody>
@@ -34,15 +36,16 @@ const f1 = (n: number) => n.toLocaleString("en-US", { minimumFractionDigits: 1, 
 <script>
   import * as d3 from "d3";
   import hist from "../../../data/bolivia-power-plants/history.json";
+  import { fill } from "../../../lib/fill";
 
   type Row = (typeof hist.series)[number];
   const KEYS = ["thermal", "hydro", "solar", "wind", "biomass"] as const;
   const GROUP: Record<string, string> = { thermal: "gas", hydro: "hydro", solar: "solar", wind: "wind", biomass: "biomass" };
-  const LABEL: Record<string, string> = { thermal: "Natural gas", hydro: "Hydro", solar: "Solar", wind: "Wind", biomass: "Biomass" };
   const fmt = (n: number) => n.toLocaleString("en-US", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 
   document.querySelectorAll<HTMLElement>('[data-viz="bolivia-power-plants-history"]').forEach((root) => {
     root.classList.add("js");
+    const L = JSON.parse(root.dataset.text!) as Record<string, string> & { tech: Record<string, string> };
     const svgEl = root.querySelector<SVGSVGElement>("svg.bh-svg")!, card = root.querySelector<HTMLElement>(".bh-card")!;
     const rows = hist.series as Row[];
     let sel = rows[rows.length - 1];
@@ -61,7 +64,7 @@ const f1 = (n: number) => n.toLocaleString("en-US", { minimumFractionDigits: 1, 
         .attr("x1", m.l).attr("x2", W - m.r).attr("y1", (d) => y(d)).attr("y2", (d) => y(d));
       svg.append("g").attr("class", "yax").selectAll("text").data(y.ticks(6)).join("text")
         .attr("x", m.l - 6).attr("y", (d) => y(d)).attr("dy", "0.32em").text((d) => d.toLocaleString("en-US"));
-      svg.append("text").attr("class", "yt").attr("x", m.l + 4).attr("y", m.t + 2).text("GWh a year");
+      svg.append("text").attr("class", "yt").attr("x", m.l + 4).attr("y", m.t + 2).text(L.y_axis);
       const every = W < 560 ? 5 : 2;
       svg.append("g").attr("class", "xax").selectAll("text").data(rows.filter((r) => (2025 - r.year) % every === 0))
         .join("text").attr("x", (r) => x(r.year)! + x.bandwidth() / 2).attr("y", H - 8).text((r) => r.year);
@@ -92,8 +95,8 @@ const f1 = (n: number) => n.toLocaleString("en-US", { minimumFractionDigits: 1, 
       const gas = sel.thermal / sel.total;
       card.innerHTML = `<div class="bh-card-h"><strong>${sel.year}</strong><span>${fmt(sel.total)} GWh</span></div>
         <ul>${KEYS.filter((k) => sel[k] > 0).map((k) =>
-          `<li><span class="sw t-${GROUP[k]}"></span>${LABEL[k]}<b>${fmt(sel[k])} GWh</b><small>${Math.round((sel[k] / sel.total) * 100)}%</small></li>`).join("")}</ul>
-        <p class="bh-line">Natural gas made ${Math.round(gas * 100)}% of the electricity this year.</p>`;
+          `<li><span class="sw t-${GROUP[k]}"></span>${L.tech[GROUP[k]]}<b>${fmt(sel[k])} GWh</b><small>${Math.round((sel[k] / sel.total) * 100)}%</small></li>`).join("")}</ul>
+        <p class="bh-line">${fill(L.card_line, { pct: Math.round(gas * 100) })}</p>`;
     }
 
     root.querySelectorAll<HTMLButtonElement>(".bh-legend [data-t]").forEach((b) => b.addEventListener("click", () => {

@@ -1,0 +1,5 @@
+---
+// Inserts HTML produced by src/lib/content.ts (text from content/*.md).
+const { html } = Astro.props as { html: string };
+---
+<Fragment set:html={html} />

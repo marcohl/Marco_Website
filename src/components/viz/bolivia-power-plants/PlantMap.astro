@@ -2,12 +2,13 @@
 // Bolivia's SIN power plants at the end of 2025: one circle per plant on a department map, area by
 // capacity (MW) or by 2025 generation (GWh), plus a bar per department. Data:
 // src/data/bolivia-power-plants/plants.json (built by analysis/bolivia-power-plants/build_data.py).
+// Text: content/projects/bolivia-power-plants.md, sections [[map-chart]] and [[technologies]].
 import data from "../../../data/bolivia-power-plants/plants.json";
+import { content } from "../../../lib/content";
+import { fill } from "../../../lib/fill";
 
-const TECH_LABEL: Record<string, string> = {
-  gas_cc: "Gas, combined cycle", gas_oc: "Gas turbines", diesel: "Diesel", dual_fuel: "Dual fuel",
-  hydro: "Hydro", wind: "Wind", solar: "Solar", biomass: "Biomass",
-};
+const txt = content("projects/bolivia-power-plants");
+const L = txt.labels("map-chart"), TECH = txt.labels("technologies");
 const f0 = (n: number) => n.toLocaleString("en-US", { maximumFractionDigits: 0 });
 const f1 = (n: number) => n.toLocaleString("en-US", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 const rows = [...data.plants].sort((a, b) => b.capacity_mw - a.capacity_mw);
@@ -15,42 +16,38 @@ const t = data.meta.totals;
 const deps = [...new Set(data.plants.map((p) => p.department))].sort((a, b) => a.localeCompare(b, "es"))
   .map((d) => ({ name: d, n: data.plants.filter((p) => p.department === d).length }));
 ---
-<div class="bp" data-viz="bolivia-power-plants">
+<div class="bp" data-viz="bolivia-power-plants" data-text={JSON.stringify({ ...L, tech: TECH })}>
   <div class="bp-ctl">
-    <span class="sp-seg bp-seg" role="group" aria-label="Circle size">
-      <button type="button" data-mode="mw" aria-pressed="true">Capacity (MW)</button>
-      <button type="button" data-mode="gwh" aria-pressed="false">Generation 2025 (GWh)</button>
+    <span class="sp-seg bp-seg" role="group" aria-label={L.circle_size}>
+      <button type="button" data-mode="mw" aria-pressed="true">{L.mode_mw}</button>
+      <button type="button" data-mode="gwh" aria-pressed="false">{L.mode_gwh}</button>
     </span>
-    <label class="bp-dep"><span>Department</span>
-      <select aria-label="Department">
-        <option value="">All of Bolivia</option>
+    <label class="bp-dep"><span>{L.department}</span>
+      <select aria-label={L.department}>
+        <option value="">{L.all_bolivia}</option>
         {deps.map((d) => <option value={d.name}>{d.name} ({d.n})</option>)}
       </select>
     </label>
   </div>
 
   <div class="bp-fig">
-    <ul class="bp-legend" aria-label="Technology. Select one to highlight it.">
-      <li><button type="button" data-t="gas" aria-pressed="false"><span class="sw sw-gas"></span>Natural gas</button></li>
-      <li><button type="button" data-t="hydro" aria-pressed="false"><span class="sw sw-hydro"></span>Hydro</button></li>
-      <li><button type="button" data-t="solar" aria-pressed="false"><span class="sw sw-solar"></span>Solar</button></li>
-      <li><button type="button" data-t="wind" aria-pressed="false"><span class="sw sw-wind"></span>Wind</button></li>
-      <li><button type="button" data-t="biomass" aria-pressed="false"><span class="sw sw-biomass"></span>Biomass</button></li>
-      <li class="bp-approx"><span class="sw sw-ring"></span>Approximate location</li>
+    <ul class="bp-legend" aria-label={L.legend_label}>
+      {["gas", "hydro", "solar", "wind", "biomass"].map((g) => <li><button type="button" data-t={g} aria-pressed="false"><span class={`sw sw-${g}`}></span>{TECH[g]}</button></li>)}
+      <li class="bp-approx"><span class="sw sw-ring"></span>{L.approximate}</li>
       <li class="bp-size" aria-hidden="true"><svg></svg><span></span></li>
     </ul>
     <div class="bp-grid">
       <div class="bp-mapbox">
-        <button type="button" class="bp-back" hidden>Show all of Bolivia</button>
+        <button type="button" class="bp-back" hidden>{L.back}</button>
         <svg class="bp-map" tabindex="0" role="img"
-          aria-label={`Map of Bolivia with ${t.plants} power plants of the national grid. Select a department to zoom in. Use the arrow keys to step through plants.`}></svg>
+          aria-label={fill(L.map_description, { plants: t.plants })}></svg>
       </div>
       <div class="bp-side">
-        <div class="bp-card" aria-live="polite"><span class="bp-hint">Tap a department to zoom in. Hover or tap a plant to read it.</span></div>
+        <div class="bp-card" aria-live="polite"><span class="bp-hint">{L.hint}</span></div>
         <div class="bp-list" hidden><p class="bp-list-h"></p><ul></ul></div>
         <figure class="bp-bars">
           <figcaption></figcaption>
-          <svg role="img" aria-label="Capacity or 2025 generation by department, split by technology."></svg>
+          <svg role="img" aria-label={L.bars_description}></svg>
         </figure>
       </div>
     </div>
@@ -59,21 +56,21 @@ const deps = [...new Set(data.plants.map((p) => p.department))].sort((a, b) => a
   <slot name="insights" />
 
   <details>
-    <summary>Show the data: the {t.plants} plants</summary>
+    <summary>{fill(L.table_summary, { plants: t.plants })}</summary>
     <div class="tbl"><table>
-      <caption>CNDC, Memoria y Resultados 2025 (capacity at the end of 2025) and generación bruta 2025. Capacity factor = generation / (capacity x 8,760 h). * Location approximate.</caption>
-      <thead><tr><th>Plant</th><th>Technology</th><th>Department</th><th class="num">MW</th><th class="num">GWh 2025</th><th class="num">Capacity factor</th></tr></thead>
+      <caption>{L.table_caption}</caption>
+      <thead><tr><th>{L.col_plant}</th><th>{L.col_technology}</th><th>{L.col_department}</th><th class="num">{L.col_mw}</th><th class="num">{L.col_gwh}</th><th class="num">{L.col_factor}</th></tr></thead>
       <tbody>{rows.map((p) => (
         <tr>
           <td>{p.name}{p.location_precision === "approximate" ? " *" : ""}</td>
-          <td>{TECH_LABEL[p.tech]}</td>
+          <td>{TECH[p.tech]}</td>
           <td>{p.department}</td>
           <td class="num">{f1(p.capacity_mw)}</td>
           <td class="num">{f1(p.generation_2025_gwh)}</td>
           <td class="num">{Math.round((p.capacity_factor_2025 ?? 0) * 100)}%</td>
         </tr>
       ))}</tbody>
-      <tfoot><tr><th>SIN</th><td></td><td></td><td class="num">{f0(t.capacity_mw)}</td><td class="num">{f0(t.generation_2025_gwh)}</td><td class="num">{Math.round((t.generation_2025_gwh * 1000) / (t.capacity_mw * 8760) * 100)}%</td></tr></tfoot>
+      <tfoot><tr><th>{L.total_row}</th><td></td><td></td><td class="num">{f0(t.capacity_mw)}</td><td class="num">{f0(t.generation_2025_gwh)}</td><td class="num">{Math.round((t.generation_2025_gwh * 1000) / (t.capacity_mw * 8760) * 100)}%</td></tr></tfoot>
     </table></div>
   </details>
 </div>
@@ -82,16 +79,12 @@ const deps = [...new Set(data.plants.map((p) => p.department))].sort((a, b) => a
   import * as d3 from "d3";
   import data from "../../../data/bolivia-power-plants/plants.json";
   import depts from "../../../data/bolivia-power-plants/departments.json";
+  import { fill } from "../../../lib/fill";
 
   type Mode = "mw" | "gwh";
   type Group = "gas" | "hydro" | "solar" | "wind" | "biomass";
   type Plant = (typeof data.plants)[number] & { g: Group; x: number; y: number };
   const GROUPS: Group[] = ["gas", "hydro", "solar", "wind", "biomass"];
-  const GROUP_LABEL: Record<Group, string> = { gas: "natural gas", hydro: "hydro", solar: "solar", wind: "wind", biomass: "biomass" };
-  const TECH_LABEL: Record<string, string> = {
-    gas_cc: "gas, combined cycle", gas_oc: "gas turbines", diesel: "diesel engines", dual_fuel: "dual-fuel engines",
-    hydro: "hydro", wind: "wind", solar: "solar", biomass: "biomass",
-  };
   const groupOf = (t: string): Group => (["gas_cc", "gas_oc", "diesel", "dual_fuel"].includes(t) ? "gas" : (t as Group));
   const val = (p: Plant, m: Mode) => (m === "mw" ? p.capacity_mw : p.generation_2025_gwh);
   const fmt = (n: number, d = 1) => n.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
@@ -101,6 +94,7 @@ const deps = [...new Set(data.plants.map((p) => p.department))].sort((a, b) => a
 
   document.querySelectorAll<HTMLElement>('[data-viz="bolivia-power-plants"]').forEach((root) => {
     root.classList.add("js");
+    const L = JSON.parse(root.dataset.text!) as Record<string, string> & { tech: Record<string, string> };
     const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const q = <T extends Element>(s: string) => root.querySelector<T>(s)!;
     const svgEl = q<SVGSVGElement>("svg.bp-map"), card = q<HTMLElement>(".bp-card");
@@ -129,9 +123,7 @@ const deps = [...new Set(data.plants.map((p) => p.department))].sort((a, b) => a
     // Circles are divided by k so they keep their size on screen and the size key stays true.
     let dep: string | null = null, k = 1;
     const inDep = (p: Plant) => !dep || p.department === dep;
-    const hint = () => dep
-      ? `<span class="bp-hint">${dep}: ${plants.filter(inDep).length} plants. Tap one on the map or in the list below.</span>`
-      : '<span class="bp-hint">Tap a department to zoom in. Hover or tap a plant to read it.</span>';
+    const hint = () => `<span class="bp-hint">${dep ? fill(L.hint_department, { dep, n: plants.filter(inDep).length }) : L.hint}</span>`;
 
     let W = 0, H = 0, rMax = 24;
     const proj = d3.geoMercator();
@@ -161,10 +153,10 @@ const deps = [...new Set(data.plants.map((p) => p.department))].sort((a, b) => a
       const lx = Math.max(4, c[0] - (small ? 70 : 95)), ly = small ? c[1] - 28 : c[1] + 56;
       gAnn.selectAll("*").remove();
       gAnn.append("path").attr("d", small ? `M${c[0] - 4},${c[1] - 4}L${lx + 30},${ly + 4}` : `M${c[0] - 3},${c[1] + 5}L${lx + 20},${ly - 13}`);
-      gAnn.append("text").attr("x", lx).attr("y", ly).text("Zongo valley");
+      gAnn.append("text").attr("x", lx).attr("y", ly).text(L.zongo);
       // Two short lines so the total stays clear of the Cochabamba circles to the east
       if (!small) {
-        gAnn.append("text").attr("class", "sub").attr("x", lx).attr("y", ly + 15).text(`${z.length} hydro plants`);
+        gAnn.append("text").attr("class", "sub").attr("x", lx).attr("y", ly + 15).text(fill(L.zongo_plants, { n: z.length }));
         gAnn.append("text").attr("class", "sub").attr("x", lx).attr("y", ly + 29).text(`${fmt(d3.sum(z, (p) => val(p, mode)), 0)} ${UNIT[mode]}`);
       }
     }
@@ -189,7 +181,7 @@ const deps = [...new Set(data.plants.map((p) => p.department))].sort((a, b) => a
       sizeSvg.attr("width", Math.ceil(2 * rs[0] + 2 * rs[1] + 12)).attr("height", h);
       sizeSvg.selectAll("circle").data(rs).join("circle")
         .attr("r", (d) => d).attr("cy", (d) => h - d - 2).attr("cx", (d, i) => (i ? 2 * rs[0] + 9 + d : d + 1));
-      sizeTxt.textContent = `${ref[0].toLocaleString("en-US")} and ${ref[1].toLocaleString("en-US")} ${UNIT[mode]}`;
+      sizeTxt.textContent = fill(L.size_key, { a: ref[0].toLocaleString("en-US"), b: ref[1].toLocaleString("en-US"), unit: UNIT[mode] });
     }
 
     // Department bars, stacked by technology group, sorted by the current measure
@@ -199,9 +191,8 @@ const deps = [...new Set(data.plants.map((p) => p.department))].sort((a, b) => a
         .sort((a, b) => b.total - a.total);
       const total = d3.sum(by, (d) => d.total);
       const top3 = d3.sum(by.slice(0, 3), (d) => d.total);
-      barsCap.textContent = mode === "mw"
-        ? `Capacity by department: ${by.slice(0, 3).map((d) => d.dep).join(", ")} hold ${Math.round((top3 / total) * 100)}%`
-        : `Generation 2025 by department: ${by.slice(0, 3).map((d) => d.dep).join(", ")} made ${Math.round((top3 / total) * 100)}%`;
+      barsCap.textContent = fill(mode === "mw" ? L.bars_title_mw : L.bars_title_gwh,
+        { top3: by.slice(0, 3).map((d) => d.dep).join(", "), pct: Math.round((top3 / total) * 100) });
       const bw = Math.round(barsEl.getBoundingClientRect().width) || 300;
       const rowH = 26, lab = 86, right = 64, bh = by.length * rowH + 4;
       const bsvg = d3.select(barsEl).attr("viewBox", `0 0 ${bw} ${bh}`).attr("height", bh);
@@ -270,7 +261,7 @@ const deps = [...new Set(data.plants.map((p) => p.department))].sort((a, b) => a
       listBox.hidden = !dep;
       if (!dep) { listUl.innerHTML = ""; return; }
       const ps = plants.filter(inDep).sort((a, b) => val(b, mode) - val(a, mode));
-      listH.textContent = `Plants in ${dep}, by ${mode === "mw" ? "capacity" : "2025 generation"}`;
+      listH.textContent = fill(mode === "mw" ? L.list_title_mw : L.list_title_gwh, { dep });
       listUl.innerHTML = ps.map((p) => {
         const v = val(p, mode);
         return `<li><button type="button" data-id="${p.id}" aria-pressed="${p === selected}"><span class="sw sw-${p.g}"></span><span class="tx"><span class="nm">${p.name}${p.location_precision === "approximate" ? " *" : ""}</span><span class="v">${fmt(v, v < 10 ? 1 : 0)} ${UNIT[mode]}</span></span></button></li>`;
@@ -286,20 +277,19 @@ const deps = [...new Set(data.plants.map((p) => p.department))].sort((a, b) => a
       selRing.attr("r", p ? (r(val(p, mode)) + 3) / k : 0).attr("cx", p?.x ?? 0).attr("cy", p?.y ?? 0);
       listUl.querySelectorAll<HTMLButtonElement>("button[data-id]").forEach((b) => b.setAttribute("aria-pressed", String(!!p && b.dataset.id === String(p.id))));
       if (!p) { card.innerHTML = hint(); return; }
-      const techs = Object.entries(p.capacity_by_tech_mw).map(([k, v]) => `${TECH_LABEL[k]} ${fmt(v as number)} MW`).join(", ");
+      const techs = Object.entries(p.capacity_by_tech_mw).map(([k, v]) => `${L.tech[k]} ${fmt(v as number)} MW`).join(", ");
       const cf = p.capacity_factor_2025 ?? 0;
-      const line = cf < 0.05 ? "Barely ran in 2025."
-        : cf > 0.6 ? `Ran at ${Math.round(cf * 100)}% of its capacity over the year.`
-        : `Produced ${Math.round(cf * 100)}% of what it could at full power all year.`;
-      const approx = p.location_precision === "approximate" ? `<p class="bp-note">Location approximate: ${p.location_note}</p>` : "";
+      const line = fill(cf < 0.05 ? L.line_barely : cf > 0.6 ? L.line_high : L.line_mid, { pct: Math.round(cf * 100) });
+      const approx = p.location_precision === "approximate" ? `<p class="bp-note">${fill(L.approx_note, { note: p.location_note })}</p>` : "";
+      const units = fill(p.units === 1 ? L.unit_one : L.unit_many, { n: p.units });
       card.innerHTML = `<div class="bp-card-h"><strong>${p.name}</strong><span>${p.department}</span></div>
         <dl>
-          <div><dt>Capacity</dt><dd>${fmt(p.capacity_mw)} MW</dd></div>
-          <div><dt>Generation 2025</dt><dd>${fmt(p.generation_2025_gwh)} GWh</dd></div>
-          <div><dt>Capacity factor</dt><dd>${Math.round(cf * 100)}%</dd></div>
+          <div><dt>${L.card_capacity}</dt><dd>${fmt(p.capacity_mw)} MW</dd></div>
+          <div><dt>${L.card_generation}</dt><dd>${fmt(p.generation_2025_gwh)} GWh</dd></div>
+          <div><dt>${L.card_factor}</dt><dd>${Math.round(cf * 100)}%</dd></div>
         </dl>
         <p class="bp-line">${line}</p>
-        <p class="bp-meta">${techs}. ${p.units} ${p.units === 1 ? "unit" : "units"}. Operator: ${p.operator}.</p>${approx}`;
+        <p class="bp-meta">${fill(L.plant_details, { techs, units, operator: p.operator })}</p>${approx}`;
     }
 
     function nearest(px: number, py: number, reach = 22) {

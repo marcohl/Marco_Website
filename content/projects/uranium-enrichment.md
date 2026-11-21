@@ -1,0 +1,37 @@
+Project page: Seven in a thousand (uranium enrichment).
+How to edit: see content/README.md. This page has no {placeholders}.
+
+[[page]]
+title: Seven in a thousand
+description: How natural, reactor-grade and weapons-grade uranium differ, shown atom by atom.
+eyebrow: Nuclear fuel, atom by atom
+
+[[intro]]
+# Only *7* in every 1,000 uranium atoms can easily split
+
+Uranium dug out of the ground is a mix of two isotopes. They behave the same chemically and differ by just three neutrons, but only one of them matters for most reactors. **U-235** splits when hit by a slow neutron and releases energy. **U-238**, almost all of the rest, mostly does not.
+
+**Enrichment** is the process of raising the share of U-235. Each grid below is a sample of 1,000 atoms. Scroll to watch the red ones multiply.
+
+[[notes]]
+## Notes and method
+
+### Atoms and mass
+
+Natural uranium is 99.27% U-238, 0.72% U-235 and 0.005% U-234 by atom count. U-234 is too rare to show (about 1 atom in 20,000).
+
+Enrichment levels are quoted by mass, as the industry does. U-235 is slightly lighter, so 5% and 90% by mass correspond to about 51 and 901 atoms per 1,000. The grid rounds to 50 and 900.
+
+### Definitions
+
+The IAEA defines low-enriched uranium as containing less than 20% U-235. At 20% or more it is highly enriched. Weapons typically use about 90% or more.
+
+### Natural uranium per kg of fuel
+
+The mass balance is F/P = (x_p − x_t) / (x_f − x_t), with natural feed x_f = 0.711% and an assumed tails assay x_t = 0.25% U-235 by mass. For 5% fuel that gives 10.3 kg of natural uranium per kg.
+
+### Sources
+
+[IUPAC CIAAW, uranium isotopic abundances](https://www.ciaaw.org/uranium.htm). Atomic masses from AME2020. [Glaser, "About the Enrichment Limit for Research Reactor Conversion"](https://www.princeton.edu/~aglaser/2005aglaser_why20percent.pdf) for the IAEA definition. [World Nuclear Association, HALEU](https://world-nuclear.org/information-library/nuclear-fuel-cycle/conversion-enrichment-and-fabrication/high-assay-low-enriched-uranium-haleu).
+
+Numbers computed in `analysis/uranium-enrichment/build_data.py`.

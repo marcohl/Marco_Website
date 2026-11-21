@@ -15,6 +15,8 @@
     "@fontsource/barlow-semi-condensed": "^5.3.0",
     "astro": "^7.3.5",
     "d3": "^7.9.0",
+    "marked": "^18.2.1",
+    "marked-smartypants": "^1.1.12",
     "topojson-client": "^3.1.0",
     "world-atlas": "^2.0.2"
   },

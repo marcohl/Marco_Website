@@ -2,8 +2,11 @@
 // Home-page picture statistic: 1,000 uranium atoms in rows of 40, grouped in tens so they can be counted.
 // The U-235 share comes from the uranium-enrichment project data. Without JS it shows natural uranium.
 import waffles from "../data/uranium-enrichment/waffles.json";
+import { content } from "../lib/content";
+import { fill } from "../lib/fill";
+const L = content("home").labels("atom-chart");
 const N = waffles.sample_size, COLS = 40, CELL = 12, GAP = 8;
-const LABELS: Record<string, string> = { natural: "As mined", leu: "Reactor fuel", heu: "Weapons-grade" };
+const LABELS: Record<string, string> = { natural: L.stage_natural, leu: L.stage_leu, heu: L.stage_heu };
 const cases = waffles.cases.map((c) => ({ id: c.id, n: c.u235_atoms_shown, pct: c.u235_mass_pct, label: LABELS[c.id] ?? c.title }));
 const first = cases[0];
 const cx = (i: number) => { const c = i % COLS; return c * CELL + Math.floor(c / 10) * GAP + CELL / 2; };
@@ -11,34 +14,37 @@ const cy = (i: number) => { const r = Math.floor(i / COLS); return r * CELL + Ma
 const rows = Math.ceil(N / COLS);
 const W = COLS * CELL + 3 * GAP, H = rows * CELL + Math.floor((rows - 1) / 5) * GAP;
 const fmt = (n: number) => n.toLocaleString("en-US");
+const v = { n: first.n, total: fmt(N), stage: first.label };
 ---
-<figure class="ac" data-cases={JSON.stringify(cases)}>
+<figure class="ac" data-cases={JSON.stringify(cases)} data-text={JSON.stringify(L)} data-total={fmt(N)}>
   <div class="ac-top">
-    <p class="ac-count"><b>{first.n}</b> <span>of {fmt(N)} atoms a reactor can split</span></p>
-    <p class="ac-sr" aria-live="polite">{first.label}: {first.n} of {fmt(N)} atoms a reactor can split</p>
-    <p class="ac-try" id="ac-try">Pick a stage to recount the red atoms.</p>
+    <p class="ac-count"><b>{first.n}</b> <span>{fill(L.count, v)}</span></p>
+    <p class="ac-sr" aria-live="polite">{fill(L.screen_reader, v)}</p>
+    <p class="ac-try" id="ac-try">{L.pick_stage}</p>
     <div class="ac-steps" role="group" aria-labelledby="ac-try">
       {cases.map((c, i) => (
         <button type="button" data-i={i} aria-pressed={i === 0 ? "true" : "false"}>{c.label} <span class="pct">{c.pct}%</span></button>
       ))}
     </div>
   </div>
-  <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${first.label}: ${first.n} of ${fmt(N)} atoms are uranium-235`}>
+  <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={fill(L.chart_description, v)}>
     <!-- One pictogram unit: a nucleus with one orbit, drawn in currentColor. -->
     <symbol id="ac-atom" viewBox="0 0 12 12"><circle cx="6" cy="6" r="2.4" /><ellipse cx="6" cy="6" rx="4.9" ry="2.3" transform="rotate(-30 6 6)" fill="none" stroke="currentColor" stroke-width="1.5" /></symbol>
     {Array.from({ length: N }, (_, i) => <use href="#ac-atom" x={cx(i) - 5.5} y={cy(i) - 5.5} width="11" height="11" class={i < first.n ? "on" : undefined} />)}
   </svg>
   <figcaption>
-    <span class="key"><svg class="dot on" viewBox="0 0 12 12" aria-hidden="true"><use href="#ac-atom" /></svg>Uranium-235, the atom a reactor splits</span>
-    <span class="key"><svg class="dot" viewBox="0 0 12 12" aria-hidden="true"><use href="#ac-atom" /></svg>Uranium-238, three neutrons heavier</span>
-    <a href="/projects/uranium-enrichment/">How enrichment works</a>
+    <span class="key"><svg class="dot on" viewBox="0 0 12 12" aria-hidden="true"><use href="#ac-atom" /></svg>{L.key_u235}</span>
+    <span class="key"><svg class="dot" viewBox="0 0 12 12" aria-hidden="true"><use href="#ac-atom" /></svg>{L.key_u238}</span>
+    <a href="/projects/uranium-enrichment/">{L.link}</a>
   </figcaption>
 </figure>
 
 <script>
+  import { fill } from "../lib/fill";
   document.querySelectorAll<HTMLElement>(".ac").forEach((root) => {
     root.classList.add("js");
     const cases = JSON.parse(root.dataset.cases!) as { n: number; label: string }[];
+    const L = JSON.parse(root.dataset.text!) as Record<string, string>;
     const dots = [...root.querySelectorAll<SVGUseElement>("svg use")];
     const svg = root.querySelector("svg")!;
     const count = root.querySelector(".ac-count b")!;
@@ -55,8 +61,9 @@ const fmt = (n: number) => n.toLocaleString("en-US");
       }
       now = next;
       count.textContent = next.toLocaleString("en-US");
-      svg.setAttribute("aria-label", `${cases[k].label}: ${next} of 1,000 atoms are uranium-235`);
-      sr.textContent = `${cases[k].label}: ${next} of 1,000 atoms a reactor can split`;
+      const v = { n: next, total: root.dataset.total!, stage: cases[k].label };
+      svg.setAttribute("aria-label", fill(L.chart_description, v));
+      sr.textContent = fill(L.screen_reader, v);
       btns.forEach((b, i) => b.setAttribute("aria-pressed", String(i === k)));
     }
     btns.forEach((b, i) => b.addEventListener("click", () => show(i)));

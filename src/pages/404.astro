@@ -1,12 +1,14 @@
 ---
 import Base from "../layouts/Base.astro";
+import { content } from "../lib/content";
+const T = content("404").labels("page");
 ---
-<Base title="Page not found" description="This page does not exist." noindex>
+<Base title={T.title} description={T.description} noindex>
   <section class="wrap nf">
-    <span class="eyebrow">Error 404</span>
-    <h1>This sheet is not in the drawing set.</h1>
-    <p>The page you asked for does not exist or has moved.</p>
-    <a class="back" href="/">Back to the index</a>
+    <span class="eyebrow">{T.eyebrow}</span>
+    <h1>{T.headline}</h1>
+    <p>{T.text}</p>
+    <a class="back" href="/">{T.back}</a>
   </section>
 </Base>
 

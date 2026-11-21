@@ -1,6 +1,12 @@
 ---
 import Base from "../layouts/Base.astro";
 import AtomCount from "../components/AtomCount.astro";
+import Html from "../components/Html.astro";
+import { content, projectInfo } from "../lib/content";
+const S = content("site").labels("site");
+const home = content("home");
+const T = home.labels("page");
+const facts = home.pairs("facts");
 
 // Every MDX file in src/pages/projects/ with status "published" is listed (all of them in dev).
 const modules = import.meta.glob("./projects/*.mdx", { eager: true }) as Record<string, any>;
@@ -9,29 +15,27 @@ const FIELDS = ["blue", "red", "green", "ochre"];
 const projects = Object.entries(modules)
   .map(([path, mod]) => {
     const slug = path.split("/").pop()!.replace(".mdx", "");
-    return { ...mod.frontmatter, slug, href: `/projects/${slug}/`, Thumb: thumbs[`../components/viz/${slug}/Thumb.astro`]?.default };
+    return { ...mod.frontmatter, ...projectInfo(slug), slug, href: `/projects/${slug}/`, Thumb: thumbs[`../components/viz/${slug}/Thumb.astro`]?.default };
   })
   .filter((p) => p.status === "published" || import.meta.env.DEV)
   .sort((a, b) => String(b.date).localeCompare(String(a.date)));
 const month = (d: unknown) => new Date(d as string).toLocaleDateString("en-US", { month: "short", year: "numeric", timeZone: "UTC" });
-const email = "marcoherbas8@gmail.com";
-const linkedin = "https://www.linkedin.com/in/marco-herbas-l%C3%B3pez-315530bb";
 ---
-<Base world="iso" contact={false} title="Marco Herbas Lopez" description="Energy and science data turned into finished, source-checked charts you can explore, by engineer Marco Herbas Lopez.">
+<Base world="iso" contact={false} title={T.title} description={T.description}>
   <section class="wrap hero">
     <div class="hero-text">
-      <h1>Energy data you can count.</h1>
-      <p class="lead">I'm Marco Herbas Lopez, an electrical and nuclear engineer in Milan. I turn energy and science data into finished, source-checked charts you can explore.</p>
+      <h1>{T.headline}</h1>
+      <p class="lead"><Html html={home.inline("lead")} /></p>
       <div class="actions">
-        <a class="btn" href={`mailto:${email}`}>Write to me</a>
-        <a class="more" href="#work">See the projects</a>
+        <a class="btn" href={`mailto:${S.email}`}>{T.cta}</a>
+        <a class="more" href="#work">{T.see_projects}</a>
       </div>
     </div>
     <AtomCount />
   </section>
 
   <section id="work" class="wrap work" aria-labelledby="work-h">
-    <h2 id="work-h">Projects</h2>
+    <h2 id="work-h">{T.projects_heading}</h2>
     <ul class="gallery">
       {projects.map((p, i) => (
         <li class:list={["tile", `f-${FIELDS[i % FIELDS.length]}`, { newest: i === 0, wide: i > 0 && i === projects.length - 1 && i % 2 === 1 }]}>
@@ -49,19 +53,19 @@ const linkedin = "https://www.linkedin.com/in/marco-herbas-l%C3%B3pez-315530bb";
   </section>
 
   <section id="about" class="wrap about" aria-labelledby="about-h">
-    <h2 id="about-h">About</h2>
-    <p class="about-lead">I've spent over ten years in high-voltage electrical systems, nuclear engineering and renewable energy. Each project here starts with a question, finds the data that answers it, checks it against the sources and ends in one chart you can explore.</p>
+    <h2 id="about-h">{T.about_heading}</h2>
+    <p class="about-lead"><Html html={home.inline("about")} /></p>
     <dl class="facts">
-      <div><dt>Based in</dt><dd>Milan, from Bolivia</dd></div>
-      <div><dt>Degree</dt><dd>MSc in Nuclear Engineering, Politecnico di Milano</dd></div>
-      <div><dt>Works in</dt><dd>Spanish, Italian, English<span class="langs" aria-hidden="true">{FIELDS.slice(0, 3).map((f) => <svg class={`f-${f}`} viewBox="0 0 20 18"><path d="M3 1h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H9l-5 4v-4H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2z" /></svg>)}</span></dd></div>
+      {facts.map((f, i) => (
+        <div><dt set:html={f.label} /><dd><Html html={f.value} />{i === facts.length - 1 && <span class="langs" aria-hidden="true">{FIELDS.slice(0, 3).map((c) => <svg class={`f-${c}`} viewBox="0 0 20 18"><path d="M3 1h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H9l-5 4v-4H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2z" /></svg>)}</span>}</dd></div>
+      ))}
     </dl>
   </section>
 
   <section id="contact" class="close" aria-label="Contact">
     <div class="wrap close-in">
-      <a class="close-cta" href={`mailto:${email}`}>Write to me</a>
-      <a class="close-alt" href={linkedin} target="_blank" rel="noopener">or find me on LinkedIn</a>
+      <a class="close-cta" href={`mailto:${S.email}`}>{T.close_cta}</a>
+      <a class="close-alt" href={S.linkedin_url} target="_blank" rel="noopener">{T.close_alt}</a>
     </div>
   </section>
 </Base>

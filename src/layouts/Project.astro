@@ -1,14 +1,17 @@
 ---
 import Base from "./Base.astro";
-const { frontmatter } = Astro.props;
+import { content, projectInfo } from "../lib/content";
+const P = content("site").labels("project-page");
 // Social image: public/og/<slug>.png (1200x630), slug taken from the page URL.
-const slug = Astro.url.pathname.split("/").filter(Boolean).pop();
+const slug = Astro.url.pathname.split("/").filter(Boolean).pop()!;
+// Title, description and eyebrow come from content/projects/<slug>.md; the rest from the MDX frontmatter.
+const frontmatter = { ...Astro.props.frontmatter, ...projectInfo(slug) };
 const month = (d: unknown) => new Date(d as string).toLocaleDateString("en-US", { month: "short", year: "numeric", timeZone: "UTC" });
 const subject = frontmatter.eyebrow ?? frontmatter.tags?.join(", ");
 // "Next project": the next older published project, wrapping to the newest.
 const modules = import.meta.glob("../pages/projects/*.mdx", { eager: true }) as Record<string, any>;
 const projects = Object.entries(modules)
-  .map(([path, mod]) => ({ ...mod.frontmatter, slug: path.split("/").pop()!.replace(".mdx", "") }))
+  .map(([path, mod]) => { const s = path.split("/").pop()!.replace(".mdx", ""); return { ...mod.frontmatter, ...projectInfo(s), slug: s }; })
   .filter((p) => p.status === "published" || import.meta.env.DEV)
   .sort((a, b) => String(b.date).localeCompare(String(a.date)));
 const i = projects.findIndex((p) => p.slug === slug);
@@ -17,12 +20,12 @@ const next = projects.length > 1 ? projects[(i + 1) % projects.length] : undefin
 <Base world="iso" title={frontmatter.title} description={frontmatter.description} image={`/og/${slug}.png`} type="article">
   <div class="wrap post">
     <article>
-      <p class="meta"><a href="/#work">Projects</a><span aria-hidden="true">/</span>{subject}<span aria-hidden="true">·</span>{month(frontmatter.date)}</p>
+      <p class="meta"><a href="/#work">{P.breadcrumb}</a><span aria-hidden="true">/</span>{subject}<span aria-hidden="true">·</span>{month(frontmatter.date)}</p>
       <slot />
     </article>
     {next && (
       <nav class="next" aria-label="Next project">
-        <a href={`/projects/${next.slug}/`}><span>Next project</span><b>{next.title}</b></a>
+        <a href={`/projects/${next.slug}/`}><span>{P.next_project}</span><b>{next.title}</b></a>
       </nav>
     )}
   </div>
