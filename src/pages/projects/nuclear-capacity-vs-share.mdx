@@ -1,0 +1,79 @@
+---
+layout: ../../layouts/Project.astro
+date: 2026-11-21
+tags: [Energy, Nuclear]
+status: published
+code: MHL-005
+rev: A
+thumb: trend
+---
+import Fleet from "../../components/viz/nuclear-capacity-vs-share/Fleet.astro";
+import Trend from "../../components/viz/nuclear-capacity-vs-share/Trend.astro";
+import Regions from "../../components/viz/nuclear-capacity-vs-share/Regions.astro";
+import Html from "../../components/Html.astro";
+import { content } from "../../lib/content";
+import d from "../../data/nuclear-capacity-vs-share/nuclear.json";
+
+{/* All visible text lives in content/projects/nuclear-capacity-vs-share.md. This file computes the numbers and places the text. */}
+export const w = d.world;
+export const Y = d.years;
+export const N = Y.length - 1;
+export const at = (k, y) => w[k][Y.indexOf(y)];
+export const fmt = (n) => Math.round(n).toLocaleString("en-US");
+export const f1 = (n) => n.toFixed(1);
+export const iLow = w.share_pct.indexOf(Math.min(...w.share_pct));
+export const R = Object.fromEntries(d.regions.map((r) => [r.code, r]));
+export const reg = (c) => ({
+  [`${c.toLowerCase()}_cap_first`]: fmt(R[c].capacity_gw[0]),
+  [`${c.toLowerCase()}_cap_last`]: fmt(R[c].capacity_gw[N]),
+  [`${c.toLowerCase()}_share_first`]: f1(R[c].share_pct[0]),
+  [`${c.toLowerCase()}_share_last`]: f1(R[c].share_pct[N]),
+});
+export const txt = content("projects/nuclear-capacity-vs-share", {
+  first: Y[0],
+  last: Y[N],
+  cap_first: fmt(w.capacity_gw[0]),
+  cap_2040: fmt(at("capacity_gw", 2040)),
+  cap_last: fmt(w.capacity_gw[N]),
+  fold: (w.capacity_gw[N] / w.capacity_gw[0]).toFixed(1),
+  share_first: f1(w.share_pct[0]),
+  share_2040: f1(at("share_pct", 2040)),
+  share_last: f1(w.share_pct[N]),
+  share_low: f1(w.share_pct[iLow]),
+  low_year: Y[iLow],
+  nuc_first: fmt(w.nuclear_twh[0]),
+  nuc_last: fmt(w.nuclear_twh[N]),
+  tot_first: fmt(w.total_twh[0]),
+  tot_last: fmt(w.total_twh[N]),
+  nuc_growth: Math.round((w.nuclear_twh[N] / w.nuclear_twh[0] - 1) * 100),
+  tot_growth: Math.round((w.total_twh[N] / w.total_twh[0] - 1) * 100),
+  lf_first: w.load_factor[0].toFixed(2),
+  lf_last: w.load_factor[N].toFixed(2),
+  gen_fold: (w.nuclear_twh[N] / w.nuclear_twh[0]).toFixed(1),
+  ...reg("EUR"), ...reg("NAM"), ...reg("CHN"),
+});
+export const notes = txt.columns("notes");
+
+<div class="nc-intro">
+  <div class="prose"><Html html={txt.block("intro")} /></div>
+  <Fleet />
+</div>
+
+<Trend />
+
+<div class="prose after-chart"><Html html={txt.block("after-trend")} /></div>
+
+<div class="prose nc-reg"><Html html={txt.block("region-intro")} /></div>
+
+<Regions />
+
+<section class="method">
+  <Html html={notes.head} />
+  <div class="method-grid">{notes.cols.map((x) => <div set:html={x} />)}</div>
+</section>
+
+<style>{`
+  .nc-intro { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; align-items: start; }
+  .nc-reg { margin-top: 40px; }
+  @media (min-width: 900px) { .nc-intro { grid-template-columns: minmax(0, 1fr) minmax(300px, 380px); gap: 48px; } .nc-intro > .nf { margin-top: 14px; } }
+`}</style>

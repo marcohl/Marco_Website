@@ -2,3 +2,5 @@ numpy
 pandas
 openpyxl
 xlrd
+fonttools
+brotli

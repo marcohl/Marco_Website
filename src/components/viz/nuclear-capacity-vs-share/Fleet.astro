@@ -1,0 +1,98 @@
+---
+// Isotype figure beside the headline: cooling towers counted for world nuclear capacity
+// (1 tower = UNIT GW, the last one cut to its fraction), and two 10x10 grids for nuclear's share
+// of world electricity. Static SVG, no JavaScript.
+// Data: src/data/nuclear-capacity-vs-share/nuclear.json. Text: [[fleet-figure]].
+import d from "../../../data/nuclear-capacity-vs-share/nuclear.json";
+import { content } from "../../../lib/content";
+import { fill } from "../../../lib/fill";
+
+const L = content("projects/nuclear-capacity-vs-share").labels("fleet-figure");
+const UNIT = 25;
+const first = d.years[0], last = d.years[d.years.length - 1];
+const cap0 = d.world.capacity_gw[0], cap1 = d.world.capacity_gw.at(-1)!;
+const sh0 = d.world.share_pct[0], sh1 = d.world.share_pct.at(-1)!;
+const f1 = (n: number) => n.toFixed(1);
+const fmt = (n: number) => Math.round(n).toLocaleString("en-US");
+const v = { unit: UNIT, towers_first: Math.round(cap0 / UNIT), towers_last: Math.round(cap1 / UNIT), first, last, cap_first: fmt(cap0), cap_last: fmt(cap1), share_first: f1(sh0), share_last: f1(sh1) };
+
+// Towers: PER_ROW per row, each in a TW x TH cell
+const PER_ROW = 20, TW = 16, TH = 20, W = PER_ROW * TW;
+function towers(gw: number) {
+  const n = gw / UNIT, full = Math.floor(n), frac = n - full;
+  const out: { x: number; y: number; w: number }[] = [];
+  for (let i = 0; i < Math.ceil(n); i++) {
+    out.push({ x: (i % PER_ROW) * TW, y: Math.floor(i / PER_ROW) * TH, w: i < full ? 1 : frac });
+  }
+  return { cells: out, rows: Math.ceil(Math.ceil(n) / PER_ROW) };
+}
+const rows = [
+  { year: first, gw: cap0, ...towers(cap0) },
+  { year: last, gw: cap1, ...towers(cap1) },
+];
+const LABEL_H = 22, GAP = 14;
+let y = 0;
+const placed = rows.map((r) => { const o = { ...r, y: y + LABEL_H }; y += LABEL_H + r.rows * TH + GAP; return o; });
+const towersH = y;
+
+// Share grids: 10x10 squares, filled in reading order, last one cut to its fraction
+const SQ = 11, GW_ = 10 * SQ;
+const grid = (pct: number) => Array.from({ length: 100 }, (_, i) => ({
+  x: (i % 10) * SQ, y: Math.floor(i / 10) * SQ, fill: Math.max(0, Math.min(1, pct - i)),
+}));
+const gridY = towersH + 26;
+const GRID_TOP = gridY + 32;
+const H = GRID_TOP + GW_ + 22;
+const gx = [0, GW_ + 40];
+---
+<figure class="nf" data-viz="nuclear-capacity-vs-share-fleet">
+  <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={fill(L.description, v)}>
+    <defs>
+      <symbol id="nf-tower" viewBox="0 0 16 20">
+        <path d="M3 20 C5.2 14 5.2 8 4 1.5 L12 1.5 C10.8 8 10.8 14 13 20 Z" />
+      </symbol>
+    </defs>
+    <text class="nf-key" x="0" y="11">{fill(L.unit_key, v)}</text>
+    <g transform="translate(0 18)">
+      {placed.map((r) => (
+        <g>
+          <text class="nf-yr" x="0" y={r.y - 6}>{r.year}<tspan class="nf-gw" dx="8">{fmt(r.gw)} GW</tspan></text>
+          {r.cells.map((c, i) => c.w >= 1
+            ? <use href="#nf-tower" x={c.x} y={r.y + c.y} width={TW} height={TH} class="nf-t" />
+            : <>
+                <clipPath id={`nf-c-${r.year}-${i}`}><rect x={c.x} y={r.y + c.y} width={TW * c.w} height={TH} /></clipPath>
+                <use href="#nf-tower" x={c.x} y={r.y + c.y} width={TW} height={TH} class="nf-t" clip-path={`url(#nf-c-${r.year}-${i})`} />
+                <use href="#nf-tower" x={c.x} y={r.y + c.y} width={TW} height={TH} class="nf-ghost" />
+              </>)}
+        </g>
+      ))}
+    </g>
+    <text class="nf-key" x="0" y={gridY + 2}>{L.share_key}</text>
+    {[{ year: first, pct: sh0 }, { year: last, pct: sh1 }].map((g, k) => (
+      <g transform={`translate(${gx[k]} ${GRID_TOP})`}>
+        <text class="nf-yr" x="0" y="-6">{g.year}</text>
+        {grid(g.pct).map((s) => (
+          <>
+            <rect class="nf-sq" x={s.x} y={s.y} width={SQ - 2} height={SQ - 2} />
+            {s.fill > 0 && <rect class="nf-on" x={s.x} y={s.y} width={(SQ - 2) * s.fill} height={SQ - 2} />}
+          </>
+        ))}
+        <text class="nf-pct" x="0" y={GW_ + 14}>{fill(L.share_label, { share: f1(g.pct) })}</text>
+      </g>
+    ))}
+  </svg>
+</figure>
+
+<style is:global>
+  .nf { margin: 0; padding: 14px 16px; background: var(--panel); border-radius: var(--radius); }
+  .nf svg { display: block; width: 100%; max-width: 420px; height: auto; overflow: visible; }
+  .nf text { font-family: var(--f-data); font-variant-numeric: tabular-nums; }
+  .nf-key { font-size: 12px; fill: var(--ink-3); }
+  .nf-yr { font-size: 14px; font-weight: 700; fill: var(--ink); }
+  .nf-gw { font-weight: 400; fill: var(--ink-2); }
+  .nf-t { fill: var(--cat-1); }
+  .nf-ghost { fill: none; stroke: var(--cat-1); stroke-width: .8; stroke-opacity: .5; }
+  .nf-sq { fill: var(--grid); }
+  .nf-on { fill: var(--cat-2); }
+  .nf-pct { font-size: 13px; font-weight: 600; fill: var(--ink); }
+</style>

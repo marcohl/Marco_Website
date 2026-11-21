@@ -1,0 +1,197 @@
+---
+// World nuclear capacity (GW, top) and nuclear share of world electricity (%, bottom), 2025-2060,
+// as two stacked panels on one time axis (never two y-axes). Shared hover/tap and keyboard reading.
+// Data: src/data/nuclear-capacity-vs-share/nuclear.json (DNV ETO 2026). Text: [[trend-chart]].
+import d from "../../../data/nuclear-capacity-vs-share/nuclear.json";
+import { content } from "../../../lib/content";
+import { fill } from "../../../lib/fill";
+
+const L = content("projects/nuclear-capacity-vs-share").labels("trend-chart");
+const w = d.world, Y = d.years;
+const fmt = (n: number) => Math.round(n).toLocaleString("en-US");
+const f1 = (n: number) => n.toFixed(1);
+const iLow = w.share_pct.indexOf(Math.min(...w.share_pct));
+const v = {
+  first: Y[0], last: Y.at(-1)!, cap_first: fmt(w.capacity_gw[0]), cap_last: fmt(w.capacity_gw.at(-1)!),
+  share_first: f1(w.share_pct[0]), share_low: f1(w.share_pct[iLow]), low_year: Y[iLow], share_last: f1(w.share_pct.at(-1)!),
+  fold: (w.capacity_gw.at(-1)! / w.capacity_gw[0]).toFixed(1),
+};
+const text = Object.fromEntries(Object.entries(L).map(([k, s]) => [k, fill(s, { ...v, kwh: "{kwh}" })]));
+const tableYears = Y.map((y, i) => ({ y, i })).filter(({ y }) => y % 5 === 0);
+---
+<div class="nt" data-viz="nuclear-capacity-vs-share-trend" data-text={JSON.stringify(text)}>
+  <div class="nt-fig">
+    <svg class="nt-svg" tabindex="0" role="img" aria-label={text.chart_description}></svg>
+    <div class="nt-side">
+      <div class="nt-card" aria-live="polite"></div>
+      <p class="nt-hint">{text.hint}</p>
+    </div>
+  </div>
+  <details>
+    <summary>{text.table_summary}</summary>
+    <div class="tbl"><table>
+      <caption>{text.table_caption}</caption>
+      <thead><tr><th>{L.col_year}</th><th class="num">{L.col_capacity}</th><th class="num">{L.col_nuclear}</th><th class="num">{L.col_total}</th><th class="num">{L.col_share}</th><th class="num">{L.col_lf}</th></tr></thead>
+      <tbody>{tableYears.map(({ y, i }) => (
+        <tr><td>{y}</td><td class="num">{fmt(w.capacity_gw[i])}</td><td class="num">{fmt(w.nuclear_twh[i])}</td><td class="num">{fmt(w.total_twh[i])}</td><td class="num">{f1(w.share_pct[i])}%</td><td class="num">{w.load_factor[i]!.toFixed(2)}</td></tr>
+      ))}</tbody>
+    </table></div>
+  </details>
+</div>
+
+<script>
+  import * as d3 from "d3";
+  import data from "../../../data/nuclear-capacity-vs-share/nuclear.json";
+  import { fill } from "../../../lib/fill";
+
+  const fmt = (n: number) => Math.round(n).toLocaleString("en-US");
+  const f1 = (n: number) => n.toFixed(1);
+
+  document.querySelectorAll<HTMLElement>('[data-viz="nuclear-capacity-vs-share-trend"]').forEach((root) => {
+    root.classList.add("js");
+    const L = JSON.parse(root.dataset.text!) as Record<string, string>;
+    const svgEl = root.querySelector<SVGSVGElement>("svg.nt-svg")!, card = root.querySelector<HTMLElement>(".nt-card")!;
+    const Y = data.years, w = data.world;
+    const n = Y.length;
+    const iLow = w.share_pct.indexOf(Math.min(...w.share_pct));
+    let sel = n - 1;
+    const svg = d3.select(svgEl);
+    let W = 0;
+    let place: (i: number) => void = () => {};
+
+    function draw() {
+      const width = Math.round(svgEl.getBoundingClientRect().width) || 320;
+      if (width === W) return;
+      W = width;
+      const narrow = W < 560;
+      const PH = narrow ? 150 : 190, GAP = 52, TOP = 24;
+      const m = { l: 40, r: narrow ? 50 : 64, b: 26 };
+      const H = TOP + PH + GAP + PH + m.b;
+      svg.attr("viewBox", `0 0 ${W} ${H}`).attr("height", H).selectAll("*").remove();
+
+      // scales
+      const x = d3.scaleLinear().domain([Y[0], Y[n - 1]]).range([m.l, W - m.r]);
+      const top0 = TOP, bot0 = TOP + PH + GAP;
+      const yc = d3.scaleLinear().domain([0, 1300]).range([top0 + PH, top0]);
+      const ys = d3.scaleLinear().domain([0, 10]).range([bot0 + PH, bot0]);
+
+      // axes and grids
+      const panel = (y: d3.ScaleLinear<number, number>, ticks: number[], title: string, unit: string, cls: string) => {
+        const g = svg.append("g").attr("class", cls);
+        g.append("g").attr("class", "grid").selectAll("line").data(ticks).join("line")
+          .attr("x1", m.l).attr("x2", W - m.r).attr("y1", (t) => y(t)).attr("y2", (t) => y(t));
+        g.append("g").attr("class", "yax").selectAll("text").data(ticks).join("text")
+          .attr("x", m.l - 6).attr("y", (t) => y(t)).attr("dy", "0.32em").text((t) => t.toLocaleString("en-US") + unit);
+        g.append("text").attr("class", "pt").attr("x", m.l).attr("y", y.range()[1] - 12).text(title);
+      };
+      panel(yc, [0, 400, 800, 1200], L.cap_title, "", "p-cap");
+      panel(ys, [0, 5, 10], L.share_title, "%", "p-share");
+      const yrs = narrow ? [2025, 2040, 2060] : [2025, 2030, 2040, 2050, 2060];
+      svg.append("g").attr("class", "xax").selectAll("text").data(yrs).join("text")
+        .attr("x", (t) => x(t)).attr("y", H - 8).text((t) => t)
+        .style("text-anchor", (_, i) => (i === 0 ? "start" : "middle"));
+
+      // marks
+      const line = (y: d3.ScaleLinear<number, number>, vals: number[]) =>
+        d3.line<number>().x((_, i) => x(Y[i])).y((v) => y(v)).curve(d3.curveMonotoneX)(vals);
+      const ref = w.share_pct[0];
+      svg.append("line").attr("class", "ref").attr("x1", m.l).attr("x2", W - m.r).attr("y1", ys(ref)).attr("y2", ys(ref));
+      svg.append("text").attr("class", "ref-l").attr("x", m.l + 4).attr("y", ys(ref) - 6).text(L.ref_label);
+      svg.append("path").attr("class", "l-cap").attr("d", line(yc, w.capacity_gw));
+      svg.append("path").attr("class", "l-share").attr("d", line(ys, w.share_pct));
+
+      // direct labels and annotations (at most three)
+      const xe = x(Y[n - 1]) + 6;
+      svg.append("text").attr("class", "end ctx").attr("x", xe).attr("y", yc(w.capacity_gw[n - 1])).attr("dy", "0.32em").text(fmt(w.capacity_gw[n - 1]));
+      svg.append("text").attr("class", "end ctx").attr("x", xe).attr("y", yc(w.capacity_gw[n - 1]) + 16).attr("dy", "0.32em").text(L.fold_label);
+      svg.append("text").attr("class", "end story").attr("x", xe).attr("y", ys(w.share_pct[n - 1]) + 12).attr("dy", "0.32em").text(f1(w.share_pct[n - 1]) + "%");
+      svg.append("circle").attr("class", "low").attr("cx", x(Y[iLow])).attr("cy", ys(w.share_pct[iLow])).attr("r", 4);
+      svg.append("text").attr("class", "ann").attr("x", x(Y[iLow])).attr("y", ys(w.share_pct[iLow]) + 20).attr("text-anchor", "middle").text(L.low_label);
+
+      // reading cursor across both panels
+      const cur = svg.append("g").attr("class", "cur");
+      const vline = cur.append("line").attr("y1", top0 - 4).attr("y2", bot0 + PH);
+      const dc = cur.append("circle").attr("class", "d-cap").attr("r", 4.5);
+      const ds = cur.append("circle").attr("class", "d-share").attr("r", 4.5);
+      place = (i: number) => {
+        const px = x(Y[i]);
+        vline.attr("x1", px).attr("x2", px);
+        dc.attr("cx", px).attr("cy", yc(w.capacity_gw[i]));
+        ds.attr("cx", px).attr("cy", ys(w.share_pct[i]));
+      };
+      place(sel);
+      svg.on("pointermove pointerdown", (ev: PointerEvent) => {
+        const [px] = d3.pointer(ev, svgEl);
+        sel = Math.max(0, Math.min(n - 1, Math.round(x.invert(px) - Y[0])));
+        place(sel); show();
+      });
+    }
+
+    function show() {
+      const i = sel;
+      card.innerHTML = `<div class="nt-card-h"><strong>${Y[i]}</strong></div>
+        <dl>
+          <dt>${L.card_capacity}</dt><dd>${fmt(w.capacity_gw[i])} GW</dd>
+          <dt>${L.card_nuclear}</dt><dd>${fmt(w.nuclear_twh[i])} TWh</dd>
+          <dt>${L.card_total}</dt><dd>${fmt(w.total_twh[i])} TWh</dd>
+          <dt class="s">${L.card_share}</dt><dd class="s">${f1(w.share_pct[i])}%</dd>
+        </dl>
+        <p class="nt-line">${fill(L.card_line, { kwh: f1(w.share_pct[i]) })}</p>`;
+    }
+
+    svgEl.addEventListener("keydown", (ev) => {
+      if (ev.key !== "ArrowRight" && ev.key !== "ArrowLeft") return;
+      ev.preventDefault();
+      sel = Math.max(0, Math.min(n - 1, sel + (ev.key === "ArrowRight" ? 1 : -1)));
+      place(sel); show();
+    });
+    new ResizeObserver(() => draw()).observe(svgEl);
+    draw(); show();
+  });
+</script>
+
+<style is:global>
+  [data-viz="nuclear-capacity-vs-share-trend"] { margin-block: 24px; }
+  .nt-fig { padding: 12px; background: var(--panel); border-radius: var(--radius); }
+  .nt-svg { display: block; width: 100%; touch-action: pan-y; }
+  .nt-svg:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+  .nt-svg text { font-family: var(--f-data); font-variant-numeric: tabular-nums; }
+  .nt-svg .grid line { stroke: var(--grid); }
+  .nt-svg .yax text { font-size: 12px; fill: var(--ink-3); text-anchor: end; }
+  .nt-svg .xax text { font-size: 12px; fill: var(--ink-2); text-anchor: middle; }
+  .nt-svg .pt { font-size: 14px; font-weight: 700; fill: var(--ink); }
+  .nt-svg .l-cap { fill: none; stroke: var(--cat-1); stroke-width: 2; stroke-linecap: round; }
+  .nt-svg .l-share { fill: none; stroke: var(--cat-2); stroke-width: 2.5; stroke-linecap: round; }
+  .nt-svg .ref { stroke: var(--ink-3); stroke-width: 1; stroke-dasharray: 4 4; }
+  .nt-svg .ref-l { font-size: 12px; fill: var(--ink-3); paint-order: stroke; stroke: var(--panel); stroke-width: 3px; }
+  .nt-svg .end { font-size: 13px; }
+  .nt-svg .end.story { font-weight: 600; fill: var(--ink); }
+  .nt-svg .end.ctx { fill: var(--ink-3); }
+  .nt-svg .low { fill: var(--panel); stroke: var(--cat-2); stroke-width: 2; }
+  .nt-svg .ann { font-size: 13px; fill: var(--ink-2); paint-order: stroke; stroke: var(--panel); stroke-width: 3px; }
+  .nt-svg .cur line { stroke: var(--ink); stroke-width: 1; stroke-opacity: .5; }
+  .nt-svg .cur .d-cap { fill: var(--cat-1); stroke: var(--panel); stroke-width: 2; }
+  .nt-svg .cur .d-share { fill: var(--cat-2); stroke: var(--panel); stroke-width: 2; }
+  .nt-card { padding: 10px 12px; border: 1px solid var(--rule); border-radius: var(--radius); background: var(--bg); font: 400 14px/1.35 var(--f-data); color: var(--ink); }
+  .nt-card-h strong { font: 700 18px/1.2 var(--f-display); }
+  .nt-card dl { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; margin: 6px 0 0; }
+  .nt-card dt { color: var(--ink-2); }
+  .nt-card dd { margin: 0; text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .nt-card .s { color: var(--ink); font-weight: 700; }
+  .nt-line { margin: 8px 0 0; color: var(--ink-2); }
+  .nt-hint { margin: 8px 0 0; font: 400 13px/1.3 var(--f-data); color: var(--ink-3); }
+  .nt-side { margin-top: 10px; }
+  .nt:not(.js) .nt-fig { display: none; }
+  .nt details { margin-top: 20px; font-size: 14px; }
+  .nt summary { cursor: pointer; font-weight: 600; padding-block: 6px; }
+  .nt .tbl { overflow-x: auto; margin-top: 10px; }
+  .nt table { border-collapse: collapse; min-width: 520px; font-family: var(--f-data); }
+  .nt caption { caption-side: bottom; text-align: left; font-size: 12px; color: var(--ink-3); padding-top: 8px; }
+  .nt th, .nt td { text-align: left; padding: 5px 14px 5px 0; border-bottom: 1px solid var(--rule); }
+  .nt .num { text-align: right; font-variant-numeric: tabular-nums; }
+  @media (min-width: 900px) {
+    [data-viz="nuclear-capacity-vs-share-trend"] { margin-block: 32px; }
+    .nt-fig { padding: 18px 20px; display: grid; grid-template-columns: minmax(0, 1fr) 260px; column-gap: 24px; }
+    .nt-side { margin-top: 30px; align-self: start; }
+  }
+</style>

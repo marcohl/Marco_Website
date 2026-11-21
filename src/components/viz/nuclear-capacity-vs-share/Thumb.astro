@@ -1,0 +1,31 @@
+---
+// Home-page gallery thumbnail: world nuclear capacity (context color) climbs steeply while
+// nuclear's share of world electricity (story color) stays flat, 2025-2060. Two separate bands,
+// no shared y-axis. Data: src/data/nuclear-capacity-vs-share/nuclear.json.
+import { scaleLinear, line, curveMonotoneX } from "d3";
+import d from "../../../data/nuclear-capacity-vs-share/nuclear.json";
+const { title } = Astro.props;
+const W = 320, H = 160, P = 10;
+const Y = d.years, w = d.world, n = Y.length - 1;
+const x = scaleLinear().domain([Y[0], Y[n]]).range([P, W - P]);
+const yc = scaleLinear().domain([0, 1300]).range([92, P]);
+const ys = scaleLinear().domain([0, 10]).range([H - P, 108]);
+const path = (y: (v: number) => number, vals: number[]) =>
+  line<number>().x((_, i) => x(Y[i])).y((v) => y(v)).curve(curveMonotoneX)(vals) ?? "";
+const fmt = (v: number) => Math.round(v).toLocaleString("en-US");
+---
+<svg viewBox={`0 0 ${W} ${H}`} role="img"
+  aria-label={`${title}: world nuclear capacity rises from ${fmt(w.capacity_gw[0])} to ${fmt(w.capacity_gw[n])} GW between ${Y[0]} and ${Y[n]}, while nuclear's share of electricity goes from ${w.share_pct[0].toFixed(1)}% to ${w.share_pct[n].toFixed(1)}%`}>
+  <line class="base" x1={P} x2={W - P} y1={yc(0)} y2={yc(0)} />
+  <line class="base" x1={P} x2={W - P} y1={ys(0)} y2={ys(0)} />
+  <line class="ref" x1={P} x2={W - P} y1={ys(w.share_pct[0])} y2={ys(w.share_pct[0])} />
+  <path class="cap" d={path(yc, w.capacity_gw)} />
+  <path class="share" d={path(ys, w.share_pct)} />
+</svg>
+
+<style>
+  .base { stroke: var(--rule); stroke-width: 1; }
+  .ref { stroke: var(--ink-3); stroke-width: 1; stroke-dasharray: 3 3; }
+  .cap { fill: none; stroke: var(--cat-1); stroke-width: 3; stroke-linecap: round; }
+  .share { fill: none; stroke: var(--cat-2); stroke-width: 3; stroke-linecap: round; }
+</style>

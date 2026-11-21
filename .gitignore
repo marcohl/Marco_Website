@@ -7,3 +7,6 @@ dist/
 __pycache__/
 .ipynb_checkpoints/
 .venv/
+
+# DNV ETO data: licence forbids redistribution; fetched by build_data.py
+analysis/nuclear-capacity-vs-share/raw/
